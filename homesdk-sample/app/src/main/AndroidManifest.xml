@@ -20,7 +20,6 @@
             android:name="TUYA_SMART_SECRET"
             android:value="" />
 
-
         <!--        Main        -->
         <activity
             android:name=".main.MainSampleListActivity"

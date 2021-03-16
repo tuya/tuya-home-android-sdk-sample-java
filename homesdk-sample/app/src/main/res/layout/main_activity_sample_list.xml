@@ -44,11 +44,11 @@
                 android:text="@string/user_info_title" />
 
             <TextView
-                android:id="@+id/tvLogout"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:gravity="center"
                 android:text="@string/user_logout"
+                android:id="@+id/tvLogout"
                 android:textColor="@color/red"
                 android:textSize="18dp" />
 

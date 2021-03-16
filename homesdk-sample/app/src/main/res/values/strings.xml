@@ -27,8 +27,8 @@
     <string name="app_version_tips">SDK Ver: %s</string>
     <string name="main_logo">Tuya Smart</string>
 
-    <string name="user_update_coordinate">Updata Geographic Coordinate</string>
-    <string name="user_deactive_account">Deactive Account</string>
+    <string name="user_update_coordinate">Update Geographic Coordinate</string>
+    <string name="user_deactivate_account">Deactivate Account</string>
 
     <string name="user_country_China">China</string>
     <string name="user_country_America">America</string>
@@ -36,10 +36,6 @@
     <string name="user_country_Australia">Australia</string>
     <string name="user_country_Japan">Japan</string>
     <string name="user_country_Egypt">Egypt</string>
-
-    <string name="user_time_Asia">Asia/Aden</string>
-    <string name="user_time_America">America/Cuiaba</string>
-    <string name="user_time_Etc">Etc/Gmt+9"</string>
 
 
 </resources>

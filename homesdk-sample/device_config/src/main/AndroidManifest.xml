@@ -9,8 +9,10 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -55,9 +57,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".qrcode.DeviceConfigQrCodeDeviceActivity"
+        <activity
+            android:name=".qrcode.DeviceConfigQrCodeDeviceActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
 
     </application>

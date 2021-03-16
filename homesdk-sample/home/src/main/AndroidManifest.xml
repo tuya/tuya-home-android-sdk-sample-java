@@ -6,7 +6,7 @@
 
     <application>
         <activity
-            android:name="com.tuya.appsdk.sample.home.list.HomeListActivity"
+            android:name="com.tuya.appsdk.sample.home.list.adapter.HomeListActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

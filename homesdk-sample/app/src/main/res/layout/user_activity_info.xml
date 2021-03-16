@@ -216,11 +216,11 @@
 
 
             <Button
-                android:id="@+id/deactive"
+                android:id="@+id/deactivate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:text="@string/user_deactive_account" />
+                android:text="@string/user_deactivate_account" />
 
 
         </LinearLayout>

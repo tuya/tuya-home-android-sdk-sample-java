@@ -84,6 +84,6 @@
     <TextView
         style="@style/item_func"
         android:id="@+id/tv_qrcode_subDevice"
-        android:text="@string/device_qr_code_service_title"/>
+        android:text="@string/device_qr_code_service_title" />
 
 </LinearLayout>

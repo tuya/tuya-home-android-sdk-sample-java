@@ -43,7 +43,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_current_gateway_name"
                     android:layout_gravity="center_vertical|end"
-                    android:layout_marginEnd="40dp" />
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginRight="40dp" />
             </FrameLayout>
 
             <View

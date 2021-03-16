@@ -11,6 +11,7 @@
     <string name="device_config_choose_gateway_title">Choose Gateway</string>
     <string name="device_qr_code_service_title">QR Code</string>
 
+
     <string name="device_config_wifi_ssid">WIFI SSID</string>
     <string name="device_config_wifi_password">WIFI Password</string>
     <string name="device_config_search">Search</string>

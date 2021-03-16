@@ -26,7 +26,7 @@
     <string name="main_logo">涂鸦智能</string>
     <string name="user_update_coordinate">更新坐标</string>
     <string name="user_unit_temperature">温度单位</string>
-    <string name="user_deactive_account">停用账号</string>
+    <string name="user_deactivate_account">停用账号</string>
 
     <string name="user_country_China">中国</string>
     <string name="user_country_America">美国</string>
@@ -34,9 +34,5 @@
     <string name="user_country_Australia">澳大利亚</string>
     <string name="user_country_Japan">日本</string>
     <string name="user_country_Egypt">埃及</string>
-
-    <string name="user_time_Asia">亚洲/亚丁</string>
-    <string name="user_time_America">美国/库亚巴</string>
-    <string name="user_time_Etc">Etc/Gmt+9</string>
 
 </resources>
