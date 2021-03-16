@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="device_mgt_module_title">设备管理</string>
+    <string name="device_mgt_list">设备列表</string>
+
+    <string name="device_zb_gateway_list">Zigbee 网关列表</string>
+    <string name="device_zb_sub_device_list">子设备列表</string>
+
+    <string name="device_mgt_online">在线</string>
+    <string name="device_mgt_offline">离线</string>
+    <string name="device_mgt_control">设备控制</string>
+
+    <string name="device_mgt_remove">移除</string>
+    <string name="device_mgt_reset">恢复出厂设置</string>
+
+</resources>

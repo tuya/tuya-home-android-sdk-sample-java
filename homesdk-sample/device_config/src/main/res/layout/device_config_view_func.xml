@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/device_config_module_title"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:textSize="18dp" />
+
+    <TextView
+        style="@style/item_func"
+        android:id="@+id/tvEzMode"
+        android:text="@string/device_config_ez_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF888888" />
+
+    <TextView
+        style="@style/item_func"
+        android:id="@+id/tvApMode"
+        android:text="@string/device_config_ap_title" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF888888" />
+
+    <TextView
+        style="@style/item_func"
+        android:id="@+id/tv_ble"
+        android:text="@string/device_config_ble_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF888888" />
+
+    <TextView
+        style="@style/item_func"
+        android:id="@+id/tv_dual_mode"
+        android:text="@string/device_config_dual_title" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF888888" />
+
+    <TextView
+        style="@style/item_func"
+        android:id="@+id/tv_zigBee_gateway"
+        android:text="@string/device_config_zb_gateway_title" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF888888" />
+
+    <TextView
+        style="@style/item_func"
+        android:id="@+id/tv_zigBee_subDevice"
+        android:text="@string/device_config_zb_sub_device_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF888888" />
+
+    <TextView
+        style="@style/item_func"
+        android:id="@+id/tv_qrcode_subDevice"
+        android:text="@string/device_qr_code_service_title"/>
+
+</LinearLayout>

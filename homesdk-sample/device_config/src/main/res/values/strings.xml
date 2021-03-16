@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="device_config_module_title">DEVICE NETWORK CONFIGURATION</string>
+
+    <string name="device_config_ez_title">EZ Mode</string>
+    <string name="device_config_ap_title">AP Mode</string>
+    <string name="device_config_ble_title">Bluetooth Low Energy</string>
+    <string name="device_config_dual_title">Dual Mode</string>
+    <string name="device_config_zb_gateway_title">Zigbee Gateway</string>
+    <string name="device_config_zb_sub_device_title">Zigbee Subdevice</string>
+    <string name="device_config_choose_gateway_title">Choose Gateway</string>
+    <string name="device_qr_code_service_title">QR Code</string>
+
+    <string name="device_config_wifi_ssid">WIFI SSID</string>
+    <string name="device_config_wifi_password">WIFI Password</string>
+    <string name="device_config_search">Search</string>
+
+
+    <string name="device_config_ble_hint">Single-point Bluetooth devices are devices that have a one-to-one connection with a cell phone terminal via Bluetooth, such as Bluetooth bracelets,
+        Bluetooth headsets, Bluetooth speakers, etc.
+        Each device can be connected to a cell phone at the same time,
+        and the number of simultaneous Bluetooth connections per cell phone terminal is currently
+        limited to 6 to 7.\n\nTap Search to pair BLE device.</string>
+
+    <string name="device_config_zb_gateway_hint">Let the Zigbee Gateway connect to the router,
+        and make sure iPhone and the gateway are in the same local area network, then tap search. </string>
+
+    <string name="device_config_sp_mode_hint">AP Mode, also known as hotspot mode. The mobile phone connects the smart device’s hotspot, and the two parties establish a Socket connection to exchange data through the agreed port.Let the device in pairing mode, \nthen switch iPhone’s Wi-Fi to the device’s hotspot. Type in the SSID and password of which Wi-Fi you want the device connect to, then tap Search.</string>
+
+</resources>

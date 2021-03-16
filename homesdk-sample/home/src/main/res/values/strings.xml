@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_module_title">HOME MANAGEMENT</string>
+    <string name="home_new_home">New Home</string>
+    <string name="home_current_home">Current Home</string>
+    <string name="home_home_list">Home List</string>
+
+    <string name="home_create">Create</string>
+    <string name="home_home_name">Home Name</string>
+    <string name="home_city">City</string>
+    <string name="home_switch_home">Switch Home</string>
+    <string name="home_id">Home ID</string>
+
+    <string name="home_weather">Weather Condition</string>
+    <string name="home_temperature">Temperature</string>
+    <string name="home_detail">Home Detail</string>
+    <string name="home_edit">Edit</string>
+    <string name="home_dismiss">Dismiss</string>
+    <string name="home_edit_title">Edit Home</string>
+    <string name="home_done">Done</string>
+
+</resources>

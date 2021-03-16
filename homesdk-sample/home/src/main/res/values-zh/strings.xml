@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_module_title">家庭管理</string>
+    <string name="home_new_home">添加家庭</string>
+    <string name="home_current_home">当前家庭</string>
+    <string name="home_home_list">家庭列表</string>
+
+    <string name="home_create">创建</string>
+    <string name="home_home_name">家庭名称</string>
+    <string name="home_city">城市</string>
+    <string name="home_switch_home">选择家庭</string>
+    <string name="home_id">家庭编号</string>
+
+    <string name="home_weather">天气情况</string>
+    <string name="home_temperature">温度</string>
+    <string name="home_detail">家庭详情</string>
+    <string name="home_edit">编辑</string>
+    <string name="home_dismiss">注销</string>
+    <string name="home_edit_title">编辑家庭</string>
+    <string name="home_done">完成</string>
+
+</resources>

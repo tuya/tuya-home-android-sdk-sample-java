@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.tuya.appsdk.sample">
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:name=".BaseApplication"
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+        tools:replace="android:allowBackup,android:supportsRtl">
+
+        <meta-data
+            android:name="TUYA_SMART_APPKEY"
+            android:value="" />
+        <meta-data
+            android:name="TUYA_SMART_SECRET"
+            android:value="" />
+
+
+        <!--        Main        -->
+        <activity
+            android:name=".main.MainSampleListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!--        User        -->
+        <activity
+            android:name=".user.main.UserFuncActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".user.login.UserLoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".user.register.UserRegisterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".user.resetPassword.UserResetPasswordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".user.info.UserInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

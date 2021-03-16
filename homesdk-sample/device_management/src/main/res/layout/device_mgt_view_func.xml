@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:paddingLeft="20dp"
+        android:text="@string/device_mgt_module_title"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tvDeviceList"
+        style="@style/item_func"
+        android:text="@string/device_mgt_list" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF888888"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_zb_gateway_list"
+        style="@style/item_func"
+        android:text="@string/device_zb_gateway_list"
+        android:visibility="gone" />
+
+</LinearLayout>

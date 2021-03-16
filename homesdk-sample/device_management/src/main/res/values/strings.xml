@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="device_mgt_module_title">DEVICE MANAGEMENT</string>
+    <string name="device_mgt_list">Device List</string>
+
+    <string name="device_zb_gateway_list">Zigbee Gateway List</string>
+    <string name="device_zb_sub_device_list">Subdevice List</string>
+
+    <string name="device_mgt_online">Online</string>
+    <string name="device_mgt_offline">Offline</string>
+    <string name="device_mgt_control">Device Control</string>
+    <string name="device_mgt_remove">Remove</string>
+    <string name="device_mgt_reset">Reset Factory</string>
+
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tuya SDK</string>
+
+    <string name="user_guide_title">Tuya SDK Sample</string>
+    <string name="user_login">Login</string>
+    <string name="user_country_code">Country Code</string>
+    <string name="user_account_tips">Email Address or Phone Number</string>
+    <string name="user_password">Password</string>
+    <string name="user_forget_password_tips">Forget Password?</string>
+    <string name="user_register">Register</string>
+    <string name="user_verification_code">Verification Code</string>
+    <string name="user_send_code">Send Verification Code</string>
+    <string name="user_reset_password">Reset Password</string>
+    <string name="user_new_password">Reset Password</string>
+
+    <string name="user_info_title">User Information</string>
+    <string name="user_name">User Name</string>
+    <string name="user_phone_number">Phone Number</string>
+    <string name="user_email_address">Email Address</string>
+
+    <string name="user_management">USER MANAGEMENT</string>
+    <string name="user_logout">Logout</string>
+
+    <string name="user_time_zone">Time Zone</string>
+    <string name="user_unit_temperature">Unit of Temperature</string>
+    <string name="app_version_tips">SDK Ver: %s</string>
+    <string name="main_logo">Tuya Smart</string>
+
+    <string name="user_update_coordinate">Updata Geographic Coordinate</string>
+    <string name="user_deactive_account">Deactive Account</string>
+
+    <string name="user_country_China">China</string>
+    <string name="user_country_America">America</string>
+    <string name="user_country_English">English</string>
+    <string name="user_country_Australia">Australia</string>
+    <string name="user_country_Japan">Japan</string>
+    <string name="user_country_Egypt">Egypt</string>
+
+    <string name="user_time_Asia">Asia/Aden</string>
+    <string name="user_time_America">America/Cuiaba</string>
+    <string name="user_time_Etc">Etc/Gmt+9"</string>
+
+
+</resources>
