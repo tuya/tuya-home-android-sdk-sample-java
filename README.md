@@ -15,7 +15,7 @@ Get Started
 
 App Images
 ---
-<img src="https://images.tuyacn.com/app/aiwen/tuya-app-sample/main_en.jpg" alt="main_page" style="zoom:33%;" />
+<img src="https://images.tuyacn.com/app/aiwen/tuya-app-sample/main_en.jpg" alt="main_page" width="30%" />
 
 Issue Feedback
 ---
