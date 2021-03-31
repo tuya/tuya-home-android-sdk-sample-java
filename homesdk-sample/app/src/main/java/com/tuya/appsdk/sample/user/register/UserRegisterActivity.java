@@ -13,6 +13,7 @@
 package com.tuya.appsdk.sample.user.register;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +39,11 @@ import java.util.regex.Pattern;
  * @since 2021/2/9 3:05 PM
  */
 public class UserRegisterActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "UserRegisterActivity";
     private final String check = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
     private final Pattern regex = Pattern.compile(check);
+    //mType equals 1 is for register
+    private final int mRegisterType = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +95,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                 public void onError(String code, String error) {
                     Toast.makeText(
                             UserRegisterActivity.this,
-                            "Register error->$error",
+                            "Register error:" + error,
                             Toast.LENGTH_LONG
                     ).show();
                 }
@@ -142,25 +146,28 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                         });
             } else {
                 // Get verification code code by phone
-                TuyaHomeSdk.getUserInstance().getValidateCode(
-                        strCountryCode,
+                TuyaHomeSdk.getUserInstance().sendVerifyCodeWithUserName(
                         strAccount,
-                        new IValidateCallback() {
+                        "",
+                        strCountryCode,
+                        mRegisterType,
+                        new IResultCallback() {
+                            @Override
+                            public void onError(String code, String error) {
+                                Toast.makeText(
+                                        UserRegisterActivity.this,
+                                        "getValidateCode error:" + error,
+                                        Toast.LENGTH_LONG
+                                ).show();
+
+                            }
+
                             @Override
                             public void onSuccess() {
                                 Toast.makeText(
                                         UserRegisterActivity.this,
                                         "Got validateCode",
-                                        Toast.LENGTH_LONG
-                                ).show();
-                            }
-
-                            @Override
-                            public void onError(String code, String error) {
-                                Toast.makeText(
-                                        UserRegisterActivity.this,
-                                        "getValidateCode error->$error",
-                                        Toast.LENGTH_LONG
+                                        Toast.LENGTH_SHORT
                                 ).show();
                             }
                         });

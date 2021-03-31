@@ -13,6 +13,7 @@
 package com.tuya.appsdk.sample.user.resetPassword;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ import com.tuya.appsdk.sample.R;
 import com.tuya.smart.android.user.api.IResetPasswordCallback;
 import com.tuya.smart.android.user.api.IValidateCallback;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
+import com.tuya.smart.sdk.api.IResultCallback;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,8 +38,12 @@ import java.util.regex.Pattern;
  * @since 2021/2/9 3:49 PM
  */
 public class UserResetPasswordActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "UserResetPasswordActivi";
     private final String check = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
     private final Pattern regex = Pattern.compile(check);
+
+    //mType equals 1 is for reset your account's password
+    private final int mResetPasswordType = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +86,7 @@ public class UserResetPasswordActivity extends AppCompatActivity implements View
                 public void onSuccess() {
                     Toast.makeText(
                             UserResetPasswordActivity.this,
-                            "Register success",
+                            "Reset Password success",
                             Toast.LENGTH_LONG
                     ).show();
                 }
@@ -89,7 +95,7 @@ public class UserResetPasswordActivity extends AppCompatActivity implements View
                 public void onError(String code, String error) {
                     Toast.makeText(
                             UserResetPasswordActivity.this,
-                            "Register error->$error",
+                            "Reset Password error:" + error,
                             Toast.LENGTH_LONG
                     ).show();
                 }
@@ -125,7 +131,7 @@ public class UserResetPasswordActivity extends AppCompatActivity implements View
                             public void onError(String code, String error) {
                                 Toast.makeText(
                                         UserResetPasswordActivity.this,
-                                        "getValidateCode error->$error",
+                                        "getValidateCode error:" + error,
                                         Toast.LENGTH_LONG
                                 ).show();
                             }
@@ -141,24 +147,26 @@ public class UserResetPasswordActivity extends AppCompatActivity implements View
                         });
             } else {
                 // Get verification code code by phone
-                TuyaHomeSdk.getUserInstance().getValidateCode(
-                        strCountryCode,
+                TuyaHomeSdk.getUserInstance().sendVerifyCodeWithUserName(
                         strAccount,
-                        new IValidateCallback() {
+                        "",
+                        strCountryCode,
+                        mResetPasswordType,
+                        new IResultCallback() {
                             @Override
-                            public void onSuccess() {
+                            public void onError(String code, String error) {
                                 Toast.makeText(
                                         UserResetPasswordActivity.this,
-                                        "Got validateCode",
+                                        "getValidateCode error:" + error,
                                         Toast.LENGTH_LONG
                                 ).show();
                             }
 
                             @Override
-                            public void onError(String code, String error) {
+                            public void onSuccess() {
                                 Toast.makeText(
                                         UserResetPasswordActivity.this,
-                                        "getValidateCode error->$error",
+                                        "Got validateCode",
                                         Toast.LENGTH_LONG
                                 ).show();
                             }
