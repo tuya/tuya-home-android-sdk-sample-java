@@ -60,6 +60,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
+                android:id="@+id/content_tv"
                 android:layout_width="match_parent"
                 android:textSize="18sp"
                 android:layout_marginTop="25dp"

@@ -45,4 +45,6 @@ dependencies {
     implementation 'com.tuya.smart:tuyasmart:3.24.1'
 
     implementation project(':base_res')
+
+    implementation project(':ipc')
 }

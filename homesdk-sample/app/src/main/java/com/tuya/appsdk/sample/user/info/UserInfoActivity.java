@@ -43,6 +43,7 @@ import com.tuya.smart.sdk.enums.TempUnitEnum;
 import org.jetbrains.annotations.Nullable;
 
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -60,7 +61,7 @@ public class UserInfoActivity extends AppCompatActivity {
     public String lat;
     public String lon;
 
-    List<String> items;
+    List<String> items = new ArrayList<>();
     Button tempUnit;
 
 

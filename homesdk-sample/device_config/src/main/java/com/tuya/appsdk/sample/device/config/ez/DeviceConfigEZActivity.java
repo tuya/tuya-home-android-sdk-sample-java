@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +45,7 @@ public class DeviceConfigEZActivity extends AppCompatActivity implements View.On
 
     public CircularProgressIndicator cpiLoading;
     public Button btnSearch;
+    private TextView mContentTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,8 @@ public class DeviceConfigEZActivity extends AppCompatActivity implements View.On
         cpiLoading = findViewById(R.id.cpiLoading);
         btnSearch = findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(this);
+        mContentTv=findViewById(R.id.content_tv);
+        mContentTv.setText(getString(R.string.device_config_ez_description));
     }
 
     @Override

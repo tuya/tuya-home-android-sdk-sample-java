@@ -22,12 +22,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.tuya.appsdk.sample.device.mgt.R;
-import com.tuya.appsdk.sample.device.mgt.control.dpItem.DpBooleanItem;
-import com.tuya.appsdk.sample.device.mgt.control.dpItem.DpCharTypeItem;
-import com.tuya.appsdk.sample.device.mgt.control.dpItem.DpEnumItem;
+import com.tuya.appsdk.sample.device.mgt.control.dpItem.mesh.MeshDpBooleanItem;
+import com.tuya.appsdk.sample.device.mgt.control.dpItem.mesh.MeshDpCharTypeItem;
+import com.tuya.appsdk.sample.device.mgt.control.dpItem.mesh.MeshDpEnumItem;
+import com.tuya.appsdk.sample.device.mgt.control.dpItem.mesh.MeshDpIntegerItem;
+import com.tuya.appsdk.sample.device.mgt.control.dpItem.normal.DpBooleanItem;
+import com.tuya.appsdk.sample.device.mgt.control.dpItem.normal.DpCharTypeItem;
+import com.tuya.appsdk.sample.device.mgt.control.dpItem.normal.DpEnumItem;
 import com.tuya.appsdk.sample.device.mgt.control.dpItem.DpFaultItem;
-import com.tuya.appsdk.sample.device.mgt.control.dpItem.DpIntegerItem;
-import com.tuya.appsdk.sample.device.mgt.control.dpItem.DpRawTypeItem;
+import com.tuya.appsdk.sample.device.mgt.control.dpItem.normal.DpIntegerItem;
+import com.tuya.appsdk.sample.device.mgt.control.dpItem.normal.DpRawTypeItem;
 import com.tuya.smart.android.device.bean.BitmapSchemaBean;
 import com.tuya.smart.android.device.bean.BoolSchemaBean;
 import com.tuya.smart.android.device.bean.EnumSchemaBean;
@@ -41,7 +45,6 @@ import com.tuya.smart.sdk.api.ITuyaDevice;
 import com.tuya.smart.sdk.bean.DeviceBean;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -60,6 +63,7 @@ public class DeviceMgtControlActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.group_control);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,10 +75,8 @@ public class DeviceMgtControlActivity extends AppCompatActivity {
         LinearLayout llDp = findViewById(R.id.llDp);
         String deviceId = getIntent().getStringExtra("deviceId");
 
-
         ITuyaDevice mDevice = TuyaHomeSdk.newDeviceInstance(deviceId);
         DeviceBean deviceBean = TuyaHomeSdk.getDataInstance().getDeviceBean(deviceId);
-
         findViewById(R.id.btnReset).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,41 +135,81 @@ public class DeviceMgtControlActivity extends AppCompatActivity {
             if (bean.type.equals(DataTypeEnum.OBJ.getType())) {
                 // obj
                 switch (bean.getSchemaType()) {
-
                     case BoolSchemaBean.type:
-                        DpBooleanItem dpBooleanItem = new DpBooleanItem(
-                                this,
-                                bean,
-                                (Boolean) value,
-                                mDevice);
-                        llDp.addView(dpBooleanItem);
+                        if (deviceBean.isSigMesh()){
+                            MeshDpBooleanItem dpBooleanItem = new MeshDpBooleanItem(
+                                    this, null, 0, bean, (Boolean) value,
+                                    deviceBean.getMeshId(),
+                                    false,
+                                    deviceBean.getNodeId(),
+                                    deviceBean.getCategory());
+                            llDp.addView(dpBooleanItem);
+                        }else {
+                            DpBooleanItem dpBooleanItem = new DpBooleanItem(
+                                    this,
+                                    bean,
+                                    (Boolean) value,
+                                    mDevice);
+                            llDp.addView(dpBooleanItem);
+                        }
                         break;
 
                     case EnumSchemaBean.type:
-                        DpEnumItem dpEnumItem = new DpEnumItem(
-                                this,
-                                bean,
-                                value.toString(),
-                                mDevice);
-                        llDp.addView(dpEnumItem);
+                        if (deviceBean.isSigMesh()){
+                            MeshDpEnumItem dpEnumItem = new MeshDpEnumItem(
+                                    this, null, 0, bean, value.toString(),
+                                    deviceBean.getMeshId(),
+                                    false,
+                                    deviceBean.getNodeId(),
+                                    deviceBean.getCategory());
+                            llDp.addView(dpEnumItem);
+                        }else {
+                            DpEnumItem dpEnumItem = new DpEnumItem(
+                                    this,
+                                    bean,
+                                    value.toString(),
+                                    mDevice);
+                            llDp.addView(dpEnumItem);
+                        }
                         break;
 
                     case StringSchemaBean.type:
-                        DpCharTypeItem dpCharTypeItem = new DpCharTypeItem(
-                                this,
-                                bean,
-                                (String) value,
-                                mDevice);
-                        llDp.addView(dpCharTypeItem);
+                        if (deviceBean.isSigMesh()){
+                            MeshDpCharTypeItem dpCharTypeItem = new MeshDpCharTypeItem(
+                                    this, null, 0, bean,  (String)value,
+                                    deviceBean.getMeshId(),
+                                    false,
+                                    deviceBean.getNodeId(),
+                                    deviceBean.getCategory());
+                            llDp.addView(dpCharTypeItem);
+                        }else {
+                            DpCharTypeItem dpCharTypeItem = new DpCharTypeItem(
+                                    this,
+                                    bean,
+                                    (String) value,
+                                    mDevice);
+                            llDp.addView(dpCharTypeItem);
+                        }
                         break;
 
                     case ValueSchemaBean.type:
-                        DpIntegerItem dpIntegerItem = new DpIntegerItem(
-                                this,
-                                bean,
-                                (int) value,
-                                mDevice);
-                        llDp.addView(dpIntegerItem);
+                        if (deviceBean.isSigMesh()){
+                            MeshDpIntegerItem dpIntegerItem = new MeshDpIntegerItem(
+                                    this, null, 0, bean,  (int)value,
+                                    deviceBean.getMeshId(),
+                                    false,
+                                    deviceBean.getNodeId(),
+                                    deviceBean.getCategory());
+                            llDp.addView(dpIntegerItem);
+                        }else{
+                            DpIntegerItem dpIntegerItem = new DpIntegerItem(
+                                    this,
+                                    bean,
+                                    (int) value,
+                                    mDevice);
+                            llDp.addView(dpIntegerItem);
+                        }
+
                         break;
 
                     case BitmapSchemaBean.type:

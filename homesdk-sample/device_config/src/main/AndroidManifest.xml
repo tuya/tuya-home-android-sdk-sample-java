@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
@@ -23,6 +22,9 @@
         android:required="true" />
 
     <application>
+        <activity android:name=".ble.DeviceConfigBleAndDualActivity" />
+        <activity android:name=".mesh.configByApp.SubConfigAppActivity" />
+        <activity android:name=".mesh.configByGateway.SubConfigGatewayActivity" />
         <activity
             android:name=".ap.DeviceConfigAPActivity"
             android:exported="false"
@@ -31,37 +33,26 @@
             android:name=".ez.DeviceConfigEZActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".ble.DeviceConfigBleActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".dual.DeviceConfigDualActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
         <activity
             android:name=".zigbee.gateway.DeviceConfigZbGatewayActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".zigbee.sub.DeviceConfigZbSubDeviceActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".zigbee.sub.DeviceConfigChooseZbGatewayActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".qrcode.DeviceConfigQrCodeDeviceActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
-
+        <activity
+            android:name=".mesh.DeviceConfigMeshActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
     </application>
+
 </manifest>

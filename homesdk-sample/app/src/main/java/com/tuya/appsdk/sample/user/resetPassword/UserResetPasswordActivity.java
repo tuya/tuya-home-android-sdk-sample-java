@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
  */
 public class UserResetPasswordActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "UserResetPasswordActivi";
-    private final String check = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+    private final String check = "^([a-z0-9A-Z]+[-|.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
     private final Pattern regex = Pattern.compile(check);
 
     //mType equals 1 is for reset your account's password
@@ -78,7 +78,6 @@ public class UserResetPasswordActivity extends AppCompatActivity implements View
 
         Matcher matcher = regex.matcher(strAccount);
         boolean isEmail = matcher.matches();
-
 
         if (v.getId() == R.id.btnReset) {
             IResetPasswordCallback callback = new IResetPasswordCallback() {
@@ -171,8 +170,6 @@ public class UserResetPasswordActivity extends AppCompatActivity implements View
                                 ).show();
                             }
                         });
-
-
             }
         }
     }

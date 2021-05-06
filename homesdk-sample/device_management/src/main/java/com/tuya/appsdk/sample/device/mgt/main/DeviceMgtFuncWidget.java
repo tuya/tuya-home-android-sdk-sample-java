@@ -14,13 +14,12 @@ package com.tuya.appsdk.sample.device.mgt.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
 import com.tuya.appsdk.sample.device.mgt.R;
-import com.tuya.appsdk.sample.device.mgt.control.activity.DeviceMgtControlActivity;
+import com.tuya.appsdk.sample.device.mgt.group.GroupListActivity;
 import com.tuya.appsdk.sample.device.mgt.list.activity.DeviceMgtListActivity;
 import com.tuya.appsdk.sample.device.mgt.list.tag.DeviceListTypePage;
 import com.tuya.appsdk.sample.resource.HomeModel;
@@ -68,6 +67,43 @@ public class DeviceMgtFuncWidget {
                 } else {
                     Intent intent = new Intent(v.getContext(), DeviceMgtListActivity.class);
                     intent.putExtra("type", DeviceListTypePage.ZIGBEE_GATEWAY_LIST);
+                    v.getContext().startActivity(intent);
+                }
+
+            }
+        });
+
+        // ZigBee Gateway List
+        rootView.findViewById(R.id.tv_zb_gateway_list).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((HomeModel.getCurrentHome(v.getContext()) == 0)) {
+                    Toast.makeText(
+                            rootView.getContext(),
+                            rootView.getContext().getString(R.string.home_current_home_tips),
+                            Toast.LENGTH_LONG
+                    ).show();
+                } else {
+                    Intent intent = new Intent(v.getContext(), DeviceMgtListActivity.class);
+                    intent.putExtra("type", DeviceListTypePage.ZIGBEE_GATEWAY_LIST);
+                    v.getContext().startActivity(intent);
+                }
+
+            }
+        });
+
+        // group List
+        rootView.findViewById(R.id.tv_group).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((HomeModel.getCurrentHome(v.getContext()) == 0)) {
+                    Toast.makeText(
+                            rootView.getContext(),
+                            rootView.getContext().getString(R.string.home_current_home_tips),
+                            Toast.LENGTH_LONG
+                    ).show();
+                } else {
+                    Intent intent = new Intent(v.getContext(), GroupListActivity.class);
                     v.getContext().startActivity(intent);
                 }
 

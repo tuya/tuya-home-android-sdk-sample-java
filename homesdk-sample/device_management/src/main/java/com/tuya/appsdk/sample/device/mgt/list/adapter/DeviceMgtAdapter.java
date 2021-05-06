@@ -16,7 +16,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,13 +24,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.tuya.appsdk.sample.device.mgt.R;
 import com.tuya.appsdk.sample.device.mgt.control.activity.DeviceMgtControlActivity;
 import com.tuya.appsdk.sample.device.mgt.list.activity.DeviceSubZigbeeActivity;
+import com.tuya.smart.android.demo.camera.CameraUtils;
 import com.tuya.smart.sdk.bean.DeviceBean;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-
-import kotlin.jvm.internal.Intrinsics;
 
 /**
  * Device list adapter
@@ -60,6 +58,9 @@ public final class DeviceMgtAdapter extends RecyclerView.Adapter<DeviceMgtAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ViewHolder holder = new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.device_mgt_item, parent, false));
         holder.itemView.setOnClickListener(v -> {
+            if (CameraUtils.ipcProcess(v.getContext(), ((DeviceBean) DeviceMgtAdapter.this.getData().get(holder.getAdapterPosition())).getDevId())) {
+                return;
+            }
             switch (type) {
                 case 1:
                     // Navigate to device management

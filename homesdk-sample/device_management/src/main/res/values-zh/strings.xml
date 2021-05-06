@@ -5,11 +5,47 @@
 
     <string name="device_zb_gateway_list">Zigbee 网关列表</string>
     <string name="device_zb_sub_device_list">子设备列表</string>
-
+    <string name="device_ble_mesh_sub_device_list">低功耗蓝牙mesh子设备列表</string>
     <string name="device_mgt_online">在线</string>
     <string name="device_mgt_offline">离线</string>
     <string name="device_mgt_control">设备控制</string>
 
     <string name="device_mgt_remove">移除</string>
     <string name="device_mgt_reset">恢复出厂设置</string>
+    <string name="group_list">群组列表</string>
+    <string name="group_management">群组管理</string>
+    <string name="group_type_mesh">Mesh 群组</string>
+    <string name="group_type_zigbee">ZigBee 群组</string>
+
+    <string name="menu_group_add_group">新增群组</string>
+    <string name="group_add_device">添加设备</string>
+    <string name="menu_group_rename">重命名</string>
+    <string name="menu_group_disband">解散</string>
+    <string name="group_name">群组名称</string>
+    <string name="group_select_devices">选择设备</string>
+    <string name="group_create">创建群组</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="local_id_tips">请设置localId，localId (范围 C000 - FEFF 16 进制字符串)</string>
+    <string name="group_add_select_device_to_group">添加设备到群组</string>
+    <string name="group_type_title">群组类型</string>
+    <string name="group_device_list_title">设备列表</string>
+    <string name="group_list_title">群组列表</string>
+    <string name="group_control_title">设备控制</string>
+    <string name="group_add_device_title">添加设备</string>
+    <string name="create_group_tips">请选择可用的设备</string>
+    <string name="cannot_select_offline_device">无法选择离线设备</string>
+    <string name="cannot_select_wifi_device">无法选择网关设备</string>
+    <string name="group_control_menu_title">控制</string>
+    <string name="group_dialog_rename_title">重命名</string>
+    <string name="group_dialog_rename_btn">确定</string>
+    <string name="group_dialog_remove_device_title">是否删除</string>
+    <string name="group_dialog_remove_device_btn">确定</string>
+    <string name="group_create_success_msg">创建群组成功</string>
+    <string name="cannot_select_different_pcc_device">只有相同pcc的设备能被选择</string>
+
+    <string name="group_control">设备控制</string>
+    <string name="please_wait_for_a_minute">请稍后</string>
+
+
 </resources>

@@ -25,6 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.tuya.appsdk.sample.R;
 import com.tuya.appsdk.sample.main.MainSampleListActivity;
 import com.tuya.appsdk.sample.user.resetPassword.UserResetPasswordActivity;
+import com.tuya.smart.android.common.utils.ValidatorUtil;
 import com.tuya.smart.android.user.api.ILoginCallback;
 import com.tuya.smart.android.user.bean.User;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
@@ -66,31 +67,33 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
         String strPassword = etPassword.getText().toString();
 
         if (v.getId() == R.id.btnLogin) {
-            TuyaHomeSdk.getUserInstance().loginWithPhonePassword(strCountryCode,
-                    strAccount,
-                    strPassword,
-                    new ILoginCallback() {
-                        @Override
-                        public void onSuccess(User user) {
-                            Toast.makeText(UserLoginActivity.this,
-                                    "Login success",
-                                    Toast.LENGTH_SHORT).show();
+            ILoginCallback callback = new ILoginCallback() {
+                @Override
+                public void onSuccess(User user) {
+                    Toast.makeText(UserLoginActivity.this,
+                            "Login success",
+                            Toast.LENGTH_SHORT).show();
 
-                            startActivity(
-                                    new Intent(
-                                            UserLoginActivity.this,
-                                            MainSampleListActivity.class
-                                    )
-                            );
-                        }
+                    startActivity(
+                            new Intent(
+                                    UserLoginActivity.this,
+                                    MainSampleListActivity.class
+                            )
+                    );
+                }
 
-                        @Override
-                        public void onError(String code, String error) {
-                            Toast.makeText(UserLoginActivity.this,
-                                    "code: " + code + "error:" + error,
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                @Override
+                public void onError(String code, String error) {
+                    Toast.makeText(UserLoginActivity.this,
+                            "code: " + code + "error:" + error,
+                            Toast.LENGTH_SHORT).show();
+                }
+            };
+            if (ValidatorUtil.isEmail(strAccount)) {
+                TuyaHomeSdk.getUserInstance().loginWithEmail(strCountryCode, strAccount, strPassword, callback);
+            } else {
+                TuyaHomeSdk.getUserInstance().loginWithPhonePassword(strCountryCode, strAccount, strPassword, callback);
+            }
         } else if (v.getId() == R.id.btnForget) {
             startActivity(new Intent(this, UserResetPasswordActivity.class));
         }

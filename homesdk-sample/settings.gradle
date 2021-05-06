@@ -1,3 +1,4 @@
+include ':ipc'
 include ':base_res'
 include ':device_management'
 include ':device_config'

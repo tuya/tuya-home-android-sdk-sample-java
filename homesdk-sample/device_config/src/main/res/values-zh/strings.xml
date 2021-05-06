@@ -3,18 +3,33 @@
     <string name="device_config_module_title">设备配网</string>
 
     <string name="device_config_ez_title">EZ 模式</string>
+    <string name="device_config_ez_description">EZ 配网是指 App 发送包含 Wi-Fi 名
+        和 Wi-Fi 密码的 UDP 广播包或者组播包，
+        设备的 Wi-Fi 芯片可以接收到该 UDP 包，通过特定的 UDP 组织形式就可以解密出 Wi-Fi
+        名和 Wi-Fi 密码，接着设备配置 Wi-Fi，然后设备可上网连接云，
+        将设备信息注册到云端的过程</string>
     <string name="device_config_ap_title">AP 模式</string>
-    <string name="device_config_ble_title">低功耗蓝牙模式</string>
+    <string name="device_config_ap_description">AP模式，也称为热点模式。 手机连接智能设备的热点，双方建立了Socket连接，
+        通过约定的端口交换数据。\n让设备处于配对模式，然后将手机的Wi-Fi切换到设备的热点。
+        输入您希望设备连接的Wi-Fi的SSID和密码，然后点击“搜索”。</string>
+    <string name="device_config_ble_title">蓝牙 BLE 模式</string>
 
     <string name="device_config_dual_title">双模模式</string>
     <string name="device_config_zb_gateway_title">Zigbee 网关</string>
     <string name="device_config_zb_sub_device_title">Zigbee 子设备</string>
     <string name="device_config_choose_gateway_title">选择网关</string>
     <string name="device_qr_code_service_title">QR 扫码</string>
+    <string name="device_config_mesh_title">Mesh 子设备</string>
+    <string name="device_config_sub_by_app_title">gateway sub config</string>
+
+    <string name="btn_start_mesh_sub_gateway">开始通过网关配网</string>
+    <string name="btn_stop_mesh_sub_gateway">停止配网</string>
+
 
     <string name="device_config_wifi_ssid">WIFI 名称</string>
     <string name="device_config_wifi_password">WIFI 密码</string>
     <string name="device_config_search">搜索</string>
+    <string name="device_config_stop">停止</string>
 
     <string name="device_config_ble_hint">单点蓝牙设备是指通过蓝牙与手机终端进行一对一连接的设备，
         例如蓝牙手环，蓝牙耳机，蓝牙音响等。每个设备可以同时连接到手机 ，
@@ -23,5 +38,44 @@
     <string name="device_config_zb_gateway_hint">让Zigbee网关连接到路由器，并确保手机和网关在同一局域网中，然后点按搜索。 </string>
 
     <string name="device_config_sp_mode_hint">AP模式，也称为热点模式。 手机连接智能设备的热点，双方建立了Socket连接，通过约定的端口交换数据。\n让设备处于配对模式，然后将手机的Wi-Fi切换到设备的热点。 输入您希望设备连接的Wi-Fi的SSID和密码，然后点击“搜索”。</string>
+
+    <string name="btn_goto_mesh_sub_app">子设备通过 APP 配网</string>
+    <string name="btn_goto_mesh_sub_gateway">子设备通过网关配网</string>
+
+    <string name="device_config_sub_title">子设备配网</string>
+    <string name="device_config_gateway_title">网关配网</string>
+    <string name="bt_mesh_local_scan">开始扫描</string>
+    <string name="bt_mesh_activator_by_app">通过APP配网</string>
+    <string name="bt_mesh_local_connect">连接</string>
+    <string name="bt_mesh_activator_by_gateway">通过网关配网</string>
+    <string name="btn_start_scan">开始扫描</string>
+    <string name="btn_activator_ble_device">开始配网</string>
+    <string name="mesh_sub_device_hint">\n\nMesh 子设备有两种配网方式：APP 配网、网关配网。\n\nAPP 配网是通过手机蓝牙直接和子设备连接；\n\n网关配网使用过网关设备的蓝牙和子设备连接，需要先配置网关。</string>
+    <string name="mesh_gateway_activator_hint">通过蓝牙将配网信息传输给网关设备，使网关能连上Wi-Fi并激活，大部分仅支持2.4G频段Wi-Fi</string>
+    <string name="mesh_sub_device_config_by_gateway_hint">子设备配网需要网关设备云在线的情况下才能发起,且子设备处于配网状态。</string>
+
+
+    <string name="bt_mesh_config_sub_by_app_scan">开始扫描子设备</string>
+    <string name="bt_mesh_config_sub_by_app_scan_stop">停止扫描</string>
+
+
+    <string name="bt_mesh_config_sub_by_app_start_activator">开始配网</string>
+    <string name="bt_mesh_config_sub_by_app_stop_activator">停止配网</string>
+    <string name="mesh_sub_activator_title">子设备配网</string>
+
+    <string name="mesh_config_sub_by_app_hint">SIGMesh 子设备可以通过 APP 使用手机蓝牙直接扫描获取设备到设备基础信息，再使用配网接口实现设备的本地配网。开启扫描时需要设备处于配网状态</string>
+
+    <string name="ble_activator_hint">BLE 设备类型分为：Single 和 SIGMesh 双模。Single 设备通过手机蓝牙直接连接。双模设备通过蓝牙使其连上 Wi-Fi 并且在云端激活</string>
+    <string name="ble_dual_activator_dialog_ssid_hint">SSID</string>
+    <string name="ble_dual_activator_dialog_pwd_hint">Password</string>
+
+    <string name="ble_activator_title">BLE 配网</string>
+    <string name="device_amount">设备数量： </string>
+    <string name="ble_open_dialog">蓝牙未开启</string>
+
+    <string name="ble_device_type_single">--单点</string>
+    <string name="ble_device_type_dual">--双模</string>
+    <string name="ble_success_dialog">配网成功！控制设备请见“设备列表”</string>
+    <string name="ble_success_dialog_title">成功</string>
 
 </resources>

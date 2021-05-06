@@ -48,18 +48,6 @@
 
     <TextView
         style="@style/item_func"
-        android:id="@+id/tv_dual_mode"
-        android:text="@string/device_config_dual_title" />
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="20dp"
-        android:background="#FF888888" />
-
-    <TextView
-        style="@style/item_func"
         android:id="@+id/tv_zigBee_gateway"
         android:text="@string/device_config_zb_gateway_title" />
 
@@ -85,5 +73,16 @@
         style="@style/item_func"
         android:id="@+id/tv_qrcode_subDevice"
         android:text="@string/device_qr_code_service_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF888888" />
+
+    <TextView
+        style="@style/item_func"
+        android:id="@+id/tv_mesh"
+        android:text="@string/device_config_mesh_title" />
 
 </LinearLayout>

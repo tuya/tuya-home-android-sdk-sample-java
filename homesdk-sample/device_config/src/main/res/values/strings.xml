@@ -3,18 +3,35 @@
     <string name="device_config_module_title">DEVICE NETWORK CONFIGURATION</string>
 
     <string name="device_config_ez_title">EZ Mode</string>
+    <string name="device_config_ez_description">EZ Mode ,it means that the App sends a UDP broadcast
+        packet or multicast packet containing Wi-Fi name and Wi-Fi password, the Wi-Fi
+        chip of the device can receive the UDP packet and decrypt the Wi-Fi name and Wi-Fi
+        password through a specific form of UDP organization, then the device configures Wi-Fi,
+        and then the device can go online to connect to the cloud, the process of registering the
+        device information to the cloud
+
+Translated with www.DeepL.com/Translator (free version)</string>
     <string name="device_config_ap_title">AP Mode</string>
+    <string name="device_config_ap_description">AP Mode, also known as hotspot mode.
+        The mobile phone connects the smart device’s hotspot, and the two parties establish
+        a Socket connection to exchange data through the agreed port.Let the device in pairing mode,
+        \nthen switch iPhone’s Wi-Fi to the device’s hotspot. Type in the SSID and password
+        of which Wi-Fi you want the device connect to, then tap Search.</string>
     <string name="device_config_ble_title">Bluetooth Low Energy</string>
     <string name="device_config_dual_title">Dual Mode</string>
     <string name="device_config_zb_gateway_title">Zigbee Gateway</string>
     <string name="device_config_zb_sub_device_title">Zigbee Subdevice</string>
     <string name="device_config_choose_gateway_title">Choose Gateway</string>
     <string name="device_qr_code_service_title">QR Code</string>
+    <string name="device_config_mesh_title">BLE Mesh Sub Device</string>
+    <string name="device_config_sub_by_app_title">gateway sub config</string>
 
 
     <string name="device_config_wifi_ssid">WIFI SSID</string>
     <string name="device_config_wifi_password">WIFI Password</string>
     <string name="device_config_search">Search</string>
+    <string name="device_config_stop">Stop</string>
+
 
 
     <string name="device_config_ble_hint">Single-point Bluetooth devices are devices that have a one-to-one connection with a cell phone terminal via Bluetooth, such as Bluetooth bracelets,
@@ -27,5 +44,40 @@
         and make sure iPhone and the gateway are in the same local area network, then tap search. </string>
 
     <string name="device_config_sp_mode_hint">AP Mode, also known as hotspot mode. The mobile phone connects the smart device’s hotspot, and the two parties establish a Socket connection to exchange data through the agreed port.Let the device in pairing mode, \nthen switch iPhone’s Wi-Fi to the device’s hotspot. Type in the SSID and password of which Wi-Fi you want the device connect to, then tap Search.</string>
+
+    <string name="btn_goto_mesh_sub_app">sub device activator by APP</string>
+    <string name="btn_goto_mesh_sub_gateway">sub device activator by APP</string>
+    <string name="btn_start_mesh_sub_gateway">start activator by gateway</string>
+    <string name="btn_stop_mesh_sub_gateway">stop activator</string>
+
+
+    <string name="device_config_sub_title">Sub Activator</string>
+    <string name="device_config_gateway_title">Gateway Activator</string>
+    <string name="bt_mesh_local_scan">start scan</string>
+    <string name="bt_mesh_activator_by_app">Activator By APP</string>
+    <string name="bt_mesh_local_connect">connect</string>
+    <string name="bt_mesh_activator_by_gateway">Activator By Gateway</string>
+    <string name="btn_start_scan">scan ble devices</string>
+    <string name="btn_activator_ble_device">activator device</string>
+    <string name="mesh_sub_device_hint">\n\nThere are two activation methods for Mesh sub-devices: APP activation and gateway activation. \n\nAPP activation is to connect directly to the child device through the Bluetooth of the mobile phone;\n\nTo activate the Bluetooth and sub-device connection of the gateway device that has been used by the gateway, the gateway must be configured first.</string>
+    <string name="mesh_gateway_activator_hint">The activation information is transmitted to the gateway device via Bluetooth, so that the gateway can connect to Wi-Fi and activate in the cloud. Most of them only support 2.4G band Wi-Fi</string>
+    <string name="mesh_sub_device_config_by_gateway_hint">The sub-device network configuration can only be initiated when the gateway device cloud is online, and the sub-device is in the network configuration state.</string>
+    <string name="bt_mesh_config_sub_by_app_scan">Start Scan</string>
+    <string name="bt_mesh_config_sub_by_app_scan_stop">Stop Scan</string>
+    <string name="bt_mesh_config_sub_by_app_start_activator">Start Activator</string>
+    <string name="bt_mesh_config_sub_by_app_stop_activator">Stop Activator</string>
+    <string name="mesh_sub_activator_title">Sub Activator</string>
+    <string name="mesh_config_sub_by_app_hint">The SIGMesh sub-device can directly scan and obtain basic device-to-device information through the mobile phone Bluetooth through the APP, and then use the activation interface to achieve local activation of the device. The device needs to be active when scanning is turned on</string>
+    <string name="ble_dual_activator_dialog_ssid_hint">SSID</string>
+    <string name="ble_dual_activator_dialog_pwd_hint">Password</string>
+    <string name="ble_activator_hint">BLE device types are divided into: Single and SIGMesh dual mode. Single devices are directly connected via mobile phone Bluetooth. Dual-mode devices connect to Wi-Fi via Bluetooth and activate in the cloud</string>
+    <string name="ble_activator_title">BLE Config</string>
+    <string name="device_amount">device amount: </string>
+    <string name="ble_open_dialog">Bluetooth is not turned on</string>
+
+    <string name="ble_device_type_single">--Single</string>
+    <string name="ble_device_type_dual">--Dual</string>
+    <string name="ble_success_dialog">Activation succeeded! For control Device, please see Device Control</string>
+    <string name="ble_success_dialog_title">Success</string>
 
 </resources>

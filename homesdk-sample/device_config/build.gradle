@@ -42,7 +42,7 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.1.67.android'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.14.9'
 
-    implementation 'com.tuya.smart:tuyasmart:3.24.1'
+    implementation 'com.tuya.smart:tuyasmart:3.25.1'
 
     implementation project(':base_res')
 

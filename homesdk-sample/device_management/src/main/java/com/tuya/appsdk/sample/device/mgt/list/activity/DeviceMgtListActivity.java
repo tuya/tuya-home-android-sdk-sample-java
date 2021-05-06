@@ -27,9 +27,11 @@ import com.tuya.appsdk.sample.device.mgt.control.activity.DeviceMgtControlActivi
 import com.tuya.appsdk.sample.device.mgt.list.adapter.DeviceMgtAdapter;
 import com.tuya.appsdk.sample.device.mgt.list.tag.DeviceListTypePage;
 import com.tuya.appsdk.sample.resource.HomeModel;
+import com.tuya.smart.android.blemesh.api.ITuyaBlueMeshDevice;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
 import com.tuya.smart.home.sdk.bean.HomeBean;
 import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback;
+import com.tuya.smart.sdk.api.bluemesh.IMeshDevListener;
 import com.tuya.smart.sdk.bean.DeviceBean;
 
 import java.util.ArrayList;
@@ -77,6 +79,33 @@ public class DeviceMgtListActivity extends AppCompatActivity {
         rvList.setAdapter(adapter);
     }
 
+    IMeshDevListener iMeshDevListener = new IMeshDevListener() {
+
+        @Override
+        public void onDpUpdate(String nodeId, String dps,boolean isFromLocal) {
+        }
+        @Override
+        public void onStatusChanged(List<String> online, List<String> offline,String gwId) {
+            if (adapter != null){
+                adapter.notifyDataSetChanged();
+            }
+        }
+
+        @Override
+        public void onNetworkStatusChanged(String devId, boolean status) {
+
+        }
+        @Override
+        public void onRawDataUpdate(byte[] bytes) {
+
+        }
+        @Override
+        public void onDevInfoUpdate(String devId) {
+        }
+        @Override
+        public void onRemoved(String devId) {
+        }
+    };
     @Override
     public void onResume() {
         super.onResume();
@@ -91,8 +120,16 @@ public class DeviceMgtListActivity extends AppCompatActivity {
             public void onSuccess(HomeBean homeBean) {
 
                 if (type == DeviceListTypePage.NORMAL_DEVICE_LIST) {
-                    ArrayList deviceList = (ArrayList) homeBean.getDeviceList();
-
+                    ArrayList<DeviceBean> deviceList = (ArrayList) homeBean.getDeviceList();
+                    if (homeBean.getSigMeshList() != null && homeBean.getSigMeshList().size() > 0){
+                        // Control sigmesh equipment,
+                        // we need to call {@link TuyaHomeSdk.GetTuyaSigMeshClient().#startClient(SigMeshBean SigMeshBean)}
+                        // This method of correction is in {@link com.tuya.Smart.SDK.API.Bluemesh.IMeshDevListener} inside,
+                        // we need to go at the time of this callback to refresh the equipment status.
+                        ITuyaBlueMeshDevice mTuyaSigMeshDevice= TuyaHomeSdk.newSigMeshDeviceInstance(homeBean.getSigMeshList().get(0).getMeshId());
+                        mTuyaSigMeshDevice.registerMeshDevListener(iMeshDevListener);
+                        TuyaHomeSdk.getTuyaSigMeshClient().startClient(TuyaHomeSdk.getSigMeshInstance().getSigMeshList().get(0));
+                    }
                     adapter.setData(deviceList, type);
                     adapter.notifyDataSetChanged();
                 } else {

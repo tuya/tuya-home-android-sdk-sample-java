@@ -20,9 +20,9 @@ import android.widget.Toast;
 
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.device.config.ap.DeviceConfigAPActivity;
-import com.tuya.appsdk.sample.device.config.ble.DeviceConfigBleActivity;
-import com.tuya.appsdk.sample.device.config.dual.DeviceConfigDualActivity;
+import com.tuya.appsdk.sample.device.config.ble.DeviceConfigBleAndDualActivity;
 import com.tuya.appsdk.sample.device.config.ez.DeviceConfigEZActivity;
+import com.tuya.appsdk.sample.device.config.mesh.DeviceConfigMeshActivity;
 import com.tuya.appsdk.sample.device.config.qrcode.DeviceConfigQrCodeDeviceActivity;
 import com.tuya.appsdk.sample.device.config.zigbee.gateway.DeviceConfigZbGatewayActivity;
 import com.tuya.appsdk.sample.device.config.zigbee.sub.DeviceConfigZbSubDeviceActivity;
@@ -91,28 +91,12 @@ public class DeviceConfigFuncWidget {
                     ).show();
                     return;
                 } else {
-                    v.getContext().startActivity(new Intent(v.getContext(), DeviceConfigBleActivity.class));
+                    v.getContext().startActivity(new Intent(v.getContext(), DeviceConfigBleAndDualActivity.class));
                 }
 
             }
         });
 
-        // Dual Mode
-        rootView.findViewById(R.id.tv_dual_mode).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (HomeModel.getCurrentHome(v.getContext()) == 0) {
-                    Toast.makeText(
-                            rootView.getContext(),
-                            rootView.getContext().getString(R.string.home_current_home_tips),
-                            Toast.LENGTH_LONG
-                    ).show();
-                } else {
-                    v.getContext().startActivity(new Intent(v.getContext(), DeviceConfigDualActivity.class));
-                }
-
-            }
-        });
 
         // ZigBee Gateway
         rootView.findViewById(R.id.tv_zigBee_gateway).setOnClickListener(new View.OnClickListener() {
@@ -159,6 +143,22 @@ public class DeviceConfigFuncWidget {
                     ).show();
                 } else {
                     v.getContext().startActivity(new Intent(v.getContext(), DeviceConfigQrCodeDeviceActivity.class));
+                }
+            }
+        });
+
+        //SIGMesh
+        rootView.findViewById(R.id.tv_mesh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (HomeModel.getCurrentHome(v.getContext()) == 0) {
+                    Toast.makeText(
+                            rootView.getContext(),
+                            rootView.getContext().getString(R.string.home_current_home_tips),
+                            Toast.LENGTH_LONG
+                    ).show();
+                } else {
+                    v.getContext().startActivity(new Intent(v.getContext(), DeviceConfigMeshActivity.class));
                 }
             }
         });

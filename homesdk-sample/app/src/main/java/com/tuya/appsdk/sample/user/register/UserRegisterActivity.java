@@ -123,8 +123,10 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
             // Get verification code
             if (isEmail) {
                 // Get verification code code by email
-                TuyaHomeSdk.getUserInstance().getRegisterEmailValidateCode(strCountryCode,
-                        strAccount,
+                TuyaHomeSdk.getUserInstance().sendVerifyCodeWithUserName(strAccount,
+                        "",
+                        strCountryCode,
+                        mRegisterType,
                         new IResultCallback() {
                             @Override
                             public void onError(String code, String error) {

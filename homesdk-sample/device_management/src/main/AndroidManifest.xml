@@ -15,5 +15,14 @@
             android:name=".list.activity.DeviceSubZigbeeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity android:name=".group.GroupCreateActivity"
+            android:exported="false" />
+        <activity android:name=".group.GroupControlActivity"
+            android:exported="false"/>
+        <activity android:name=".group.GroupListActivity"
+            android:exported="false"/>
+        <activity android:name=".group.GroupDeviceListActivity"
+            android:launchMode="singleTask"
+            android:exported="false"/>
     </application>
 </manifest>

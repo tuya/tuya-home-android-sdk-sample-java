@@ -28,5 +28,14 @@
         android:id="@+id/tv_zb_gateway_list"
         android:text="@string/device_zb_gateway_list" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF888888" />
 
+    <TextView
+        style="@style/item_func"
+        android:id="@+id/tv_group"
+        android:text="@string/group_list" />
 </LinearLayout>
