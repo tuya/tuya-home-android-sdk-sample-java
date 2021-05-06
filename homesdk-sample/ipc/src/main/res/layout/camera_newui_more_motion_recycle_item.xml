@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp">
+
+    <RelativeLayout
+        android:id="@+id/rv_lv_oval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <ImageView
+            android:id="@+id/rv_iv_oval"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:id="@+id/iv_select"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toLeftOf="@id/iv_select"
+            android:layout_toRightOf="@id/rv_iv_oval"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_alarm_detection_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/ts_15" />
+
+            <TextView
+                android:id="@+id/tv_time_range_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/black_60"
+                android:textSize="@dimen/ts_12" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.tuya.drawee.view.DecryptImageView
+        android:id="@+id/iv_time_range_snapshot"
+        android:layout_width="match_parent"
+        android:layout_height="159dp"
+        android:layout_below="@+id/rv_lv_oval"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="45dp"
+        fresco:actualImageScaleType="fitXY"
+        fresco:roundedCornerRadius="4dp" />
+
+    <Button
+        android:id="@+id/btn_download_img"
+        android:text="@string/download"
+        android:layout_margin="5dp"
+        android:layout_alignRight="@+id/iv_time_range_snapshot"
+        android:layout_alignBottom="@+id/iv_time_range_snapshot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

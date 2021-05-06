@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_control_group"
+        android:title="@string/group_control_menu_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_add_device"
+        android:title="@string/group_add_device"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_group_rename"
+        android:title="@string/menu_group_rename"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_group_disband"
+        android:title="@string/menu_group_disband"
+        app:showAsAction="never" />
+</menu>

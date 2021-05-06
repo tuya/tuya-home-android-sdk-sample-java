@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:id="@+id/ll_device_item"
+    android:layout_height="50dp">
+    <TextView
+        android:id="@+id/tv_device"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/tv_device_online"
+        android:layout_width="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_height="match_parent"/>
+    <CheckBox
+        android:id="@+id/check_by_group_add_device"
+        android:layout_width="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="50dp"/>
+</LinearLayout>

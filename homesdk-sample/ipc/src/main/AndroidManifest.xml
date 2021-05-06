@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tuya.smart.android.demo">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:requestLegacyExternalStorage="true"
+        >
+        <activity
+            android:name=".camera.AlarmDetectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".camera.CameraCloudStorageActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".camera.CameraCloudVideoActivity"></activity>
+        <activity
+            android:name=".camera.CameraPanelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".camera.CameraPlaybackActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".camera.CameraSettingActivity" />
+        <activity android:name=".camera.CameraInfoActivity"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/speak_Txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/camera_item_control_btn"
+            android:drawableTop="@drawable/camera_icon_mic_selector"
+            android:drawablePadding="@dimen/mg_5"
+            android:gravity="center"
+            android:padding="@dimen/mg_20"
+            android:text="@string/speak"
+            android:textColor="@color/camera_panel_control_color"
+            android:textSize="@dimen/ts_13" />
+
+        <TextView
+            android:id="@+id/photo_Txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:background="@drawable/camera_item_control_btn"
+            android:drawableTop="@drawable/camera_icon_photo_selector"
+            android:drawablePadding="@dimen/mg_5"
+            android:gravity="center"
+            android:padding="@dimen/mg_20"
+            android:text="@string/snapshot"
+            android:textColor="@color/camera_panel_control_color"
+            android:textSize="@dimen/ts_13" />
+
+        <TextView
+            android:id="@+id/record_Txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/camera_item_control_btn"
+            android:drawableTop="@drawable/camera_icon_record_selector"
+            android:drawablePadding="@dimen/mg_5"
+            android:gravity="center"
+            android:padding="@dimen/mg_20"
+            android:text="@string/record"
+            android:textColor="@color/camera_panel_control_color"
+            android:textSize="@dimen/ts_13" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/replay_Txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/camera_item_control_btn"
+            android:drawableTop="@drawable/camera_icon_playback_selector"
+            android:drawablePadding="@dimen/mg_5"
+            android:gravity="center"
+            android:padding="@dimen/mg_20"
+            android:text="@string/replay"
+            android:textColor="@color/camera_panel_control_color"
+            android:textSize="@dimen/ts_13" />
+
+        <TextView
+            android:id="@+id/cloud_Txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/camera_icon_cloud"
+            android:gravity="center"
+            android:padding="@dimen/mg_20"
+            android:text="@string/cloud_video"
+            android:textColor="@color/camera_panel_control_color" />
+
+        <TextView
+            android:id="@+id/message_center_Txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/camera_item_control_btn"
+            android:drawableTop="@drawable/camera_icon_message"
+            android:drawablePadding="@dimen/mg_5"
+            android:gravity="center"
+            android:padding="@dimen/mg_20"
+            android:text="@string/message"
+            android:textColor="@color/camera_panel_control_color"
+            android:textSize="@dimen/ts_13" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/setting_Txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/camera_icon_arrow"
+            android:gravity="center"
+            android:text="@string/settings"
+            android:textColor="@color/camera_panel_control_color" />
+
+        <TextView
+            android:id="@+id/info_Txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/camera_icon_info"
+            android:gravity="center"
+            android:padding="@dimen/mg_20"
+            android:text="@string/device_info"
+            android:textColor="@color/camera_panel_control_color" />
+
+
+        <TextView
+            android:id="@+id/get_clarity_Txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/camera_icon_hd"
+            android:gravity="center"
+            android:padding="@dimen/mg_20"
+            android:text="@string/get_clarity"
+            android:textColor="@color/camera_panel_control_color" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

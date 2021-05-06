@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- SwipeRefreshLayout -->
+    <color name="background_home">#F0F0F0</color>
+    <color name="textColor">#303030</color>
+
+
+    <color name="default_bg">#f0f0f0</color>
+    <color name="transparent">#00000000</color>
+    <color name="line_color">#ffdbdbdb</color>
+    <color name="hint">#ffb3b3b3</color>
+    <color name="line">#dbdbdb</color>
+    <color name="colorNormal">#626262</color>
+    <color name="edit_exit_title">#FF9B9B9B</color>
+    <color name="colorHighlight">#FF5800</color>
+
+    <color name="color_primary_dark">#e54000</color>
+    <color name="color_accent">#ffffa748</color>
+    <color name="color_navigationBar">#ff4800</color>
+    <color name="text_hint_color">#9b9b9b</color>
+    <color name="text_color">#303030</color>
+    <color name="text_color1">#626262</color>
+    <color name="text_color2">#9b9b9b</color>
+    <color name="bg_selected_gray">#ffe4e4e4</color>
+
+    <color name="black">#ff000000</color>
+    <color name="black_90">#f05e5e5e</color>
+    <color name="black_85">#D9000000</color>
+    <color name="black_80">#cc000000</color>
+    <color name="black_65">#333333</color>
+    <color name="color_626262">#626262</color>
+    <color name="black_60">#9f000000</color>
+    <color name="black_50">#80000000</color>
+    <color name="black_30">#4C000000</color>
+    <color name="black_40">#40444e</color>
+    <color name="black_10">#3e4043</color>
+    <color name="color_d0e1fd">#d0e1fd</color>
+    <color name="color_979797">#979797</color>
+
+    <color name="at_add_device_success">@color/black_80</color>
+    <color name="at_circleprogress_bg">#4c1CC9F4</color>
+    <color name="gray">#ffaaaaaa</color>
+    <color name="gray_5">#f4f4f2</color>
+    <color name="gray_10">#4c4c4c</color>
+    <color name="gray_85">#D9adb1b6</color>
+    <color name="gray_70">#B3adb1b6</color>
+    <color name="gray_50">#80adb1b6</color>
+    <color name="gray_30">#4Cadb1b6</color>
+    <color name="gray_99">#999999</color>
+
+    <color name="white">#ffffffff</color>
+    <color name="white_90">#e6ffffff</color>
+
+    <color name="orange">#ffffa748</color>
+
+    <color name="red">#FF0000</color>
+
+    <color name="green">#69c94f</color>
+    <color name="green_85">#D969c94f</color>
+    <color name="green_80">#cc42c800</color>
+    <color name="orange_58">#ff5800</color>
+
+    <color name="blue">#688ccc</color>
+    <color name="blue_30">#8b9bba</color>
+    <color name="blue_34">#415881</color>
+
+    <!-- SwipeRefreshLayout -->
+    <color name="google_red">#d62d20</color>
+    <color name="google_blue">#0057e7</color>
+    <color name="google_green">#008744</color>
+    <color name="google_yellow">#ffa700</color>
+    <color name="line_grey">#9b9b9b</color>
+    <color name="bottom_dialog_title_color">#9b9b9b</color>
+    <color name="edittext_textcolor">#626262</color>
+
+    <color name="color_primary">#F8F8F8</color>
+    <color name="status_font_color">#303030</color>
+    <color name="status_bg_color">#FAFAFA</color>
+    <color name="status_system_bg_color">#303030</color>
+    <color name="navbar_font_color">#ff5800</color>
+    <color name="navbar_bg_color">#FAFAFA</color>
+    <color name="app_bg_color">#F2F2F2</color>
+    <color name="colorDark">#303030</color>
+
+    <color name="list_primary_color">#303030</color>
+    <color name="list_sub_color">#626262</color>
+    <color name="list_secondary_color">#9b9b9b</color>
+    <color name="list_line_color">#dbdbdb</color>
+    <color name="list_bg_color">#ffffff</color>
+    <color name="notice_font_color">#ff5800</color>
+    <color name="notice_bg_color">#fff8d8</color>
+    <color name="edit_friend_text_tip">#B0B0B0</color>
+
+    <color name="primary_button_font_color">#ffffff</color>
+    <color name="primary_button_bg_color">#ff5800</color>
+    <color name="primary_button_select_color">#E54F00</color>
+    <color name="secondary_button_font_color">#ff5800</color>
+    <color name="secondary_button_bg_color">#ffffff</color>
+    <color name="color_CC4600">#cc4600</color>
+    <color name="color_bdbdbd">#bdbdbd</color>
+    <color name="color_303030">#303030</color>
+    <color name="switch_on_color">#2A87D6</color>
+    <color name="switch_off_color">#303030</color>
+    <color name="color_dddddd">#dddddd</color>
+</resources>
