@@ -13,7 +13,7 @@ Tuya Android Home SDK Sample
 
 App 图片
 ---
-<img src="https://images.tuyacn.com/app/liya/tuya-app-sdk-sample/app_sdk_sample_zh.jpg" alt="main_page" style="zoom:30%;" />
+<img src="https://github.com/tuya/tuya-home-android-sdk-sample-java/blob/master/img/main_page_zh.jpeg" alt="main_page" width = "300"  />
 
 问题反馈
 ---
