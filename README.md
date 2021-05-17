@@ -15,7 +15,7 @@ Get Started
 
 App Images
 ---
-<img src="https://images.tuyacn.com/app/liya/tuya-app-sdk-sample/app_sdk_sample_en.jpg" alt="main_page" width="30%" />
+<img src="https://github.com/tuya/tuya-home-android-sdk-sample-java/blob/master/img/main_page.jpeg" alt="main_page" width="30%" />
 
 Issue Feedback
 ---
