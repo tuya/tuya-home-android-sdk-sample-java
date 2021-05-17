@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -46,11 +47,15 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".qrcode.DeviceConfigQrCodeDeviceActivity"
+            android:name=".scan.DeviceConfigQrCodeDeviceActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".mesh.DeviceConfigMeshActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.tuya.appsdk.sample.device.config.qrcode.QrCodeConfigActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
     </application>

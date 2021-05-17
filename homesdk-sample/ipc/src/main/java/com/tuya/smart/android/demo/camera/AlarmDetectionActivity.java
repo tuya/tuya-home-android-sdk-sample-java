@@ -22,12 +22,12 @@ import com.tuya.smart.android.demo.camera.adapter.AlarmDetectionAdapter;
 import com.tuya.smart.android.demo.camera.utils.DateUtils;
 import com.tuya.smart.android.demo.camera.utils.MessageUtil;
 import com.tuya.smart.android.demo.camera.utils.TimeZoneUtils;
+import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 import com.tuya.smart.android.network.Business;
 import com.tuya.smart.android.network.http.BusinessResponse;
 import com.tuya.smart.ipc.messagecenter.bean.CameraMessageBean;
 import com.tuya.smart.ipc.messagecenter.bean.CameraMessageClassifyBean;
 import com.tuya.smart.ipc.messagecenter.business.CameraMessageBusiness;
-import com.tuya.smart.utils.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

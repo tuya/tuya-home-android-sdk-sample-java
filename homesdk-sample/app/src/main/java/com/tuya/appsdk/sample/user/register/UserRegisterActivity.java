@@ -120,34 +120,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                 );
             }
         } else if (v.getId() == R.id.btnCode) {
-            // Get verification code
-            if (isEmail) {
-                // Get verification code code by email
-                TuyaHomeSdk.getUserInstance().sendVerifyCodeWithUserName(strAccount,
-                        "",
-                        strCountryCode,
-                        mRegisterType,
-                        new IResultCallback() {
-                            @Override
-                            public void onError(String code, String error) {
-                                Toast.makeText(
-                                        UserRegisterActivity.this,
-                                        "getValidateCode error->$error",
-                                        Toast.LENGTH_LONG
-                                ).show();
-                            }
-
-                            @Override
-                            public void onSuccess() {
-                                Toast.makeText(
-                                        UserRegisterActivity.this,
-                                        "Got validateCode",
-                                        Toast.LENGTH_LONG
-                                ).show();
-                            }
-                        });
-            } else {
-                // Get verification code code by phone
+                // Get verification code code by phone or Email
                 TuyaHomeSdk.getUserInstance().sendVerifyCodeWithUserName(
                         strAccount,
                         "",
@@ -173,7 +146,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                                 ).show();
                             }
                         });
-            }
+
         }
     }
 }

@@ -1,0 +1,25 @@
+var interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device =
+[
+    [ "getDataPointStat", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a1138ff2c007fe1c78c5fa2f8a4837d9e", null ],
+    [ "getDeviceProperty", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a0285ec57fca6cb4a3f7d1416a5781f8b", null ],
+    [ "getDp", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a404788b9bce4c6b28e0a275ea86adfc2", null ],
+    [ "getDpList", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a56b4407d7d4aa5e618f2c0f3991b26b8", null ],
+    [ "getInitiativeQueryDpsInfoWithDpsArray", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a0bf82d483f0a71a85c5aa0f1781eff67", null ],
+    [ "isMqttConnect", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#ad1c584d3fd528764361db22c01f939c4", null ],
+    [ "onDestroy", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a47820d41685b47ffe160ec998cf7ffdb", null ],
+    [ "publishCommands", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a6ac25178e9bb32df2a3893d878fdcde8", null ],
+    [ "publishDps", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a26fb2ab02e11ead7aef0fb8606ccd6ca", null ],
+    [ "publishDps", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#add1bd9f2a5d940418433f222d145909f", null ],
+    [ "queryData", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a5f43828e30b24ea38c320051e6696c0a", null ],
+    [ "registerDeviceListener", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#af4878bbaf01bae6b9a49ec9c46ecbee2", null ],
+    [ "registerDevListener", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#adaf0a12d006198467c1c9a559bbbe17d", null ],
+    [ "registerUpgradeStatusListener", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a21d8d6cce73c0e6fdc4f7f417d32ae8c", null ],
+    [ "registerWarnMessageListener", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#ac55c140afdf0cce42a9c4e573766d4f3", null ],
+    [ "removeDevice", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a60e9f3e94261ce064f6078ee6b996706", null ],
+    [ "renameDevice", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#aab7a445e03c513e13487f8123ba2f8da", null ],
+    [ "requestWifiSignal", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a1420f4d76f29611472450e034f68a3e2", null ],
+    [ "resetFactory", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#ab817f80adad63dda0bd0849548f05da4", null ],
+    [ "saveDeviceProperty", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#afa5443b00cef09119e18ba0a80004390", null ],
+    [ "unRegisterDevListener", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a794001c1da91e131a3daf5caea103c58", null ],
+    [ "updateIcon", "interfacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1_i_tuya_device.html#a627b8cd05d2c0a62d7afa59bc93daf73", null ]
+];

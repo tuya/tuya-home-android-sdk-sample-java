@@ -16,7 +16,7 @@
         <activity
             android:name=".camera.CameraCloudStorageActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".camera.CameraCloudVideoActivity"></activity>
+        <activity android:name=".camera.CameraCloudVideoActivity" />
         <activity
             android:name=".camera.CameraPanelActivity"
             android:screenOrientation="portrait" />
@@ -24,7 +24,8 @@
             android:name=".camera.CameraPlaybackActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".camera.CameraSettingActivity" />
-        <activity android:name=".camera.CameraInfoActivity"></activity>
+        <activity android:name=".camera.CameraInfoActivity" />
+        <activity android:name=".camera.CameraDoorBellActivity"/>
     </application>
 
 </manifest>

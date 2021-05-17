@@ -16,7 +16,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:text="@string/main_logo"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
     </FrameLayout>
 
 
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="@string/user_management"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvUserInfo"
@@ -50,7 +50,7 @@
                 android:text="@string/user_logout"
                 android:id="@+id/tvLogout"
                 android:textColor="@color/red"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 

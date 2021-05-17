@@ -1,0 +1,4 @@
+var interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_ext_plugin =
+[
+    [ "getIPCMsgInstance", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_ext_plugin.html#a548fd6887bf6b47d065c40005ed18ff0", null ]
+];

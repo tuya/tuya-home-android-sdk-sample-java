@@ -1,0 +1,17 @@
+var namespacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback =
+[
+    [ "IGetHomeWetherCallBack", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_get_home_wether_call_back.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_get_home_wether_call_back" ],
+    [ "IIGetHomeWetherSketchCallBack", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_i_get_home_wether_sketch_call_back.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_i_get_home_wether_sketch_call_back" ],
+    [ "ITuyaDeviceUpgradeStatusCallback", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_device_upgrade_status_callback.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_device_upgrade_status_callback" ],
+    [ "ITuyaDeviceUpgradeStatusExtCallback", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_device_upgrade_status_ext_callback.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_device_upgrade_status_ext_callback" ],
+    [ "ITuyaGetHomeListCallback", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_get_home_list_callback.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_get_home_list_callback" ],
+    [ "ITuyaGetMemberListCallback", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_get_member_list_callback.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_get_member_list_callback" ],
+    [ "ITuyaGetRoomListCallback", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_get_room_list_callback.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_get_room_list_callback" ],
+    [ "ITuyaHomeResultCallback", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_home_result_callback.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_home_result_callback" ],
+    [ "ITuyaMemberResultCallback", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_member_result_callback.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_member_result_callback" ],
+    [ "ITuyaResultCallback", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_result_callback.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_result_callback" ],
+    [ "ITuyaRoomResultCallback", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_room_result_callback.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_room_result_callback" ],
+    [ "ITuyaSingleTransfer", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_single_transfer.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_single_transfer" ],
+    [ "ITuyaTransferCallback", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_transfer_callback.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_transfer_callback" ],
+    [ "ITuyaVoiceTransfer", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_voice_transfer.html", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_voice_transfer" ]
+];

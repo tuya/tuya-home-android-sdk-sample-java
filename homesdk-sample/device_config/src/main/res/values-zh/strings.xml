@@ -18,9 +18,10 @@
     <string name="device_config_zb_gateway_title">Zigbee 网关</string>
     <string name="device_config_zb_sub_device_title">Zigbee 子设备</string>
     <string name="device_config_choose_gateway_title">选择网关</string>
-    <string name="device_qr_code_service_title">QR 扫码</string>
+    <string name="device_qr_code_service_title">扫描二维码</string>
     <string name="device_config_mesh_title">Mesh 子设备</string>
     <string name="device_config_sub_by_app_title">gateway sub config</string>
+    <string name="device_config_qr_code_title">二维码配网</string>
 
     <string name="btn_start_mesh_sub_gateway">开始通过网关配网</string>
     <string name="btn_stop_mesh_sub_gateway">停止配网</string>
@@ -77,5 +78,9 @@
     <string name="ble_device_type_dual">--双模</string>
     <string name="ble_success_dialog">配网成功！控制设备请见“设备列表”</string>
     <string name="ble_success_dialog_title">成功</string>
+
+    <string name="btn_save">保存</string>
+    <string name="hint_wifi_name">Wifi 名称</string>
+    <string name="hint_wifi_pwd">Wifi 密码</string>
 
 </resources>

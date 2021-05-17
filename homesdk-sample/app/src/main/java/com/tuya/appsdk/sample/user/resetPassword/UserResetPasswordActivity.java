@@ -120,32 +120,8 @@ public class UserResetPasswordActivity extends AppCompatActivity implements View
                 );
             }
         } else if (v.getId() == R.id.btnCode) {
-            // Get verification code
-            if (isEmail) {
-                // Get verification code code by email
-                TuyaHomeSdk.getUserInstance().getEmailValidateCode(strCountryCode,
-                        strAccount,
-                        new IValidateCallback() {
-                            @Override
-                            public void onError(String code, String error) {
-                                Toast.makeText(
-                                        UserResetPasswordActivity.this,
-                                        "getValidateCode error:" + error,
-                                        Toast.LENGTH_LONG
-                                ).show();
-                            }
 
-                            @Override
-                            public void onSuccess() {
-                                Toast.makeText(
-                                        UserResetPasswordActivity.this,
-                                        "Got validateCode",
-                                        Toast.LENGTH_LONG
-                                ).show();
-                            }
-                        });
-            } else {
-                // Get verification code code by phone
+                // Get verification code code by phone or Email
                 TuyaHomeSdk.getUserInstance().sendVerifyCodeWithUserName(
                         strAccount,
                         "",
@@ -170,7 +146,7 @@ public class UserResetPasswordActivity extends AppCompatActivity implements View
                                 ).show();
                             }
                         });
-            }
+
         }
     }
 }

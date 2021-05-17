@@ -3,16 +3,15 @@ package com.tuya.smart.android.demo.camera;
 import android.Manifest;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCloud;
-import com.tuya.smart.android.common.utils.L;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.utils.Constants;
+import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.IRegistorIOTCListener;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.OnP2PCameraListener;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationCallBack;
@@ -35,8 +34,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_P2P_TYPE;
 import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_DEV_ID;
+import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_P2P_TYPE;
 
 /**
  * @author surgar
@@ -89,7 +88,6 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
         findViewById(R.id.status_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //购买页面
                 cameraCloudSDK.getCameraCloudInfo(TuyaHomeSdk.getDataInstance().getDeviceBean(devId), CameraCloudStorageActivity.this);
             }
         });
@@ -104,7 +102,6 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
         findViewById(R.id.query_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //查询数据
                 cameraCloudSDK.getCloudMediaCount(devId, TimeZone.getDefault().getID(), CameraCloudStorageActivity.this);
             }
         });
@@ -112,7 +109,7 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
         findViewById(R.id.query_time_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //这里获取查询到的第一天时间数据
+                //Get the time data of the first day queried
                 if (dayBeanList.size() > 0) {
                     getAppointedDayCloudTimes(dayBeanList.get(0));
                 }
@@ -184,24 +181,24 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
     }
 
     /**
-     * 获取指定时间的时间片
+     * Get the time slice of the specified time.
      *
-     * @param devId  设备id
-     * @param timeGT 开始时间
-     * @param timeLT 结束时间
+     * @param devId  Device id.
+     * @param timeGT Start time.
+     * @param timeLT End time.
      */
     void getTimeLineInfoByTimeSlice(String devId, String timeGT, String timeLT) {
         cameraCloudSDK.getTimeLineInfoByTimeSlice(devId, timeGT, timeLT, this);
     }
 
     /**
-     * 根据时间片段始末获取相应的移动侦测数据
+     * Obtain the corresponding motion detection data according to the beginning and end of the time segment.
      *
-     * @param devId  设备id
-     * @param timeGT 开始时间
-     * @param timeLT 结束时间
-     * @param offset 第几页，默认0
-     * @param limit  每次拉取条数，默认-1，表示所有数据
+     * @param devId  Device id.
+     * @param timeGT Start time.
+     * @param timeLT End time.
+     * @param offset Which page, default 0
+     * @param limit  The number of items pulled each time, the default is -1, which means all data
      */
     void getMotionDetectionByTimeSlice(String devId, final String timeGT, final String timeLT, int offset, int limit) {
         cameraCloudSDK.getMotionDetectionByTimeSlice(devId, timeGT, timeLT, offset, limit, this);
@@ -267,7 +264,7 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
 
     @Override
     public void getCloudDayList(List<CloudDayBean> cloudDayBeanList) {
-        //获取云存储有数据的日期
+        //Get the date with data
         dayBeanList.clear();
         dayBeanList.addAll(cloudDayBeanList);
     }
@@ -284,36 +281,32 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
 
     @Override
     public void getTimePieceInfoByTimeSlice(List<TimePieceBean> list) {
-        //获取指定时间相应的时间片段信息:对应getTimeLineInfoByTimeSlice
         timePieceBeans.clear();
         timePieceBeans.addAll(list);
     }
 
     @Override
     public void getMotionDetectionByTimeSlice(List<TimeRangeBean> list) {
-        //获取指定时间相应的移动侦测数据
     }
 
     @Override
     public void onError(int errorCode) {
-        Toast.makeText(this, getString(R.string.err_code) + errorCode, Toast.LENGTH_SHORT).show();
+        ToastUtil.shortToast(this, getString(R.string.err_code) + errorCode);
     }
 
     @Override
     public void getCloudStatusSuccess(int i) {
-        //返回云存储状态
-        Toast.makeText(this, getString(R.string.current_state) + i, Toast.LENGTH_SHORT).show();
+        //Get cloud storage status
+        ToastUtil.shortToast(this, getString(R.string.current_state) + i);
     }
 
     @Override
     public void getCloudConfigDataTags(String config) {
-        //获取云存储 对应的配置信息，需要传入sdk进行鉴权 ，getTimeLineInfoByTimeSlice
         if (null != cloudCamera) {
             cloudCamera.configCloudDataTagsV1(config, new OperationDelegateCallBack() {
 
                 @Override
                 public void onSuccess(int i, int i1, String s) {
-                    //成功之后开始播放
                     if (timePieceBeans.size() > 0) {
                         int startTime = timePieceBeans.get(0).getStartTime();
                         playCloudDataWithStartTime(startTime, (int) (getTodayEnd(startTime * 1000L) / 1000) - 1, true);
@@ -338,12 +331,6 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
         return calendar.getTimeInMillis();
     }
 
-
-    /**
-     * @param startTime
-     * @param endTime
-     * @param isEvent   是否是侦测事件
-     */
     private void playCloudDataWithStartTime(int startTime, int endTime, final boolean isEvent) {
         if (cloudCamera != null) {
             cloudCamera.playCloudDataWithStartTime(startTime, endTime, isEvent,
@@ -351,7 +338,7 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
                     new OperationCallBack() {
                         @Override
                         public void onSuccess(int sessionId, int requestId, String data, Object camera) {
-                            // 播放中的回调, playing
+                            //playing
                         }
 
                         @Override
@@ -361,7 +348,7 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
                     }, new OperationCallBack() {
                         @Override
                         public void onSuccess(int sessionId, int requestId, String data, Object camera) {
-                            //播放完成的回调, playCompleted
+                            //playCompleted
                         }
 
                         @Override
@@ -383,7 +370,7 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
 
                 @Override
                 public void onFailure(int sessionId, int requestId, int errCode) {
-                    Toast.makeText(CameraCloudStorageActivity.this, getString(R.string.operation_failed), Toast.LENGTH_SHORT).show();
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
                 }
             });
         }
@@ -401,7 +388,7 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
 
                 @Override
                 public void onFailure(int sessionId, int requestId, int errCode) {
-                    Toast.makeText(CameraCloudStorageActivity.this, getString(R.string.operation_failed), Toast.LENGTH_SHORT).show();
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
                 }
             });
         }
@@ -419,7 +406,7 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
 
                 @Override
                 public void onFailure(int sessionId, int requestId, int errCode) {
-                    Toast.makeText(CameraCloudStorageActivity.this, getString(R.string.operation_failed), Toast.LENGTH_SHORT).show();
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
                 }
             });
         }
@@ -434,12 +421,12 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
                 cloudCamera.startRecordLocalMp4(IPCCameraUtils.recordPath(devId), String.valueOf(System.currentTimeMillis()), new OperationDelegateCallBack() {
                     @Override
                     public void onSuccess(int sessionId, int requestId, String data) {
-                        Toast.makeText(CameraCloudStorageActivity.this, getString(R.string.operation_suc), Toast.LENGTH_SHORT).show();
+                        ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
                     }
 
                     @Override
                     public void onFailure(int sessionId, int requestId, int errCode) {
-                        Toast.makeText(CameraCloudStorageActivity.this, getString(R.string.operation_failed), Toast.LENGTH_SHORT).show();
+                        ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
                     }
                 });
             }
@@ -456,32 +443,29 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
             cloudCamera.stopRecordLocalMp4(new OperationDelegateCallBack() {
                 @Override
                 public void onSuccess(int sessionId, int requestId, String data) {
-                    Toast.makeText(CameraCloudStorageActivity.this, getString(R.string.operation_suc), Toast.LENGTH_SHORT).show();
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
                 }
 
                 @Override
                 public void onFailure(int sessionId, int requestId, int errCode) {
-                    Toast.makeText(CameraCloudStorageActivity.this, getString(R.string.operation_failed), Toast.LENGTH_SHORT).show();
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
                 }
             });
         }
     }
 
-    /**
-     * 截图
-     */
     public void snapshot() {
         if (Constants.hasStoragePermission()) {
             if (cloudCamera != null) {
                 cloudCamera.snapshot(IPCCameraUtils.recordSnapshotPath(devId), new OperationDelegateCallBack() {
                     @Override
                     public void onSuccess(int sessionId, int requestId, String data) {
-                        Toast.makeText(CameraCloudStorageActivity.this, getString(R.string.operation_suc), Toast.LENGTH_SHORT).show();
+                        ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
                     }
 
                     @Override
                     public void onFailure(int sessionId, int requestId, int errCode) {
-                        Toast.makeText(CameraCloudStorageActivity.this, getString(R.string.operation_failed), Toast.LENGTH_SHORT).show();
+                        ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
                     }
                 });
             }
@@ -490,11 +474,6 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
         }
     }
 
-    /**
-     * 设置音量
-     *
-     * @param mute 值：ICameraP2P.UNMUTE , ICameraP2P.MUTE
-     */
     public void setMuteValue(int mute) {
         if (cloudCamera != null) {
             cloudCamera.setCloudMute(mute, new OperationDelegateCallBack() {
@@ -505,15 +484,12 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
 
                 @Override
                 public void onFailure(int sessionId, int requestId, int errCode) {
-                    Toast.makeText(CameraCloudStorageActivity.this, getString(R.string.operation_failed), Toast.LENGTH_SHORT).show();
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
                 }
             });
         }
     }
 
-    /**
-     * 获取音量
-     */
     public void getMuteValue() {
         if (cloudCamera != null) {
             cloudCamera.getCloudMute();

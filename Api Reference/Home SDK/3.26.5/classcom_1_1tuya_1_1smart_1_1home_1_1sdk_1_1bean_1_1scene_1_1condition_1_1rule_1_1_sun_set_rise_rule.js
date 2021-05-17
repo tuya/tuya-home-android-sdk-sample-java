@@ -1,0 +1,5 @@
+var classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1scene_1_1condition_1_1rule_1_1_sun_set_rise_rule =
+[
+    [ "SunType", "enumcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1scene_1_1condition_1_1rule_1_1_sun_set_rise_rule_1_1_sun_type.html", "enumcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1scene_1_1condition_1_1rule_1_1_sun_set_rise_rule_1_1_sun_type" ],
+    [ "newInstance", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1scene_1_1condition_1_1rule_1_1_sun_set_rise_rule.html#acd641e279b0fdbba130648b4bd8e6956", null ]
+];

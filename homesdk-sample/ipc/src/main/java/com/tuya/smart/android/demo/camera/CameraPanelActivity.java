@@ -9,6 +9,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -16,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -40,7 +43,7 @@ import com.tuya.smart.home.sdk.TuyaHomeSdk;
 import com.tuya.smart.sdk.api.IResultCallback;
 import com.tuya.smart.sdk.api.ITuyaDevice;
 import com.tuya.smart.sdk.bean.DeviceBean;
-import com.tuya.smart.utils.ToastUtil;
+import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 
 import java.io.File;
 import java.nio.ByteBuffer;
@@ -194,7 +197,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
             } else if (currVideoClarity.equals(String.valueOf(ICameraP2P.STANDEND))) {
                 info = getString(R.string.sd);
             }
-            ToastUtil.showToast(CameraPanelActivity.this, getString(R.string.get_current_clarity) + info);
+            ToastUtil.shortToast(CameraPanelActivity.this, getString(R.string.get_current_clarity) + info);
         } else {
             ToastUtil.shortToast(CameraPanelActivity.this, getString(R.string.operation_failed));
         }
@@ -679,4 +682,36 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_camera_panel, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_remove_device) {
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setCancelable(true)
+                    .setTitle(getString(R.string.remove_device_dialog))
+                    .setPositiveButton(getString(R.string.confirm), (dialog1, which) ->
+                            unBindDevice())
+                    .create();
+            dialog.show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void unBindDevice() {
+        TuyaHomeSdk.newDeviceInstance(devId).removeDevice(new IResultCallback() {
+            @Override
+            public void onError(String s, String s1) {
+                ToastUtil.shortToast(CameraPanelActivity.this, s1);
+            }
+
+            @Override
+            public void onSuccess() {
+                mHandler.removeCallbacksAndMessages(null);
+                CameraPanelActivity.this.finish();
+            }
+        });
+    }
 }

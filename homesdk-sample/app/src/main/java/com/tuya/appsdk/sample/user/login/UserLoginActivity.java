@@ -80,6 +80,8 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                                     MainSampleListActivity.class
                             )
                     );
+
+                    finish();
                 }
 
                 @Override

@@ -22,9 +22,10 @@ Translated with www.DeepL.com/Translator (free version)</string>
     <string name="device_config_zb_gateway_title">Zigbee Gateway</string>
     <string name="device_config_zb_sub_device_title">Zigbee Subdevice</string>
     <string name="device_config_choose_gateway_title">Choose Gateway</string>
-    <string name="device_qr_code_service_title">QR Code</string>
+    <string name="device_qr_code_service_title">Scan QR Code</string>
     <string name="device_config_mesh_title">BLE Mesh Sub Device</string>
     <string name="device_config_sub_by_app_title">gateway sub config</string>
+    <string name="device_config_qr_code_title">QR Code</string>
 
 
     <string name="device_config_wifi_ssid">WIFI SSID</string>
@@ -79,5 +80,9 @@ Translated with www.DeepL.com/Translator (free version)</string>
     <string name="ble_device_type_dual">--Dual</string>
     <string name="ble_success_dialog">Activation succeeded! For control Device, please see Device Control</string>
     <string name="ble_success_dialog_title">Success</string>
+
+    <string name="btn_save">Save</string>
+    <string name="hint_wifi_name">Wifi SSID</string>
+    <string name="hint_wifi_pwd">Wifi password</string>
 
 </resources>

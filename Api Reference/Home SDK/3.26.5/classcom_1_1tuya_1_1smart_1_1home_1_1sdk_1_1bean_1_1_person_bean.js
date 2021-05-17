@@ -1,0 +1,27 @@
+var classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean =
+[
+    [ "PersonBean", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#afdac2e008af736c015dd2d1d9c033ea1", null ],
+    [ "describeContents", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#acb0a2ba93700b9b7570de70dc573bd7f", null ],
+    [ "getGid", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#ad1a3e18d885eb1d2d407aafa39a0b47d", null ],
+    [ "getHeadPic", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a3795eeb9e44581eed5dd4b78d88f12d4", null ],
+    [ "getId", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a6fddab78356fbe29b0023296b692dce8", null ],
+    [ "getMemberName", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a4823d423236935bd7178264536ed1181", null ],
+    [ "getMname", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a49e68628d8b51adb8e277e24882367aa", null ],
+    [ "getMobile", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a5b9bfcff6c84415a22b36ff471fe3f34", null ],
+    [ "getName", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#ab6af7a149d344154e38b2fb5ae8e5c2d", null ],
+    [ "getReceivedName", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a830778c2734c29b45761fbd4e87253ec", null ],
+    [ "getUid", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#af4584bfa351dfb1c144fde46cd115efe", null ],
+    [ "getUsername", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a8d1801bdc9dc93802f37b7c0bf89be6b", null ],
+    [ "setGid", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#abddf80aaaf3bbe82b3cf3671ceeee376", null ],
+    [ "setHeadPic", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a1a423589c8847f33a6b86584c8d8c41c", null ],
+    [ "setId", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a5d82d435d7323dfecf803cdd61467a4c", null ],
+    [ "setMemberName", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a1f986c6fa74d78e10ecdb652649eaaa0", null ],
+    [ "setMname", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a179edc08122090eedf232da071733734", null ],
+    [ "setMobile", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#adf67a7352064caf6ac342d5637a4c720", null ],
+    [ "setName", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a3f0c3d3467d3afe1e136eb2858b34da3", null ],
+    [ "setReceivedName", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#ad88ca5126601857ede92a9a5a2b86911", null ],
+    [ "setUid", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a3566064b2a0444886f3133f6b6945b95", null ],
+    [ "setUsername", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a6bffbd2fa2022083c9473474708b5927", null ],
+    [ "writeToParcel", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a0142ab446700a4a60ce5d6beea367daa", null ],
+    [ "CREATOR", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1_person_bean.html#a2331ed1c2bebc18468756023da2df329", null ]
+];

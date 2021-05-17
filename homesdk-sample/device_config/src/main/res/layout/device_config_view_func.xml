@@ -10,7 +10,7 @@
         android:text="@string/device_config_module_title"
         android:paddingLeft="20dp"
         android:layout_marginTop="60dp"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
     <TextView
         style="@style/item_func"
@@ -84,5 +84,16 @@
         style="@style/item_func"
         android:id="@+id/tv_mesh"
         android:text="@string/device_config_mesh_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF888888" />
+
+    <TextView
+        style="@style/item_func"
+        android:id="@+id/tv_qr_code"
+        android:text="@string/device_config_qr_code_title" />
 
 </LinearLayout>

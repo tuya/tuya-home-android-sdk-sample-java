@@ -23,10 +23,11 @@ import com.tuya.appsdk.sample.device.config.ap.DeviceConfigAPActivity;
 import com.tuya.appsdk.sample.device.config.ble.DeviceConfigBleAndDualActivity;
 import com.tuya.appsdk.sample.device.config.ez.DeviceConfigEZActivity;
 import com.tuya.appsdk.sample.device.config.mesh.DeviceConfigMeshActivity;
-import com.tuya.appsdk.sample.device.config.qrcode.DeviceConfigQrCodeDeviceActivity;
+import com.tuya.appsdk.sample.device.config.scan.DeviceConfigQrCodeDeviceActivity;
 import com.tuya.appsdk.sample.device.config.zigbee.gateway.DeviceConfigZbGatewayActivity;
 import com.tuya.appsdk.sample.device.config.zigbee.sub.DeviceConfigZbSubDeviceActivity;
 import com.tuya.appsdk.sample.resource.HomeModel;
+import com.tuya.appsdk.sample.device.config.qrcode.QrCodeConfigActivity;
 
 import kotlin.jvm.internal.Intrinsics;
 
@@ -162,5 +163,21 @@ public class DeviceConfigFuncWidget {
                 }
             }
         });
+
+        rootView.findViewById(R.id.tv_qr_code).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (HomeModel.getCurrentHome(v.getContext()) == 0) {
+                    Toast.makeText(
+                            rootView.getContext(),
+                            rootView.getContext().getString(R.string.home_current_home_tips),
+                            Toast.LENGTH_LONG
+                    ).show();
+                } else {
+                    v.getContext().startActivity(new Intent(v.getContext(), QrCodeConfigActivity.class));
+                }
+            }
+        });
+
     }
 }

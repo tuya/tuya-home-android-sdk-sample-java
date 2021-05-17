@@ -15,7 +15,7 @@ import java.util.GregorianCalendar;
 public class DateUtils {
 
     /**
-     * 获取当前时间的起点（00:00:00）
+     * Get the start of the day（00:00:00）
      *
      * @param currentTime
      * @return
@@ -30,7 +30,7 @@ public class DateUtils {
     }
 
     /**
-     * 获取当前时间的结点（00:00:00）
+     * Get the end of the day（00:00:00）
      *
      * @param currentTime
      * @return

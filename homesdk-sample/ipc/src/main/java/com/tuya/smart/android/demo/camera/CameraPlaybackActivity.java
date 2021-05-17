@@ -38,7 +38,7 @@ import com.tuya.smart.camera.middleware.p2p.TuyaSmartCameraP2PFactory;
 import com.tuya.smart.camera.middleware.widget.AbsVideoViewCallback;
 import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
 import com.tuya.smart.camera.utils.AudioUtils;
-import com.tuya.smart.utils.ToastUtil;
+import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
@@ -218,7 +218,7 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         stopBtn = findViewById(R.id.stop_btn);
         queryRv = findViewById(R.id.query_list);
 
-        //播放器view最好宽高比设置16:9
+        //It is best to set the aspect ratio to 16:9
         WindowManager windowManager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
         int width = windowManager.getDefaultDisplay().getWidth();
         int height = width * ASPECT_RATIO_WIDTH / ASPECT_RATIO_HEIGHT;

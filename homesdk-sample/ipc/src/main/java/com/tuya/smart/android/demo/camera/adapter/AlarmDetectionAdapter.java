@@ -22,7 +22,7 @@ import com.tuya.smart.android.demo.R;
 import com.tuya.smart.camera.utils.BitmapUtils;
 import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
 import com.tuya.smart.ipc.messagecenter.bean.CameraMessageBean;
-import com.tuya.smart.utils.ToastUtil;
+import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 
 import java.io.File;
 import java.util.List;
@@ -130,7 +130,7 @@ public class AlarmDetectionAdapter extends RecyclerView.Adapter<AlarmDetectionAd
                                             file.mkdirs();
                                         }
                                         if (BitmapUtils.savePhotoToSDCard(result, path)) {
-                                            ToastUtil.showToast(context, context.getString(R.string.download_suc));
+                                            ToastUtil.shortToast(context, context.getString(R.string.download_suc));
                                         }
                                     }
 

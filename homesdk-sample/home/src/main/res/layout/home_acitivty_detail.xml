@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_id"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="0dp"
@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_home_name"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="0dp"
@@ -100,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_city"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="0dp"
@@ -129,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_weather"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="0dp"
@@ -158,7 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_temperature"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="0dp"

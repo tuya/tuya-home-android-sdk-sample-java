@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_gravity="center_vertical"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:id="@+id/tvName" />
 
     <ImageView

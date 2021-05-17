@@ -1,0 +1,19 @@
+var namespacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api =
+[
+    [ "ICameraConfigInfo", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_camera_config_info.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_camera_config_info" ],
+    [ "ICameraFactory", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_camera_factory.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_camera_factory" ],
+    [ "ITuyaIPCCloud", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_cloud.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_cloud" ],
+    [ "ITuyaIPCCore", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_core.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_core" ],
+    [ "ITuyaIPCCount", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_count.html", null ],
+    [ "ITuyaIPCDoorbell", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_doorbell.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_doorbell" ],
+    [ "ITuyaIPCDoorBellManager", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_door_bell_manager.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_door_bell_manager" ],
+    [ "ITuyaIPCExtPlugin", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_ext_plugin.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_ext_plugin" ],
+    [ "ITuyaIPCHomeProxy", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_home_proxy.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_home_proxy" ],
+    [ "ITuyaIPCInside", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_inside.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_inside" ],
+    [ "ITuyaIPCMsg", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_msg.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_msg" ],
+    [ "ITuyaIPCMsgManager", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_msg_manager.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_msg_manager" ],
+    [ "ITuyaIPCMsgPlugin", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_msg_plugin.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_msg_plugin" ],
+    [ "ITuyaIPCPlugin", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_plugin.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_plugin" ],
+    [ "ITuyaIPCTool", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_tool.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_i_p_c_tool" ],
+    [ "ITuyaP2pPlugin", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_p2p_plugin.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1api_1_1_i_tuya_p2p_plugin" ]
+];

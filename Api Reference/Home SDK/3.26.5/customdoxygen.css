@@ -1,0 +1,791 @@
+body,
+table,
+div,
+p,
+dl {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Helvetica, Arial,
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+p.reference,
+p.definition {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Helvetica, Arial,
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.title {
+  font: 400 34px/40px Lato, Roboto, Helvetica, Arial, PingFangSC-Medium,
+    "PingFang SC", PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei",
+    "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  margin: 10px 2px;
+  color: #333;
+}
+
+h2.groupheader {
+  border-bottom: 1px solid #f50;
+  color: #333;
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 1.75em;
+  padding-top: 8px;
+  padding-bottom: 4px;
+  width: 100%;
+}
+
+h1.glow,
+h2.glow,
+h3.glow,
+h4.glow,
+h5.glow,
+h6.glow {
+  text-shadow: 0 0 15px #f50;
+}
+
+body {
+  background-color: white;
+  color: 333;
+  margin: 0;
+}
+
+/* @group Link Styling */
+
+a {
+  color: #f50;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.contents a:visited {
+  color: #f50;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.qindex {
+  font-weight: bold;
+}
+
+a.qindexHL {
+  font-weight: bold;
+  background-color: #9cafd4;
+  color: #ffffff;
+  border: 1px double #869dca;
+}
+
+.contents a.qindexHL:visited {
+  color: #ffffff;
+}
+
+a.el {
+  font-weight: bold;
+}
+
+a.elRef {
+}
+
+a.code,
+a.code:visited,
+a.line,
+a.line:visited {
+  color: #4665a2;
+}
+
+a.codeRef,
+a.codeRef:visited,
+a.lineRef,
+a.lineRef:visited {
+  color: #4665a2;
+}
+
+/* @end */
+
+#projectlogo {
+  text-align: center;
+  vertical-align: middle;
+  border-collapse: separate;
+}
+
+#projectlogo img {
+  border: 0px none;
+  height: 26px;
+  width: 52px;
+  padding-left: 100px;
+}
+
+#projectname {
+  font: bold 20px Lato, Roboto, Helvetica, Arial, PingFangSC-Medium,
+    "PingFang SC", PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei",
+    "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  color: rgb(90, 90, 90);
+  padding-left: 10px;
+  /* margin: 0px; */
+}
+
+#titlearea {
+  background: #f5f5f7;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  border-bottom: none;
+}
+
+/* Tabs */
+#main-nav {
+  border-bottom: 1px solid #eaeaea;
+}
+
+.sm-dox {
+  background: white;
+}
+
+.sm-dox a,
+.sm-dox a:focus,
+.sm-dox a:hover,
+.sm-dox a:active {
+  padding: 0 12px;
+  padding-right: 43px;
+  font-family: Lato, Roboto, Helvetica, Arial, PingFangSC-Medium, "PingFang SC",
+    PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB",
+    "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 60px;
+  text-decoration: none;
+  text-shadow: none;
+  color: rgba(19, 20, 21, 0.9);
+  outline: 0;
+}
+
+.sm-dox ul {
+  background: white;
+  width: 60px;
+}
+
+#main-nav #main-menu {
+  padding-left: 100px;
+}
+
+#main-nav * {
+  transition: all 0.5s;
+}
+
+.sm-dox ul a span.sub-arrow {
+  right: 8px;
+  top: 50%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-color: transparent transparent transparent #555;
+  border-style: dashed dashed dashed solid;
+}
+
+.sm-dox ul a,
+.sm-dox ul a:focus,
+.sm-dox ul a:hover,
+.sm-dox ul a:active {
+  font-size: 14px;
+  border-left: none;
+  line-height: 60px;
+  text-shadow: none;
+  background-color: white;
+  background-image: none;
+}
+.sm-dox ul a:hover {
+  background-image: none;
+  background-repeat: repeat-x;
+  color: rgb(255, 39, 31);
+  text-shadow: none;
+}
+.sm-dox ul ul a,
+.sm-dox ul ul a:hover,
+.sm-dox ul ul a:focus,
+.sm-dox ul ul a:active {
+  border-left: none;
+}
+.sm-dox ul ul ul a,
+.sm-dox ul ul ul a:hover,
+.sm-dox ul ul ul a:focus,
+.sm-dox ul ul ul a:active {
+  border-left: none;
+}
+.sm-dox ul ul ul ul a,
+.sm-dox ul ul ul ul a:hover,
+.sm-dox ul ul ul ul a:focus,
+.sm-dox ul ul ul ul a:active {
+  border-left: none;
+}
+.sm-dox ul ul ul ul ul a,
+.sm-dox ul ul ul ul ul a:hover,
+.sm-dox ul ul ul ul ul a:focus,
+.sm-dox ul ul ul ul ul a:active {
+  border-left: none;
+}
+
+.sm-dox a,
+.sm-dox a:focus,
+.sm-dox a:active,
+.sm-dox a:hover,
+.sm-dox a.highlighted {
+  padding: 0 12px;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: right;
+  -moz-border-radius: 0 !important;
+  -webkit-border-radius: 0;
+  border-radius: 0 !important;
+}
+
+.sm-dox a:hover {
+  background-image: none;
+  background-repeat: repeat-x;
+  color: rgb(255, 39, 31);
+  text-shadow: none;
+}
+
+.sm-dox a:hover span.sub-arrow {
+  border-color: transparent transparent transparent white;
+}
+
+.sm-dox a.has-submenu {
+  padding-right: 24px;
+}
+
+div.contents {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+hr {
+  height: 0px;
+  border: none;
+  border-top: 1px solid #f50;
+}
+
+/* Search */
+
+#MSearchBox {
+  white-space: nowrap;
+  background: #f5f5f7;
+  border-radius: 15px;
+  box-shadow: none;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.1);
+  z-index: 102;
+  height: 30px;
+  width: 200px;
+}
+
+#MSearchBox:hover {
+  border-color: rgb(255, 39, 31);
+}
+
+#MSearchBox .left {
+  display: inline-block;
+  vertical-align: middle;
+  height: 30px;
+}
+
+#MSearchSelect {
+  display: inline-block;
+  vertical-align: middle;
+  height: 30px;
+  padding-left: 8px;
+  padding-top: 2px;
+  padding-bottom: 4px;
+  margin: 0;
+}
+
+#MSearchField {
+  display: inline-block;
+  vertical-align: middle;
+  width: 140px;
+  height: 30px;
+  margin: 0 0.15em;
+  padding: 0;
+  line-height: 1em;
+  border: none;
+  color: #909090;
+  outline: none;
+  font-family: Lato, Roboto, Helvetica, Arial, PingFangSC-Medium, "PingFang SC",
+    PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB",
+    "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 14px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  background: none;
+}
+
+#MSearchBox .right {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  padding-top: 5px;
+  padding-bottom: 4px;
+}
+
+#main-menu > li:last-child {
+  /* This <li> object is the parent of the search bar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  margin-right: 1em;
+}
+
+/* Search filter selection */
+
+#MSearchSelectWindow {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #f5f5f7cc;
+  z-index: 10001;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -webkit-box-shadow: none;
+}
+
+#MSearchSelectWindow * {
+  transition: all 0.5s;
+}
+
+.SelectItem {
+  font: 12px Lato, Roboto, Helvetica, Arial, PingFangSC-Medium, "PingFang SC",
+    PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB",
+    "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  padding-left: 2px;
+  padding-right: 12px;
+  border: 0px;
+}
+
+a.SelectItem {
+  display: block;
+  outline-style: none;
+  color: #000000;
+  text-decoration: none;
+  padding-left: 6px;
+  padding-right: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+a.SelectItem:focus,
+a.SelectItem:active {
+  color: #000000;
+  outline-style: none;
+  text-decoration: none;
+}
+
+a.SelectItem:hover {
+  color: rgb(255, 39, 31);
+  background-color: transparent;
+  outline-style: none;
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+}
+/*---------------- Search results window */
+
+iframe#MSearchResults {
+  width: 60ex;
+  height: 15em;
+}
+
+#MSearchResultsWindow {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 85px;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #f5f5f7cc;
+  z-index: 10000;
+}
+
+.SREntry {
+  font-size: 10pt;
+  padding-left: 1ex;
+}
+
+.SRPage .SREntry {
+  font-size: 10pt;
+  padding: 8px 10px;
+}
+
+.SRSymbol {
+  font-weight: bold;
+  color: rgb(207, 62, 57);
+  font-family: Lato, Roboto, Helvetica, Arial, PingFangSC-Medium, "PingFang SC",
+    PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB",
+    "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  text-decoration: none;
+  outline: none;
+}
+
+a.SRScope {
+  display: block;
+  color: rgb(207, 62, 57);
+  font-family: Lato, Roboto, Helvetica, Arial, PingFangSC-Medium, "PingFang SC",
+    PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB",
+    "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  text-decoration: none;
+  outline: none;
+}
+
+a.SRSymbol:focus,
+a.SRSymbol:active,
+a.SRScope:focus,
+a.SRScope:active {
+  text-decoration: underline;
+}
+
+span.SRScope {
+  font-family: Lato, Roboto, Helvetica, Arial, PingFangSC-Medium, "PingFang SC",
+    PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB",
+    "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  color: rgba(19, 20, 21, 0.8);
+  padding-left: 4px;
+}
+
+/* Tree view */
+
+.arrow {
+  color: rgba(0, 0, 0, 0.2);
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  font-size: 80%;
+  display: inline-block;
+  width: 16px;
+  height: 22px;
+}
+
+/* Navtree */
+
+#nav-tree .selected {
+  background-image: none;
+  background-repeat: repeat-x;
+  color: #fff;
+  text-shadow: none;
+}
+
+#nav-tree .selected a {
+  text-decoration: none;
+  color: #f50;
+}
+
+#nav-tree a {
+  text-decoration: none;
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+#nav-tree a:hover {
+  color: rgba(255, 85, 0, 0.7);
+}
+
+#nav-tree .label {
+  margin: 0px;
+  padding: 0px;
+  font: 14px Lato, Roboto, Helvetica, Arial, PingFangSC-Medium, "PingFang SC",
+    PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB",
+    "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.ui-resizable-e {
+  background-image: none;
+  background-size: 100%;
+  background-repeat: repeat-y;
+  background-attachment: scroll;
+  background-color: rgb(210, 210, 210);
+  cursor: ew-resize;
+  height: 100%;
+  right: 0;
+  top: 0;
+  width: 4px;
+}
+
+#nav-tree-contents {
+  margin: 6px 0px 0px 54px;
+}
+
+#nav-tree .item {
+  margin: 0px;
+  padding: 4px 0px !important;
+}
+
+#nav-tree {
+  margin-left: 32px;
+  background-image: none;
+  background-repeat: repeat-x;
+  background-color: white;
+  -webkit-overflow-scrolling: touch; /* iOS 5+ */
+}
+
+#nav-tree * {
+  transition: all 0.5s;
+}
+
+#side-nav {
+  padding: 0 6px 0 0;
+  margin: 0;
+  display: block;
+  position: absolute;
+  left: 0px;
+  width: 250px;
+}
+
+/* end */
+
+/* Styles for detailed member documentation */
+
+.memtitle {
+  padding: 8px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #e5e5e5;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  margin-bottom: -1px;
+  background-image: none;
+  background-repeat: repeat-x;
+  background-color: white;
+  line-height: 1.25;
+  font-weight: 300;
+  float: left;
+}
+
+.permalink a {
+  display: inline-block;
+  vertical-align: middle;
+  color: rgba(255, 85, 0, 0.7);
+}
+
+.permalink:visited a {
+  color: rgba(255, 85, 0, 0.7);
+}
+
+.permalink:hover a {
+  text-decoration: none;
+  color: #f50;
+}
+
+.memproto,
+dl.reflist dt {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 6px 0px 6px 0px;
+  color: #333;
+  font-weight: bold;
+  text-shadow: none;
+  background-color: white;
+  /* opera specific markup */
+  box-shadow: none;
+  border-top-right-radius: 4px;
+  /* firefox specific markup */
+  -moz-box-shadow: none;
+  -moz-border-radius-topright: 4px;
+  /* webkit specific markup */
+  -webkit-box-shadow: none;
+  -webkit-border-top-right-radius: 4px;
+}
+
+.memdoc,
+dl.reflist dd {
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  padding: 6px 10px 2px 10px;
+  background-color: white;
+  border-top-width: 0;
+  background-image: none;
+  background-repeat: repeat-x;
+  background-color: #ffffff;
+  /* opera specific markup */
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: none;
+  /* firefox specific markup */
+  -moz-border-radius-bottomleft: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -moz-box-shadow: none;
+  /* webkit specific markup */
+  -webkit-border-bottom-left-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -webkit-box-shadow: none;
+}
+
+.memberdecls td.glow,
+.fieldtable tr.glow {
+  background-color: #f50;
+  box-shadow: 0 0 15px #f50;
+}
+
+.memitem.glow {
+  box-shadow: 0 0 15px #f50;
+}
+
+/* end */
+
+div.header {
+  background-image: none;
+  background-repeat: repeat-x;
+  background-color: white;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+div.headertitle {
+  padding: 5px 5px 5px 10px;
+}
+
+div.line.glow {
+  background-color: #f50;
+  box-shadow: 0 0 10px #f50;
+}
+
+div.directory {
+  margin: 10px 0px;
+  border-top: 1px solid #f50;
+  border-bottom: 1px solid #f50;
+  width: 100%;
+}
+
+div.ah,
+span.ah {
+  background-color: white;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.65);
+  margin-bottom: 3px;
+  margin-top: 3px;
+  padding: 0.2em;
+  border: none;
+  border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  background-image: none;
+  background-image: none;
+}
+
+div.qindex,
+div.navtab {
+  background-color: #f5f5f5;
+  border: none;
+  text-align: center;
+}
+
+.directory tr.even {
+  padding-left: 6px;
+  background-color: #f5f5f5;
+}
+
+.icon {
+  font-family: Lato, Roboto, Helvetica, Arial, PingFangSC-Medium, "PingFang SC",
+    PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB",
+    "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  height: 14px;
+  width: 16px;
+  display: inline-block;
+  background-color: #728dc1;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+table.directory {
+  font: 400 14px Lato, Roboto, Helvetica, Arial, PingFangSC-Medium,
+    "PingFang SC", PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei",
+    "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.navpath ul {
+  font-size: 11px;
+  background-image: none;
+  background-repeat: repeat-x;
+  background-position: 0 -5px;
+  background-color: rgb(25, 25, 25);
+  height: 30px;
+  line-height: 30px;
+  color: #8aa0cc;
+  border: none;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+}
+
+.navpath li {
+  list-style-type: none;
+  float: left;
+  padding-left: 10px;
+  padding-right: 15px;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: right;
+  color: #364d7c;
+}
+
+.navpath li.navelem a {
+  height: 32px;
+  display: block;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  font-family: Lato, Roboto, Helvetica, Arial, PingFangSC-Medium, "PingFang SC",
+    PingFang-SC-Regular, "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB",
+    "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  text-shadow: none;
+  text-decoration: none;
+}
+
+.navpath li.navelem a:hover {
+  color: #f50;
+}
+
+.navpath li.footer {
+  list-style-type: none;
+  float: right;
+  padding-left: 10px;
+  padding-right: 15px;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: right;
+  color: #fff;
+  font-size: 8pt;
+}

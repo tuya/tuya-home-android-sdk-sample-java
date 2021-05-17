@@ -13,6 +13,7 @@
     <string name="device_info">Device info</string>
     <string name="get_clarity">Get clarity</string>
     <string name="playback_title">Playback</string>
+    <string name="doorbell_title">Doorbell Call</string>
     <string name="playback_input_hint">Input query date: </string>
     <string name="query">Query</string>
     <string name="start">Start</string>
@@ -54,4 +55,10 @@
     <string name="not_support_device">The device is not supported</string>
     <string name="err_code">Status value: </string>
     <string name="current_state">Current state: </string>
+    <string name="ipc_doorbell_refuse">Refuse</string>
+    <string name="ipc_doorbell_hangup">Hang up</string>
+    <string name="ipc_doorbell_accept">Accept</string>
+    <string name="menu_remove_device">Remove Device</string>
+    <string name="remove_device_dialog">Are you sure remove this device？</string>
+    <string name="confirm">Confirm</string>
 </resources>

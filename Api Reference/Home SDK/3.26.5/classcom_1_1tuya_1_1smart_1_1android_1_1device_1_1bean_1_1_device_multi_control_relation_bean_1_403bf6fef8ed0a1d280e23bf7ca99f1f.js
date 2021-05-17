@@ -1,0 +1,7 @@
+var classcom_1_1tuya_1_1smart_1_1android_1_1device_1_1bean_1_1_device_multi_control_relation_bean_1_403bf6fef8ed0a1d280e23bf7ca99f1f =
+[
+    [ "getDpId", "classcom_1_1tuya_1_1smart_1_1android_1_1device_1_1bean_1_1_device_multi_control_relation_bean_1_403bf6fef8ed0a1d280e23bf7ca99f1f.html#a4a1a93ac3fc0c263d6a1e6e440722cbf", null ],
+    [ "getDpName", "classcom_1_1tuya_1_1smart_1_1android_1_1device_1_1bean_1_1_device_multi_control_relation_bean_1_403bf6fef8ed0a1d280e23bf7ca99f1f.html#a123a387181d2e2253941dfce59a56f4a", null ],
+    [ "setDpId", "classcom_1_1tuya_1_1smart_1_1android_1_1device_1_1bean_1_1_device_multi_control_relation_bean_1_403bf6fef8ed0a1d280e23bf7ca99f1f.html#a3ba46d516dd519cd5d2a9594b7cf23d0", null ],
+    [ "setDpName", "classcom_1_1tuya_1_1smart_1_1android_1_1device_1_1bean_1_1_device_multi_control_relation_bean_1_403bf6fef8ed0a1d280e23bf7ca99f1f.html#acec1eb2affcabf09637601e097f175f5", null ]
+];

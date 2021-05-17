@@ -60,7 +60,6 @@ public class TimePieceBean implements Comparable<TimePieceBean> {
 
     @Override
     public int compareTo(@NonNull TimePieceBean o) {
-        //自定义比较方法，如果认为此实体本身大则返回1，否则返回-1
         if(this.endTime >= o.getEndTime()){
             return 1;
         }

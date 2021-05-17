@@ -22,7 +22,7 @@ import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationDelegateCallBa
 import com.tuya.smart.camera.ipccamerasdk.msgvideo.ITYCloudVideo;
 import com.tuya.smart.camera.ipccamerasdk.p2p.ICameraP2P;
 import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
-import com.tuya.smart.utils.ToastUtil;
+import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 
 import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_FAIL;
 import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_SUCCESS;

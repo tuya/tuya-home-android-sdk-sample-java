@@ -15,6 +15,7 @@ package com.tuya.appsdk.sample;
 import android.app.Application;
 
 import com.tuya.appsdk.sample.device.config.util.sp.SpUtils;
+import com.tuya.smart.android.demo.camera.CameraUtils;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
@@ -33,5 +34,6 @@ public final class BaseApplication extends Application {
 
         SpUtils.getInstance().initSp(this);
         ZXingLibrary.initDisplayOpinion(this);
+        CameraUtils.init(this);
     }
 }

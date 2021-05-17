@@ -1,0 +1,9 @@
+var namespacecom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean =
+[
+    [ "BackupWifiBean", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_backup_wifi_bean.html", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_backup_wifi_bean" ],
+    [ "BackupWifiListInfo", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_backup_wifi_list_info.html", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_backup_wifi_list_info" ],
+    [ "BackupWifiResultBean", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_backup_wifi_result_bean.html", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_backup_wifi_result_bean" ],
+    [ "BaseInfo", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_base_info.html", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_base_info" ],
+    [ "CurrentWifiInfoBean", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_current_wifi_info_bean.html", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_current_wifi_info_bean" ],
+    [ "SwitchWifiResultBean", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_switch_wifi_result_bean.html", "classcom_1_1tuya_1_1smart_1_1sdk_1_1api_1_1wifibackup_1_1api_1_1bean_1_1_switch_wifi_result_bean" ]
+];

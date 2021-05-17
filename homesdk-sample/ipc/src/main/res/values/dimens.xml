@@ -12,12 +12,10 @@
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="toolbar_item_width">56dp</dimen>
     <dimen name="tuya_title_size">17sp</dimen>
-    <!-- 线条高宽控制 -->
     <dimen name="single_pix">1px</dimen>
     <dimen name="double_pix">2px</dimen>
     <dimen name="lose_pix">-1px</dimen>
 
-    <!-- 默认字体大小 -->
     <dimen name="ts_44">44sp</dimen>
     <dimen name="ts_40">40sp</dimen>
     <dimen name="ts_32">32sp</dimen>
@@ -34,7 +32,6 @@
     <dimen name="ts_10">10sp</dimen>
     <dimen name="line_dip">1px</dimen>
 
-    <!-- 间距大小 -->
     <dimen name="mg_440">440dp</dimen>
     <dimen name="mg_360">360dp</dimen>
     <dimen name="mg_245">245dp</dimen>
@@ -78,7 +75,6 @@
     <dimen name="mg_4">4dp</dimen>
     <dimen name="mg_2">2dp</dimen>
 
-    <!-- 宽高度 -->
     <dimen name="wh_185">185dp</dimen>
     <dimen name="wh_180">180dp</dimen>
     <dimen name="wh_160">160dp</dimen>
