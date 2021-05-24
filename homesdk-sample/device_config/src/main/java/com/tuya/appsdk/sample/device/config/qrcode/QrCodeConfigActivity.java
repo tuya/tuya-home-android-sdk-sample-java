@@ -2,10 +2,13 @@ package com.tuya.appsdk.sample.device.config.qrcode;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -21,25 +24,29 @@ import androidx.core.content.ContextCompat;
 
 import com.google.zxing.WriterException;
 import com.tuya.appsdk.sample.device.config.R;
+import com.tuya.appsdk.sample.device.config.ap.DeviceConfigAPActivity;
 import com.tuya.appsdk.sample.device.config.util.qrcode.QRCodeUtil;
 import com.tuya.appsdk.sample.resource.HomeModel;
 import com.tuya.smart.android.common.utils.L;
 import com.tuya.smart.android.common.utils.WiFiUtil;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
+import com.tuya.smart.home.sdk.builder.ActivatorBuilder;
 import com.tuya.smart.home.sdk.builder.TuyaCameraActivatorBuilder;
 import com.tuya.smart.sdk.api.ITuyaActivatorGetToken;
 import com.tuya.smart.sdk.api.ITuyaCameraDevActivator;
+import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener;
 import com.tuya.smart.sdk.api.ITuyaSmartCameraActivatorListener;
 import com.tuya.smart.sdk.bean.DeviceBean;
+import com.tuya.smart.sdk.enums.ActivatorModelEnum;
 
 /**
  * QR code device config, generally used for ipc device.
  */
-public class QrCodeConfigActivity extends AppCompatActivity implements ITuyaSmartCameraActivatorListener {
+public class QrCodeConfigActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String wifiSSId = "";
-    private String token = "";
     private String wifiPwd = "";
+    private String mtoken = "";
     private ImageView mIvQr;
     private LinearLayout mLlInputWifi;
     private EditText mEtInputWifiSSid;
@@ -56,22 +63,15 @@ public class QrCodeConfigActivity extends AppCompatActivity implements ITuyaSmar
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                finish();
             }
         });
         mLlInputWifi = findViewById(R.id.ll_input_wifi);
         mEtInputWifiSSid = findViewById(R.id.et_wifi_ssid);
         mEtInputWifiPwd = findViewById(R.id.et_wifi_pwd);
         mBtnSave = findViewById(R.id.btn_save);
-        mBtnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createQrcode();
-                hideKeyboard(v);
-            }
-        });
+        mBtnSave.setOnClickListener(this);
         mIvQr = findViewById(R.id.iv_qrcode);
-        init();
     }
 
     private void hideKeyboard(View v) {
@@ -79,77 +79,67 @@ public class QrCodeConfigActivity extends AppCompatActivity implements ITuyaSmar
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
-    private void init() {
-        getCurrentSSID();
-        TuyaHomeSdk.getActivatorInstance().getActivatorToken(HomeModel.getCurrentHome(this), new ITuyaActivatorGetToken() {
-            @Override
-            public void onSuccess(String s) {
-                token = s;
-            }
 
-            @Override
-            public void onFailure(String s, String s1) {
-                L.e("QrCodeConfigActivity", s);
-            }
-        });
-    }
+    public void onClick(View v) {
+        if (v.getId() == R.id.btn_save) {
+            wifiSSId = mEtInputWifiSSid.getText().toString();
+            wifiPwd = mEtInputWifiPwd.getText().toString();
+            long homeId = HomeModel.getCurrentHome(this);
 
-    private void getCurrentSSID() {
-        //WifiManager#getConnectionInfo need ACCESS_FINE_LOCATION permission
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1001);
-            return;
+            // Get Network Configuration Token
+            TuyaHomeSdk.getActivatorInstance().getActivatorToken(homeId,
+                    new ITuyaActivatorGetToken() {
+                        @Override
+                        public void onSuccess(String token) {
+                            //Create and show qrCode
+                            TuyaCameraActivatorBuilder builder = new TuyaCameraActivatorBuilder()
+                                    .setToken(token)
+                                    .setPassword(wifiPwd)
+                                    .setTimeOut(100)
+                                    .setContext(QrCodeConfigActivity.this)
+                                    .setSsid(wifiSSId)
+                                    .setListener(new ITuyaSmartCameraActivatorListener() {
+                                        @Override
+                                        public void onQRCodeSuccess(String qrcodeUrl) {
+                                            final Bitmap bitmap;
+                                            try {
+                                                bitmap = QRCodeUtil.createQRCode(qrcodeUrl, 300);
+                                                QrCodeConfigActivity.this.runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        mIvQr.setImageBitmap(bitmap);
+                                                        mLlInputWifi.setVisibility(View.GONE);
+                                                        mIvQr.setVisibility(View.VISIBLE);
+                                                    }
+                                                });
+                                            } catch (WriterException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onError(String errorCode, String errorMsg) {
+
+                                        }
+
+                                        @Override
+                                        public void onActiveSuccess(DeviceBean devResp) {
+                                            Toast.makeText(QrCodeConfigActivity.this,"config success!",Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                            mTuyaActivator = TuyaHomeSdk.getActivatorInstance().newCameraDevActivator(builder);
+                            mTuyaActivator.createQRCode();
+                            mTuyaActivator.start();
+                        }
+
+
+                        @Override
+                        public void onFailure(String errorCode, String errorMsg) {
+
+                        }
+                    });
+            hideKeyboard(v);
         }
-        wifiSSId = WiFiUtil.getCurrentSSID(this);
-        mEtInputWifiSSid.setText(wifiSSId);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getCurrentSSID();
-    }
-
-    private void createQrcode() {
-        if (TextUtils.isEmpty(token)) {
-            Toast.makeText(this, "token is empty", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        wifiPwd = mEtInputWifiPwd.getText().toString();
-        TuyaCameraActivatorBuilder builder = new TuyaCameraActivatorBuilder()
-                .setToken(token).setPassword(wifiPwd).setSsid(wifiSSId).setListener(this);
-        mTuyaActivator = TuyaHomeSdk.getActivatorInstance().newCameraDevActivator(builder);
-        mTuyaActivator.createQRCode();
-        mTuyaActivator.start();
-    }
-
-    @Override
-    public void onQRCodeSuccess(String s) {
-        final Bitmap bitmap;
-        try {
-            bitmap = QRCodeUtil.createQRCode(s, 300);
-            QrCodeConfigActivity.this.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mIvQr.setImageBitmap(bitmap);
-                    mIvQr.setVisibility(View.VISIBLE);
-                    mLlInputWifi.setVisibility(View.GONE);
-                }
-            });
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public void onError(String s, String s1) {
-
-    }
-
-    @Override
-    public void onActiveSuccess(DeviceBean deviceBean) {
-        Toast.makeText(this, "config success!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
