@@ -5,15 +5,16 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.walala.demo"
+        applicationId "com.homycloud.smart"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
+       
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
@@ -54,7 +55,7 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.1.67.android'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.14.9'
 
-    implementation 'com.tuya.smart:tuyasmart:3.27.5'
+
 
     implementation project(':base_res')
     implementation project(":home")

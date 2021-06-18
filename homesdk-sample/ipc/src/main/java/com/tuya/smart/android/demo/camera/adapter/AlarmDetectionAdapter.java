@@ -19,13 +19,14 @@ import com.tuya.drawee.view.DecryptImageView;
 import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCTool;
 import com.tuya.smart.android.demo.R;
+import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 import com.tuya.smart.camera.utils.BitmapUtils;
 import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
 import com.tuya.smart.ipc.messagecenter.bean.CameraMessageBean;
-import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 
 import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by huangdaju on 2018/3/5.
@@ -116,30 +117,28 @@ public class AlarmDetectionAdapter extends RecyclerView.Adapter<AlarmDetectionAd
                     mSnapshot.setImageURI(imageUrl, decryption.getBytes());
                     //show download encryptedImg button
                     mBtn.setVisibility(View.VISIBLE);
-                    mBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ITuyaIPCTool tool = TuyaIPCSdk.getTool();
-                            if (tool != null) {
-                                tool.downloadEncryptedImg(imageUrl, decryption, new ITuyaResultCallback<Bitmap>() {
-                                    @Override
-                                    public void onSuccess(Bitmap result) {
-                                        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Camera/";
-                                        File file = new File(path);
-                                        if (!file.exists()) {
-                                            file.mkdirs();
-                                        }
-                                        if (BitmapUtils.savePhotoToSDCard(result, path)) {
-                                            ToastUtil.shortToast(context, context.getString(R.string.download_suc));
-                                        }
+                    mBtn.setOnClickListener(v -> {
+                        ITuyaIPCTool tool = TuyaIPCSdk.getTool();
+                        if (tool != null) {
+                            tool.downloadEncryptedImg(imageUrl, decryption, new ITuyaResultCallback<Bitmap>() {
+                                @Override
+                                public void onSuccess(Bitmap result) {
+//                                        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Camera/";
+                                    String path = Objects.requireNonNull(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)).getPath() + "/Camera";
+                                    File file = new File(path);
+                                    if (!file.exists()) {
+                                        file.mkdirs();
                                     }
+                                    if (BitmapUtils.savePhotoToSDCard(result, path)) {
+                                        ToastUtil.shortToast(context, context.getString(R.string.download_suc));
+                                    }
+                                }
 
-                                    @Override
-                                    public void onError(String errorCode, String errorMessage) {
-                                        Log.e("AlarmDetectionAdapter", "download encrypted img err: " + errorCode + errorMessage);
-                                    }
-                                });
-                            }
+                                @Override
+                                public void onError(String errorCode, String errorMessage) {
+                                    Log.e("AlarmDetectionAdapter", "download encrypted img err: " + errorCode + errorMessage);
+                                }
+                            });
                         }
                     });
                 } catch (Exception e) {
