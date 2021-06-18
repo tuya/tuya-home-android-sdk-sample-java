@@ -2,9 +2,7 @@ package com.tuya.smart.android.demo.camera;
 
 import android.Manifest;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -26,11 +24,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCore;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCDoorbell;
-import com.tuya.smart.android.common.utils.L;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.utils.Constants;
 import com.tuya.smart.android.demo.camera.utils.DPConstants;
 import com.tuya.smart.android.demo.camera.utils.MessageUtil;
+import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.AbsP2pCameraListener;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.OnRenderDirectionCallback;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationDelegateCallBack;
@@ -43,11 +41,11 @@ import com.tuya.smart.home.sdk.TuyaHomeSdk;
 import com.tuya.smart.sdk.api.IResultCallback;
 import com.tuya.smart.sdk.api.ITuyaDevice;
 import com.tuya.smart.sdk.bean.DeviceBean;
-import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_FAIL;
 import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_SUCCESS;
@@ -85,8 +83,6 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
     private int previewMute = ICameraP2P.MUTE;
     private int videoClarity = ICameraP2P.HD;
     private String currVideoClarity;
-
-    private String picPath, videoPath;
 
     private int p2pType;
 
@@ -126,6 +122,8 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
                     break;
                 case MSG_GET_VIDEO_CLARITY:
                     handleGetVideoClarity(msg);
+                    break;
+                default:
                     break;
             }
             super.handleMessage(msg);
@@ -250,12 +248,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
     private void initView() {
         toolbar = findViewById(R.id.toolbar_view);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
         mVideoView = findViewById(R.id.camera_video_view);
         muteImg = findViewById(R.id.camera_mute);
         qualityTv = findViewById(R.id.camera_quality);
@@ -400,31 +393,27 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
 
     private void recordClick() {
         if (!isRecording) {
-            if (Constants.hasStoragePermission()) {
-                String picPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Camera/";
-                File file = new File(picPath);
-                if (!file.exists()) {
-                    file.mkdirs();
-                }
-                String fileName = System.currentTimeMillis() + ".mp4";
-                videoPath = picPath + fileName;
-                mCameraP2P.startRecordLocalMp4(picPath, CameraPanelActivity.this, new OperationDelegateCallBack() {
-                    @Override
-                    public void onSuccess(int sessionId, int requestId, String data) {
-                        isRecording = true;
-                        mHandler.sendEmptyMessage(MSG_VIDEO_RECORD_BEGIN);
-
-                    }
-
-                    @Override
-                    public void onFailure(int sessionId, int requestId, int errCode) {
-                        mHandler.sendEmptyMessage(MSG_VIDEO_RECORD_FAIL);
-                    }
-                });
-                recordStatue(true);
-            } else {
-                Constants.requestPermission(CameraPanelActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE, Constants.EXTERNAL_STORAGE_REQ_CODE, "open_storage");
+            String picPath = getExternalFilesDir(null).getPath() + "/" + devId;
+            File file = new File(picPath);
+            if (!file.exists()) {
+                file.mkdirs();
             }
+            String fileName = System.currentTimeMillis() + ".mp4";
+            mCameraP2P.startRecordLocalMp4(picPath, fileName, CameraPanelActivity.this, new OperationDelegateCallBack() {
+                @Override
+                public void onSuccess(int sessionId, int requestId, String data) {
+                    isRecording = true;
+                    mHandler.sendEmptyMessage(MSG_VIDEO_RECORD_BEGIN);
+                    //returns the recorded thumbnail path （.jpg）
+                    Log.i(TAG, "record :" + data);
+                }
+
+                @Override
+                public void onFailure(int sessionId, int requestId, int errCode) {
+                    mHandler.sendEmptyMessage(MSG_VIDEO_RECORD_FAIL);
+                }
+            });
+            recordStatue(true);
         } else {
             mCameraP2P.stopRecordLocalMp4(new OperationDelegateCallBack() {
                 @Override
@@ -444,29 +433,24 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void snapShotClick() {
-        if (Constants.hasStoragePermission()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Camera/";
-                File file = new File(path);
-                if (!file.exists()) {
-                    file.mkdirs();
-                }
-                picPath = path;
-            }
-            mCameraP2P.snapshot(picPath, CameraPanelActivity.this, new OperationDelegateCallBack() {
-                @Override
-                public void onSuccess(int sessionId, int requestId, String data) {
-                    mHandler.sendMessage(MessageUtil.getMessage(MSG_SCREENSHOT, ARG1_OPERATE_SUCCESS));
-                }
-
-                @Override
-                public void onFailure(int sessionId, int requestId, int errCode) {
-                    mHandler.sendMessage(MessageUtil.getMessage(MSG_SCREENSHOT, ARG1_OPERATE_FAIL));
-                }
-            });
-        } else {
-            Constants.requestPermission(CameraPanelActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE, Constants.EXTERNAL_STORAGE_REQ_CODE, "open_storage");
+        String picPath = getExternalFilesDir(null).getPath() + "/" + devId;
+        File file = new File(picPath);
+        if (!file.exists()) {
+            file.mkdirs();
         }
+        String fileName = System.currentTimeMillis() + ".jpg";
+        mCameraP2P.snapshot(picPath, fileName, CameraPanelActivity.this, new OperationDelegateCallBack() {
+            @Override
+            public void onSuccess(int sessionId, int requestId, String data) {
+                mHandler.sendMessage(MessageUtil.getMessage(MSG_SCREENSHOT, ARG1_OPERATE_SUCCESS));
+                Log.i(TAG, "snapshot :" + data);
+            }
+
+            @Override
+            public void onFailure(int sessionId, int requestId, int errCode) {
+                mHandler.sendMessage(MessageUtil.getMessage(MSG_SCREENSHOT, ARG1_OPERATE_FAIL));
+            }
+        });
     }
 
     private void muteClick() {
@@ -596,7 +580,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
         public void onReceiveSpeakerEchoData(ByteBuffer pcm, int sampleRate) {
             if (null != mCameraP2P) {
                 int length = pcm.capacity();
-                L.d(TAG, "receiveSpeakerEchoData pcmlength " + length + " sampleRate " + sampleRate);
+                Log.d(TAG, "receiveSpeakerEchoData pcmlength " + length + " sampleRate " + sampleRate);
                 byte[] pcmData = new byte[length];
                 pcm.get(pcmData, 0, length);
                 mCameraP2P.sendAudioTalkData(pcmData, length);
@@ -645,6 +629,9 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (null != mHandler) {
+            mHandler.removeCallbacksAndMessages(null);
+        }
         if (null != mCameraP2P) {
             mCameraP2P.destroyP2P();
         }

@@ -8,12 +8,18 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.walala.demo"
+        applicationId "com.homycloud.smart"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        manifestPlaceholders = [
+                TUYA_SMART_APPKEY: "${properties.getProperty("appKey")}",
+                TUYA_SMART_SECRET: "${properties.getProperty("appSecret")}",
+        ]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {

@@ -2,13 +2,14 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven {
             url "https://maven-other.tuya.com/repository/maven-releases/"
             mavenContent {
                 releasesOnly()
             }
         }
+        jcenter() //Warning:this repository is going to shut down soon
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
@@ -21,14 +22,14 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
-        maven { url 'https : //dl.bintray.com/jenly/maven ' }
+        mavenCentral()
         maven {
             url "https://maven-other.tuya.com/repository/maven-releases/"
             mavenContent {
                 releasesOnly()
             }
         }
+        jcenter() //Warning:this repository is going to shut down soon
     }
 }
 

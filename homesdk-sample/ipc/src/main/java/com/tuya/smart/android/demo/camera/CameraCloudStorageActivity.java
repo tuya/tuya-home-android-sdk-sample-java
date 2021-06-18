@@ -1,6 +1,5 @@
 package com.tuya.smart.android.demo.camera;
 
-import android.Manifest;
 import android.os.Bundle;
 import android.view.View;
 
@@ -10,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCloud;
 import com.tuya.smart.android.demo.R;
-import com.tuya.smart.android.demo.camera.utils.Constants;
 import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.IRegistorIOTCListener;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.OnP2PCameraListener;
@@ -24,9 +22,9 @@ import com.tuya.smart.camera.middleware.cloud.bean.TimePieceBean;
 import com.tuya.smart.camera.middleware.cloud.bean.TimeRangeBean;
 import com.tuya.smart.camera.middleware.widget.AbsVideoViewCallback;
 import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
-import com.tuya.smart.camera.utils.IPCCameraUtils;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
 
+import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -416,22 +414,23 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
      * record start
      */
     public void startCloudRecordLocalMP4() {
-        if (Constants.hasStoragePermission()) {
-            if (cloudCamera != null) {
-                cloudCamera.startRecordLocalMp4(IPCCameraUtils.recordPath(devId), String.valueOf(System.currentTimeMillis()), new OperationDelegateCallBack() {
-                    @Override
-                    public void onSuccess(int sessionId, int requestId, String data) {
-                        ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
-                    }
-
-                    @Override
-                    public void onFailure(int sessionId, int requestId, int errCode) {
-                        ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
-                    }
-                });
+        if (cloudCamera != null) {
+            String path = getExternalFilesDir(null).getPath() + "/" + devId;
+            File file = new File(path);
+            if (!file.exists()) {
+                file.mkdirs();
             }
-        } else {
-            Constants.requestPermission(CameraCloudStorageActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE, Constants.EXTERNAL_STORAGE_REQ_CODE, "open_storage");
+            cloudCamera.startRecordLocalMp4(path, System.currentTimeMillis() + ".mp4", new OperationDelegateCallBack() {
+                @Override
+                public void onSuccess(int sessionId, int requestId, String data) {
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
+                }
+
+                @Override
+                public void onFailure(int sessionId, int requestId, int errCode) {
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
+                }
+            });
         }
     }
 
@@ -455,22 +454,23 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
     }
 
     public void snapshot() {
-        if (Constants.hasStoragePermission()) {
-            if (cloudCamera != null) {
-                cloudCamera.snapshot(IPCCameraUtils.recordSnapshotPath(devId), new OperationDelegateCallBack() {
-                    @Override
-                    public void onSuccess(int sessionId, int requestId, String data) {
-                        ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
-                    }
-
-                    @Override
-                    public void onFailure(int sessionId, int requestId, int errCode) {
-                        ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
-                    }
-                });
+        if (cloudCamera != null) {
+            String path = getExternalFilesDir(null).getPath() + "/" + devId;
+            File file = new File(path);
+            if (!file.exists()) {
+                file.mkdirs();
             }
-        } else {
-            Constants.requestPermission(CameraCloudStorageActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE, Constants.EXTERNAL_STORAGE_REQ_CODE, "open_storage");
+            cloudCamera.snapshot(path, new OperationDelegateCallBack() {
+                @Override
+                public void onSuccess(int sessionId, int requestId, String data) {
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
+                }
+
+                @Override
+                public void onFailure(int sessionId, int requestId, int errCode) {
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
+                }
+            });
         }
     }
 

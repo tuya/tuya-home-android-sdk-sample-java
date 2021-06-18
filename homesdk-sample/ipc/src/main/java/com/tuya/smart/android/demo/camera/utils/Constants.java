@@ -59,27 +59,6 @@ public class Constants {
     public static final int MSG_DELETE_ALARM_DETECTION = 2052;
     public static final int MSG_GET_VIDEO_CLARITY = 2053;
 
-    public synchronized static boolean hasStoragePermission() {
-        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "a.log";
-        try {
-            File file = new File(filePath);
-            if (!file.exists()) {
-                boolean iscreate = file.createNewFile();
-                if (iscreate) {
-                    file.delete();
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                file.delete();
-                return false;
-            }
-        } catch (Exception e) {
-            return false;
-        }
-
-    }
     public synchronized static boolean requestPermission(Context context, String permission, int requestCode, String tip) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
