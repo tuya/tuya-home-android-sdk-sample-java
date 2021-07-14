@@ -13,8 +13,6 @@
 package com.tuya.appsdk.sample.device.mgt.list.activity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Adapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,14 +21,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tuya.appsdk.sample.device.mgt.R;
-import com.tuya.appsdk.sample.device.mgt.control.activity.DeviceMgtControlActivity;
 import com.tuya.appsdk.sample.device.mgt.list.adapter.DeviceMgtAdapter;
 import com.tuya.appsdk.sample.device.mgt.list.tag.DeviceListTypePage;
 import com.tuya.appsdk.sample.resource.HomeModel;
+import com.tuya.smart.android.ble.builder.BleConnectBuilder;
 import com.tuya.smart.android.blemesh.api.ITuyaBlueMeshDevice;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
 import com.tuya.smart.home.sdk.bean.HomeBean;
 import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback;
+import com.tuya.smart.sdk.api.IDevListener;
 import com.tuya.smart.sdk.api.bluemesh.IMeshDevListener;
 import com.tuya.smart.sdk.bean.DeviceBean;
 
@@ -38,8 +37,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-
-import kotlin.collections.CollectionsKt;
 
 /**
  * Device Management initial device data sample
@@ -63,12 +60,7 @@ public class DeviceMgtListActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> finish());
         toolbar.setTitle(type == 1 ? getString(R.string.device_mgt_list) :
                 getString(R.string.device_zb_gateway_list));
 
@@ -106,6 +98,40 @@ public class DeviceMgtListActivity extends AppCompatActivity {
         public void onRemoved(String devId) {
         }
     };
+
+    IDevListener iDevListener = new IDevListener() {
+        @Override
+        public void onDpUpdate(String devId, String dpStr) {
+
+        }
+
+        @Override
+        public void onRemoved(String devId) {
+
+        }
+
+        @Override
+        public void onStatusChanged(String devId, boolean online) {
+            if (adapter != null && adapter.data != null && adapter.data.size() > 0) {
+                for (DeviceBean item : adapter.data) {
+                    if (item.getIsOnline() != online) {
+                        item.setIsOnline(online);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void onNetworkStatusChanged(String devId, boolean status) {
+
+        }
+
+        @Override
+        public void onDevInfoUpdate(String devId) {
+
+        }
+    };
     @Override
     public void onResume() {
         super.onResume();
@@ -121,6 +147,20 @@ public class DeviceMgtListActivity extends AppCompatActivity {
 
                 if (type == DeviceListTypePage.NORMAL_DEVICE_LIST) {
                     ArrayList<DeviceBean> deviceList = (ArrayList) homeBean.getDeviceList();
+                    if (deviceList != null && deviceList.size() > 0) {
+                        List<BleConnectBuilder> builderList = new ArrayList<>();
+                        for (DeviceBean deviceBean : deviceList) {
+                            TuyaHomeSdk.newDeviceInstance(deviceBean.devId).registerDevListener(iDevListener);
+                            if (deviceBean.isBluetooth()) {
+                                BleConnectBuilder builder = new BleConnectBuilder();
+                                builder.setDevId(deviceBean.devId);
+                                builderList.add(builder);
+                            }
+                        }
+                        if (builderList.size() > 0) {
+                            TuyaHomeSdk.getBleManager().connectBleDevice(builderList);
+                        }
+                    }
                     if (homeBean.getSigMeshList() != null && homeBean.getSigMeshList().size() > 0){
                         // Control sigmesh equipment,
                         // we need to call {@link TuyaHomeSdk.GetTuyaSigMeshClient().#startClient(SigMeshBean SigMeshBean)}
