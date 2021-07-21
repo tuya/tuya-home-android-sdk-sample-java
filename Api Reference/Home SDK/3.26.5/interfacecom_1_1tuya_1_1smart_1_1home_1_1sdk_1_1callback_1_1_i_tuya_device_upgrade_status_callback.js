@@ -1,5 +1,0 @@
-var interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_device_upgrade_status_callback =
-[
-    [ "UpgradeStatusEnum", "enumcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_device_upgrade_status_callback_1_1_upgrade_status_enum.html", "enumcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_device_upgrade_status_callback_1_1_upgrade_status_enum" ],
-    [ "onStatusUpgrade", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1callback_1_1_i_tuya_device_upgrade_status_callback.html#a146079a1cc0bf21279e976acacaed17e", null ]
-];

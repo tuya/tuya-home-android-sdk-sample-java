@@ -5,16 +5,21 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.homycloud.smart"
+        applicationId "com.test007.demo"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
-       
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        manifestPlaceholders = [
+                TUYA_SMART_APPKEY: "${properties.getProperty("appKey")}",
+                TUYA_SMART_SECRET: "${properties.getProperty("appSecret")}",
+        ]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
@@ -54,7 +59,6 @@ dependencies {
 
     implementation 'com.alibaba:fastjson:1.1.67.android'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.14.9'
-
 
 
     implementation project(':base_res')

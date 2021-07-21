@@ -1,0 +1,4 @@
+var interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_on_render_zoom_listener =
+[
+    [ "onZoomFree", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_on_render_zoom_listener.html#a16f48d82c665e83c09312628bb7394a7", null ]
+];

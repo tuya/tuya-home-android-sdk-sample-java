@@ -1,4 +1,0 @@
-var interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1api_1_1_i_tuya_zig_bee_config_local_scene_callback =
-[
-    [ "onLocalSceneConfigSuccess", "interfacecom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1api_1_1_i_tuya_zig_bee_config_local_scene_callback.html#a5bc582afe48e890a0fa702c60a737b33", null ]
-];

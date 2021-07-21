@@ -30,8 +30,11 @@ import com.tuya.smart.android.ble.api.ScanDeviceBean;
 import com.tuya.smart.android.ble.api.ScanType;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
 import com.tuya.smart.home.sdk.bean.ConfigProductInfoBean;
+import com.tuya.smart.sdk.api.IBleActivator;
 import com.tuya.smart.sdk.api.IBleActivatorListener;
+import com.tuya.smart.sdk.api.IMultiModeActivator;
 import com.tuya.smart.sdk.api.IMultiModeActivatorListener;
+import com.tuya.smart.sdk.api.ITuyaActivator;
 import com.tuya.smart.sdk.api.ITuyaActivatorGetToken;
 import com.tuya.smart.sdk.api.ITuyaDataCallback;
 import com.tuya.smart.sdk.bean.BleActivatorBean;
@@ -65,6 +68,8 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
     private static final String TAG = "BLE";
     private Button mBtnScan, mBtnStop;
     private CircularProgressIndicator cpiLoading;
+    private static IBleActivator mBleActivator = TuyaHomeSdk.getActivator().newBleActivator();
+    private static IMultiModeActivator mMultiModeActivator = TuyaHomeSdk.getActivator().newMultiModeActivator();
 
     private final List<ScanDeviceBean> scanDeviceBeanList = new ArrayList<>();
     private final List<ConfigProductInfoBean> infoBeanList = new ArrayList<>();
@@ -176,7 +181,7 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
         bleActivatorBean.uuid = scanDeviceBeanList.get(pos).getUuid(); // UUID
         bleActivatorBean.productId = scanDeviceBeanList.get(pos).getProductId();
 
-        TuyaHomeSdk.getActivator().newBleActivator().startActivator(bleActivatorBean, new IBleActivatorListener() {
+        mBleActivator.startActivator(bleActivatorBean, new IBleActivatorListener() {
             @Override
             public void onSuccess(DeviceBean deviceBean) {
                 cpiLoading.setVisibility(View.GONE);
@@ -198,10 +203,10 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
 
     private void stopActivator(){
         if (bleActivatorBean != null) {
-            TuyaHomeSdk.getActivator().newBleActivator().stopActivator(bleActivatorBean.uuid);
+            mBleActivator.stopActivator(bleActivatorBean.uuid);
         }
         if (multiModeActivatorBean != null) {
-            TuyaHomeSdk.getActivator().newMultiModeActivator().stopActivator(multiModeActivatorBean.uuid);
+            mMultiModeActivator.stopActivator(multiModeActivatorBean.uuid);
         }
     }
 
@@ -250,7 +255,7 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
                         multiModeActivatorBean.timeout = 120 * 1000;
 
                         // start activator
-                        TuyaHomeSdk.getActivator().newMultiModeActivator().startActivator(multiModeActivatorBean, new IMultiModeActivatorListener() {
+                        mMultiModeActivator.startActivator(multiModeActivatorBean, new IMultiModeActivatorListener() {
                             @Override
                             public void onSuccess(DeviceBean deviceBean) {
                                 if (deviceBean != null) {
