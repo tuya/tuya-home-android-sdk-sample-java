@@ -1,4 +1,0 @@
-var interfacecom_1_1tuya_1_1smart_1_1android_1_1ble_1_1api_1_1_on_ble_multi_mode_dev_status_listener =
-[
-    [ "onActivatorStatusChanged", "interfacecom_1_1tuya_1_1smart_1_1android_1_1ble_1_1api_1_1_on_ble_multi_mode_dev_status_listener.html#a267e5dbb71f02f1a7be361a845366d25", null ]
-];

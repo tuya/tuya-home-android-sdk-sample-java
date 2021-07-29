@@ -1,4 +1,0 @@
-var namespacecom_1_1tuya_1_1smart_1_1android_1_1blemesh_1_1callback =
-[
-    [ "ILocalQueryGroupDevCallback", "interfacecom_1_1tuya_1_1smart_1_1android_1_1blemesh_1_1callback_1_1_i_local_query_group_dev_callback.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1blemesh_1_1callback_1_1_i_local_query_group_dev_callback" ]
-];

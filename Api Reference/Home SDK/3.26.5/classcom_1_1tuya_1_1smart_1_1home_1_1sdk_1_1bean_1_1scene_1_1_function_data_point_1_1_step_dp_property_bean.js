@@ -1,5 +1,0 @@
-var classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1scene_1_1_function_data_point_1_1_step_dp_property_bean =
-[
-    [ "getValue", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1scene_1_1_function_data_point_1_1_step_dp_property_bean.html#aa5c9c6ab714ccb0aedde7dde551ce7a7", null ],
-    [ "setValue", "classcom_1_1tuya_1_1smart_1_1home_1_1sdk_1_1bean_1_1scene_1_1_function_data_point_1_1_step_dp_property_bean.html#ac8bf879f09528926a5a932779d032ca3", null ]
-];

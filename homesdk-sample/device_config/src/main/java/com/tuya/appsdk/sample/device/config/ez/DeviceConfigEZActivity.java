@@ -124,7 +124,7 @@ public class DeviceConfigEZActivity extends AppCompatActivity implements View.On
                                     });
 
                             ITuyaActivator mTuyaActivator =
-                                    TuyaHomeSdk.getActivatorInstance().newActivator(builder);
+                                    TuyaHomeSdk.getActivatorInstance().newMultiActivator(builder);
 
                             //Start configuration
                             mTuyaActivator.start();

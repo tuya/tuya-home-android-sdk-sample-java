@@ -1,0 +1,4 @@
+var interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_file_download_finish_call_back =
+[
+    [ "onFinished", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_file_download_finish_call_back.html#a566802d4f09fc94a206fd01160ca9269", null ]
+];

@@ -1,0 +1,27 @@
+var classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info =
+[
+    [ "TuyaAudioFrameInfo", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#ae2bd56c6b0a85eef9a413418d183f601", null ],
+    [ "TuyaAudioFrameInfo", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a8f1ad126548cd413dd840936879277cd", null ],
+    [ "TuyaAudioFrameInfo", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a4fd435840ab8866b5016e63840302aa0", null ],
+    [ "describeContents", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a639d990c0390a2b42d43ce050924b36e", null ],
+    [ "getBitWidth", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a28a4bb1a5f3ce53319fc7acc5ad44587", null ],
+    [ "getChannelNum", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a6eec03128643e4046a475b3987d4ab25", null ],
+    [ "getDuration", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a9d061cb2dda9b8f7927613795e1a147c", null ],
+    [ "getProgress", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#ad9f7021884e666e6d01260a0aaf5116f", null ],
+    [ "getSampleRate", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a6b03dab827f5d76301055766322091e2", null ],
+    [ "getTimeStamp", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a8b72c60b90afdf0fd234f0aa41ff73bb", null ],
+    [ "setBitWidth", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#ab7d0dac1a3aae736496e33492dca087e", null ],
+    [ "setChannelNum", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#ae4219e74beeea388f716d3dea32dd90d", null ],
+    [ "setDuration", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a2eb01025c61ded12beb519b66b30082f", null ],
+    [ "setProgress", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a7fedfa0dca7312fc06641b4a9ddfd18c", null ],
+    [ "setSampleRate", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#aa78829247e112b0d9153bb2b342d71e7", null ],
+    [ "setTimeStamp", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#ac971964c5eeb2be9b167bec61654eb30", null ],
+    [ "writeToParcel", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a60301e901fc8254eed6dc25d1688705a", null ],
+    [ "CREATOR", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a6111efbb696f5773ed67062da3041659", null ],
+    [ "duration", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a4d8f330600f01b9a2d97c78fe5bf2245", null ],
+    [ "nBitWidth", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#ab8d93102786549106cf382cf68e9d7ec", null ],
+    [ "nChannelNum", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a3c522920f4904acc07a71aea1c86495f", null ],
+    [ "nSampleRate", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#a727308d4b78d2531a717c6cd5fc119af", null ],
+    [ "nTimeStamp", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#ae25bec475acd54a94c5a69ceee7cf637", null ],
+    [ "progress", "classcom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1bean_1_1_tuya_audio_frame_info.html#ad88b3743c6a05af06a9f6d2a89c12329", null ]
+];
