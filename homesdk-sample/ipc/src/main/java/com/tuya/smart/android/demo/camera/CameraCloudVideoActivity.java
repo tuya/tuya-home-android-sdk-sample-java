@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.alibaba.fastjson.JSONObject;
 import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCore;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCMsg;
@@ -150,7 +151,8 @@ public class CameraCloudVideoActivity extends AppCompatActivity {
         if (cameraInstance != null) {
             p2PType = cameraInstance.getP2PType(mDevId);
         }
-        mCameraView.createVideoView(p2PType);
+//        mCameraView.createVideoView(p2PType);
+        mCameraView.createVideoView(mDevId);
         findViewById(R.id.btn_pause_video_msg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,8 +185,14 @@ public class CameraCloudVideoActivity extends AppCompatActivity {
             mCloudVideo.setCloudVideoMute(mute, new OperationDelegateCallBack() {
                 @Override
                 public void onSuccess(int sessionId, int requestId, String data) {
-                    previewMute = Integer.valueOf(data);
-                    mHandler.sendMessage(MessageUtil.getMessage(MSG_MUTE, ARG1_OPERATE_SUCCESS));
+                    try {
+                        JSONObject jsonObject = JSONObject.parseObject(data);
+                        Object value = jsonObject.get("mute");
+                        previewMute = Integer.valueOf(value.toString());
+                        mHandler.sendMessage(MessageUtil.getMessage(MSG_MUTE, ARG1_OPERATE_SUCCESS));
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override
