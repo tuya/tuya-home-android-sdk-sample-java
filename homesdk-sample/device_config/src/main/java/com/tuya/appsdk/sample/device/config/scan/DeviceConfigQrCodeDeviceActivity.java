@@ -15,6 +15,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -37,6 +38,9 @@ import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 /**
@@ -51,6 +55,7 @@ public class DeviceConfigQrCodeDeviceActivity extends AppCompatActivity implemen
 
     private MaterialToolbar topAppBar;
     private Button bt_search;
+    private String mUuid;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -143,29 +148,38 @@ public class DeviceConfigQrCodeDeviceActivity extends AppCompatActivity implemen
 
     private void initQrCode(String result) {
         long homeId = HomeModel.getCurrentHome(this);
-        TuyaQRCodeActivatorBuilder builder = new TuyaQRCodeActivatorBuilder()
-                .setUuid(result)
-                .setHomeId(homeId)
-                .setContext(this)
-                .setTimeOut(100)
-                .setListener(new ITuyaSmartActivatorListener() {
-                    @Override
-                    public void onError(String errorCode, String errorMsg) {
+        try {
+            JSONObject obj = new JSONObject(result);
+            JSONObject actionObj = obj.optJSONObject("actionData");
+            if (null != actionObj) {
+                mUuid = actionObj.optString("uuid");
+                TuyaQRCodeActivatorBuilder builder = new TuyaQRCodeActivatorBuilder()
+                        .setUuid(mUuid)
+                        .setHomeId(homeId)
+                        .setContext(this)
+                        .setTimeOut(100)
+                        .setListener(new ITuyaSmartActivatorListener() {
+                            @Override
+                            public void onError(String errorCode, String errorMsg) {
 
-                    }
+                            }
 
-                    @Override
-                    public void onActiveSuccess(DeviceBean devResp) {
-                        Toast.makeText(DeviceConfigQrCodeDeviceActivity.this, "ActiveSuccess", Toast.LENGTH_LONG).show();
-                    }
+                            @Override
+                            public void onActiveSuccess(DeviceBean devResp) {
+                                Toast.makeText(DeviceConfigQrCodeDeviceActivity.this, "ActiveSuccess", Toast.LENGTH_LONG).show();
+                            }
 
-                    @Override
-                    public void onStep(String step, Object data) {
+                            @Override
+                            public void onStep(String step, Object data) {
 
-                    }
-                });
-        ITuyaActivator iTuyaActivator = TuyaHomeSdk.getActivatorInstance().newQRCodeDevActivator(builder);
-        iTuyaActivator.start();
+                            }
+                        });
+                ITuyaActivator iTuyaActivator = TuyaHomeSdk.getActivatorInstance().newQRCodeDevActivator(builder);
+                iTuyaActivator.start();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 }

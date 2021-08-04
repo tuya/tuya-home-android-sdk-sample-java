@@ -195,6 +195,7 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
                     String encryptKey = attachVideo.substring(attachVideo.lastIndexOf('@') + 1);
                     intent.putExtra("playUrl", playUrl);
                     intent.putExtra("encryptKey", encryptKey);
+                    intent.putExtra("devId",devId);
                     startActivity(intent);
                 }
             }
