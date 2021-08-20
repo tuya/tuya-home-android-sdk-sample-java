@@ -146,12 +146,6 @@ public class CameraCloudVideoActivity extends AppCompatActivity {
     private void initview() {
         mProgressBar = findViewById(R.id.camera_cloud_video_progressbar);
         mCameraView = findViewById(R.id.camera_cloud_video_view);
-        int p2PType = -1;
-        ITuyaIPCCore cameraInstance = TuyaIPCSdk.getCameraInstance();
-        if (cameraInstance != null) {
-            p2PType = cameraInstance.getP2PType(mDevId);
-        }
-//        mCameraView.createVideoView(p2PType);
         mCameraView.createVideoView(mDevId);
         findViewById(R.id.btn_pause_video_msg).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,4 +1,0 @@
-var namespacecom_1_1tuya_1_1smart_1_1camera_1_1ipccamerasdk_1_1msgvideo =
-[
-    [ "ITYCloudVideo", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1ipccamerasdk_1_1msgvideo_1_1_i_t_y_cloud_video.html", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1ipccamerasdk_1_1msgvideo_1_1_i_t_y_cloud_video" ]
-];

@@ -1,5 +1,0 @@
-var interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_i_registor_talk_listener =
-[
-    [ "receiveSpeakerEchoData", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_i_registor_talk_listener.html#a4833fc87dcf882de23e321e0713b998b", null ],
-    [ "receiveSpeakerEchoDataV2", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_i_registor_talk_listener.html#a51713cb6563a2fdd23a660c08a3ebfa5", null ]
-];

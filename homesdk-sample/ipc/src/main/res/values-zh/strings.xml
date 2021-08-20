@@ -40,8 +40,8 @@
     <string name="record_stop">停止录制</string>
     <string name="cloud_status">查询云存储状态</string>
     <string name="buy">购买云存储</string>
-    <string name="query_cloud">查询云存储数据</string>
-    <string name="query_cloud_of_day">查询某天云存储数据</string>
+    <string name="query_cloud">1. 查询云存储数据</string>
+    <string name="query_cloud_of_day">2. 查询某天云存储数据</string>
     <string name="download_suc">下载成功</string>
     <string name="operation_failed">操作失败</string>
     <string name="no_data">查无数据</string>
@@ -62,4 +62,5 @@
     <string name="menu_remove_device">移除设备</string>
     <string name="remove_device_dialog">确认要移除设备吗？</string>
     <string name="confirm">确定</string>
+    <string name="cloud_start">3. 开始</string>
 </resources>

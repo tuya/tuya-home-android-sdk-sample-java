@@ -1,4 +1,0 @@
-var interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_i_speaker_echo_processor =
-[
-    [ "receiveSpeakerEchoData", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_i_speaker_echo_processor.html#a0cc075aed385e79145fd9a9d21016ca9", null ]
-];

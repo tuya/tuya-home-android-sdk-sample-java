@@ -1,5 +1,0 @@
-var namespacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1callback =
-[
-    [ "ProgressCallback", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1callback_1_1_progress_callback.html", "interfacecom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1callback_1_1_progress_callback" ],
-    [ "TuyaSmartDoorBellObserver", "classcom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1callback_1_1_tuya_smart_door_bell_observer.html", "classcom_1_1tuya_1_1smart_1_1android_1_1camera_1_1sdk_1_1callback_1_1_tuya_smart_door_bell_observer" ]
-];

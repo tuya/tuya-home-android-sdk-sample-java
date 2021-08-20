@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
+import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCore;
 import com.tuya.smart.android.camera.timeline.OnBarMoveListener;
 import com.tuya.smart.android.camera.timeline.OnSelectedTimeListener;
 import com.tuya.smart.android.camera.timeline.TimeBean;
@@ -29,16 +31,15 @@ import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.bean.RecordInfoBean;
 import com.tuya.smart.android.demo.camera.bean.TimePieceBean;
 import com.tuya.smart.android.demo.camera.utils.MessageUtil;
+import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.AbsP2pCameraListener;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationDelegateCallBack;
 import com.tuya.smart.camera.ipccamerasdk.bean.MonthDays;
 import com.tuya.smart.camera.ipccamerasdk.p2p.ICameraP2P;
 import com.tuya.smart.camera.middleware.p2p.ITuyaSmartCameraP2P;
-import com.tuya.smart.camera.middleware.p2p.TuyaSmartCameraP2PFactory;
 import com.tuya.smart.camera.middleware.widget.AbsVideoViewCallback;
 import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
 import com.tuya.smart.camera.utils.AudioUtils;
-import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
@@ -50,12 +51,11 @@ import java.util.Map;
 
 import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_FAIL;
 import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_SUCCESS;
-import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_P2P_TYPE;
+import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_DEV_ID;
 import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_DATA_DATE;
 import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_DATA_DATE_BY_DAY_FAIL;
 import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_DATA_DATE_BY_DAY_SUCC;
 import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_MUTE;
-import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_DEV_ID;
 
 
 /**
@@ -84,7 +84,6 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
     protected Map<String, List<String>> mBackDataMonthCache;
     protected Map<String, List<TimePieceBean>> mBackDataDayCache;
     private int mPlaybackMute = ICameraP2P.MUTE;
-    private int p2pType;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -257,7 +256,6 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
     private void initData() {
         mBackDataMonthCache = new HashMap<>();
         mBackDataDayCache = new HashMap<>();
-        p2pType = getIntent().getIntExtra(INTENT_P2P_TYPE, 1);
         devId = getIntent().getStringExtra(INTENT_DEV_ID);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -267,7 +265,10 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         adapter = new CameraPlaybackTimeAdapter(this, queryDateList);
         queryRv.setAdapter(adapter);
 
-        mCameraP2P = TuyaSmartCameraP2PFactory.createCameraP2P(p2pType, devId);
+        ITuyaIPCCore cameraInstance = TuyaIPCSdk.getCameraInstance();
+        if (cameraInstance != null) {
+            mCameraP2P = cameraInstance.createCameraP2P(devId);
+        }
         mVideoView.setViewCallback(new AbsVideoViewCallback() {
             @Override
             public void onCreated(Object o) {
@@ -277,7 +278,7 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
                 }
             }
         });
-        mVideoView.createVideoView(p2pType);
+        mVideoView.createVideoView(devId);
         if (!mCameraP2P.isConnecting()) {
             mCameraP2P.connect(devId, new OperationDelegateCallBack() {
                 @Override
