@@ -42,7 +42,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.14.9'
     implementation project(':base_res')
 
-    implementation 'com.tuya.smart:tuyasmart-ipcsdk:3.27.5'
+    implementation 'com.tuya.smart:tuyasmart-ipcsdk:3.28.5'
     //timeline view
     implementation 'com.tuya.smart:tuyasmart-ipc-camera-timeline:1.0.0'
 

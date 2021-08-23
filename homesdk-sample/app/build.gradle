@@ -4,6 +4,9 @@ plugins {
 }
 
 android {
+    signingConfigs {
+
+    }
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
 

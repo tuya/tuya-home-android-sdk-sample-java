@@ -1,6 +1,0 @@
-var interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_i_registor_i_o_t_c_listener =
-[
-    [ "onSessionStatusChanged", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_i_registor_i_o_t_c_listener.html#a3b41c7c063fb6d9897330e451826e386", null ],
-    [ "receiveFrameYUVData", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_i_registor_i_o_t_c_listener.html#aee4a7013b71d2d1a87aed51d53de4937", null ],
-    [ "receivePCMData", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_i_registor_i_o_t_c_listener.html#a8772661a27dc5434685da9a1c554fcae", null ]
-];

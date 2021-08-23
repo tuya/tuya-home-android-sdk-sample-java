@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCloud;
+import com.tuya.smart.android.camera.sdk.bean.CloudStatusBean;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.IRegistorIOTCListener;
@@ -15,14 +16,12 @@ import com.tuya.smart.camera.camerasdk.typlayer.callback.OnP2PCameraListener;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationCallBack;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationDelegateCallBack;
 import com.tuya.smart.camera.ipccamerasdk.cloud.ITYCloudCamera;
-import com.tuya.smart.camera.middleware.cloud.CameraCloudSDK;
-import com.tuya.smart.camera.middleware.cloud.ICloudCacheManagerCallback;
 import com.tuya.smart.camera.middleware.cloud.bean.CloudDayBean;
 import com.tuya.smart.camera.middleware.cloud.bean.TimePieceBean;
 import com.tuya.smart.camera.middleware.cloud.bean.TimeRangeBean;
 import com.tuya.smart.camera.middleware.widget.AbsVideoViewCallback;
 import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
+import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
 
 import java.io.File;
 import java.nio.ByteBuffer;
@@ -30,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_DEV_ID;
 import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_P2P_TYPE;
@@ -38,19 +36,15 @@ import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_P2P_TYPE
 /**
  * @author surgar
  */
-public class CameraCloudStorageActivity extends AppCompatActivity implements ICloudCacheManagerCallback {
+public class CameraCloudStorageActivity extends AppCompatActivity {
 
     private static final String TAG = CameraCloudStorageActivity.class.getSimpleName();
     private TuyaCameraView mVideoView;
     private String devId;
-    private CameraCloudSDK cameraCloudSDK;
     private ITYCloudCamera cloudCamera;
     private List<CloudDayBean> dayBeanList = new ArrayList<>();
     private List<TimePieceBean> timePieceBeans = new ArrayList<>();
-    private String mEncryptKey = "";
-    private String mAuthorityJson = "";
     private int soundState;
-    private int p2pType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,9 +52,7 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
         setContentView(R.layout.activity_camera_cloud_storage);
 
         devId = getIntent().getStringExtra(INTENT_DEV_ID);
-        p2pType = getIntent().getIntExtra(INTENT_P2P_TYPE, -1);
 
-        cameraCloudSDK = new CameraCloudSDK();
         ITuyaIPCCloud cloud = TuyaIPCSdk.getCloud();
         if (cloud != null) {
             cloudCamera = cloud.createCloudCamera();
@@ -76,7 +68,7 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
                 }
             }
         });
-        mVideoView.createVideoView(p2pType);
+        mVideoView.createVideoView(devId);
 
         if (cloudCamera != null) {
             String cachePath = getApplication().getCacheDir().getPath();
@@ -86,7 +78,20 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
         findViewById(R.id.status_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cameraCloudSDK.getCameraCloudInfo(TuyaHomeSdk.getDataInstance().getDeviceBean(devId), CameraCloudStorageActivity.this);
+                if (cloudCamera != null) {
+                    cloudCamera.queryCloudServiceStatus(devId, new ITuyaResultCallback<CloudStatusBean>() {
+                        @Override
+                        public void onSuccess(CloudStatusBean result) {
+                            //Get cloud storage status
+                            ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.current_state) + result.getStatus());
+                        }
+
+                        @Override
+                        public void onError(String errorCode, String errorMessage) {
+                            ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.err_code) + errorCode);
+                        }
+                    });
+                }
             }
         });
 
@@ -100,16 +105,37 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
         findViewById(R.id.query_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cameraCloudSDK.getCloudMediaCount(devId, TimeZone.getDefault().getID(), CameraCloudStorageActivity.this);
+                if (cloudCamera != null) {
+                    //1. Get device cloud storage-related data
+                    cloudCamera.getCloudDays(devId, new ITuyaResultCallback<List<CloudDayBean>>() {
+                        @Override
+                        public void onSuccess(List<CloudDayBean> result) {
+                            if (result == null || result.isEmpty()) {
+                                ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.no_data));
+                            } else {
+                                dayBeanList.clear();
+                                dayBeanList.addAll(result);
+                                ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
+                            }
+                        }
+
+                        @Override
+                        public void onError(String errorCode, String errorMessage) {
+                            ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.err_code) + errorCode);
+                        }
+                    });
+                }
             }
         });
 
         findViewById(R.id.query_time_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Get the time data of the first day queried
+                //2. Get time slice at a specified time
                 if (dayBeanList.size() > 0) {
                     getAppointedDayCloudTimes(dayBeanList.get(0));
+                } else {
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.no_data));
                 }
             }
         });
@@ -120,6 +146,9 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
             public void onClick(View v) {
                 if (timePieceBeans.size() > 0) {
                     playCloudDataWithStartTime(timePieceBeans.get(0).getStartTime(), timePieceBeans.get(0).getEndTime(), true);
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
+                } else {
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.no_data));
                 }
             }
         });
@@ -186,7 +215,25 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
      * @param timeLT End time.
      */
     void getTimeLineInfoByTimeSlice(String devId, String timeGT, String timeLT) {
-        cameraCloudSDK.getTimeLineInfoByTimeSlice(devId, timeGT, timeLT, this);
+        if (cloudCamera != null) {
+            cloudCamera.getTimeLineInfo(devId, Long.parseLong(timeGT), Long.parseLong(timeLT), new ITuyaResultCallback<List<TimePieceBean>>() {
+                @Override
+                public void onSuccess(List<TimePieceBean> result) {
+                    if (result == null || result.isEmpty()) {
+                        ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.no_data));
+                    } else {
+                        timePieceBeans.clear();
+                        timePieceBeans.addAll(result);
+                        ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
+                    }
+                }
+
+                @Override
+                public void onError(String errorCode, String errorMessage) {
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.err_code) + errorCode);
+                }
+            });
+        }
     }
 
     /**
@@ -199,7 +246,19 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
      * @param limit  The number of items pulled each time, the default is -1, which means all data
      */
     void getMotionDetectionByTimeSlice(String devId, final String timeGT, final String timeLT, int offset, int limit) {
-        cameraCloudSDK.getMotionDetectionByTimeSlice(devId, timeGT, timeLT, offset, limit, this);
+        if (cloudCamera != null) {
+            cloudCamera.getMotionDetectionInfo(devId, Long.parseLong(timeGT), Long.parseLong(timeLT), offset, limit, new ITuyaResultCallback<List<TimeRangeBean>>() {
+                @Override
+                public void onSuccess(List<TimeRangeBean> result) {
+
+                }
+
+                @Override
+                public void onError(String errorCode, String errorMessage) {
+
+                }
+            });
+        }
     }
 
     @Override
@@ -251,71 +310,9 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (null != cameraCloudSDK) {
-            cameraCloudSDK.onDestroy();
-        }
         if (null != cloudCamera) {
-            cloudCamera.destroyCloudBusiness();
+            cloudCamera.destroy();
             cloudCamera.deinitCloudCamera();
-        }
-    }
-
-    @Override
-    public void getCloudDayList(List<CloudDayBean> cloudDayBeanList) {
-        //Get the date with data
-        dayBeanList.clear();
-        dayBeanList.addAll(cloudDayBeanList);
-    }
-
-    @Override
-    public void getCloudSecret(String encryKey) {
-        mEncryptKey = encryKey;
-    }
-
-    @Override
-    public void getAuthorityGet(String authorityJson) {
-        mAuthorityJson = authorityJson;
-    }
-
-    @Override
-    public void getTimePieceInfoByTimeSlice(List<TimePieceBean> list) {
-        timePieceBeans.clear();
-        timePieceBeans.addAll(list);
-    }
-
-    @Override
-    public void getMotionDetectionByTimeSlice(List<TimeRangeBean> list) {
-    }
-
-    @Override
-    public void onError(int errorCode) {
-        ToastUtil.shortToast(this, getString(R.string.err_code) + errorCode);
-    }
-
-    @Override
-    public void getCloudStatusSuccess(int i) {
-        //Get cloud storage status
-        ToastUtil.shortToast(this, getString(R.string.current_state) + i);
-    }
-
-    @Override
-    public void getCloudConfigDataTags(String config) {
-        if (null != cloudCamera) {
-            cloudCamera.configCloudDataTagsV1(config, new OperationDelegateCallBack() {
-
-                @Override
-                public void onSuccess(int i, int i1, String s) {
-                    if (timePieceBeans.size() > 0) {
-                        int startTime = timePieceBeans.get(0).getStartTime();
-                        playCloudDataWithStartTime(startTime, (int) (getTodayEnd(startTime * 1000L) / 1000) - 1, true);
-                    }
-                }
-
-                @Override
-                public void onFailure(int i, int i1, int i2) {
-
-                }
-            });
         }
     }
 
@@ -332,7 +329,6 @@ public class CameraCloudStorageActivity extends AppCompatActivity implements ICl
     private void playCloudDataWithStartTime(int startTime, int endTime, final boolean isEvent) {
         if (cloudCamera != null) {
             cloudCamera.playCloudDataWithStartTime(startTime, endTime, isEvent,
-                    mAuthorityJson, mEncryptKey,
                     new OperationCallBack() {
                         @Override
                         public void onSuccess(int sessionId, int requestId, String data, Object camera) {

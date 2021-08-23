@@ -1,5 +1,0 @@
-var namespacecom_1_1tuya_1_1smart_1_1camera_1_1middleware_1_1p2p =
-[
-    [ "ICameraConfig", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1middleware_1_1p2p_1_1_i_camera_config.html", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1middleware_1_1p2p_1_1_i_camera_config" ],
-    [ "ITuyaSmartCameraP2P", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1middleware_1_1p2p_1_1_i_tuya_smart_camera_p2_p.html", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1middleware_1_1p2p_1_1_i_tuya_smart_camera_p2_p" ]
-];

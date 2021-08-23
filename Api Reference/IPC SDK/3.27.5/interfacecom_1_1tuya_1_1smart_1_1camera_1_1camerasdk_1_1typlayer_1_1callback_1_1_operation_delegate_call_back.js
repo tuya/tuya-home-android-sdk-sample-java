@@ -1,5 +1,0 @@
-var interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_operation_delegate_call_back =
-[
-    [ "onFailure", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_operation_delegate_call_back.html#a28b06519c1ccc754e61e6542377c520d", null ],
-    [ "onSuccess", "interfacecom_1_1tuya_1_1smart_1_1camera_1_1camerasdk_1_1typlayer_1_1callback_1_1_operation_delegate_call_back.html#ae50b5f0fe1472489d7a893ff74b39a4c", null ]
-];

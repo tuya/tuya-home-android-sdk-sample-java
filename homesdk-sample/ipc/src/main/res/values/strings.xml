@@ -39,8 +39,8 @@
     <string name="record_stop">Stop record</string>
     <string name="cloud_status">Cloud Storage Status</string>
     <string name="buy">Buy Cloud Storage</string>
-    <string name="query_cloud">Query Cloud Storage Data</string>
-    <string name="query_cloud_of_day">Query Appoint Time Data</string>
+    <string name="query_cloud">1. Query Cloud Storage Data</string>
+    <string name="query_cloud_of_day">2. Query Appoint Time Data</string>
     <string name="download_suc">Download success</string>
     <string name="operation_failed">Operation failed</string>
     <string name="no_data">No data for query date</string>
@@ -61,4 +61,5 @@
     <string name="menu_remove_device">Remove Device</string>
     <string name="remove_device_dialog">Are you sure remove this device？</string>
     <string name="confirm">Confirm</string>
+    <string name="cloud_start">3. Start</string>
 </resources>

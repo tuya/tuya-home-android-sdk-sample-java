@@ -15,26 +15,23 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
+import com.tuya.smart.android.camera.sdk.api.ITYCameraMessage;
+import com.tuya.smart.android.camera.sdk.api.ITuyaIPCMsg;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.adapter.AlarmDetectionAdapter;
 import com.tuya.smart.android.demo.camera.utils.DateUtils;
 import com.tuya.smart.android.demo.camera.utils.MessageUtil;
-import com.tuya.smart.android.demo.camera.utils.TimeZoneUtils;
 import com.tuya.smart.android.demo.camera.utils.ToastUtil;
-import com.tuya.smart.android.network.Business;
-import com.tuya.smart.android.network.http.BusinessResponse;
+import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
 import com.tuya.smart.ipc.messagecenter.bean.CameraMessageBean;
 import com.tuya.smart.ipc.messagecenter.bean.CameraMessageClassifyBean;
-import com.tuya.smart.ipc.messagecenter.business.CameraMessageBusiness;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import static com.tuya.smart.android.demo.camera.utils.Constants.ALARM_DETECTION_DATE_MONTH_FAILED;
 import static com.tuya.smart.android.demo.camera.utils.Constants.ALARM_DETECTION_DATE_MONTH_SUCCESS;
@@ -55,7 +52,6 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
     private String devId;
     private List<CameraMessageBean> mWaitingDeleteCameraMessageList;
     protected List<CameraMessageBean> mCameraMessageList;
-    private CameraMessageBusiness messageBusiness;
     private CameraMessageClassifyBean selectClassify;
     private EditText dateInputEdt;
     private RecyclerView queryRv;
@@ -63,6 +59,7 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
     private AlarmDetectionAdapter adapter;
     private int day, year, month;
     private int offset = 0;
+    private ITYCameraMessage mTyCameraMessage;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -103,42 +100,25 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
     }
 
     private void handlAlarmDetectionDateSuccess(Message msg) {
-        if (null != messageBusiness) {
+        if (null != mTyCameraMessage && selectClassify != null) {
             long time = DateUtils.getCurrentTime(year, month, day);
-            long startTime = DateUtils.getTodayStart(time);
-            long endTime = DateUtils.getTodayEnd(time) - 1L;
-            JSONObject object = new JSONObject();
-            object.put("msgSrcId", devId);
-            object.put("startTime", startTime);
-            object.put("endTime", endTime);
-            object.put("msgType", 4);
-            object.put("limit", 30);
-            object.put("keepOrig", true);
-            object.put("offset", offset);
-            if (null != selectClassify) {
-                object.put("msgCodes", selectClassify.getMsgCode());
-            }
-            messageBusiness.getAlarmDetectionMessageList(object.toJSONString(), new Business.ResultListener<JSONObject>() {
+            int startTime = DateUtils.getTodayStart(time);
+            int endTime = DateUtils.getTodayEnd(time) - 1;
+            mTyCameraMessage.getAlarmDetectionMessageList(devId, startTime, endTime, selectClassify.getMsgCode(), offset, 30, new ITuyaResultCallback<List<CameraMessageBean>>() {
                 @Override
-                public void onFailure(BusinessResponse businessResponse, JSONObject jsonObject, String s) {
-                    mHandler.sendMessage(MessageUtil.getMessage(MSG_GET_ALARM_DETECTION, ARG1_OPERATE_FAIL));
-                }
-
-                @Override
-                public void onSuccess(BusinessResponse businessResponse, JSONObject jsonObject, String s) {
-                    List<CameraMessageBean> msgList;
-                    try {
-                        msgList = JSONArray.parseArray(jsonObject.getString("datas"), CameraMessageBean.class);
-                    } catch (Exception e) {
-                        msgList = null;
-                    }
-                    if (msgList != null) {
-                        offset += msgList.size();
-                        mCameraMessageList = msgList;
+                public void onSuccess(List<CameraMessageBean> result) {
+                    if (result != null) {
+                        offset += result.size();
+                        mCameraMessageList = result;
                         mHandler.sendMessage(MessageUtil.getMessage(MSG_GET_ALARM_DETECTION, ARG1_OPERATE_SUCCESS));
                     } else {
                         mHandler.sendMessage(MessageUtil.getMessage(MSG_GET_ALARM_DETECTION, ARG1_OPERATE_FAIL));
                     }
+                }
+
+                @Override
+                public void onError(String errorCode, String errorMessage) {
+                    mHandler.sendMessage(MessageUtil.getMessage(MSG_GET_ALARM_DETECTION, ARG1_OPERATE_FAIL));
                 }
             });
         }
@@ -172,7 +152,10 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
     private void initData() {
         mWaitingDeleteCameraMessageList = new ArrayList<>();
         mCameraMessageList = new ArrayList<>();
-        messageBusiness = new CameraMessageBusiness();
+        ITuyaIPCMsg message = TuyaIPCSdk.getMessage();
+        if (message != null) {
+            mTyCameraMessage = message.createCameraMessage();
+        }
         queryCameraMessageClassify(devId);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -204,17 +187,17 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
     }
 
     public void queryCameraMessageClassify(String devId) {
-        if (messageBusiness != null) {
-            messageBusiness.queryAlarmDetectionClassify(devId, new Business.ResultListener<ArrayList<CameraMessageClassifyBean>>() {
+        if (mTyCameraMessage != null) {
+            mTyCameraMessage.queryAlarmDetectionClassify(devId, new ITuyaResultCallback<List<CameraMessageClassifyBean>>() {
                 @Override
-                public void onFailure(BusinessResponse businessResponse, ArrayList<CameraMessageClassifyBean> cameraMessageClassifyBeans, String s) {
-                    mHandler.sendEmptyMessage(MOTION_CLASSIFY_FAILED);
+                public void onSuccess(List<CameraMessageClassifyBean> result) {
+                    selectClassify = result.get(0);
+                    mHandler.sendEmptyMessage(MOTION_CLASSIFY_SUCCESS);
                 }
 
                 @Override
-                public void onSuccess(BusinessResponse businessResponse, ArrayList<CameraMessageClassifyBean> cameraMessageClassifyBeans, String s) {
-                    selectClassify = cameraMessageClassifyBeans.get(0);
-                    mHandler.sendEmptyMessage(MOTION_CLASSIFY_SUCCESS);
+                public void onError(String errorCode, String errorMessage) {
+                    mHandler.sendEmptyMessage(MOTION_CLASSIFY_FAILED);
                 }
             });
         }
@@ -223,25 +206,20 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
 
     public void deleteCameraMessageClassify(CameraMessageBean cameraMessageBean) {
         mWaitingDeleteCameraMessageList.add(cameraMessageBean);
-//        StringBuilder ids = new StringBuilder();
-        if (messageBusiness != null) {
-//            for (int i = 0; i < mWaitingDeleteCameraMessageList.size(); i++) {
-//                ids.append(mWaitingDeleteCameraMessageList.get(i).getId());
-//                if (i != mWaitingDeleteCameraMessageList.size() - 1) {
-//                    ids.append(",");
-//                }
-//            }
-            messageBusiness.deleteAlarmDetectionMessageList(cameraMessageBean.getId(), new Business.ResultListener<Boolean>() {
+        if (mTyCameraMessage != null) {
+            List<String> ids = new ArrayList<>();
+            ids.add(cameraMessageBean.getId());
+            mTyCameraMessage.deleteMotionMessageList(ids, new ITuyaResultCallback<Boolean>() {
                 @Override
-                public void onFailure(BusinessResponse businessResponse, Boolean aBoolean, String s) {
-                    mHandler.sendMessage(MessageUtil.getMessage(MSG_DELETE_ALARM_DETECTION, ARG1_OPERATE_FAIL));
-                }
-
-                @Override
-                public void onSuccess(BusinessResponse businessResponse, Boolean aBoolean, String s) {
+                public void onSuccess(Boolean result) {
                     mCameraMessageList.removeAll(mWaitingDeleteCameraMessageList);
                     mWaitingDeleteCameraMessageList.clear();
                     mHandler.sendMessage(MessageUtil.getMessage(MSG_DELETE_ALARM_DETECTION, ARG1_OPERATE_SUCCESS));
+                }
+
+                @Override
+                public void onError(String errorCode, String errorMessage) {
+                    mHandler.sendMessage(MessageUtil.getMessage(MSG_DELETE_ALARM_DETECTION, ARG1_OPERATE_FAIL));
                 }
             });
         }
@@ -264,27 +242,23 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
         String[] substring = inputStr.split("/");
         year = Integer.parseInt(substring[0]);
         month = Integer.parseInt(substring[1]);
-        JSONObject object = new JSONObject();
-        object.put("msgSrcId", devId);
-        object.put("timeZone", TimeZoneUtils.getTimezoneGCMById(TimeZone.getDefault().getID()));
-        object.put("month", year + "-" + month);
-        messageBusiness.queryAlarmDetectionDaysByMonth(object.toJSONString(),
-                new Business.ResultListener<JSONArray>() {
-                    @Override
-                    public void onFailure(BusinessResponse businessResponse, JSONArray objects, String s) {
-                        mHandler.sendEmptyMessage(ALARM_DETECTION_DATE_MONTH_FAILED);
+        if (mTyCameraMessage != null) {
+            mTyCameraMessage.queryMotionDaysByMonth(devId, year, month, new ITuyaResultCallback<List<String>>() {
+                @Override
+                public void onSuccess(List<String> result) {
+                    if (result.size() > 0) {
+                        Collections.sort(result);
+                        day = Integer.parseInt(result.get(result.size() - 1));
                     }
+                    mHandler.sendEmptyMessage(ALARM_DETECTION_DATE_MONTH_SUCCESS);
+                }
 
-                    @Override
-                    public void onSuccess(BusinessResponse businessResponse, JSONArray objects, String s) {
-                        List<Integer> dates = JSONArray.parseArray(objects.toJSONString(), Integer.class);
-                        if (dates.size() > 0) {
-                            Collections.sort(dates);
-                            day = dates.get(dates.size() - 1);
-                        }
-                        mHandler.sendEmptyMessage(ALARM_DETECTION_DATE_MONTH_SUCCESS);
-                    }
-                });
+                @Override
+                public void onError(String errorCode, String errorMessage) {
+                    mHandler.sendEmptyMessage(ALARM_DETECTION_DATE_MONTH_FAILED);
+                }
+            });
+        }
     }
 
     @Override
@@ -293,8 +267,8 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
         if (null != mHandler) {
             mHandler.removeCallbacksAndMessages(null);
         }
-        if (null != messageBusiness) {
-            messageBusiness.onDestroy();
+        if (null != mTyCameraMessage) {
+            mTyCameraMessage.destroy();
         }
     }
 }

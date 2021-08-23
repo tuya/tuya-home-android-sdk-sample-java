@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.walala.demo",
+  "applicationId": "com.test007.demo",
   "variantName": "processReleaseResources",
   "elements": [
     {

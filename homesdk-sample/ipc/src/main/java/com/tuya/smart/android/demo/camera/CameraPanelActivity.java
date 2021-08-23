@@ -83,9 +83,6 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
     private int previewMute = ICameraP2P.MUTE;
     private int videoClarity = ICameraP2P.HD;
     private String currVideoClarity;
-
-    private int p2pType;
-
     private String devId;
     private ITuyaSmartCameraP2P mCameraP2P;
 
@@ -279,7 +276,6 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
         ITuyaIPCCore cameraInstance = TuyaIPCSdk.getCameraInstance();
         if (cameraInstance != null) {
             mCameraP2P = cameraInstance.createCameraP2P(devId);
-            p2pType = cameraInstance.getP2PType(devId);
         }
         mVideoView.setViewCallback(new AbsVideoViewCallback() {
             @Override
@@ -290,7 +286,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         });
-        mVideoView.createVideoView(p2pType);
+        mVideoView.createVideoView(devId);
         if (null == mCameraP2P) {
             showNotSupportToast();
         } else {
@@ -349,7 +345,6 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
             snapShotClick();
         } else if (id == R.id.replay_Txt) {
             Intent intent = new Intent(CameraPanelActivity.this, CameraPlaybackActivity.class);
-            intent.putExtra(INTENT_P2P_TYPE, p2pType);
             intent.putExtra(INTENT_DEV_ID, devId);
             startActivity(intent);
         } else if (id == R.id.setting_Txt) {
@@ -357,13 +352,8 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
             intent1.putExtra(INTENT_DEV_ID, devId);
             startActivity(intent1);
         } else if (id == R.id.cloud_Txt) {
-            if (p2pType == SDK_PROVIDER_V1) {
-                showNotSupportToast();
-                return;
-            }
             Intent intent2 = new Intent(CameraPanelActivity.this, CameraCloudStorageActivity.class);
             intent2.putExtra(INTENT_DEV_ID, devId);
-            intent2.putExtra(INTENT_P2P_TYPE, p2pType);
             startActivity(intent2);
         } else if (id == R.id.message_center_Txt) {
             Intent intent3 = new Intent(CameraPanelActivity.this, AlarmDetectionActivity.class);
