@@ -7,13 +7,25 @@ Tuya Android Home SDK Sample
 
 [准备工作](https://developer.tuya.com/zh/docs/app-development/android-app-sdk/preparation?id=Ka7mqlxh7vgi9)
 
+> 注意：智能家居App SDK从3.29.5版本开始，做了安全校验的升级。您需要在[IoT平台根据说明文档](https://developer.tuya.com/cn/docs/app-development/iot_app_sdk_core_sha1?id=Kao7c7b139vrh)来获取SHA256，然后在IoT平台绑定您的SHA256，否则会报错非法客户端。如果您需要本地dubug运行Sample，您需要在app模块的build.gradle下，android闭包中配置您的签名信息：
+```groovy
+signingConfigs {
+        debug {
+            storeFile file('../xxx.jks')
+            storePassword 'xxx'
+            keyAlias 'xxx'
+            keyPassword 'xxx'
+        }
+    }
+```
+
 [集成](https://developer.tuya.com/zh/docs/app-development/android-app-sdk/integration/integrated?id=Ka69nt96cw0uj)
 
 [SDK功能](https://developer.tuya.com/zh/docs/app-development/android-app-sdk/featureoverview?id=Ka69nt97vtsfu)
 
 App 图片
 ---
-<img src="https://github.com/tuya/tuya-home-android-sdk-sample-java/blob/master/img/main_page_zh.jpeg" alt="main_page" width = "300"  />
+<img src="https://images.tuyacn.com/app/liya/tuya-app-sdk-sample/app_sdk_sample_zh.jpg" alt="main_page" style="zoom:30%;" />
 
 问题反馈
 ---
