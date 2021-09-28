@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/tv_ptz_close"
+        android:layout_width="@dimen/wh_55"
+        android:layout_height="@dimen/wh_35"
+        android:layout_marginTop="5dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_close"
+        android:textColor="@color/camera_panel_control_color"
+        android:textSize="@dimen/ts_12"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_ptz_empty"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:text="@string/ipc_not_support_ptz"
+        android:textColor="@color/camera_panel_control_color"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ptz_close" />
+
+    <TextView
+        android:id="@+id/tv_ptz"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_35"
+        android:gravity="center_vertical"
+        android:text="@string/ipc_ptz_control"
+        android:textColor="@color/camera_panel_control_color"
+        android:textSize="@dimen/ts_12"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_ptz_top"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ptz_close" />
+
+    <TextView
+        android:id="@+id/tv_ptz_left"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_42"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_left"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_ptz_top"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ptz" />
+
+    <TextView
+        android:id="@+id/tv_ptz_top"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_42"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_top"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintLeft_toRightOf="@+id/tv_ptz_left"
+        app:layout_constraintRight_toLeftOf="@+id/tv_ptz_right"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ptz" />
+
+    <TextView
+        android:id="@+id/tv_ptz_right"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_42"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_right"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintLeft_toRightOf="@+id/tv_ptz_top"
+        app:layout_constraintRight_toLeftOf="@+id/tv_ptz_bottom"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ptz" />
+
+    <TextView
+        android:id="@+id/tv_ptz_bottom"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_42"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_bottom"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintLeft_toRightOf="@+id/tv_ptz_right"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ptz" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_ptz_control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tv_ptz,tv_ptz_left,tv_ptz_top,tv_ptz_right,tv_ptz_bottom" />
+
+
+    <TextView
+        android:id="@+id/tv_focal_length"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_35"
+        android:gravity="center_vertical"
+        android:text="@string/ipc_focal_length"
+        android:textColor="@color/camera_panel_control_color"
+        android:textSize="@dimen/ts_12"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_ptz_top"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ptz_left" />
+
+    <TextView
+        android:id="@+id/tv_focal_increase"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_42"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_increase"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_focal_reduce"
+        app:layout_constraintTop_toBottomOf="@+id/tv_focal_length" />
+
+    <TextView
+        android:id="@+id/tv_focal_reduce"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_42"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_reduce"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintLeft_toRightOf="@+id/tv_focal_increase"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_focal_length" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_focal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tv_focal_length,tv_focal_increase,tv_focal_reduce" />
+
+    <TextView
+        android:id="@+id/tv_collection"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_35"
+        android:gravity="center_vertical"
+        android:text="@string/ipc_collection_point"
+        android:textColor="@color/camera_panel_control_color"
+        android:textSize="@dimen/ts_12"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_ptz_top"
+        app:layout_constraintTop_toBottomOf="@+id/tv_focal_increase" />
+
+
+    <com.tuya.drawee.view.DecryptImageView
+        android:id="@+id/iv_collection"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
+        android:layout_margin="2dp"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_collection_add"
+        app:layout_constraintTop_toBottomOf="@+id/tv_collection"
+        tools:background="@color/black" />
+
+    <TextView
+        android:id="@+id/tv_collection_item"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_collection"
+        app:layout_constraintLeft_toLeftOf="@+id/iv_collection"
+        app:layout_constraintRight_toRightOf="@+id/iv_collection"
+        app:layout_constraintTop_toTopOf="@+id/iv_collection"
+        tools:text="name" />
+
+    <TextView
+        android:id="@+id/tv_collection_add"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_add"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_collection"
+        app:layout_constraintLeft_toRightOf="@+id/iv_collection"
+        app:layout_constraintRight_toLeftOf="@+id/tv_collection_delete"
+        app:layout_constraintTop_toBottomOf="@+id/tv_collection" />
+
+    <TextView
+        android:id="@+id/tv_collection_delete"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_delete"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_collection"
+        app:layout_constraintLeft_toRightOf="@+id/tv_collection_add"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_collection" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_collection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tv_collection,iv_collection,
+        tv_collection_item,tv_collection_add,tv_collection_delete" />
+
+
+    <TextView
+        android:id="@+id/tv_cruise"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_35"
+        android:gravity="center_vertical"
+        android:text="@string/ipc_cruise"
+        android:textColor="@color/camera_panel_control_color"
+        android:textSize="@dimen/ts_12"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_ptz_top"
+        app:layout_constraintTop_toBottomOf="@+id/iv_collection" />
+
+    <TextView
+        android:id="@+id/tv_cruise_switch"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_42"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_cruise_mode"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cruise"
+        tools:text="Opened" />
+
+    <TextView
+        android:id="@+id/tv_cruise_mode"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_42"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_cruise_mode"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintLeft_toRightOf="@+id/tv_cruise_switch"
+        app:layout_constraintRight_toLeftOf="@+id/tv_cruise_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cruise" />
+
+    <TextView
+        android:id="@+id/tv_cruise_time"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_42"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_cruise_time"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintLeft_toRightOf="@+id/tv_cruise_mode"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cruise" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_cruise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tv_cruise,tv_cruise_switch,tv_cruise_mode,tv_cruise_time" />
+
+    <TextView
+        android:id="@+id/tv_tracking"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_35"
+        android:gravity="center_vertical"
+        android:text="@string/ipc_tracking"
+        android:textColor="@color/camera_panel_control_color"
+        android:textSize="@dimen/ts_12"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_ptz_top"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cruise_switch" />
+
+    <TextView
+        android:id="@+id/tv_tracking_switch"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_42"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tracking"
+        app:layout_constraintWidth_percent="0.25"
+        tools:text="Opened" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_tracking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tv_tracking,tv_tracking_switch" />
+
+    <TextView
+        android:id="@+id/tv_preset"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_35"
+        android:gravity="center_vertical"
+        android:text="@string/ipc_preset_point"
+        android:textColor="@color/camera_panel_control_color"
+        android:textSize="@dimen/ts_12"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_ptz_top"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tracking_switch" />
+
+    <TextView
+        android:id="@+id/tv_preset_select"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/wh_42"
+        android:layout_margin="2dp"
+        android:background="#33989898"
+        android:gravity="center"
+        android:text="@string/ipc_preset_point"
+        android:textColor="@color/camera_panel_control_color"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_preset" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_preset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="tv_preset,tv_preset_select" />
+</androidx.constraintlayout.widget.ConstraintLayout>

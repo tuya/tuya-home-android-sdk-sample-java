@@ -1,5 +1,6 @@
 package com.tuya.smart.android.demo.camera.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -23,6 +24,7 @@ import java.io.File;
 
 public class Constants {
 
+    public static final String INTENT_MSGID = "msgid";
     public static final String INTENT_DEV_ID = "intent_devId";
     public static final String INTENT_P2P_TYPE = "intent_p2p_type";
     public static final int EXTERNAL_STORAGE_REQ_CODE = 10;
@@ -80,6 +82,7 @@ public class Constants {
         }
     }
 
+    @SuppressLint("all")
     public static boolean hasRecordPermission() {
         int minBufferSize = AudioRecord.getMinBufferSize(8000, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
         int bufferSizeInBytes = 640;

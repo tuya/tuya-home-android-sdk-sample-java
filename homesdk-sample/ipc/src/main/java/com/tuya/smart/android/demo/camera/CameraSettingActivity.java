@@ -44,6 +44,7 @@ public class CameraSettingActivity extends AppCompatActivity {
         sdStatus();
         sdCardFormat();
         watermark();
+        record();
     }
 
 
@@ -106,6 +107,31 @@ public class CameraSettingActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     publishDps(DPConstants.WATERMARK, !Boolean.parseBoolean(tv.getText().toString()));
+                }
+            });
+            listenDPUpdate(dpId, new DPCallback() {
+                @Override
+                public void callback(Object obj) {
+                    tv.setText(String.valueOf(obj));
+                }
+            });
+        } else {
+            tv.setText(getString(R.string.not_support));
+        }
+    }
+
+    private void record() {
+        String dpId = DPConstants.SD_CARD_RECORD_SWITCH;
+        TextView tv = findViewById(R.id.tv_record);
+        Object value = queryValueByDPID(dpId);
+        if (value != null) {
+            tv.setText(String.valueOf(value));
+            Button btn = findViewById(R.id.btn_record);
+            btn.setVisibility(View.VISIBLE);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    publishDps(DPConstants.SD_CARD_RECORD_SWITCH, !Boolean.parseBoolean(tv.getText().toString()));
                 }
             });
             listenDPUpdate(dpId, new DPCallback() {

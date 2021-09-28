@@ -110,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@drawable/camera_icon_arrow"
+            android:drawableTop="@drawable/camera_icon_setting"
             android:gravity="center"
             android:text="@string/settings"
             android:textColor="@color/camera_panel_control_color" />
@@ -139,6 +139,41 @@
             android:textColor="@color/camera_panel_control_color" />
 
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/debug_Txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/camera_icon_debug"
+            android:gravity="center"
+            android:text="@string/ipc_debug_tool"
+            android:textColor="@color/camera_panel_control_color" />
+
+        <TextView
+            android:id="@+id/ptz_Txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/camera_icon_arrow"
+            android:gravity="center"
+            android:text="@string/ipc_ptz"
+            android:textColor="@color/camera_panel_control_color"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/camera_icon_info"
+            android:gravity="center"
+            android:padding="@dimen/mg_20"
+            android:visibility="invisible"/>
     </LinearLayout>
 
 </LinearLayout>

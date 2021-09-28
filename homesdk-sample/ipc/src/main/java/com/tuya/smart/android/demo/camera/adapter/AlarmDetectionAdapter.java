@@ -19,8 +19,8 @@ import com.tuya.drawee.view.DecryptImageView;
 import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCTool;
 import com.tuya.smart.android.demo.R;
+import com.tuya.smart.android.demo.camera.utils.BitmapUtils;
 import com.tuya.smart.android.demo.camera.utils.ToastUtil;
-import com.tuya.smart.camera.utils.BitmapUtils;
 import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
 import com.tuya.smart.ipc.messagecenter.bean.CameraMessageBean;
 
