@@ -39,7 +39,6 @@ import com.tuya.smart.camera.ipccamerasdk.p2p.ICameraP2P;
 import com.tuya.smart.camera.middleware.p2p.ITuyaSmartCameraP2P;
 import com.tuya.smart.camera.middleware.widget.AbsVideoViewCallback;
 import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
-import com.tuya.smart.camera.utils.AudioUtils;
 
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
@@ -496,7 +495,6 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         super.onResume();
         mVideoView.onResume();
         if (null != mCameraP2P) {
-            AudioUtils.getModel(this);
             mCameraP2P.registerP2PCameraListener(p2pCameraListener);
             mCameraP2P.generateCameraView(mVideoView.createdView());
         }
@@ -533,7 +531,6 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
                 });
             }
         }
-        AudioUtils.changeToNomal(this);
     }
 
 

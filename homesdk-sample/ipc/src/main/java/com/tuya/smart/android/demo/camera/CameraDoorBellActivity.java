@@ -1,5 +1,7 @@
 package com.tuya.smart.android.demo.camera;
 
+import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_MSGID;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,8 +20,6 @@ import com.tuya.smart.android.camera.sdk.callback.TuyaSmartDoorBellObserver;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
 import com.tuya.smart.sdk.bean.DeviceBean;
-
-import static com.tuya.smart.camera.utils.IntentUtils.INTENT_MSGID;
 
 /**
  * Created by HuangXin on 2/20/21.

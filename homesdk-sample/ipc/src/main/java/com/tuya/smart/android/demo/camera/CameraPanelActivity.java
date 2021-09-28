@@ -1,6 +1,7 @@
 package com.tuya.smart.android.demo.camera;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,10 +24,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.alibaba.fastjson.JSONObject;
+import com.tuya.appsdk.sample.resource.HomeModel;
 import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCore;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCDoorbell;
 import com.tuya.smart.android.demo.R;
+import com.tuya.smart.android.demo.camera.utils.CameraPTZHelper;
 import com.tuya.smart.android.demo.camera.utils.Constants;
 import com.tuya.smart.android.demo.camera.utils.DPConstants;
 import com.tuya.smart.android.demo.camera.utils.MessageUtil;
@@ -36,8 +41,9 @@ import com.tuya.smart.camera.ipccamerasdk.p2p.ICameraP2P;
 import com.tuya.smart.camera.middleware.p2p.ITuyaSmartCameraP2P;
 import com.tuya.smart.camera.middleware.widget.AbsVideoViewCallback;
 import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
-import com.tuya.smart.camera.utils.AudioUtils;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
+import com.tuya.smart.ipc.camera.autotesting.activity.AutoCameraTestingProgramListActivity;
+import com.tuya.smart.ipc.camera.cloudtool.activity.CloudToolHomeActivity;
 import com.tuya.smart.sdk.api.IResultCallback;
 import com.tuya.smart.sdk.api.ITuyaDevice;
 import com.tuya.smart.sdk.bean.DeviceBean;
@@ -85,6 +91,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
     private String currVideoClarity;
     private String devId;
     private ITuyaSmartCameraP2P mCameraP2P;
+    CameraPTZHelper cameraPTZHelper;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -216,27 +223,27 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
 
                 @Override
                 public void onLeft() {
-                    publishDps(DPConstants.PTZ_CONTROL, DPConstants.PTZ_LEFT);
+                    cameraPTZHelper.ptzControl(DPConstants.PTZ_LEFT);
                 }
 
                 @Override
                 public void onRight() {
-                    publishDps(DPConstants.PTZ_CONTROL, DPConstants.PTZ_RIGHT);
+                    cameraPTZHelper.ptzControl(DPConstants.PTZ_RIGHT);
                 }
 
                 @Override
                 public void onUp() {
-                    publishDps(DPConstants.PTZ_CONTROL, DPConstants.PTZ_UP);
+                    cameraPTZHelper.ptzControl(DPConstants.PTZ_UP);
                 }
 
                 @Override
                 public void onDown() {
-                    publishDps(DPConstants.PTZ_CONTROL, DPConstants.PTZ_DOWN);
+                    cameraPTZHelper.ptzControl(DPConstants.PTZ_DOWN);
                 }
 
                 @Override
                 public void onCancel() {
-                    publishDps(DPConstants.PTZ_STOP, true);
+                    cameraPTZHelper.ptzStop();
                 }
             });
         }
@@ -260,6 +267,8 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
         findViewById(R.id.get_clarity_Txt).setOnClickListener(this);
         cloudStorageTxt = findViewById(R.id.cloud_Txt);
         messageCenterTxt = findViewById(R.id.message_center_Txt);
+        findViewById(R.id.debug_Txt).setOnClickListener(this);
+        findViewById(R.id.ptz_Txt).setOnClickListener(this);
 
         WindowManager windowManager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
         int width = windowManager.getDefaultDisplay().getWidth();
@@ -292,6 +301,8 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
         } else {
 
         }
+        cameraPTZHelper = new CameraPTZHelper(devId);
+        cameraPTZHelper.bindPtzBoard(findViewById(R.id.sv_ptz_board));
     }
 
     private void showNotSupportToast() {
@@ -378,6 +389,23 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
                     }
                 });
             }
+        } else if ( id == R.id.debug_Txt) {
+            String[] items = new String[]{getString(R.string.ipc_sdk_autotest_tools), getString(R.string.ipc_cloud_debug_tools)};
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setItems(items, (dialog, which) -> {
+                if (which == 0) {
+                    Intent intent = new Intent(CameraPanelActivity.this, AutoCameraTestingProgramListActivity.class);
+                    startActivity(intent);
+                } else if (which == 1) {
+                    Intent intent = new Intent(CameraPanelActivity.this, CloudToolHomeActivity.class);
+                    intent.putExtra("extra_current_home_id", HomeModel.getCurrentHome(this));
+                    startActivity(intent);
+                }
+            });
+            builder.setNegativeButton(getString(R.string.ipc_close), (dialog, which) -> dialog.dismiss());
+            builder.create().show();
+        } else if (id == R.id.ptz_Txt) {
+            cameraPTZHelper.show();
         }
     }
 
@@ -526,7 +554,6 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
         mVideoView.onResume();
         //must register again,or can't callback
         if (null != mCameraP2P) {
-            AudioUtils.getModel(this);
             mCameraP2P.registerP2PCameraListener(p2pCameraListener);
             mCameraP2P.generateCameraView(mVideoView.createdView());
             if (mCameraP2P.isConnecting()) {
@@ -613,7 +640,6 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
                 }
             });
         }
-        AudioUtils.changeToNomal(this);
     }
 
     @Override
