@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,7 +24,9 @@ import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
 import com.tuya.smart.sdk.api.IResultCallback;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by HuangXin on 2021/9/25.
@@ -133,13 +136,23 @@ public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickLi
                 }
             });
         } else if (v.getId() == R.id.tv_cruise_mode) {
-            String[] items = new String[]{context.getString(R.string.ipc_panoramic_cruise), context.getString(R.string.ipc_collection_point_cruise)};
-            showSelectDialog(items, (dialog, which) -> {
-                if (which == 0) {
-                    tuyaIPCPTZ.setCruiseMode("0", new ResultCallback("setCruiseMode 0"));
-                } else if (which == 1) {
-                    tuyaIPCPTZ.setCruiseMode("1", new ResultCallback("setCruiseMode 1"));
+            Map<String, String> map = new HashMap<>();
+            map.put("0", context.getString(R.string.ipc_panoramic_cruise));
+            map.put("1", context.getString(R.string.ipc_collection_point_cruise));
+            List<String> itemList = new ArrayList<>();
+            List<String> modeList = new ArrayList<>();
+            EnumSchemaBean enumSchemaBean = tuyaIPCPTZ.getSchemaProperty(PTZDPModel.DP_CRUISE_MODE, EnumSchemaBean.class);
+            String[] range = enumSchemaBean.getRange().toArray(new String[0]);
+            for (String s : range) {
+                String title = map.get(s);
+                if (!TextUtils.isEmpty(title)) {
+                    itemList.add(title);
+                    modeList.add(s);
                 }
+            }
+            showSelectDialog(itemList.toArray(new String[0]), (dialog, which) -> {
+                String mode = modeList.get(which);
+                tuyaIPCPTZ.setCruiseMode(mode, new ResultCallback("setCruiseMode " + mode));
             });
         } else if (v.getId() == R.id.tv_cruise_time) {
             String[] items = new String[]{context.getString(R.string.ipc_full_day_cruise), context.getString(R.string.ipc_custom_cruise)};
