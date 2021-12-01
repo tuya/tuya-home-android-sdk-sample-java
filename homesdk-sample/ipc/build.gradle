@@ -43,8 +43,8 @@ dependencies {
     implementation project(':base_res')
 
     implementation 'com.tuya.smart:tuyasmart-ipcsdk:3.32.5'
-    implementation 'com.tuya.smart:tuyasmart-ipc-camera-cloudtool:3.32.5'
-    implementation 'com.tuya.smart:tuyasmart-ipc-camera-autotest:3.31.5'
+    implementation 'com.tuya.smart:tuyasmart-ipc-camera-cloudtool:3.31.5'
+    implementation 'com.tuya.smart:tuyasmart-ipc-camera-autotest:3.32.5'
     //timeline view
     implementation 'com.tuya.smart:tuyasmart-ipc-camera-timeline:1.0.0'
 
