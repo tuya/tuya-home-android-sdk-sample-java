@@ -8,6 +8,7 @@ Get Started
 ---
 
 
+
 - [Preparation for Integration](https://developer.tuya.com/en/docs/app-development/android-app-sdk/preparation?id=Ka7mqlxh7vgi9)
 
 > Note：From the 3.29.5 version,Smart Life App SDK has done the security checksum。You need to get SHA256 in[Tuya IoT platform](https://developer.tuya.com/en/docs/app-development/iot_app_sdk_core_sha1?id=Kao7c7b139vrh),then bind your SHA256,otherwise it will report an illegal client error. If you need a local dubug to run Sample, you need to configure your signature information in the app module under build.gradle, android closures at：
