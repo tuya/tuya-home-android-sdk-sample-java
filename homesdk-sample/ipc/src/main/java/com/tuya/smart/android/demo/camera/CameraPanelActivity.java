@@ -395,6 +395,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
             builder.setItems(items, (dialog, which) -> {
                 if (which == 0) {
                     Intent intent = new Intent(CameraPanelActivity.this, AutoCameraTestingProgramListActivity.class);
+                    intent.putExtra("extra_current_home_id", HomeModel.getCurrentHome(this));
                     startActivity(intent);
                 } else if (which == 1) {
                     Intent intent = new Intent(CameraPanelActivity.this, CloudToolHomeActivity.class);
