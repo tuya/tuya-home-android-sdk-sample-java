@@ -89,4 +89,7 @@
     <string name="ipc_full_day_cruise">全天巡航</string>
     <string name="ipc_custom_cruise">自定义巡航</string>
     <string name="ipc_sdk_autotest_tools">IPC SDK 自动化测试工具</string>
+    <string name="ipc_sdk_service_running">正常</string>
+    <string name="ipc_sdk_service_expired">已过期</string>
+    <string name="ipc_sdk_no_service">无服务</string>
 </resources>
