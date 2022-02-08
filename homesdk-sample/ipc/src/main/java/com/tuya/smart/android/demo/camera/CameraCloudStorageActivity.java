@@ -1,5 +1,7 @@
 package com.tuya.smart.android.demo.camera;
 
+import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_DEV_ID;
+
 import android.os.Bundle;
 import android.view.View;
 
@@ -11,8 +13,8 @@ import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCloud;
 import com.tuya.smart.android.camera.sdk.bean.CloudStatusBean;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.utils.ToastUtil;
+import com.tuya.smart.camera.camerasdk.typlayer.callback.AbsP2pCameraListener;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.IRegistorIOTCListener;
-import com.tuya.smart.camera.camerasdk.typlayer.callback.OnP2PCameraListener;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationCallBack;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationDelegateCallBack;
 import com.tuya.smart.camera.ipccamerasdk.cloud.ITYCloudCamera;
@@ -24,14 +26,10 @@ import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
 import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
 
 import java.io.File;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_DEV_ID;
-import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_P2P_TYPE;
 
 /**
  * @author surgar
@@ -45,6 +43,9 @@ public class CameraCloudStorageActivity extends AppCompatActivity {
     private List<CloudDayBean> dayBeanList = new ArrayList<>();
     private List<TimePieceBean> timePieceBeans = new ArrayList<>();
     private int soundState;
+    public static final int SERVES_RUNNING = 10010;
+    public static final int SERVES_EXPIRED = 10011;
+    public static final int NO_SERVICE = 10001;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class CameraCloudStorageActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(CloudStatusBean result) {
                             //Get cloud storage status
-                            ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.current_state) + result.getStatus());
+                            ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.current_state) + getServiceStatus(result.getStatus()));
                         }
 
                         @Override
@@ -269,30 +270,10 @@ public class CameraCloudStorageActivity extends AppCompatActivity {
             if (mVideoView.createdView() instanceof IRegistorIOTCListener) {
                 cloudCamera.generateCloudCameraView((IRegistorIOTCListener) mVideoView.createdView());
             }
-            cloudCamera.registorOnP2PCameraListener(new OnP2PCameraListener() {
+            cloudCamera.registerP2PCameraListener(new AbsP2pCameraListener() {
                 @Override
-                public void receiveFrameDataForMediaCodec(int i, byte[] bytes, int i1, int i2, byte[] bytes1, boolean b, int i3) {
-
-                }
-
-                @Override
-                public void onReceiveFrameYUVData(int i, ByteBuffer byteBuffer, ByteBuffer byteBuffer1, ByteBuffer byteBuffer2, int i1, int i2, int i3, int i4, long l, long l1, long l2, Object o) {
-
-                }
-
-                @Override
-                public void onSessionStatusChanged(Object o, int i, int i1) {
-
-                }
-
-                @Override
-                public void onReceiveAudioBufferData(int i, int i1, int i2, long l, long l1, long l2) {
-
-                }
-
-                @Override
-                public void onReceiveSpeakerEchoData(ByteBuffer byteBuffer, int i) {
-
+                public void onSessionStatusChanged(Object camera, int sessionId, int sessionStatus) {
+                    super.onSessionStatusChanged(camera, sessionId, sessionStatus);
                 }
             });
         }
@@ -492,4 +473,15 @@ public class CameraCloudStorageActivity extends AppCompatActivity {
         }
     }
 
+    private String getServiceStatus(int code) {
+        if (code == SERVES_EXPIRED) {
+            return getString(R.string.ipc_sdk_service_expired);
+        } else if (code == SERVES_RUNNING) {
+            return getString(R.string.ipc_sdk_service_running);
+        } else if (code == NO_SERVICE) {
+            return getString(R.string.ipc_sdk_no_service);
+        } else {
+            return String.valueOf(code);
+        }
+    }
 }
