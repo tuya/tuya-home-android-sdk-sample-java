@@ -88,4 +88,7 @@
     <string name="ipc_full_day_cruise">Full day cruise</string>
     <string name="ipc_custom_cruise">Custom cruise</string>
     <string name="ipc_sdk_autotest_tools">IPC SDK automated test tool</string>
+    <string name="ipc_sdk_service_running">running</string>
+    <string name="ipc_sdk_service_expired">expired</string>
+    <string name="ipc_sdk_no_service">no service</string>
 </resources>
