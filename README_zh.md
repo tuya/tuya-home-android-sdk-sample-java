@@ -1,4 +1,4 @@
-Tuya Android Home SDK Sample
+Tuya Android Smart Life App SDK Sample
 ===
 [中文版](README_zh.md) | [English](README.md)
 
@@ -7,7 +7,7 @@ Tuya Android Home SDK Sample
 
 [准备工作](https://developer.tuya.com/zh/docs/app-development/android-app-sdk/preparation?id=Ka7mqlxh7vgi9)
 
-> 注意：智能家居App SDK从3.29.5版本开始，做了安全校验的升级。您需要在[IoT平台根据说明文档](https://developer.tuya.com/cn/docs/app-development/iot_app_sdk_core_sha1?id=Kao7c7b139vrh)来获取SHA256，然后在IoT平台绑定您的SHA256，否则会报错非法客户端。如果您需要本地dubug运行Sample，您需要在app模块的build.gradle下，android闭包中配置您的签名信息：
+> 注意：智能生活App SDK从3.29.5版本开始，做了安全校验的升级。您需要在[IoT平台根据说明文档](https://developer.tuya.com/cn/docs/app-development/iot_app_sdk_core_sha1?id=Kao7c7b139vrh)来获取SHA256，然后在IoT平台绑定您的SHA256，否则会报错非法客户端。如果您需要本地dubug运行Sample，您需要在app模块的build.gradle下，android闭包中配置您的签名信息：
 ```groovy
 signingConfigs {
         debug {
@@ -34,4 +34,4 @@ App 图片
 
 LICENSE
 ---
-Tuya Android Home SDK Sample是在MIT许可下提供的。更多信息请参考[LICENSE](LICENSE)文件
+Tuya Android Smart Life App SDK Sample是在MIT许可下提供的。更多信息请参考[LICENSE](LICENSE)文件
