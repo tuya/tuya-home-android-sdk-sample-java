@@ -36,5 +36,5 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    api 'com.tuya.smart:tuyasmart:3.34.9'
+    api 'com.tuya.smart:tuyasmart:3.36.0'
 }
