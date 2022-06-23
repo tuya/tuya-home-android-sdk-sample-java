@@ -36,53 +36,49 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/status_btn"
+    <TextView
+        android:id="@+id/status_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/camera_video_view_Rl"
         android:layout_marginLeft="@dimen/mg_10"
         android:layout_marginRight="@dimen/mg_10"
-        android:text="@string/cloud_status"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
-
-    <Button
-        android:id="@+id/buy_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/status_btn"
-        android:layout_marginLeft="@dimen/mg_10"
-        android:layout_marginRight="@dimen/mg_10"
-        android:text="@string/buy"
-        android:visibility="gone"
-        android:textColor="@color/white"
+        android:padding="10dp"
+        android:textColor="@color/black"
         android:textSize="15sp" />
 
     <Button
         android:id="@+id/query_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buy_btn"
+        android:layout_below="@+id/status_tv"
         android:layout_marginLeft="@dimen/mg_10"
         android:layout_marginRight="@dimen/mg_10"
         android:text="@string/query_cloud"
         android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:visibility="gone" />
 
-
-    <Button
-        android:id="@+id/query_time_btn"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dateRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/query_btn"
-        android:layout_marginLeft="@dimen/mg_10"
-        android:layout_marginRight="@dimen/mg_10"
-        android:text="@string/query_cloud_of_day"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"></androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/timeRv"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_bottom"
+        android:layout_below="@+id/dateRv"></androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -95,19 +91,6 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             >
-
-            <Button
-                android:id="@+id/start_btn"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/cloud_start"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
-            <Space
-                android:layout_width="5dp"
-                android:layout_height="wrap_content"/>
 
             <Button
                 android:id="@+id/pause_btn"

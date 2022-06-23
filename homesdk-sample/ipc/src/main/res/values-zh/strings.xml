@@ -15,7 +15,7 @@
     <string name="get_clarity">清晰度</string>
     <string name="playback_title">回放</string>
     <string name="doorbell_title">门铃呼叫</string>
-    <string name="playback_input_hint">请输入查询日期: </string>
+    <string name="playback_input_hint">请输入查询月份: </string>
     <string name="query">查询</string>
     <string name="start">开始</string>
     <string name="pause">暂停</string>
@@ -38,10 +38,9 @@
     <string name="duration">时长: </string>
     <string name="record_start">开始录制</string>
     <string name="record_stop">停止录制</string>
-    <string name="cloud_status">查询云存储状态</string>
+    <string name="cloud_status">云存储状态：</string>
     <string name="buy">购买云存储</string>
-    <string name="query_cloud">1. 查询云存储数据</string>
-    <string name="query_cloud_of_day">2. 查询某天云存储数据</string>
+    <string name="query_cloud">查询云存储数据</string>
     <string name="download_suc">下载成功</string>
     <string name="operation_failed">操作失败</string>
     <string name="no_data">查无数据</string>

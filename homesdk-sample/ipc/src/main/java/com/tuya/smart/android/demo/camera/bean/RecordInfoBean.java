@@ -1,5 +1,7 @@
 package com.tuya.smart.android.demo.camera.bean;
 
+import com.tuya.smart.camera.middleware.cloud.bean.TimePieceBean;
+
 import java.util.List;
 
 /**

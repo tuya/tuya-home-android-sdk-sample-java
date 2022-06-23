@@ -28,14 +28,16 @@ import com.tuya.smart.android.camera.timeline.TimeBean;
 import com.tuya.smart.android.camera.timeline.TuyaTimelineView;
 import com.tuya.smart.android.common.utils.L;
 import com.tuya.smart.android.demo.R;
+import com.tuya.smart.android.demo.camera.adapter.CameraPlaybackVideoDateAdapter;
+import com.tuya.smart.android.demo.camera.adapter.CameraVideoTimeAdapter;
 import com.tuya.smart.android.demo.camera.bean.RecordInfoBean;
-import com.tuya.smart.android.demo.camera.bean.TimePieceBean;
 import com.tuya.smart.android.demo.camera.utils.MessageUtil;
 import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.AbsP2pCameraListener;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationDelegateCallBack;
 import com.tuya.smart.camera.ipccamerasdk.bean.MonthDays;
 import com.tuya.smart.camera.ipccamerasdk.p2p.ICameraP2P;
+import com.tuya.smart.camera.middleware.cloud.bean.TimePieceBean;
 import com.tuya.smart.camera.middleware.p2p.ITuyaSmartCameraP2P;
 import com.tuya.smart.camera.middleware.widget.AbsVideoViewCallback;
 import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
@@ -67,21 +69,22 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
     private TuyaCameraView mVideoView;
     private ImageView muteImg;
     private EditText dateInputEdt;
-    private RecyclerView queryRv;
+    private RecyclerView timeRv;
+    private RecyclerView dateRv;
     private TuyaTimelineView timelineView;
-    private Button queryBtn, startBtn, pauseBtn, resumeBtn, stopBtn;
+    private Button queryBtn, pauseBtn, resumeBtn, stopBtn;
 
     private ITuyaSmartCameraP2P mCameraP2P;
     private static final int ASPECT_RATIO_WIDTH = 9;
     private static final int ASPECT_RATIO_HEIGHT = 16;
     private String devId;
-    private CameraPlaybackTimeAdapter adapter;
-    private List<TimePieceBean> queryDateList;
+    private CameraVideoTimeAdapter timeAdapter;
+    private CameraPlaybackVideoDateAdapter dateAdapter;
+    private List<TimePieceBean> timeList = new ArrayList<>();
+    private List<String> dateList = new ArrayList<>();
 
     private boolean isPlayback = false;
 
-    protected Map<String, List<String>> mBackDataMonthCache;
-    protected Map<String, List<TimePieceBean>> mBackDataDayCache;
     private int mPlaybackMute = ICameraP2P.MUTE;
 
     private Handler mHandler = new Handler() {
@@ -105,76 +108,75 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
 
     private void handleDataDay(Message msg) {
         if (msg.arg1 == ARG1_OPERATE_SUCCESS) {
-            queryDateList.clear();
-            //Timepieces with data for the query day
-            List<TimePieceBean> timePieceBeans = mBackDataDayCache.get(mCameraP2P.getDayKey());
-            if (timePieceBeans != null) {
-                queryDateList.addAll(timePieceBeans);
+            timeAdapter.notifyDataSetChanged();
+            if (timeList.size() == 0) {
+                showEmptyToast();
+            } else {
                 List<TimeBean> timelineData = new ArrayList<>();
-                for(TimePieceBean bean: timePieceBeans) {
+                for (TimePieceBean bean : timeList) {
                     TimeBean b = new TimeBean();
                     b.setStartTime(bean.getStartTime());
                     b.setEndTime(bean.getEndTime());
                     timelineData.add(b);
                 }
-                timelineView.setCurrentTimeConfig(timePieceBeans.get(0).getEndTime()*1000L);
+                timelineView.setCurrentTimeConfig(timeList.get(0).getEndTime() * 1000L);
                 timelineView.setRecordDataExistTimeClipsList(timelineData);
-            } else {
-                showErrorToast();
             }
-            adapter.notifyDataSetChanged();
+            timeAdapter.notifyDataSetChanged();
         } else {
-
+            ToastUtil.shortToast(CameraPlaybackActivity.this, getString(R.string.operation_failed));
         }
     }
 
     private void handleDataDate(Message msg) {
         if (msg.arg1 == ARG1_OPERATE_SUCCESS) {
-            List<String> days = mBackDataMonthCache.get(mCameraP2P.getMonthKey());
-
-            try {
-                if (days.size() == 0) {
-                    showErrorToast();
-                    return;
-                }
-                final String inputStr = dateInputEdt.getText().toString();
-                if (!TextUtils.isEmpty(inputStr) && inputStr.contains("/")) {
-                    String[] substring = inputStr.split("/");
-                    int year = Integer.parseInt(substring[0]);
-                    int mouth = Integer.parseInt(substring[1]);
-                    int day = Integer.parseInt(substring[2]);
-                    mCameraP2P.queryRecordTimeSliceByDay(year, mouth, day, new OperationDelegateCallBack() {
-                        @Override
-                        public void onSuccess(int sessionId, int requestId, String data) {
-                            L.e(TAG, inputStr + " --- " + data);
-                            parsePlaybackData(data);
-                        }
-
-                        @Override
-                        public void onFailure(int sessionId, int requestId, int errCode) {
-                            mHandler.sendEmptyMessage(MSG_DATA_DATE_BY_DAY_FAIL);
-                        }
-                    });
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+            dateAdapter.notifyDataSetChanged();
+            timeAdapter.notifyDataSetChanged();
+            if (dateList.size() == 0) {
+                showEmptyToast();
+            } else {
+                dateRv.scrollToPosition(dateList.size() - 1);
             }
         } else {
+            ToastUtil.shortToast(CameraPlaybackActivity.this, getString(R.string.operation_failed));
+        }
+    }
 
+    private void showTimePieceAtDay(String inputStr) {
+        try {
+            if (!TextUtils.isEmpty(inputStr) && inputStr.contains("/")) {
+                String[] substring = inputStr.split("/");
+                int year = Integer.parseInt(substring[0]);
+                int mouth = Integer.parseInt(substring[1]);
+                int day = Integer.parseInt(substring[2]);
+                mCameraP2P.queryRecordTimeSliceByDay(year, mouth, day, new OperationDelegateCallBack() {
+                    @Override
+                    public void onSuccess(int sessionId, int requestId, String data) {
+                        L.e(TAG, inputStr + " --- " + data);
+                        parsePlaybackData(data);
+                    }
+
+                    @Override
+                    public void onFailure(int sessionId, int requestId, int errCode) {
+                        mHandler.sendEmptyMessage(MSG_DATA_DATE_BY_DAY_FAIL);
+                    }
+                });
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
     private void parsePlaybackData(Object obj) {
         RecordInfoBean recordInfoBean = JSONObject.parseObject(obj.toString(), RecordInfoBean.class);
+        timeList.clear();
         if (recordInfoBean.getCount() != 0) {
             List<TimePieceBean> timePieceBeanList = recordInfoBean.getItems();
             if (timePieceBeanList != null && timePieceBeanList.size() != 0) {
-                mBackDataDayCache.put(mCameraP2P.getDayKey(), timePieceBeanList);
+                timeList.addAll(timePieceBeanList);
             }
-            mHandler.sendMessage(MessageUtil.getMessage(MSG_DATA_DATE_BY_DAY_SUCC, ARG1_OPERATE_SUCCESS));
-        } else {
-            mHandler.sendMessage(MessageUtil.getMessage(MSG_DATA_DATE_BY_DAY_FAIL, ARG1_OPERATE_FAIL));
         }
+        mHandler.sendMessage(MessageUtil.getMessage(MSG_DATA_DATE_BY_DAY_SUCC, ARG1_OPERATE_SUCCESS));
     }
 
     private void handleMute(Message msg) {
@@ -210,11 +212,11 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         muteImg = findViewById(R.id.camera_mute);
         dateInputEdt = findViewById(R.id.date_input_edt);
         queryBtn = findViewById(R.id.query_btn);
-        startBtn = findViewById(R.id.start_btn);
         pauseBtn = findViewById(R.id.pause_btn);
         resumeBtn = findViewById(R.id.resume_btn);
         stopBtn = findViewById(R.id.stop_btn);
-        queryRv = findViewById(R.id.query_list);
+        timeRv = findViewById(R.id.query_list);
+        dateRv = findViewById(R.id.rv_month);
 
         //It is best to set the aspect ratio to 16:9
         WindowManager windowManager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
@@ -235,7 +237,7 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
                 timelineView.setCanQueryData();
                 timelineView.setQueryNewVideoData(false);
                 if (startTime != -1 && endTime != -1) {
-                    playback((int)startTime, (int)endTime, (int)currentTime);
+                    playback((int) startTime, (int) endTime, (int) currentTime);
                 }
             }
 
@@ -253,16 +255,18 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
     }
 
     private void initData() {
-        mBackDataMonthCache = new HashMap<>();
-        mBackDataDayCache = new HashMap<>();
         devId = getIntent().getStringExtra(INTENT_DEV_ID);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        queryRv.setLayoutManager(mLayoutManager);
-        queryRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        queryDateList = new ArrayList<>();
-        adapter = new CameraPlaybackTimeAdapter(this, queryDateList);
-        queryRv.setAdapter(adapter);
+        timeRv.setLayoutManager(mLayoutManager);
+        timeRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        timeAdapter = new CameraVideoTimeAdapter(this, timeList);
+        timeRv.setAdapter(timeAdapter);
+
+        LinearLayoutManager mDateLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        dateRv.setLayoutManager(mDateLayoutManager);
+        dateAdapter = new CameraPlaybackVideoDateAdapter(this, dateList);
+        dateRv.setAdapter(dateAdapter);
 
         ITuyaIPCCore cameraInstance = TuyaIPCSdk.getCameraInstance();
         if (cameraInstance != null) {
@@ -293,7 +297,7 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         }
 
         muteImg.setSelected(true);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM");
         Date date = new Date(System.currentTimeMillis());
         dateInputEdt.setText(simpleDateFormat.format(date));
     }
@@ -301,14 +305,19 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
     private void initListener() {
         muteImg.setOnClickListener(this);
         queryBtn.setOnClickListener(this);
-        startBtn.setOnClickListener(this);
         pauseBtn.setOnClickListener(this);
         resumeBtn.setOnClickListener(this);
         stopBtn.setOnClickListener(this);
-        adapter.setListener(new CameraPlaybackTimeAdapter.OnTimeItemListener() {
+        timeAdapter.setListener(new CameraVideoTimeAdapter.OnTimeItemListener() {
             @Override
             public void onClick(TimePieceBean timePieceBean) {
                 playback(timePieceBean.getStartTime(), timePieceBean.getEndTime(), timePieceBean.getStartTime());
+            }
+        });
+        dateAdapter.setListener(new CameraPlaybackVideoDateAdapter.OnTimeItemListener() {
+            @Override
+            public void onClick(String date) {
+                showTimePieceAtDay(date);
             }
         });
     }
@@ -346,45 +355,12 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
             muteClick();
         } else if (id == R.id.query_btn) {
             queryDayByMonthClick();
-        } else if (id == R.id.start_btn) {
-            startPlayback();
         } else if (id == R.id.pause_btn) {
             pauseClick();
         } else if (id == R.id.resume_btn) {
             resumeClick();
         } else if (id == R.id.stop_btn) {
             stopClick();
-        }
-    }
-
-    private void startPlayback() {
-        if (null != queryDateList && queryDateList.size() > 0) {
-            TimePieceBean timePieceBean = queryDateList.get(0);
-            if (null != timePieceBean) {
-                mCameraP2P.startPlayBack(timePieceBean.getStartTime(), timePieceBean.getEndTime(), timePieceBean.getStartTime(), new OperationDelegateCallBack() {
-                    @Override
-                    public void onSuccess(int sessionId, int requestId, String data) {
-                        isPlayback = true;
-                    }
-
-                    @Override
-                    public void onFailure(int sessionId, int requestId, int errCode) {
-
-                    }
-                }, new OperationDelegateCallBack() {
-                    @Override
-                    public void onSuccess(int sessionId, int requestId, String data) {
-                        isPlayback = false;
-                    }
-
-                    @Override
-                    public void onFailure(int sessionId, int requestId, int errCode) {
-
-                    }
-                });
-            }
-        } else {
-            ToastUtil.shortToast(this, getString(R.string.no_data));
         }
     }
 
@@ -442,7 +418,7 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         }
         if (inputStr.contains("/")) {
             String[] substring = inputStr.split("/");
-            if (substring.length > 2) {
+            if (substring.length == 2) {
                 try {
                     int year = Integer.parseInt(substring[0]);
                     int mouth = Integer.parseInt(substring[1]);
@@ -450,9 +426,15 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
                         @Override
                         public void onSuccess(int sessionId, int requestId, String data) {
                             MonthDays monthDays = JSONObject.parseObject(data, MonthDays.class);
-                            mBackDataMonthCache.put(mCameraP2P.getMonthKey(), monthDays.getDataDays());
-                            L.e(TAG,   "MonthDays --- " + data);
-
+                            L.i("zyz", "result: " + monthDays.getDataDays().toString());
+                            List<String> dataDays = monthDays.getDataDays();
+                            dateList.clear();
+                            timeList.clear();
+                            if (dataDays != null && dataDays.size() > 0) {
+                                for (String s : dataDays) {
+                                    dateList.add(inputStr + "/" + s);
+                                }
+                            }
                             mHandler.sendMessage(MessageUtil.getMessage(MSG_DATA_DATE, ARG1_OPERATE_SUCCESS));
                         }
 
@@ -461,11 +443,13 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
                             mHandler.sendMessage(MessageUtil.getMessage(MSG_DATA_DATE, ARG1_OPERATE_FAIL));
                         }
                     });
+                    return;
                 } catch (Exception e) {
                     ToastUtil.shortToast(CameraPlaybackActivity.this, getString(R.string.input_err));
                 }
             }
         }
+        ToastUtil.shortToast(CameraPlaybackActivity.this, getString(R.string.input_err));
     }
 
     private void muteClick() {
@@ -504,7 +488,12 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         @Override
         public void onReceiveFrameYUVData(int i, ByteBuffer byteBuffer, ByteBuffer byteBuffer1, ByteBuffer byteBuffer2, int i1, int i2, int i3, int i4, long l, long l1, long l2, Object o) {
             super.onReceiveFrameYUVData(i, byteBuffer, byteBuffer1, byteBuffer2, i1, i2, i3, i4, l, l1, l2, o);
-            timelineView.setCurrentTimeInMillisecond(l*1000L);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    timelineView.setCurrentTimeInMillisecond(l * 1000L);
+                }
+            });
         }
     };
 
@@ -534,7 +523,7 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
     }
 
 
-    private void showErrorToast() {
+    private void showEmptyToast() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

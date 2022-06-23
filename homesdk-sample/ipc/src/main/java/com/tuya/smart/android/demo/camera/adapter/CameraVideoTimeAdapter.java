@@ -1,4 +1,4 @@
-package com.tuya.smart.android.demo.camera;
+package com.tuya.smart.android.demo.camera.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tuya.smart.android.demo.R;
-import com.tuya.smart.android.demo.camera.bean.TimePieceBean;
+import com.tuya.smart.camera.middleware.cloud.bean.TimePieceBean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,13 +19,13 @@ import java.util.List;
  * Created by huangdaju on 2018/3/5.
  */
 
-public class CameraPlaybackTimeAdapter extends RecyclerView.Adapter<CameraPlaybackTimeAdapter.MyViewHolder> {
+public class CameraVideoTimeAdapter extends RecyclerView.Adapter<CameraVideoTimeAdapter.MyViewHolder> {
 
     private LayoutInflater mInflater;
     private List<TimePieceBean> timePieceBeans;
     private OnTimeItemListener listener;
 
-    public CameraPlaybackTimeAdapter(Context context, List<TimePieceBean> timePieceBeans) {
+    public CameraVideoTimeAdapter(Context context, List<TimePieceBean> timePieceBeans) {
         mInflater = LayoutInflater.from(context);
         this.timePieceBeans = timePieceBeans;
     }
@@ -36,7 +36,7 @@ public class CameraPlaybackTimeAdapter extends RecyclerView.Adapter<CameraPlayba
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MyViewHolder(mInflater.inflate(R.layout.activity_camera_playback_time_tem, parent, false));
+        return new MyViewHolder(mInflater.inflate(R.layout.activity_camera_video_time_tem, parent, false));
     }
 
     @Override
