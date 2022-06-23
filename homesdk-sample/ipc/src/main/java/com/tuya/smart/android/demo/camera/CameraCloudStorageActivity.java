@@ -4,14 +4,20 @@ import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_DEV_ID;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
 import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCloud;
 import com.tuya.smart.android.camera.sdk.bean.CloudStatusBean;
 import com.tuya.smart.android.demo.R;
+import com.tuya.smart.android.demo.camera.adapter.CameraCloudVideoDateAdapter;
+import com.tuya.smart.android.demo.camera.adapter.CameraVideoTimeAdapter;
 import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.AbsP2pCameraListener;
 import com.tuya.smart.camera.camerasdk.typlayer.callback.IRegistorIOTCListener;
@@ -30,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * @author surgar
@@ -40,6 +47,10 @@ public class CameraCloudStorageActivity extends AppCompatActivity {
     private TuyaCameraView mVideoView;
     private String devId;
     private ITYCloudCamera cloudCamera;
+    private CameraVideoTimeAdapter timeAdapter;
+    private CameraCloudVideoDateAdapter dateAdapter;
+    private RecyclerView timeRv;
+    private RecyclerView dateRv;
     private List<CloudDayBean> dayBeanList = new ArrayList<>();
     private List<TimePieceBean> timePieceBeans = new ArrayList<>();
     private int soundState;
@@ -53,6 +64,8 @@ public class CameraCloudStorageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera_cloud_storage);
 
         devId = getIntent().getStringExtra(INTENT_DEV_ID);
+
+        initView();
 
         ITuyaIPCCloud cloud = TuyaIPCSdk.getCloud();
         if (cloud != null) {
@@ -76,39 +89,32 @@ public class CameraCloudStorageActivity extends AppCompatActivity {
             cloudCamera.createCloudDevice(cachePath, devId);
         }
 
-        findViewById(R.id.status_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (cloudCamera != null) {
-                    cloudCamera.queryCloudServiceStatus(devId, new ITuyaResultCallback<CloudStatusBean>() {
-                        @Override
-                        public void onSuccess(CloudStatusBean result) {
-                            //Get cloud storage status
-                            ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.current_state) + getServiceStatus(result.getStatus()));
-                        }
-
-                        @Override
-                        public void onError(String errorCode, String errorMessage) {
-                            ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.err_code) + errorCode);
-                        }
-                    });
+        if (cloudCamera != null) {
+            //must query cloud service status before use
+            cloudCamera.queryCloudServiceStatus(devId, new ITuyaResultCallback<CloudStatusBean>() {
+                @Override
+                public void onSuccess(CloudStatusBean result) {
+                    TextView tv = findViewById(R.id.status_tv);
+                    tv.setText(getString(R.string.cloud_status) + getServiceStatus(result.getStatus()));
+                    if (result.getStatus() == SERVES_EXPIRED || result.getStatus() == SERVES_RUNNING) {
+                        findViewById(R.id.query_btn).setVisibility(View.VISIBLE);
+                        findViewById(R.id.ll_bottom).setVisibility(View.VISIBLE);
+                    }
                 }
-            }
-        });
 
-        findViewById(R.id.buy_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //use cloud service purchase component
-            }
-        });
+                @Override
+                public void onError(String errorCode, String errorMessage) {
+                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
+                }
+            });
+        }
 
         findViewById(R.id.query_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (cloudCamera != null) {
-                    //1. Get device cloud storage-related data
-                    cloudCamera.getCloudDays(devId, new ITuyaResultCallback<List<CloudDayBean>>() {
+                    TimeZone timeZone = TimeZone.getDefault();
+                    cloudCamera.getCloudDays(devId, timeZone.getID(), new ITuyaResultCallback<List<CloudDayBean>>() {
                         @Override
                         public void onSuccess(List<CloudDayBean> result) {
                             if (result == null || result.isEmpty()) {
@@ -116,40 +122,17 @@ public class CameraCloudStorageActivity extends AppCompatActivity {
                             } else {
                                 dayBeanList.clear();
                                 dayBeanList.addAll(result);
+                                dateAdapter.notifyDataSetChanged();
+                                dateRv.scrollToPosition(dayBeanList.size() - 1);
                                 ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
                             }
                         }
 
                         @Override
                         public void onError(String errorCode, String errorMessage) {
-                            ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.err_code) + errorCode);
+                            ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_failed));
                         }
                     });
-                }
-            }
-        });
-
-        findViewById(R.id.query_time_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //2. Get time slice at a specified time
-                if (dayBeanList.size() > 0) {
-                    getAppointedDayCloudTimes(dayBeanList.get(0));
-                } else {
-                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.no_data));
-                }
-            }
-        });
-
-
-        findViewById(R.id.start_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (timePieceBeans.size() > 0) {
-                    playCloudDataWithStartTime(timePieceBeans.get(0).getStartTime(), timePieceBeans.get(0).getEndTime(), true);
-                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
-                } else {
-                    ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.no_data));
                 }
             }
         });
@@ -201,11 +184,31 @@ public class CameraCloudStorageActivity extends AppCompatActivity {
         });
     }
 
-    private void getAppointedDayCloudTimes(CloudDayBean dayBean) {
-        if (dayBean == null) {
-            return;
-        }
-        getTimeLineInfoByTimeSlice(devId, String.valueOf(dayBean.getCurrentStartDayTime()), String.valueOf(dayBean.getCurrentDayEndTime()));
+    private void initView() {
+        timeRv = findViewById(R.id.timeRv);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        timeRv.setLayoutManager(mLayoutManager);
+        timeRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        timeAdapter = new CameraVideoTimeAdapter(this, timePieceBeans);
+        timeRv.setAdapter(timeAdapter);
+        timeAdapter.setListener(new CameraVideoTimeAdapter.OnTimeItemListener() {
+            @Override
+            public void onClick(TimePieceBean bean) {
+                playCloudDataWithStartTime(bean.getStartTime(), bean.getEndTime(), bean.isEvent());
+            }
+        });
+
+        dateRv = findViewById(R.id.dateRv);
+        LinearLayoutManager mDateLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        dateRv.setLayoutManager(mDateLayoutManager);
+        dateAdapter = new CameraCloudVideoDateAdapter(this, dayBeanList);
+        dateRv.setAdapter(dateAdapter);
+        dateAdapter.setListener(new CameraCloudVideoDateAdapter.OnTimeItemListener() {
+            @Override
+            public void onClick(CloudDayBean dayBean) {
+                getTimeLineInfoByTimeSlice(devId, String.valueOf(dayBean.getCurrentStartDayTime()), String.valueOf(dayBean.getCurrentDayEndTime()));
+            }
+        });
     }
 
     /**
@@ -225,6 +228,7 @@ public class CameraCloudStorageActivity extends AppCompatActivity {
                     } else {
                         timePieceBeans.clear();
                         timePieceBeans.addAll(result);
+                        timeAdapter.notifyDataSetChanged();
                         ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.operation_suc));
                     }
                 }
@@ -232,31 +236,6 @@ public class CameraCloudStorageActivity extends AppCompatActivity {
                 @Override
                 public void onError(String errorCode, String errorMessage) {
                     ToastUtil.shortToast(CameraCloudStorageActivity.this, getString(R.string.err_code) + errorCode);
-                }
-            });
-        }
-    }
-
-    /**
-     * Obtain the corresponding motion detection data according to the beginning and end of the time segment.
-     *
-     * @param devId  Device id.
-     * @param timeGT Start time.
-     * @param timeLT End time.
-     * @param offset Which page, default 0
-     * @param limit  The number of items pulled each time, the default is -1, which means all data
-     */
-    void getMotionDetectionByTimeSlice(String devId, final String timeGT, final String timeLT, int offset, int limit) {
-        if (cloudCamera != null) {
-            cloudCamera.getMotionDetectionInfo(devId, Long.parseLong(timeGT), Long.parseLong(timeLT), offset, limit, new ITuyaResultCallback<List<TimeRangeBean>>() {
-                @Override
-                public void onSuccess(List<TimeRangeBean> result) {
-
-                }
-
-                @Override
-                public void onError(String errorCode, String errorMessage) {
-
                 }
             });
         }

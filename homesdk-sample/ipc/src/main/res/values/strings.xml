@@ -14,7 +14,7 @@
     <string name="get_clarity">Get clarity</string>
     <string name="playback_title">Playback</string>
     <string name="doorbell_title">Doorbell Call</string>
-    <string name="playback_input_hint">Input query date: </string>
+    <string name="playback_input_hint">Input the query month: </string>
     <string name="query">Query</string>
     <string name="start">Start</string>
     <string name="pause">Pause</string>
@@ -37,10 +37,9 @@
     <string name="duration">Duration: </string>
     <string name="record_start">Start record</string>
     <string name="record_stop">Stop record</string>
-    <string name="cloud_status">Cloud Storage Status</string>
+    <string name="cloud_status">Cloud Storage Status: </string>
     <string name="buy">Buy Cloud Storage</string>
-    <string name="query_cloud">1. Query Cloud Storage Data</string>
-    <string name="query_cloud_of_day">2. Query Appoint Time Data</string>
+    <string name="query_cloud">Query Cloud Storage Data</string>
     <string name="download_suc">Download success</string>
     <string name="operation_failed">Operation failed</string>
     <string name="no_data">No data for query date</string>
