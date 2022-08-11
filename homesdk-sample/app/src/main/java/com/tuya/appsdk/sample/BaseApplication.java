@@ -16,6 +16,7 @@ import android.app.Application;
 
 import com.tuya.appsdk.sample.device.config.util.sp.SpUtils;
 import com.tuya.smart.android.demo.camera.CameraUtils;
+import com.tuya.smart.android.network.TuyaSmartNetWork;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
 import com.tuya.smart.home.sdk.bean.scene.SceneBean;
 import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
@@ -33,6 +34,9 @@ public final class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        TuyaSmartNetWork.mSecurity = false;
+        TuyaSmartNetWork.mSdk = true;
+        TuyaSmartNetWork.mNTY = false;
         TuyaHomeSdk.init(this);
         TuyaHomeSdk.setDebugMode(true);
 

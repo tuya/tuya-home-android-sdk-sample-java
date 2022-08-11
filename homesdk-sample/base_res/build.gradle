@@ -36,5 +36,11 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    api 'com.tuya.smart:tuyasmart:3.36.0'
+    //api 'com.tuya.smart:tuyasmart:3.36.0'
+    //api 'com.tuya.smart:tuyasmart-tuyahomesdk:3.37.0-v3.37.0-mqtt-fix.1'
+    api ("com.tuya.smart:tuyasmart-tuyahomesdk:4.2.0-rc.51"){
+        exclude group:'com.tuya.smart', module: 'tuyasmart-hardware'
+    }
+    api "com.tuya.smart:tuyasmart-hardware:4.2.0-rc.10"
+    api 'com.tuya.smart.android:security_sdk_android:3.14.0r131-rc.2-release'
 }

@@ -26,6 +26,7 @@ Translated with www.DeepL.com/Translator (free version)</string>
     <string name="device_config_mesh_title">BLE Mesh Sub Device</string>
     <string name="device_config_sub_by_app_title">gateway sub config</string>
     <string name="device_config_qr_code_title">QR Code</string>
+    <string name="device_config_ty_link_title">TuyaLink 配网</string>
 
 
     <string name="device_config_wifi_ssid">WIFI SSID</string>

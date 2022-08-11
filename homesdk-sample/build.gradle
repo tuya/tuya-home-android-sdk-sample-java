@@ -9,7 +9,19 @@ buildscript {
                 releasesOnly()
             }
         }
-        jcenter() //Warning:this repository is going to shut down soon
+        jcenter()
+        maven {
+            url "https://maven.tuya-inc.top/nexus/content/repositories/releases/"
+            mavenContent {
+                releasesOnly()
+            }
+        }
+        maven {
+            url "https://maven.tuya-inc.top/nexus/content/repositories/snapshots/"
+            mavenContent {
+                snapshotsOnly()
+            }
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
@@ -29,7 +41,19 @@ allprojects {
                 releasesOnly()
             }
         }
-        jcenter() //Warning:this repository is going to shut down soon
+        jcenter()
+        maven {
+            url "https://maven.tuya-inc.top/nexus/content/repositories/releases/"
+            mavenContent {
+                releasesOnly()
+            }
+        }
+        maven {
+            url "https://maven.tuya-inc.top/nexus/content/repositories/snapshots/"
+            mavenContent {
+                snapshotsOnly()
+            }
+        }
     }
 }
 
