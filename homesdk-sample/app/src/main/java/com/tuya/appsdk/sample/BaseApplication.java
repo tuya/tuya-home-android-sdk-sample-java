@@ -36,18 +36,8 @@ public final class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        TuyaSmartNetWork.mSecurity = false;
-        TuyaSmartNetWork.mSdk = true;
-        TuyaSmartNetWork.mNTY = false;
         TuyaHomeSdk.init(this);
         TuyaHomeSdk.setDebugMode(true);
-
-        ApiUrlProvider provider = new TuyaApiUrlProvider(getApplicationContext(), ApiConfig.EnvConfig.fromValue("preview"));
-        TuyaSdk.init(this,
-                "9q7uv3qndhxxpueendpr",
-                "pv4gf7juuku4snqqc47njwdp8pn5uan4",
-                "android",
-                null, provider);
 
         SpUtils.getInstance().initSp(this);
         ZXingLibrary.initDisplayOpinion(this);

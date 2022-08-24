@@ -3,23 +3,11 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://maven-other.tuya.com/repository/maven-commercial-releases/" }
         maven {
             url "https://maven-other.tuya.com/repository/maven-releases/"
             mavenContent {
                 releasesOnly()
-            }
-        }
-        jcenter()
-        maven {
-            url "https://maven.tuya-inc.top/nexus/content/repositories/releases/"
-            mavenContent {
-                releasesOnly()
-            }
-        }
-        maven {
-            url "https://maven.tuya-inc.top/nexus/content/repositories/snapshots/"
-            mavenContent {
-                snapshotsOnly()
             }
         }
     }
@@ -35,23 +23,11 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://maven-other.tuya.com/repository/maven-commercial-releases/" }
         maven {
             url "https://maven-other.tuya.com/repository/maven-releases/"
             mavenContent {
                 releasesOnly()
-            }
-        }
-        jcenter()
-        maven {
-            url "https://maven.tuya-inc.top/nexus/content/repositories/releases/"
-            mavenContent {
-                releasesOnly()
-            }
-        }
-        maven {
-            url "https://maven.tuya-inc.top/nexus/content/repositories/snapshots/"
-            mavenContent {
-                snapshotsOnly()
             }
         }
     }
