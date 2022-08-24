@@ -152,6 +152,7 @@ public class TyLinkConfigActivity extends AppCompatActivity implements View.OnCl
 
                     @Override
                     public void onActiveSuccess(DeviceBean devResp) {
+                        Toast.makeText(TyLinkConfigActivity.this, "绑定成功!", Toast.LENGTH_SHORT).show();
                         Log.d(TAG,"onActiveSuccess --->>" );
                     }
                 });
