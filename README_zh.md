@@ -25,12 +25,17 @@ signingConfigs {
 
 App 图片
 ---
-<img src="https://images.tuyacn.com/app/liya/tuya-app-sdk-sample/app_sdk_sample_zh.jpg" alt="main_page" style="zoom:30%;" />
+
+![app_sdk_sample1_zh](https://user-images.githubusercontent.com/907831/186592149-3576b3da-a06f-4d53-b16e-29386fd57f8e.jpeg)
 
 问题反馈
 ---
 
 您可以通过**Github Issue** 或通过[**工单**](https://service.console.tuya.com)来进行反馈您所碰到的问题
+
+## 收费标准
+
+Tuya Self-Developed Smart Life App 是涂鸦 IoT App 解决方案的一种，以 App 云端连接服务为主，包含智能生活App SDK, 涉及收费标准详见[产品定价](https://developer.tuya.com/cn/docs/app-development/app-sdk-price?id=Kbu0tcr2cbx3o)
 
 LICENSE
 ---
