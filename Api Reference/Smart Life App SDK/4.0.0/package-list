@@ -1,0 +1,164 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:com.tuya.sdk.ble.core.ability.options/BleConnectParams.Builder///PointingToDeclaration/com/tuya/sdk/ble/core/ability/options/BleConnectParams.Builder.html
+$dokka.location:com.tuya.sdk.ble.core.bean/FileTransferInfo.Builder///PointingToDeclaration/com/tuya/sdk/ble/core/bean/FileTransferInfo.Builder.html
+$dokka.location:com.tuya.sdk.ble.core.protocol.entity/ConnectOpt.Builder///PointingToDeclaration/com/tuya/sdk/ble/core/protocol/entity/ConnectOpt.Builder.html
+$dokka.location:com.tuya.sdk.device.bean/ProductUpgradeEventBean.EventData///PointingToDeclaration/com/tuya/sdk/device/bean/ProductUpgradeEventBean.EventData.html
+$dokka.location:com.tuya.smart.android.ble.api.audio/AudioCommonCommand.CMD///PointingToDeclaration/com/tuya/smart/android/ble/api/audio/AudioCommonCommand.CMD.html
+$dokka.location:com.tuya.smart.android.ble.api.audio/CalendarResult.ToDoItem///PointingToDeclaration/com/tuya/smart/android/ble/api/audio/CalendarResult.ToDoItem.html
+$dokka.location:com.tuya.smart.android.ble.api.audio/LEAudioAlarmClockRequest.Builder///PointingToDeclaration/com/tuya/smart/android/ble/api/audio/LEAudioAlarmClockRequest.Builder.html
+$dokka.location:com.tuya.smart.android.ble.api.audio/LEAudioAlarmClockRequest.CMD///PointingToDeclaration/com/tuya/smart/android/ble/api/audio/LEAudioAlarmClockRequest.CMD.html
+$dokka.location:com.tuya.smart.android.ble.api.audio/LEAudioAlarmClockRequest.TYPE///PointingToDeclaration/com/tuya/smart/android/ble/api/audio/LEAudioAlarmClockRequest.TYPE.html
+$dokka.location:com.tuya.smart.android.ble.api.audio/LEAudioRequest.RequestCmd///PointingToDeclaration/com/tuya/smart/android/ble/api/audio/LEAudioRequest.RequestCmd.html
+$dokka.location:com.tuya.smart.android.ble.api.audio/TuyaLEAudioEnum.LEAudioCode///PointingToDeclaration/com/tuya/smart/android/ble/api/audio/TuyaLEAudioEnum.LEAudioCode.html
+$dokka.location:com.tuya.smart.android.ble.api.audio/TuyaLEAudioEnum.LEAudioFormat///PointingToDeclaration/com/tuya/smart/android/ble/api/audio/TuyaLEAudioEnum.LEAudioFormat.html
+$dokka.location:com.tuya.smart.android.ble.api.audio/TuyaLEAudioEnum.LEAudioState///PointingToDeclaration/com/tuya/smart/android/ble/api/audio/TuyaLEAudioEnum.LEAudioState.html
+$dokka.location:com.tuya.smart.android.ble.api.audio/WeatherResult.DailyWeather///PointingToDeclaration/com/tuya/smart/android/ble/api/audio/WeatherResult.DailyWeather.html
+$dokka.location:com.tuya.smart.android.ble.api/ChannelDataConstants.DATA_COMMOND///PointingToDeclaration/com/tuya/smart/android/ble/api/ChannelDataConstants.DATA_COMMOND.html
+$dokka.location:com.tuya.smart.android.ble.api/ChannelDataConstants.DATA_PRODUCT_TYPE///PointingToDeclaration/com/tuya/smart/android/ble/api/ChannelDataConstants.DATA_PRODUCT_TYPE.html
+$dokka.location:com.tuya.smart.android.ble.api/ChannelDataConstants.ResultKey///PointingToDeclaration/com/tuya/smart/android/ble/api/ChannelDataConstants.ResultKey.html
+$dokka.location:com.tuya.smart.android.ble.api/LeScanSetting.Builder///PointingToDeclaration/com/tuya/smart/android/ble/api/LeScanSetting.Builder.html
+$dokka.location:com.tuya.smart.android.ble.api/ThirdBleScanDeviceBuilder.Builder///PointingToDeclaration/com/tuya/smart/android/ble/api/ThirdBleScanDeviceBuilder.Builder.html
+$dokka.location:com.tuya.smart.android.ble.bean/ThirdConnectInfoBean.ExInfo///PointingToDeclaration/com/tuya/smart/android/ble/bean/ThirdConnectInfoBean.ExInfo.html
+$dokka.location:com.tuya.smart.android.ble.builder/BleConnectBuilder.ExtInfo///PointingToDeclaration/com/tuya/smart/android/ble/builder/BleConnectBuilder.ExtInfo.html
+$dokka.location:com.tuya.smart.android.ble.builder/BleConnectBuilder.Level///PointingToDeclaration/com/tuya/smart/android/ble/builder/BleConnectBuilder.Level.html
+$dokka.location:com.tuya.smart.android.blemesh.bean/SendCommandParams.SendCommandParamsBuilder///PointingToDeclaration/com/tuya/smart/android/blemesh/bean/SendCommandParams.SendCommandParamsBuilder.html
+$dokka.location:com.tuya.smart.android.config.bean/BaseConfigInfo.Builder///PointingToDeclaration/com/tuya/smart/android/config/bean/BaseConfigInfo.Builder.html
+$dokka.location:com.tuya.smart.android.config.bean/MqttConnectConfig.ConnectMethod///PointingToDeclaration/com/tuya/smart/android/config/bean/MqttConnectConfig.ConnectMethod.html
+$dokka.location:com.tuya.smart.android.device.bean/DeviceMultiControlRelationBean.DatapointsBean///PointingToDeclaration/com/tuya/smart/android/device/bean/DeviceMultiControlRelationBean.DatapointsBean.html
+$dokka.location:com.tuya.smart.android.device.bean/DeviceMultiControlRelationBean.McGroupsBean.GroupDetailBean///PointingToDeclaration/com/tuya/smart/android/device/bean/DeviceMultiControlRelationBean.McGroupsBean.GroupDetailBean.html
+$dokka.location:com.tuya.smart.android.device.bean/DeviceMultiControlRelationBean.McGroupsBean///PointingToDeclaration/com/tuya/smart/android/device/bean/DeviceMultiControlRelationBean.McGroupsBean.html
+$dokka.location:com.tuya.smart.android.device.bean/DeviceMultiControlRelationBean.ParentRulesBean.DpListBean///PointingToDeclaration/com/tuya/smart/android/device/bean/DeviceMultiControlRelationBean.ParentRulesBean.DpListBean.html
+$dokka.location:com.tuya.smart.android.device.bean/DeviceMultiControlRelationBean.ParentRulesBean///PointingToDeclaration/com/tuya/smart/android/device/bean/DeviceMultiControlRelationBean.ParentRulesBean.html
+$dokka.location:com.tuya.smart.android.device.bean/MultiControlBean.GroupDetailBean///PointingToDeclaration/com/tuya/smart/android/device/bean/MultiControlBean.GroupDetailBean.html
+$dokka.location:com.tuya.smart.android.device.bean/MultiControlLinkBean.MultiGroupBean.GroupDetailBean///PointingToDeclaration/com/tuya/smart/android/device/bean/MultiControlLinkBean.MultiGroupBean.GroupDetailBean.html
+$dokka.location:com.tuya.smart.android.device.bean/MultiControlLinkBean.MultiGroupBean///PointingToDeclaration/com/tuya/smart/android/device/bean/MultiControlLinkBean.MultiGroupBean.html
+$dokka.location:com.tuya.smart.android.device.bean/MultiControlLinkBean.ParentRulesBean///PointingToDeclaration/com/tuya/smart/android/device/bean/MultiControlLinkBean.ParentRulesBean.html
+$dokka.location:com.tuya.smart.android.device.builder/TuyaTimerBuilder.Builder///PointingToDeclaration/com/tuya/smart/android/device/builder/TuyaTimerBuilder.Builder.html
+$dokka.location:com.tuya.smart.android.user.bean/Region.Server///PointingToDeclaration/com/tuya/smart/android/user/bean/Region.Server.html
+$dokka.location:com.tuya.smart.bluet.api/BeaconFilterSetting.Builder///PointingToDeclaration/com/tuya/smart/bluet/api/BeaconFilterSetting.Builder.html
+$dokka.location:com.tuya.smart.cache.bean/CacheObj.Builder///PointingToDeclaration/com/tuya/smart/cache/bean/CacheObj.Builder.html
+$dokka.location:com.tuya.smart.home.sdk.bean/MemberWrapperBean.Builder///PointingToDeclaration/com/tuya/smart/home/sdk/bean/MemberWrapperBean.Builder.html
+$dokka.location:com.tuya.smart.home.sdk.callback/ITuyaDeviceUpgradeStatusCallback.UpgradeStatusEnum///PointingToDeclaration/com/tuya/smart/home/sdk/callback/ITuyaDeviceUpgradeStatusCallback.UpgradeStatusEnum.html
+$dokka.location:com.tuya.smart.interior.device.bean/DeviceRespBean.CommunicationModule///PointingToDeclaration/com/tuya/smart/interior/device/bean/DeviceRespBean.CommunicationModule.html
+$dokka.location:com.tuya.smart.interior.device.bean/DeviceRespBean.CommunicationModuleT///PointingToDeclaration/com/tuya/smart/interior/device/bean/DeviceRespBean.CommunicationModuleT.html
+$dokka.location:com.tuya.smart.interior.device.bean/DeviceRespBean.DataPointModule///PointingToDeclaration/com/tuya/smart/interior/device/bean/DeviceRespBean.DataPointModule.html
+$dokka.location:com.tuya.smart.interior.device.bean/DeviceRespBean.DevModule///PointingToDeclaration/com/tuya/smart/interior/device/bean/DeviceRespBean.DevModule.html
+$dokka.location:com.tuya.smart.interior.device.bean/DeviceRespBean.DeviceTopoMoudle///PointingToDeclaration/com/tuya/smart/interior/device/bean/DeviceRespBean.DeviceTopoMoudle.html
+$dokka.location:com.tuya.smart.interior.device.bean/DeviceRespBean.ModuleMap///PointingToDeclaration/com/tuya/smart/interior/device/bean/DeviceRespBean.ModuleMap.html
+$dokka.location:com.tuya.smart.interior.device.bean/DeviceRespBean.OTAMoulde///PointingToDeclaration/com/tuya/smart/interior/device/bean/DeviceRespBean.OTAMoulde.html
+$dokka.location:com.tuya.smart.interior.device.bean/DeviceRespBean.OTAMouldeMap///PointingToDeclaration/com/tuya/smart/interior/device/bean/DeviceRespBean.OTAMouldeMap.html
+$dokka.location:com.tuya.smart.interior.device.bean/DeviceRespBean.ShareInfoModule///PointingToDeclaration/com/tuya/smart/interior/device/bean/DeviceRespBean.ShareInfoModule.html
+$dokka.location:com.tuya.smart.interior.device.bean/DpsUpdateInfo.TimeSection///PointingToDeclaration/com/tuya/smart/interior/device/bean/DpsUpdateInfo.TimeSection.html
+$dokka.location:com.tuya.smart.interior.device.confusebean/MQ_802_PushAlarmBean.Object///PointingToDeclaration/com/tuya/smart/interior/device/confusebean/MQ_802_PushAlarmBean.Object.html
+$dokka.location:com.tuya.smart.scene.api.service/IConditionService.DefaultImpls///PointingToDeclaration/com/tuya/smart/scene/api/service/IConditionService.DefaultImpls.html
+$dokka.location:com.tuya.smart.scene.api.service/IExecuteService.DefaultImpls///PointingToDeclaration/com/tuya/smart/scene/api/service/IExecuteService.DefaultImpls.html
+$dokka.location:com.tuya.smart.scene.api.service/IExtService.DefaultImpls///PointingToDeclaration/com/tuya/smart/scene/api/service/IExtService.DefaultImpls.html
+$dokka.location:com.tuya.smart.scene.api.service/IRecommendService.DefaultImpls///PointingToDeclaration/com/tuya/smart/scene/api/service/IRecommendService.DefaultImpls.html
+$dokka.location:com.tuya.smart.scene.lib.util/DeviceUtil.OperateDevActionType///PointingToDeclaration/com/tuya/smart/scene/lib/util/DeviceUtil.OperateDevActionType.html
+$dokka.location:com.tuya.smart.sdk.api.cache/ISmartCacheManager.Entity///PointingToDeclaration/com/tuya/smart/sdk/api/cache/ISmartCacheManager.Entity.html
+$dokka.location:com.tuya.smart.sdk.api.cache/ISmartCacheManager.Relation///PointingToDeclaration/com/tuya/smart/sdk/api/cache/ISmartCacheManager.Relation.html
+$dokka.location:com.tuya.smart.sdk.api/ITuyaGeoFenceOperate.InitialTrigger///PointingToDeclaration/com/tuya/smart/sdk/api/ITuyaGeoFenceOperate.InitialTrigger.html
+$dokka.location:com.tuya.smart.sdk.bean.cache/IDeviceProperty.DevUpgradeStatus///PointingToDeclaration/com/tuya/smart/sdk/bean/cache/IDeviceProperty.DevUpgradeStatus.html
+$dokka.location:com.tuya.smart.sdk.bean.cache/IDeviceProperty.OtaModuleBean///PointingToDeclaration/com/tuya/smart/sdk/bean/cache/IDeviceProperty.OtaModuleBean.html
+$dokka.location:com.tuya.smart.sdk.bean.message/NodisturbDevicesBean.DeviceBean///PointingToDeclaration/com/tuya/smart/sdk/bean/message/NodisturbDevicesBean.DeviceBean.html
+$dokka.location:com.tuya.smart.sdk.bean.push/TuyaPushBean.NotificationBean.ExtraBean///PointingToDeclaration/com/tuya/smart/sdk/bean/push/TuyaPushBean.NotificationBean.ExtraBean.html
+$dokka.location:com.tuya.smart.sdk.bean.push/TuyaPushBean.NotificationBean///PointingToDeclaration/com/tuya/smart/sdk/bean/push/TuyaPushBean.NotificationBean.html
+$dokka.location:com.tuya.smart.sdk.bean/DeviceBean.DevUpgradeStatus///PointingToDeclaration/com/tuya/smart/sdk/bean/DeviceBean.DevUpgradeStatus.html
+$dokka.location:com.tuya.smart.sdk.bean/DeviceBean.EnableState///PointingToDeclaration/com/tuya/smart/sdk/bean/DeviceBean.EnableState.html
+$dokka.location:com.tuya.smart.sdk.bean/ProductBean.SchemaInfo///PointingToDeclaration/com/tuya/smart/sdk/bean/ProductBean.SchemaInfo.html
+$dokka.location:com.tuya.smart.sdk.bean/ProductStandardConfig.FunctionSchemaBean///PointingToDeclaration/com/tuya/smart/sdk/bean/ProductStandardConfig.FunctionSchemaBean.html
+$dokka.location:com.tuya.smart.sdk.bean/ProductStandardConfig.StatusSchemaBean///PointingToDeclaration/com/tuya/smart/sdk/bean/ProductStandardConfig.StatusSchemaBean.html
+$dokka.location:com.tuya.smart.sdk.bean/StandSchema.FunctionSchemaListBean///PointingToDeclaration/com/tuya/smart/sdk/bean/StandSchema.FunctionSchemaListBean.html
+$dokka.location:com.tuya.smart.sdk.bean/StandSchema.StatusSchemaListBean///PointingToDeclaration/com/tuya/smart/sdk/bean/StandSchema.StatusSchemaListBean.html
+$dokka.location:com.tuya.smart.sdk.bean/TimerControlBean.TimerControlBuilder///PointingToDeclaration/com/tuya/smart/sdk/bean/TimerControlBean.TimerControlBuilder.html
+$dokka.location:com.tuya.smart.sdk.bean/UiInfo.UiComponent///PointingToDeclaration/com/tuya/smart/sdk/bean/UiInfo.UiComponent.html
+$dokka.location:com.tuya.smart.sdk.builder/MeshConnectBuilder.Builder///PointingToDeclaration/com/tuya/smart/sdk/builder/MeshConnectBuilder.Builder.html
+com.tuya.sdk.ble.core
+com.tuya.sdk.ble.core.ability
+com.tuya.sdk.ble.core.ability.model
+com.tuya.sdk.ble.core.ability.options
+com.tuya.sdk.ble.core.ability.response
+com.tuya.sdk.ble.core.bean
+com.tuya.sdk.ble.core.protocol.api
+com.tuya.sdk.ble.core.protocol.entity
+com.tuya.sdk.device
+com.tuya.sdk.device.api
+com.tuya.sdk.device.bean
+com.tuya.sdk.device.enums
+com.tuya.sdk.device.event
+com.tuya.sdk.device.presenter
+com.tuya.sdk.user.api
+com.tuya.sdk.user.model
+com.tuya.smart.android.ble
+com.tuya.smart.android.ble.api
+com.tuya.smart.android.ble.api.audio
+com.tuya.smart.android.ble.bean
+com.tuya.smart.android.ble.builder
+com.tuya.smart.android.blemesh
+com.tuya.smart.android.blemesh.api
+com.tuya.smart.android.blemesh.bean
+com.tuya.smart.android.blemesh.builder
+com.tuya.smart.android.blemesh.callback
+com.tuya.smart.android.blemesh.event
+com.tuya.smart.android.camera.api
+com.tuya.smart.android.camera.api.bean
+com.tuya.smart.android.config.api
+com.tuya.smart.android.config.bean
+com.tuya.smart.android.device.api
+com.tuya.smart.android.device.bean
+com.tuya.smart.android.device.builder
+com.tuya.smart.android.device.enums
+com.tuya.smart.android.mqtt
+com.tuya.smart.android.push.bean
+com.tuya.smart.android.sweeper
+com.tuya.smart.android.sweeper.bean
+com.tuya.smart.android.user.api
+com.tuya.smart.android.user.bean
+com.tuya.smart.bluet.api
+com.tuya.smart.cache.api
+com.tuya.smart.cache.bean
+com.tuya.smart.device.bean
+com.tuya.smart.home.sdk.anntation
+com.tuya.smart.home.sdk.api
+com.tuya.smart.home.sdk.api.config
+com.tuya.smart.home.sdk.bean
+com.tuya.smart.home.sdk.bean.scene
+com.tuya.smart.home.sdk.builder
+com.tuya.smart.home.sdk.callback
+com.tuya.smart.home.sdk.constant
+com.tuya.smart.home.sdk.utils
+com.tuya.smart.interior.api
+com.tuya.smart.interior.bean
+com.tuya.smart.interior.callback
+com.tuya.smart.interior.config
+com.tuya.smart.interior.config.bean
+com.tuya.smart.interior.device
+com.tuya.smart.interior.device.bean
+com.tuya.smart.interior.device.config
+com.tuya.smart.interior.device.confusebean
+com.tuya.smart.interior.enums
+com.tuya.smart.interior.event
+com.tuya.smart.interior.hardware
+com.tuya.smart.interior.hardware.builder
+com.tuya.smart.interior.home
+com.tuya.smart.interior.mqtt
+com.tuya.smart.scene.api
+com.tuya.smart.scene.api.service
+com.tuya.smart.scene.api.util
+com.tuya.smart.scene.lib.util
+com.tuya.smart.sdk.api
+com.tuya.smart.sdk.api.bluemesh
+com.tuya.smart.sdk.api.cache
+com.tuya.smart.sdk.api.wifibackup.api
+com.tuya.smart.sdk.api.wifibackup.api.bean
+com.tuya.smart.sdk.bean
+com.tuya.smart.sdk.bean.cache
+com.tuya.smart.sdk.bean.feedback
+com.tuya.smart.sdk.bean.message
+com.tuya.smart.sdk.bean.privacy
+com.tuya.smart.sdk.bean.push
+com.tuya.smart.sdk.builder
+com.tuya.smart.sdk.device.share.api
+com.tuya.smart.sdk.enums
+
