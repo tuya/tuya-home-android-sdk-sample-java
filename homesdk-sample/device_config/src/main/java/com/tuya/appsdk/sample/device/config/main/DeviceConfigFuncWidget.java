@@ -14,20 +14,29 @@ package com.tuya.appsdk.sample.device.config.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.device.config.ap.DeviceConfigAPActivity;
 import com.tuya.appsdk.sample.device.config.ble.DeviceConfigBleAndDualActivity;
 import com.tuya.appsdk.sample.device.config.ez.DeviceConfigEZActivity;
 import com.tuya.appsdk.sample.device.config.mesh.DeviceConfigMeshActivity;
 import com.tuya.appsdk.sample.device.config.scan.DeviceConfigQrCodeDeviceActivity;
+import com.tuya.appsdk.sample.device.config.tylink.TyLinkConfigActivity;
 import com.tuya.appsdk.sample.device.config.zigbee.gateway.DeviceConfigZbGatewayActivity;
 import com.tuya.appsdk.sample.device.config.zigbee.sub.DeviceConfigZbSubDeviceActivity;
 import com.tuya.appsdk.sample.resource.HomeModel;
 import com.tuya.appsdk.sample.device.config.qrcode.QrCodeConfigActivity;
+import com.tuya.sdk.hardware.enums.FrameTypeEnum;
+import com.tuya.smart.android.common.utils.HexUtil;
+import com.tuya.smart.android.common.utils.L;
+import com.tuya.smart.android.common.utils.TyCommonUtil;
+import com.tuya.smart.android.device.TuyaNetworkInterface;
+import com.tuya.smart.android.network.util.TimeStampManager;
 
 import kotlin.jvm.internal.Intrinsics;
 
@@ -179,5 +188,19 @@ public class DeviceConfigFuncWidget {
             }
         });
 
+        rootView.findViewById(R.id.tv_ty_link).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (HomeModel.getCurrentHome(v.getContext()) == 0) {
+                    Toast.makeText(
+                            rootView.getContext(),
+                            rootView.getContext().getString(R.string.home_current_home_tips),
+                            Toast.LENGTH_LONG
+                    ).show();
+                } else {
+                    v.getContext().startActivity(new Intent(v.getContext(), TyLinkConfigActivity.class));
+                }
+            }
+        });
     }
 }

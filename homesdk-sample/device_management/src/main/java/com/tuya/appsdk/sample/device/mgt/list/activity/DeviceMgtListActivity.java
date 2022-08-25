@@ -13,6 +13,7 @@
 package com.tuya.appsdk.sample.device.mgt.list.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -144,7 +145,10 @@ public class DeviceMgtListActivity extends AppCompatActivity {
         TuyaHomeSdk.newHomeInstance(homeId).getHomeDetail(new ITuyaHomeResultCallback() {
             @Override
             public void onSuccess(HomeBean homeBean) {
-
+                Log.d("HomeBean","=====");
+                for (DeviceBean deviceBean :homeBean.getDeviceList()) {
+                    Log.d("HomeBean", "devId = " + deviceBean.getDevId() + " / name = " + deviceBean.getName());
+                }
                 if (type == DeviceListTypePage.NORMAL_DEVICE_LIST) {
                     ArrayList<DeviceBean> deviceList = (ArrayList) homeBean.getDeviceList();
                     if (deviceList != null && deviceList.size() > 0) {

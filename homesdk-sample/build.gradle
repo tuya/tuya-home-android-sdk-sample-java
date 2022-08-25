@@ -3,13 +3,13 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://maven-other.tuya.com/repository/maven-commercial-releases/" }
         maven {
             url "https://maven-other.tuya.com/repository/maven-releases/"
             mavenContent {
                 releasesOnly()
             }
         }
-        jcenter() //Warning:this repository is going to shut down soon
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
@@ -23,13 +23,13 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://maven-other.tuya.com/repository/maven-commercial-releases/" }
         maven {
             url "https://maven-other.tuya.com/repository/maven-releases/"
             mavenContent {
                 releasesOnly()
             }
         }
-        jcenter() //Warning:this repository is going to shut down soon
     }
 }
 

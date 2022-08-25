@@ -28,6 +28,20 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
+        signingConfigs {
+            debug {
+                keyAlias 'xxx'
+                keyPassword 'xxxx'
+                storeFile file('xxx')
+                storePassword 'xxx'
+            }
+            release {
+                keyAlias 'xxxx'
+                keyPassword 'xxx'
+                storeFile file('xxx')
+                storePassword 'xxxx'
+            }
+        }
     }
 
     packagingOptions {
