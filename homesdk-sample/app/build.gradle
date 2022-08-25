@@ -30,16 +30,16 @@ android {
         }
         signingConfigs {
             debug {
-                keyAlias 'ty123456'
-                keyPassword 'ty123456'
-                storeFile file('./../key.jks')
-                storePassword 'ty123456'
+                keyAlias 'xxx'
+                keyPassword 'xxxx'
+                storeFile file('xxx')
+                storePassword 'xxx'
             }
             release {
-                keyAlias 'ty123456'
-                keyPassword 'ty123456'
-                storeFile file('./../key.jks')
-                storePassword 'ty123456'
+                keyAlias 'xxxx'
+                keyPassword 'xxx'
+                storeFile file('xxx')
+                storePassword 'xxxx'
             }
         }
     }
