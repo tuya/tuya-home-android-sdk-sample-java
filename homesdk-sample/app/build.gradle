@@ -45,7 +45,10 @@ android {
     }
 
     packagingOptions {
-        pickFirst 'lib/*/libc++_shared.so' // 多个aar存在此so，需要选择第一个
+        // 多个aar存在此so，需要选择第一个
+        pickFirst 'lib/*/libc++_shared.so'
+        pickFirst 'lib/*/libyuv.so'
+        pickFirst 'lib/*/libopenh264.so'
     }
 
     buildTypes {
@@ -71,8 +74,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
     testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'com.alibaba:fastjson:1.1.67.android'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.14.9'

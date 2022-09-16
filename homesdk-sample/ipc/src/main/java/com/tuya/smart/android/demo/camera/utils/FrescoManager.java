@@ -16,6 +16,7 @@ import com.tuya.smart.android.common.task.TuyaExecutor;
 import java.io.File;
 import java.util.HashSet;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -70,6 +71,12 @@ public class FrescoManager {
             @Override
             public Executor forBackgroundTasks() {
                 return TuyaExecutor.getInstance().getTuyaExecutorService();
+            }
+
+            @Nullable
+            @Override
+            public ScheduledExecutorService scheduledExecutorServiceForBackgroundTasks() {
+                return null;
             }
 
             @Override
