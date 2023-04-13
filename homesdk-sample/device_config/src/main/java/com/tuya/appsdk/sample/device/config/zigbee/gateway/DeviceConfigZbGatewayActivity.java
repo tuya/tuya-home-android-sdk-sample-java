@@ -24,15 +24,15 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.resource.HomeModel;
-import com.tuya.smart.android.hardware.bean.HgwBean;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.api.IGwSearchListener;
-import com.tuya.smart.home.sdk.api.ITuyaGwSearcher;
-import com.tuya.smart.home.sdk.builder.TuyaGwActivatorBuilder;
-import com.tuya.smart.sdk.api.ITuyaActivator;
-import com.tuya.smart.sdk.api.ITuyaActivatorGetToken;
-import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener;
-import com.tuya.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.android.hardware.bean.HgwBean;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.api.IGwSearchListener;
+import com.thingclips.smart.home.sdk.api.IThingGwSearcher;
+import com.thingclips.smart.home.sdk.builder.ThingGwActivatorBuilder;
+import com.thingclips.smart.sdk.api.IThingActivator;
+import com.thingclips.smart.sdk.api.IThingActivatorGetToken;
+import com.thingclips.smart.sdk.api.IThingSmartActivatorListener;
+import com.thingclips.smart.sdk.bean.DeviceBean;
 
 /**
  * Device Configuration ZbGateway Mode Sample
@@ -81,7 +81,7 @@ public class DeviceConfigZbGatewayActivity extends AppCompatActivity implements 
     // Search ZigBee Gateway Device
     private void searchGatewayDevice() {
         setPbViewVisible(true);
-        ITuyaGwSearcher iTuyaGwSearcher = TuyaHomeSdk.getActivatorInstance().newTuyaGwActivator().newSearcher();
+        IThingGwSearcher iTuyaGwSearcher = ThingHomeSdk.getActivatorInstance().newThingGwActivator().newSearcher();
         iTuyaGwSearcher.registerGwSearchListener(new IGwSearchListener() {
             @Override
             public void onDevFind(HgwBean gw) {
@@ -94,8 +94,8 @@ public class DeviceConfigZbGatewayActivity extends AppCompatActivity implements 
     private void getNetworkConfigToken(HgwBean gw) {
         long homeId = HomeModel.getCurrentHome(this);
 
-        TuyaHomeSdk.getActivatorInstance().getActivatorToken(
-                homeId, new ITuyaActivatorGetToken() {
+        ThingHomeSdk.getActivatorInstance().getActivatorToken(
+                homeId, new IThingActivatorGetToken() {
                     @Override
                     public void onSuccess(String token) {
 
@@ -112,13 +112,13 @@ public class DeviceConfigZbGatewayActivity extends AppCompatActivity implements 
 
     // Start network configuration -- ZigBee Gateway
     private void startNetworkConfig(String token, HgwBean hgwBean) {
-        ITuyaActivator activator = TuyaHomeSdk.getActivatorInstance().newGwActivator(
-                new TuyaGwActivatorBuilder()
+        IThingActivator activator = ThingHomeSdk.getActivatorInstance().newGwActivator(
+                new ThingGwActivatorBuilder()
                         .setContext(DeviceConfigZbGatewayActivity.this)
                         .setTimeOut(100)
                         .setToken(token)
                         .setHgwBean(hgwBean)
-                        .setListener(new ITuyaSmartActivatorListener() {
+                        .setListener(new IThingSmartActivatorListener() {
                             @Override
                             public void onError(String errorCode, String errorMsg) {
                                 setPbViewVisible(false);

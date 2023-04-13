@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tuya.smart.android.demo.R;
-import com.tuya.smart.camera.middleware.cloud.bean.CloudDayBean;
+import com.thingclips.smart.camera.middleware.cloud.bean.CloudDayBean;
 
 import java.util.List;
 

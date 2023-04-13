@@ -10,8 +10,8 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ExecutorSupplier;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.listener.RequestListener;
-import com.tuya.imagepipeline.okhttp3.OkHttpImagePipelineConfigFactory;
-import com.tuya.smart.android.common.task.TuyaExecutor;
+import com.thingclips.imagepipeline.okhttp3.OkHttpImagePipelineConfigFactory;
+import com.thingclips.smart.android.common.task.ThingExecutor;
 
 import java.io.File;
 import java.util.HashSet;
@@ -55,25 +55,24 @@ public class FrescoManager {
         builder.setExecutorSupplier(new ExecutorSupplier() {
             @Override
             public Executor forLocalStorageRead() {
-                return TuyaExecutor.getInstance().getTuyaExecutorService();
+                return ThingExecutor.getInstance().getThingExecutorService();
             }
 
             @Override
             public Executor forLocalStorageWrite() {
-                return TuyaExecutor.getInstance().getTuyaExecutorService();
+                return ThingExecutor.getInstance().getThingExecutorService();
             }
 
             @Override
             public Executor forDecode() {
-                return TuyaExecutor.getInstance().getTuyaExecutorService();
+                return ThingExecutor.getInstance().getThingExecutorService();
             }
 
             @Override
             public Executor forBackgroundTasks() {
-                return TuyaExecutor.getInstance().getTuyaExecutorService();
+                return ThingExecutor.getInstance().getThingExecutorService();
             }
 
-            @Nullable
             @Override
             public ScheduledExecutorService scheduledExecutorServiceForBackgroundTasks() {
                 return null;
@@ -81,12 +80,12 @@ public class FrescoManager {
 
             @Override
             public Executor forLightweightBackgroundTasks() {
-                return TuyaExecutor.getInstance().getTuyaExecutorService();
+                return ThingExecutor.getInstance().getThingExecutorService();
             }
 
             @Override
             public Executor forThumbnailProducer() {
-                return TuyaExecutor.getInstance().getTuyaExecutorService();
+                return ThingExecutor.getInstance().getThingExecutorService();
             }
         });
 

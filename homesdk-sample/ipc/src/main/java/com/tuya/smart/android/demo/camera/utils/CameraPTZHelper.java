@@ -13,15 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
-import com.tuya.drawee.view.DecryptImageView;
-import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
-import com.tuya.smart.android.camera.sdk.api.ITuyaIPCPTZ;
-import com.tuya.smart.android.camera.sdk.bean.CollectionPointBean;
-import com.tuya.smart.android.camera.sdk.constant.PTZDPModel;
+import com.thingclips.drawee.view.DecryptImageView;
+import com.thingclips.smart.android.camera.sdk.ThingIPCSdk;
+import com.thingclips.smart.android.camera.sdk.api.IThingIPCPTZ;
+import com.thingclips.smart.android.camera.sdk.bean.CollectionPointBean;
+import com.thingclips.smart.android.camera.sdk.constant.PTZDPModel;
 import com.tuya.smart.android.demo.R;
-import com.tuya.smart.android.device.bean.EnumSchemaBean;
-import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
-import com.tuya.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.android.device.bean.EnumSchemaBean;
+import com.thingclips.smart.home.sdk.callback.IThingResultCallback;
+import com.thingclips.smart.sdk.api.IResultCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,14 +34,14 @@ import java.util.Map;
 public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickListener {
 
     private static final String TAG = "CameraPTZHelper";
-    private final ITuyaIPCPTZ tuyaIPCPTZ;
+    private final IThingIPCPTZ thingIPCPTZ;
     private View ptzBoard;
     private Context context;
     private ProgressDialog progressDialog;
     private int collectionPointSize;
 
     public CameraPTZHelper(String devId) {
-        tuyaIPCPTZ = TuyaIPCSdk.getPTZInstance(devId);
+        thingIPCPTZ = ThingIPCSdk.getPTZInstance(devId);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -55,39 +55,39 @@ public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickLi
         ptzBoard.findViewById(R.id.tv_ptz_top).setOnTouchListener(new PTZControlTouchListener("0"));
         ptzBoard.findViewById(R.id.tv_ptz_right).setOnTouchListener(new PTZControlTouchListener("2"));
         ptzBoard.findViewById(R.id.tv_ptz_bottom).setOnTouchListener(new PTZControlTouchListener("4"));
-        boolean isPTZControl = tuyaIPCPTZ.querySupportByDPCode(PTZDPModel.DP_PTZ_CONTROL);
+        boolean isPTZControl = thingIPCPTZ.querySupportByDPCode(PTZDPModel.DP_PTZ_CONTROL);
         ptzBoard.findViewById(R.id.group_ptz_control).setVisibility(isPTZControl ? View.VISIBLE : View.GONE);
         //Focal
         ptzBoard.findViewById(R.id.tv_focal_increase).setOnTouchListener(new FocalTouchListener("1"));
         ptzBoard.findViewById(R.id.tv_focal_reduce).setOnTouchListener(new FocalTouchListener("0"));
-        boolean isSupportZoom = tuyaIPCPTZ.querySupportByDPCode(PTZDPModel.DP_ZOOM_CONTROL);
+        boolean isSupportZoom = thingIPCPTZ.querySupportByDPCode(PTZDPModel.DP_ZOOM_CONTROL);
         ptzBoard.findViewById(R.id.group_focal).setVisibility(isSupportZoom ? View.VISIBLE : View.GONE);
         //Collection Point
         ptzBoard.findViewById(R.id.tv_collection_add).setOnClickListener(this);
         ptzBoard.findViewById(R.id.tv_collection_delete).setOnClickListener(this);
         ptzBoard.findViewById(R.id.tv_collection_item).setOnClickListener(this);
         ptzBoard.findViewById(R.id.tv_collection_item).setOnLongClickListener(this);
-        boolean isSupportCollection = tuyaIPCPTZ.querySupportByDPCode(PTZDPModel.DP_MEMORY_POINT_SET);
+        boolean isSupportCollection = thingIPCPTZ.querySupportByDPCode(PTZDPModel.DP_MEMORY_POINT_SET);
         ptzBoard.findViewById(R.id.group_collection).setVisibility(isSupportCollection ? View.VISIBLE : View.GONE);
         //Cruise
         TextView tvCruiseSwitch = ptzBoard.findViewById(R.id.tv_cruise_switch);
         tvCruiseSwitch.setOnClickListener(this);
-        boolean isCruiseOpen = Boolean.TRUE == tuyaIPCPTZ.getCurrentValue(PTZDPModel.DP_CRUISE_SWITCH, Boolean.class);
+        boolean isCruiseOpen = Boolean.TRUE == thingIPCPTZ.getCurrentValue(PTZDPModel.DP_CRUISE_SWITCH, Boolean.class);
         tvCruiseSwitch.setText(isCruiseOpen ? "Opened" : "closed");
         ptzBoard.findViewById(R.id.tv_cruise_mode).setOnClickListener(this);
         ptzBoard.findViewById(R.id.tv_cruise_time).setOnClickListener(this);
-        boolean isSupportCruise = tuyaIPCPTZ.querySupportByDPCode(PTZDPModel.DP_CRUISE_SWITCH);
+        boolean isSupportCruise = thingIPCPTZ.querySupportByDPCode(PTZDPModel.DP_CRUISE_SWITCH);
         ptzBoard.findViewById(R.id.group_cruise).setVisibility(isSupportCruise ? View.VISIBLE : View.GONE);
         //Tracking
         TextView tTrackingSwitch = ptzBoard.findViewById(R.id.tv_tracking_switch);
         tTrackingSwitch.setOnClickListener(this);
-        boolean isTrackingOpen = Boolean.TRUE == tuyaIPCPTZ.getCurrentValue(PTZDPModel.DP_MOTION_TRACKING, Boolean.class);
+        boolean isTrackingOpen = Boolean.TRUE == thingIPCPTZ.getCurrentValue(PTZDPModel.DP_MOTION_TRACKING, Boolean.class);
         tTrackingSwitch.setText(isTrackingOpen ? "Opened" : "closed");
-        boolean isSupportTracking = tuyaIPCPTZ.querySupportByDPCode(PTZDPModel.DP_MOTION_TRACKING);
+        boolean isSupportTracking = thingIPCPTZ.querySupportByDPCode(PTZDPModel.DP_MOTION_TRACKING);
         ptzBoard.findViewById(R.id.group_tracking).setVisibility(isSupportTracking ? View.VISIBLE : View.GONE);
         //Preset Point
         ptzBoard.findViewById(R.id.tv_preset_select).setOnClickListener(this);
-        boolean isSupportPreset = tuyaIPCPTZ.querySupportByDPCode(PTZDPModel.DP_PRESET_POINT);
+        boolean isSupportPreset = thingIPCPTZ.querySupportByDPCode(PTZDPModel.DP_PRESET_POINT);
         ptzBoard.findViewById(R.id.group_preset).setVisibility(isSupportPreset ? View.VISIBLE : View.GONE);
 
         View tvPtzEmpty = ptzBoard.findViewById(R.id.tv_ptz_empty);
@@ -123,15 +123,15 @@ public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickLi
             deleteCollectionPoint();
         } else if (v.getId() == R.id.tv_collection_item) {
             if (v.getTag() instanceof CollectionPointBean) {
-                tuyaIPCPTZ.viewCollectionPoint((CollectionPointBean) v.getTag(), new ResultCallback("viewCollectionPoint"));
+                thingIPCPTZ.viewCollectionPoint((CollectionPointBean) v.getTag(), new ResultCallback("viewCollectionPoint"));
             }
         } else if (v.getId() == R.id.tv_cruise_switch) {
-            boolean isOpen = Boolean.TRUE == tuyaIPCPTZ.getCurrentValue(PTZDPModel.DP_CRUISE_SWITCH, Boolean.class);
-            tuyaIPCPTZ.publishDps(PTZDPModel.DP_CRUISE_SWITCH, !isOpen, new ResultCallback("cruise_switch") {
+            boolean isOpen = Boolean.TRUE == thingIPCPTZ.getCurrentValue(PTZDPModel.DP_CRUISE_SWITCH, Boolean.class);
+            thingIPCPTZ.publishDps(PTZDPModel.DP_CRUISE_SWITCH, !isOpen, new ResultCallback("cruise_switch") {
                 @Override
                 public void onSuccess() {
                     super.onSuccess();
-                    boolean isOpen = Boolean.TRUE == tuyaIPCPTZ.getCurrentValue(PTZDPModel.DP_CRUISE_SWITCH, Boolean.class);
+                    boolean isOpen = Boolean.TRUE == thingIPCPTZ.getCurrentValue(PTZDPModel.DP_CRUISE_SWITCH, Boolean.class);
                     ((TextView) v).setText(isOpen ? "Opened" : "closed");
                 }
             });
@@ -141,7 +141,7 @@ public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickLi
             map.put("1", context.getString(R.string.ipc_collection_point_cruise));
             List<String> itemList = new ArrayList<>();
             List<String> modeList = new ArrayList<>();
-            EnumSchemaBean enumSchemaBean = tuyaIPCPTZ.getSchemaProperty(PTZDPModel.DP_CRUISE_MODE, EnumSchemaBean.class);
+            EnumSchemaBean enumSchemaBean = thingIPCPTZ.getSchemaProperty(PTZDPModel.DP_CRUISE_MODE, EnumSchemaBean.class);
             String[] range = enumSchemaBean.getRange().toArray(new String[0]);
             for (String s : range) {
                 String title = map.get(s);
@@ -152,15 +152,15 @@ public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickLi
             }
             showSelectDialog(itemList.toArray(new String[0]), (dialog, which) -> {
                 String mode = modeList.get(which);
-                tuyaIPCPTZ.setCruiseMode(mode, new ResultCallback("setCruiseMode " + mode));
+                thingIPCPTZ.setCruiseMode(mode, new ResultCallback("setCruiseMode " + mode));
             });
         } else if (v.getId() == R.id.tv_cruise_time) {
             String[] items = new String[]{context.getString(R.string.ipc_full_day_cruise), context.getString(R.string.ipc_custom_cruise)};
             showSelectDialog(items, (dialog, which) -> {
                 if (which == 0) {
-                    tuyaIPCPTZ.publishDps(PTZDPModel.DP_CRUISE_TIME_MODE, "0", new ResultCallback("cruise_time_mode 0"));
+                    thingIPCPTZ.publishDps(PTZDPModel.DP_CRUISE_TIME_MODE, "0", new ResultCallback("cruise_time_mode 0"));
                 } else if (which == 1) {
-                    tuyaIPCPTZ.setCruiseTiming("09:00", "16:00", new ResultCallback("cruise_time_mode 1"));
+                    thingIPCPTZ.setCruiseTiming("09:00", "16:00", new ResultCallback("cruise_time_mode 1"));
                 }
             });
         } else if (v.getId() == R.id.tv_tracking_switch) {
@@ -172,12 +172,12 @@ public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickLi
 
     private void onClickTracking(TextView textView) {
         progressDialog.show();
-        boolean isOpen = Boolean.TRUE == tuyaIPCPTZ.getCurrentValue(PTZDPModel.DP_MOTION_TRACKING, Boolean.class);
-        tuyaIPCPTZ.publishDps(PTZDPModel.DP_MOTION_TRACKING, !isOpen, new ResultCallback("motion_tracking") {
+        boolean isOpen = Boolean.TRUE == thingIPCPTZ.getCurrentValue(PTZDPModel.DP_MOTION_TRACKING, Boolean.class);
+        thingIPCPTZ.publishDps(PTZDPModel.DP_MOTION_TRACKING, !isOpen, new ResultCallback("motion_tracking") {
             @Override
             public void onSuccess() {
                 super.onSuccess();
-                boolean isOpen = Boolean.TRUE == tuyaIPCPTZ.getCurrentValue(PTZDPModel.DP_MOTION_TRACKING, Boolean.class);
+                boolean isOpen = Boolean.TRUE == thingIPCPTZ.getCurrentValue(PTZDPModel.DP_MOTION_TRACKING, Boolean.class);
                 textView.setText(isOpen ? "Opened" : "closed");
                 progressDialog.dismiss();
             }
@@ -191,21 +191,21 @@ public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickLi
     }
 
     private void onClickPreset() {
-        EnumSchemaBean enumSchemaBean = tuyaIPCPTZ.getSchemaProperty(PTZDPModel.DP_PRESET_POINT, EnumSchemaBean.class);
+        EnumSchemaBean enumSchemaBean = thingIPCPTZ.getSchemaProperty(PTZDPModel.DP_PRESET_POINT, EnumSchemaBean.class);
         String[] items = enumSchemaBean.getRange().toArray(new String[0]);
-        showSelectDialog(items, (dialog, which) -> tuyaIPCPTZ.publishDps(PTZDPModel.DP_PRESET_POINT, items[which], new ResultCallback("ipc_preset_set " + items[which])));
+        showSelectDialog(items, (dialog, which) -> thingIPCPTZ.publishDps(PTZDPModel.DP_PRESET_POINT, items[which], new ResultCallback("ipc_preset_set " + items[which])));
     }
 
     public void ptzControl(String direction) {
-        tuyaIPCPTZ.publishDps(PTZDPModel.DP_PTZ_CONTROL, direction, new ResultCallback("ptzControl"));
+        thingIPCPTZ.publishDps(PTZDPModel.DP_PTZ_CONTROL, direction, new ResultCallback("ptzControl"));
     }
 
     public void ptzStop() {
-        tuyaIPCPTZ.publishDps(PTZDPModel.DP_PTZ_STOP, true, new ResultCallback("ptzStop"));
+        thingIPCPTZ.publishDps(PTZDPModel.DP_PTZ_STOP, true, new ResultCallback("ptzStop"));
     }
 
     private void requestCollectionPointList() {
-        tuyaIPCPTZ.requestCollectionPointList(new ITuyaResultCallback<List<CollectionPointBean>>() {
+        thingIPCPTZ.requestCollectionPointList(new IThingResultCallback<List<CollectionPointBean>>() {
             @Override
             public void onSuccess(List<CollectionPointBean> result) {
                 DecryptImageView decryptImageView = ptzBoard.findViewById(R.id.iv_collection);
@@ -253,7 +253,7 @@ public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickLi
 
     private void addCollectionPoint() {
         progressDialog.show();
-        tuyaIPCPTZ.addCollectionPoint("Collection" + collectionPointSize++, new IResultCallback() {
+        thingIPCPTZ.addCollectionPoint("Collection" + collectionPointSize++, new IResultCallback() {
             @Override
             public void onError(String code, String error) {
                 Log.d(TAG, "addCollectionPoint invoke error");
@@ -280,7 +280,7 @@ public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickLi
         List<CollectionPointBean> items = new ArrayList<>();
         CollectionPointBean item = (CollectionPointBean) tvCollectionItem.getTag();
         items.add(item);
-        tuyaIPCPTZ.deleteCollectionPoints(items, new IResultCallback() {
+        thingIPCPTZ.deleteCollectionPoints(items, new IResultCallback() {
             @Override
             public void onError(String code, String error) {
                 Log.d(TAG, "deleteCollectionPoint invoke error");
@@ -302,7 +302,7 @@ public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickLi
             if (tvCollectionItem.getTag() instanceof CollectionPointBean) {
                 CollectionPointBean item = (CollectionPointBean) tvCollectionItem.getTag();
                 String nameNew = item.getName() + " New";
-                tuyaIPCPTZ.modifyCollectionPoint(item, nameNew, new IResultCallback() {
+                thingIPCPTZ.modifyCollectionPoint(item, nameNew, new IResultCallback() {
                     @Override
                     public void onError(String code, String error) {
                         Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
@@ -384,10 +384,10 @@ public class CameraPTZHelper implements View.OnClickListener, View.OnLongClickLi
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    tuyaIPCPTZ.publishDps(PTZDPModel.DP_ZOOM_CONTROL, zoom, new ResultCallback("zoom_control" + zoom));
+                    thingIPCPTZ.publishDps(PTZDPModel.DP_ZOOM_CONTROL, zoom, new ResultCallback("zoom_control" + zoom));
                     break;
                 case MotionEvent.ACTION_UP:
-                    tuyaIPCPTZ.publishDps(PTZDPModel.DP_ZOOM_STOP, true, new ResultCallback("zoom_stop"));
+                    thingIPCPTZ.publishDps(PTZDPModel.DP_ZOOM_STOP, true, new ResultCallback("zoom_stop"));
                 default:
                     break;
             }

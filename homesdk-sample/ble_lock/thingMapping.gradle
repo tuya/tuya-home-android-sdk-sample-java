@@ -1,0 +1,216 @@
+import groovy.json.JsonSlurper
+
+/**
+ * 配置要替换的路径(默认配置为项目路径)
+ * @return List<String>
+ */
+private static final List<String> getFilePath(String rootDir) {
+    ArrayList list = new ArrayList<String>()
+    list.add(rootDir)
+    return list
+}
+
+/**
+ * 配置要替换的文件，默认添加替换 kotlin、java 、xml 文件
+ * @return List<String>
+ */
+private static final List<String> getExtensionName() {
+    ArrayList list = new ArrayList<String>()
+    list.add(".kt")
+    list.add(".java")
+    list.add(".xml")
+    return list
+}
+/**
+ * 获取映射文件
+ * @return
+ */
+private static String getMappingFile(String projectDir) {
+    return projectDir + File.separator + "thingMapping.json"
+}
+
+task replaceThing {
+    doLast {
+        def rootDir = project.rootDir.absolutePath
+        println("rootDir=" + rootDir)
+        def projectDir = project.projectDir.absolutePath
+        println("projectDir=" + projectDir)
+        // 1、配置替换的文件路径
+        def filePath = getFilePath(rootDir)
+        // 2、配置要替换的文件(.kt、.java)
+        def extensionList = getExtensionName()
+        // 3、读取映射文件
+        String mappingFile = getMappingFile(projectDir)
+        def mapping = readMappingFile(mappingFile)
+
+        replaceSDKApi(extensionList, filePath, mapping)
+
+        replaceDependencies(filePath, mapping)
+
+    }
+}
+
+
+private static void replaceSDKApi(def extensionList, def filePath, def mapping) {
+    // 1、递归读取文件路径下的所有配置的文件
+    ArrayList<File> files = new ArrayList()
+    filePath.each {
+        ArrayList<File> list = new ArrayList()
+        dfsFile(new File(it), list, extensionList)
+        files.addAll(list)
+    }
+    // 2、通过映射表开始替换
+    files.each {
+        replaceThingFile(it, mapping)
+    }
+}
+
+private static void replaceDependencies(def filePath, def mapping) {
+    ArrayList<File> files = new ArrayList()
+    ArrayList<File> extensionList = new ArrayList()
+    extensionList.add(".gradle")
+    filePath.each {
+        ArrayList<File> list = new ArrayList()
+        dfsFile(new File(it), list, extensionList)
+        files.addAll(list)
+    }
+    files.each {
+        replaceDependenciesFile(it, mapping)
+    }
+}
+
+
+private static void replaceThingFile(File file, def mapping) {
+    println("replaceFile=" + file.absolutePath)
+    FileReader ins = new FileReader(file)
+    BufferedReader bufIn = new BufferedReader(ins)
+    CharArrayWriter tempStream = new CharArrayWriter()
+    String line = null
+    List<String> lines = new ArrayList<>()
+    while ((line = bufIn.readLine()) != null) {
+        line = replaceThingText(file,line, mapping)
+        lines.add(line)
+    }
+    for (int i = 0; i < lines.size(); i++) {
+        tempStream.write(lines[i])
+        if (i < lines.size() - 1) {
+            tempStream.append(System.getProperty("line.separator"))
+        }
+    }
+
+    bufIn.close()
+    FileWriter out = new FileWriter(file)
+    tempStream.writeTo(out)
+    out.close()
+}
+
+
+private static String replaceThingText(File file,String line, def mapping) {
+    mapping.importMap.each { entry ->
+        if (line.contains(entry.key)) {
+            line = line.replace(entry.key, entry.value)
+
+            if (file.name == "AndroidManifest.xml"){
+                println(entry.key + " --- " + entry.value)
+            }
+        }
+    }
+
+    mapping.commonMap.each { entry ->
+        if (line.contains(entry.key)) {
+            line = line.replace(entry.key, entry.value)
+        }
+    }
+    return line
+}
+
+
+private static void replaceDependenciesFile(File file, def mapping) {
+    println("replaceFile=" + file.absolutePath)
+    FileReader ins = new FileReader(file)
+    BufferedReader bufIn = new BufferedReader(ins)
+    CharArrayWriter tempStream = new CharArrayWriter()
+    String line = null
+    List<String> lines = new ArrayList<>()
+    while ((line = bufIn.readLine()) != null) {
+        line = replaceDependenciesText(line, mapping)
+        lines.add(line)
+    }
+    for (int i = 0; i < lines.size(); i++) {
+        tempStream.write(lines[i])
+        if (i < lines.size() - 1) {
+            tempStream.append(System.getProperty("line.separator"))
+        }
+    }
+
+    bufIn.close()
+    FileWriter out = new FileWriter(file)
+    tempStream.writeTo(out)
+    out.close()
+}
+
+private static String replaceDependenciesText(String line, def mapping) {
+    mapping.dependencies.each { it ->
+        def version = it.version
+        it.deps.each { entry ->
+            if (line.contains(entry.key)) {
+                def startIndex = line.indexOf(entry.key)
+                def endIndex = -1
+                if (line.contains("\"")) {
+                    endIndex = line.lastIndexOf("\"")
+                } else if (line.contains("\'")) {
+                    endIndex = line.lastIndexOf("\'")
+                }
+
+                def dep = line.substring(startIndex, endIndex)
+
+                def arr = dep.split(":")
+                if (arr.length == 3) {
+                    def originDep = arr[0] + ":" + arr[1]
+                    if (originDep == entry.key) {
+                        def newDep = entry.value + ":" + version
+                        line = line.replace(dep, newDep)
+                        println("dep=" + dep + " replace to newDep=" + newDep)
+                    }
+                }
+            }
+        }
+    }
+    return line
+}
+
+
+private static def readMappingFile(String mapping) {
+    File mappingFile = new File(mapping)
+    if (!mappingFile.exists()) {
+        throw new FileNotFoundException("FileNotFoundException:" + mapping)
+    }
+    def json = new JsonSlurper().parse(mappingFile)
+    return json
+}
+
+private static void dfsFile(File file, ArrayList<File> list, List<String> extensionList) {
+    if (file.isFile()) {
+        int i = file.absolutePath.lastIndexOf(".")
+        if (i > 0) {
+            // 获取文件扩展名
+            String extension = file.absolutePath.substring(i, file.absolutePath.length())
+            if (extensionList.contains(extension)) {
+                if (extension == ".xml") {
+                    // xml 文件的父级必须是 layout
+                    if (file.parentFile != null && file.parentFile.name == "layout") {
+                        list.add(file)
+                    }else if (file.name == "AndroidManifest.xml"){
+                        list.add(file)
+                    }
+                } else {
+                    list.add(file)
+                }
+            }
+        }
+    } else {
+        file.listFiles().each {
+            dfsFile(it, list, extensionList)
+        }
+    }
+}

@@ -6,14 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
-import com.tuya.smart.android.camera.sdk.api.ICameraConfigInfo;
-import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCore;
-import com.tuya.smart.android.camera.sdk.constant.TuyaIPCConstant;
+import com.thingclips.smart.android.camera.sdk.ThingIPCSdk;
+import com.thingclips.smart.android.camera.sdk.api.ICameraConfigInfo;
+import com.thingclips.smart.android.camera.sdk.api.IThingIPCCore;
+import com.thingclips.smart.android.camera.sdk.constant.ThingIPCConstant;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.adapter.CameraInfoAdapter;
 import com.tuya.smart.android.demo.camera.utils.Constants;
-import com.tuya.smart.camera.ipccamerasdk.p2p.ICameraP2P;
+import com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class CameraInfoActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        ITuyaIPCCore cameraInstance = TuyaIPCSdk.getCameraInstance();
+        IThingIPCCore cameraInstance = ThingIPCSdk.getCameraInstance();
         if (cameraInstance != null) {
             mData = new ArrayList<>();
             mData.add(getString(R.string.low_power) + cameraInstance.isLowPowerDevice(mDevId));

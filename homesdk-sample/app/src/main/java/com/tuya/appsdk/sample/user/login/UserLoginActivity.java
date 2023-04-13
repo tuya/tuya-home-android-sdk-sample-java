@@ -25,10 +25,10 @@ import androidx.appcompat.widget.Toolbar;
 import com.tuya.appsdk.sample.R;
 import com.tuya.appsdk.sample.main.MainSampleListActivity;
 import com.tuya.appsdk.sample.user.resetPassword.UserResetPasswordActivity;
-import com.tuya.smart.android.common.utils.ValidatorUtil;
-import com.tuya.smart.android.user.api.ILoginCallback;
-import com.tuya.smart.android.user.bean.User;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
+import com.thingclips.smart.android.common.utils.ValidatorUtil;
+import com.thingclips.smart.android.user.api.ILoginCallback;
+import com.thingclips.smart.android.user.bean.User;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
 
 /**
  * User Login Example
@@ -92,9 +92,9 @@ public class UserLoginActivity extends AppCompatActivity implements View.OnClick
                 }
             };
             if (ValidatorUtil.isEmail(strAccount)) {
-                TuyaHomeSdk.getUserInstance().loginWithEmail(strCountryCode, strAccount, strPassword, callback);
+                ThingHomeSdk.getUserInstance().loginWithEmail(strCountryCode, strAccount, strPassword, callback);
             } else {
-                TuyaHomeSdk.getUserInstance().loginWithPhonePassword(strCountryCode, strAccount, strPassword, callback);
+                ThingHomeSdk.getUserInstance().loginWithPhonePassword(strCountryCode, strAccount, strPassword, callback);
             }
         } else if (v.getId() == R.id.btnForget) {
             startActivity(new Intent(this, UserResetPasswordActivity.class));

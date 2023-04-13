@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sweeper">扫地机</string>
+    <string name="commonControl">通用dp点控制</string>
+    <string name="p2pConnect">P2P 连接</string>
+    <string name="p2p_step_1">P2P 通道建立连接</string>
+    <string name="p2p_connect_status">p2p通道开启状态</string>
+    <string name="p2p_download_data_status">p2p开启数据下载状态</string>
+    <string name="p2p_stop_data">P2P 停止接收数据</string>
+</resources>

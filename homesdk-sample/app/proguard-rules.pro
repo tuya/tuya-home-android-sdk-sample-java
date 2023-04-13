@@ -25,8 +25,8 @@
 -dontwarn com.alibaba.fastjson.**
 
 #mqtt
--keep class com.tuya.smart.mqttclient.mqttv3.** { *; }
--dontwarn com.tuya.smart.mqttclient.mqttv3.**
+-keep class com.thingclips.smart.mqttclient.mqttv3.** { *; }
+-dontwarn com.thingclips.smart.mqttclient.mqttv3.**
 
 #OkHttp3
 -keep class okhttp3.** { *; }
@@ -38,5 +38,5 @@
 -dontwarn okio.**
 
 #Tuya
--keep class com.tuya.**{*;}
--dontwarn com.tuya.**
+-keep class com.thingclips.**{*;}
+-dontwarn com.thingclips.**

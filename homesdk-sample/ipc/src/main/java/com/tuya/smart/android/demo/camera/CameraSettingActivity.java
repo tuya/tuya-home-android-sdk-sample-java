@@ -13,11 +13,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.utils.Constants;
 import com.tuya.smart.android.demo.camera.utils.DPConstants;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.sdk.api.IDevListener;
-import com.tuya.smart.sdk.api.IResultCallback;
-import com.tuya.smart.sdk.api.ITuyaDevice;
-import com.tuya.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.sdk.api.IDevListener;
+import com.thingclips.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.sdk.api.IThingDevice;
+import com.thingclips.smart.sdk.bean.DeviceBean;
 
 import java.util.Map;
 
@@ -25,7 +25,7 @@ public class CameraSettingActivity extends AppCompatActivity {
 
     private static final String TAG = CameraSettingActivity.class.getSimpleName();
     private String devId;
-    private ITuyaDevice iTuyaDevice;
+    private IThingDevice iTuyaDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,7 +146,7 @@ public class CameraSettingActivity extends AppCompatActivity {
     }
 
     private Object queryValueByDPID(String dpId) {
-        DeviceBean deviceBean = TuyaHomeSdk.getDataInstance().getDeviceBean(devId);
+        DeviceBean deviceBean = ThingHomeSdk.getDataInstance().getDeviceBean(devId);
         if (deviceBean != null) {
             Map<String, Object> dps = deviceBean.getDps();
             if (dps != null) {
@@ -158,7 +158,7 @@ public class CameraSettingActivity extends AppCompatActivity {
 
     private void publishDps(String dpId, Object value) {
         if (iTuyaDevice == null) {
-            iTuyaDevice = TuyaHomeSdk.newDeviceInstance(devId);
+            iTuyaDevice = ThingHomeSdk.newDeviceInstance(devId);
         }
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(dpId, value);
@@ -177,7 +177,7 @@ public class CameraSettingActivity extends AppCompatActivity {
     }
 
     private void listenDPUpdate(String dpId, DPCallback callback) {
-        TuyaHomeSdk.newDeviceInstance(devId).registerDevListener(new IDevListener() {
+        ThingHomeSdk.newDeviceInstance(devId).registerDevListener(new IDevListener() {
             @Override
             public void onDpUpdate(String devId, String dpStr) {
                 if (callback != null) {

@@ -11,18 +11,18 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSONObject;
-import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
-import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCore;
-import com.tuya.smart.android.camera.sdk.api.ITuyaIPCMsg;
+import com.thingclips.smart.android.camera.sdk.ThingIPCSdk;
+import com.thingclips.smart.android.camera.sdk.api.IThingIPCCore;
+import com.thingclips.smart.android.camera.sdk.api.IThingIPCMsg;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.utils.MessageUtil;
-import com.tuya.smart.camera.camerasdk.typlayer.callback.AbsP2pCameraListener;
-import com.tuya.smart.camera.camerasdk.typlayer.callback.IRegistorIOTCListener;
-import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationCallBack;
-import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationDelegateCallBack;
-import com.tuya.smart.camera.ipccamerasdk.msgvideo.ITYCloudVideo;
-import com.tuya.smart.camera.ipccamerasdk.p2p.ICameraP2P;
-import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
+import com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsP2pCameraListener;
+import com.thingclips.smart.camera.camerasdk.thingplayer.callback.IRegistorIOTCListener;
+import com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationCallBack;
+import com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack;
+import com.thingclips.smart.camera.ipccamerasdk.msgvideo.IThingCloudVideo;
+import com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P;
+import com.thingclips.smart.camera.middleware.widget.ThingCameraView;
 import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 
 import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_FAIL;
@@ -36,9 +36,9 @@ public class CameraCloudVideoActivity extends AppCompatActivity {
     private final int MSG_CLOUD_VIDEO_DEVICE = 1000;
 
     private ProgressBar mProgressBar;
-    private TuyaCameraView mCameraView;
+    private ThingCameraView mCameraView;
 
-    private ITYCloudVideo mCloudVideo;
+    private IThingCloudVideo mCloudVideo;
     private String playUrl;
     private String encryptKey;
     private int playDuration;
@@ -117,7 +117,7 @@ public class CameraCloudVideoActivity extends AppCompatActivity {
     }
 
     private void initCloudCamera() {
-        ITuyaIPCMsg message = TuyaIPCSdk.getMessage();
+        IThingIPCMsg message = ThingIPCSdk.getMessage();
         if (message != null) {
             mCloudVideo = message.createVideoMessagePlayer();
         }

@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.device.config.util.sp.SpUtils;
 import com.tuya.appsdk.sample.device.config.zigbee.sub.DeviceConfigZbSubDeviceActivity;
-import com.tuya.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.sdk.bean.DeviceBean;
 
 import java.util.ArrayList;
 

@@ -27,11 +27,11 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.device.config.util.sp.SpUtils;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.builder.TuyaGwSubDevActivatorBuilder;
-import com.tuya.smart.sdk.api.ITuyaActivator;
-import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener;
-import com.tuya.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder;
+import com.thingclips.smart.sdk.api.IThingActivator;
+import com.thingclips.smart.sdk.api.IThingSmartActivatorListener;
+import com.thingclips.smart.sdk.bean.DeviceBean;
 
 /**
  * Device Configuration ZbSubDevice Sample
@@ -114,10 +114,10 @@ public class DeviceConfigZbSubDeviceActivity extends AppCompatActivity implement
 
         setPbViewVisible(true);
 
-        TuyaGwSubDevActivatorBuilder gwSubDevActivatorBuilder = new TuyaGwSubDevActivatorBuilder()
+        ThingGwSubDevActivatorBuilder gwSubDevActivatorBuilder = new ThingGwSubDevActivatorBuilder()
                 .setDevId(currentGatewayId)
                 .setTimeOut(100)
-                .setListener(new ITuyaSmartActivatorListener() {
+                .setListener(new IThingSmartActivatorListener() {
                     @Override
                     public void onError(String errorCode, String errorMsg) {
 
@@ -146,7 +146,7 @@ public class DeviceConfigZbSubDeviceActivity extends AppCompatActivity implement
 
                     }
                 });
-        ITuyaActivator iTuyaActivator = TuyaHomeSdk.getActivatorInstance().newGwSubDevActivator(gwSubDevActivatorBuilder);
+        IThingActivator iTuyaActivator = ThingHomeSdk.getActivatorInstance().newGwSubDevActivator(gwSubDevActivatorBuilder);
         iTuyaActivator.start();
     }
 

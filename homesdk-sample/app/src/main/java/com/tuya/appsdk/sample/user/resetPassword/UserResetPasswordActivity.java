@@ -23,12 +23,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.tuya.appsdk.sample.R;
-import com.tuya.smart.android.user.api.IResetPasswordCallback;
-import com.tuya.smart.android.user.api.IValidateCallback;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.scene.SceneBean;
-import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
-import com.tuya.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.android.user.api.IResetPasswordCallback;
+import com.thingclips.smart.android.user.api.IValidateCallback;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.bean.scene.SceneBean;
+import com.thingclips.smart.home.sdk.callback.IThingResultCallback;
+import com.thingclips.smart.sdk.api.IResultCallback;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -105,7 +105,7 @@ public class UserResetPasswordActivity extends AppCompatActivity implements View
 
             if (isEmail) {
                 // Reset email password
-                TuyaHomeSdk.getUserInstance().resetEmailPassword(
+                ThingHomeSdk.getUserInstance().resetEmailPassword(
                         strCountryCode,
                         strAccount,
                         strCode,
@@ -114,7 +114,7 @@ public class UserResetPasswordActivity extends AppCompatActivity implements View
                 );
             } else {
                 // Reset phone password
-                TuyaHomeSdk.getUserInstance().resetPhonePassword(
+                ThingHomeSdk.getUserInstance().resetPhonePassword(
                         strCountryCode,
                         strAccount,
                         strCode,
@@ -124,7 +124,7 @@ public class UserResetPasswordActivity extends AppCompatActivity implements View
             }
         } else if (v.getId() == R.id.btnCode) {
                     // Get verification code code by phone or Email
-                    TuyaHomeSdk.getUserInstance().sendVerifyCodeWithUserName(
+                    ThingHomeSdk.getUserInstance().sendVerifyCodeWithUserName(
                             strAccount,
                             "",
                             strCountryCode,

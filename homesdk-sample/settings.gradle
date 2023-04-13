@@ -4,5 +4,6 @@ include ':device_management'
 include ':device_config'
 include ':app'
 include ':home'
-
-rootProject.name = "TuyaSDKSample"
+include ':sweeper'
+include ':ble_lock'
+rootProject.name = "ThingSDKSample"

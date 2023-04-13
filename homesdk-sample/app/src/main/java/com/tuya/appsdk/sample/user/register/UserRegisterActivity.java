@@ -23,11 +23,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.tuya.appsdk.sample.R;
-import com.tuya.smart.android.user.api.IRegisterCallback;
-import com.tuya.smart.android.user.api.IValidateCallback;
-import com.tuya.smart.android.user.bean.User;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.android.user.api.IRegisterCallback;
+import com.thingclips.smart.android.user.api.IValidateCallback;
+import com.thingclips.smart.android.user.bean.User;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.sdk.api.IResultCallback;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -103,7 +103,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
 
             if (isEmail) {
                 // Register by email
-                TuyaHomeSdk.getUserInstance().registerAccountWithEmail(
+                ThingHomeSdk.getUserInstance().registerAccountWithEmail(
                         strCountryCode,
                         strAccount,
                         strPassword,
@@ -111,7 +111,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                         callback
                 );
             } else {
-                TuyaHomeSdk.getUserInstance().registerAccountWithPhone(
+                ThingHomeSdk.getUserInstance().registerAccountWithPhone(
                         strCountryCode,
                         strAccount,
                         strPassword,
@@ -121,7 +121,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
             }
         } else if (v.getId() == R.id.btnCode) {
                 // Get verification code code by phone or Email
-                TuyaHomeSdk.getUserInstance().sendVerifyCodeWithUserName(
+                ThingHomeSdk.getUserInstance().sendVerifyCodeWithUserName(
                         strAccount,
                         "",
                         strCountryCode,
@@ -150,4 +150,3 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
         }
     }
 }
-

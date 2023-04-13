@@ -1,62 +1,8 @@
 package com.tuya.smart.android.demo.camera;
 
-import android.Manifest;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import com.alibaba.fastjson.JSONObject;
-import com.tuya.appsdk.sample.resource.HomeModel;
-import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
-import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCore;
-import com.tuya.smart.android.camera.sdk.api.ITuyaIPCDoorbell;
-import com.tuya.smart.android.demo.R;
-import com.tuya.smart.android.demo.camera.utils.CameraPTZHelper;
-import com.tuya.smart.android.demo.camera.utils.Constants;
-import com.tuya.smart.android.demo.camera.utils.DPConstants;
-import com.tuya.smart.android.demo.camera.utils.MessageUtil;
-import com.tuya.smart.android.demo.camera.utils.ToastUtil;
-import com.tuya.smart.camera.camerasdk.typlayer.callback.AbsP2pCameraListener;
-import com.tuya.smart.camera.camerasdk.typlayer.callback.OnRenderDirectionCallback;
-import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationDelegateCallBack;
-import com.tuya.smart.camera.ipccamerasdk.p2p.ICameraP2P;
-import com.tuya.smart.camera.middleware.p2p.ITuyaSmartCameraP2P;
-import com.tuya.smart.camera.middleware.widget.AbsVideoViewCallback;
-import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.ipc.camera.autotesting.activity.AutoCameraTestingProgramListActivity;
-import com.tuya.smart.ipc.camera.cloudtool.activity.CloudToolHomeActivity;
-import com.tuya.smart.sdk.api.IResultCallback;
-import com.tuya.smart.sdk.api.ITuyaDevice;
-import com.tuya.smart.sdk.bean.DeviceBean;
-
-import java.io.File;
-import java.nio.ByteBuffer;
-import java.util.Map;
-import java.util.Objects;
-
 import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_FAIL;
 import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_SUCCESS;
 import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_DEV_ID;
-import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_P2P_TYPE;
 import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_CONNECT;
 import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_GET_VIDEO_CLARITY;
 import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_MUTE;
@@ -67,7 +13,57 @@ import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_TALK_BACK_O
 import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_VIDEO_RECORD_BEGIN;
 import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_VIDEO_RECORD_FAIL;
 import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_VIDEO_RECORD_OVER;
-import static com.tuya.smart.camera.ipccamerasdk.utils.CameraConstant.SDK_PROVIDER_V1;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.alibaba.fastjson.JSONObject;
+import com.thingclips.smart.android.camera.sdk.ThingIPCSdk;
+import com.thingclips.smart.android.camera.sdk.api.IThingIPCCloud;
+import com.thingclips.smart.android.camera.sdk.api.IThingIPCCore;
+import com.thingclips.smart.android.camera.sdk.api.IThingIPCDoorbell;
+import com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsP2pCameraListener;
+import com.thingclips.smart.camera.camerasdk.thingplayer.callback.OnRenderDirectionCallback;
+import com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack;
+import com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P;
+import com.thingclips.smart.camera.middleware.p2p.IThingSmartCameraP2P;
+import com.thingclips.smart.camera.middleware.widget.AbsVideoViewCallback;
+import com.thingclips.smart.camera.middleware.widget.ThingCameraView;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.ipc.camera.autotesting.activity.AutoCameraTestingProgramListActivity;
+import com.thingclips.smart.ipc.camera.cloudtool.activity.CloudToolHomeActivity;
+import com.thingclips.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.sdk.api.IThingDevice;
+import com.thingclips.smart.sdk.bean.DeviceBean;
+import com.tuya.appsdk.sample.resource.HomeModel;
+import com.tuya.smart.android.demo.R;
+import com.tuya.smart.android.demo.camera.utils.CameraPTZHelper;
+import com.tuya.smart.android.demo.camera.utils.Constants;
+import com.tuya.smart.android.demo.camera.utils.DPConstants;
+import com.tuya.smart.android.demo.camera.utils.MessageUtil;
+import com.tuya.smart.android.demo.camera.utils.ToastUtil;
+
+import java.io.File;
+import java.nio.ByteBuffer;
+import java.util.Map;
 
 /**
  * @author chenbj
@@ -76,7 +72,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
 
     private static final String TAG = "CameraPanelActivity";
     private Toolbar toolbar;
-    private TuyaCameraView mVideoView;
+    private ThingCameraView mVideoView;
     private ImageView muteImg;
     private TextView qualityTv;
     private TextView speakTxt, recordTxt, photoTxt, replayTxt, settingTxt, cloudStorageTxt, messageCenterTxt, deviceInfoTxt;
@@ -90,10 +86,13 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
     private int videoClarity = ICameraP2P.HD;
     private String currVideoClarity;
     private String devId;
-    private ITuyaSmartCameraP2P mCameraP2P;
+    private IThingSmartCameraP2P mCameraP2P;
     CameraPTZHelper cameraPTZHelper;
+    private boolean reConnect;
 
-    private Handler mHandler = new Handler() {
+    @SuppressLint("HandlerLeak")
+    private final Handler mHandler = new Handler() {
+        @SuppressLint("HandlerLeak")
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -187,7 +186,8 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
         if (msg.arg1 == ARG1_OPERATE_SUCCESS) {
             preview();
         } else {
-            ToastUtil.shortToast(CameraPanelActivity.this, getString(R.string.connect_failed));
+            Object obj = msg.obj;
+            ToastUtil.shortToast(CameraPanelActivity.this, getString(R.string.connect_failed) + " : " + obj);
         }
     }
 
@@ -282,7 +282,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
 
     private void initData() {
         devId = getIntent().getStringExtra(INTENT_DEV_ID);
-        ITuyaIPCCore cameraInstance = TuyaIPCSdk.getCameraInstance();
+        IThingIPCCore cameraInstance = ThingIPCSdk.getCameraInstance();
         if (cameraInstance != null) {
             mCameraP2P = cameraInstance.createCameraP2P(devId);
         }
@@ -363,6 +363,16 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
             intent1.putExtra(INTENT_DEV_ID, devId);
             startActivity(intent1);
         } else if (id == R.id.cloud_Txt) {
+            // 判断设备是否支持云存储
+            boolean isSupportCloudStorage = false;
+            IThingIPCCloud cloud = ThingIPCSdk.getCloud();
+            if (cloud != null) {
+                isSupportCloudStorage = cloud.isSupportCloudStorage(devId);
+            }
+            if (!isSupportCloudStorage) {
+                ToastUtil.shortToast(CameraPanelActivity.this, getString(R.string.not_support));
+                return;
+            }
             Intent intent2 = new Intent(CameraPanelActivity.this, CameraCloudStorageActivity.class);
             intent2.putExtra(INTENT_DEV_ID, devId);
             startActivity(intent2);
@@ -385,11 +395,11 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
 
                     @Override
                     public void onFailure(int i, int i1, int i2) {
-                        mHandler.sendMessage(MessageUtil.getMessage(MSG_GET_VIDEO_CLARITY, ARG1_OPERATE_FAIL));
+                        mHandler.sendMessage(MessageUtil.getMessage(MSG_GET_VIDEO_CLARITY, ARG1_OPERATE_FAIL, i2));
                     }
                 });
             }
-        } else if ( id == R.id.debug_Txt) {
+        } else if (id == R.id.debug_Txt) {
             String[] items = new String[]{getString(R.string.ipc_sdk_autotest_tools), getString(R.string.ipc_cloud_debug_tools)};
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setItems(items, (dialog, which) -> {
@@ -444,7 +454,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onFailure(int sessionId, int requestId, int errCode) {
                     isRecording = false;
-                    mHandler.sendMessage(MessageUtil.getMessage(MSG_VIDEO_RECORD_OVER, ARG1_OPERATE_FAIL));
+                    mHandler.sendMessage(MessageUtil.getMessage(MSG_VIDEO_RECORD_OVER, ARG1_OPERATE_FAIL, errCode));
                 }
             });
             recordStatue(false);
@@ -467,7 +477,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onFailure(int sessionId, int requestId, int errCode) {
-                mHandler.sendMessage(MessageUtil.getMessage(MSG_SCREENSHOT, ARG1_OPERATE_FAIL));
+                mHandler.sendMessage(MessageUtil.getMessage(MSG_SCREENSHOT, ARG1_OPERATE_FAIL, errCode));
             }
         });
     }
@@ -484,7 +494,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onFailure(int sessionId, int requestId, int errCode) {
-                mHandler.sendMessage(MessageUtil.getMessage(MSG_MUTE, ARG1_OPERATE_FAIL));
+                mHandler.sendMessage(MessageUtil.getMessage(MSG_MUTE, ARG1_OPERATE_FAIL, errCode));
             }
         });
     }
@@ -501,7 +511,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onFailure(int sessionId, int requestId, int errCode) {
                     isSpeaking = false;
-                    mHandler.sendMessage(MessageUtil.getMessage(MSG_TALK_BACK_OVER, ARG1_OPERATE_FAIL));
+                    mHandler.sendMessage(MessageUtil.getMessage(MSG_TALK_BACK_OVER, ARG1_OPERATE_FAIL, errCode));
 
                 }
             });
@@ -536,7 +546,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onFailure(int sessionId, int requestId, int errCode) {
-                mHandler.sendMessage(MessageUtil.getMessage(MSG_SET_CLARITY, ARG1_OPERATE_FAIL));
+                mHandler.sendMessage(MessageUtil.getMessage(MSG_SET_CLARITY, ARG1_OPERATE_FAIL, errCode));
             }
         });
     }
@@ -571,9 +581,9 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
                 });
             }
             if (!mCameraP2P.isConnecting()) {
-                ITuyaIPCCore cameraInstance = TuyaIPCSdk.getCameraInstance();
+                IThingIPCCore cameraInstance = ThingIPCSdk.getCameraInstance();
                 if (cameraInstance != null && cameraInstance.isLowPowerDevice(devId)) {
-                    ITuyaIPCDoorbell doorbell = TuyaIPCSdk.getDoorbell();
+                    IThingIPCDoorbell doorbell = ThingIPCSdk.getDoorbell();
                     if (doorbell != null) {
                         doorbell.wirelessWake(devId);
                     }
@@ -586,14 +596,14 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
 
                     @Override
                     public void onFailure(int i, int i1, int i2) {
-                        mHandler.sendMessage(MessageUtil.getMessage(MSG_CONNECT, ARG1_OPERATE_FAIL));
+                        mHandler.sendMessage(MessageUtil.getMessage(MSG_CONNECT, ARG1_OPERATE_FAIL, i2));
                     }
                 });
             }
         }
     }
 
-    private AbsP2pCameraListener p2pCameraListener = new AbsP2pCameraListener() {
+    private final AbsP2pCameraListener p2pCameraListener = new AbsP2pCameraListener() {
         @Override
         public void onReceiveSpeakerEchoData(ByteBuffer pcm, int sampleRate) {
             if (null != mCameraP2P) {
@@ -602,6 +612,28 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
                 byte[] pcmData = new byte[length];
                 pcm.get(pcmData, 0, length);
                 mCameraP2P.sendAudioTalkData(pcmData, length);
+            }
+        }
+
+        @Override
+        public void onSessionStatusChanged(Object camera, int sessionId, int sessionStatus) {
+            super.onSessionStatusChanged(camera, sessionId, sessionStatus);
+            if (sessionStatus == -3 || sessionStatus == -105) {
+                if (!reConnect) {
+                    reConnect = true;
+                    // 遇到超时/鉴权失败，建议重连一次
+                    mCameraP2P.connect(devId, new OperationDelegateCallBack() {
+                        @Override
+                        public void onSuccess(int i, int i1, String s) {
+                            mHandler.sendMessage(MessageUtil.getMessage(MSG_CONNECT, ARG1_OPERATE_SUCCESS));
+                        }
+
+                        @Override
+                        public void onFailure(int i, int i1, int i2) {
+                            mHandler.sendMessage(MessageUtil.getMessage(MSG_CONNECT, ARG1_OPERATE_FAIL, i2));
+                        }
+                    });
+                }
             }
         }
     };
@@ -656,7 +688,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
 
 
     private boolean querySupportByDPID(String dpId) {
-        DeviceBean deviceBean = TuyaHomeSdk.getDataInstance().getDeviceBean(devId);
+        DeviceBean deviceBean = ThingHomeSdk.getDataInstance().getDeviceBean(devId);
         if (deviceBean != null) {
             Map<String, Object> dps = deviceBean.getDps();
             return dps != null && dps.get(dpId) != null;
@@ -664,11 +696,11 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
         return false;
     }
 
-    private ITuyaDevice iTuyaDevice;
+    private IThingDevice iTuyaDevice;
 
     private void publishDps(String dpId, Object value) {
         if (iTuyaDevice == null) {
-            iTuyaDevice = TuyaHomeSdk.newDeviceInstance(devId);
+            iTuyaDevice = ThingHomeSdk.newDeviceInstance(devId);
         }
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(dpId, value);
@@ -705,7 +737,7 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void unBindDevice() {
-        TuyaHomeSdk.newDeviceInstance(devId).removeDevice(new IResultCallback() {
+        ThingHomeSdk.newDeviceInstance(devId).removeDevice(new IResultCallback() {
             @Override
             public void onError(String s, String s1) {
                 ToastUtil.shortToast(CameraPanelActivity.this, s1);

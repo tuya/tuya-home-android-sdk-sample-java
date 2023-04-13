@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tuya.lock.demo">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <application>
+        <activity
+            android:name="com.tuya.lock.demo.main.DeviceListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.detail.BleLockDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.member.MemberListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.state.ConnectStateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.unlock.BleSwitchLockActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.records.BleLockRecordsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.setting.LockSettingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordMainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordDynamicActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordProListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordProOfflineAddActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.opMode.OpModeListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordOldOfflineListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordOldOfflineAddActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordProOfflineRevokeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordOldOfflineAddRevokeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordOldOnlineListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordSingleRevokeListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.records.BleLockProRecordsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.setting.VoiceSettingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordLockDeviceConfigActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.opMode.OpModeDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordProOnlineDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.password.PasswordOldOnlineDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.member.MemberTimeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.member.MemberDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.code.ShowCodeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.opMode.OpModeUnboundListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.member.MemberSelectListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.detail.DeleteDeviceActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.activity.setting.DpSettingActivity"
+            android:exported="false" />
+
+    </application>
+</manifest>

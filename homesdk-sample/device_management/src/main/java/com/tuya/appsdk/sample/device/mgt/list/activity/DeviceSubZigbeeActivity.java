@@ -24,9 +24,9 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.tuya.appsdk.sample.device.mgt.R;
 import com.tuya.appsdk.sample.device.mgt.list.adapter.DeviceMgtAdapter;
 import com.tuya.appsdk.sample.device.mgt.list.tag.DeviceListTypePage;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.sdk.api.ITuyaDataCallback;
-import com.tuya.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.sdk.api.IThingDataCallback;
+import com.thingclips.smart.sdk.bean.DeviceBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +76,8 @@ public class DeviceSubZigbeeActivity extends AppCompatActivity {
     private void getZbSubDeviceList() {
         String deviceId = getIntent().getStringExtra("deviceId");
 
-        TuyaHomeSdk.newGatewayInstance(deviceId)
-                .getSubDevList(new ITuyaDataCallback<List<DeviceBean>>() {
+        ThingHomeSdk.newGatewayInstance(deviceId)
+                .getSubDevList(new IThingDataCallback<List<DeviceBean>>() {
                     @Override
                     public void onSuccess(List<DeviceBean> result) {
                         deviceMgtAdapter.setData((ArrayList) result, DeviceListTypePage.ZIGBEE_SUB_DEVICE_LIST);

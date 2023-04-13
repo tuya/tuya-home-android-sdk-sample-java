@@ -24,9 +24,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.tuya.appsdk.sample.user.R;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.HomeBean;
-import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.bean.HomeBean;
+import com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback;
 
 import java.util.ArrayList;
 
@@ -86,7 +86,7 @@ public class NewHomeActivity extends AppCompatActivity implements View.OnClickLi
         String homeName = mEtHomeName.getText().toString().trim();
         String city = mEtCity.getText().toString().trim();
 
-        TuyaHomeSdk.getHomeManagerInstance().createHome(
+        ThingHomeSdk.getHomeManagerInstance().createHome(
                 homeName,
                 // Get location by yourself, here just sample as Shanghai's location
                 120.52,
@@ -94,7 +94,7 @@ public class NewHomeActivity extends AppCompatActivity implements View.OnClickLi
                 city,
                 new ArrayList<>(),
 
-                new ITuyaHomeResultCallback() {
+                new IThingHomeResultCallback() {
                     @Override
                     public void onSuccess(HomeBean bean) {
                         Toast.makeText(

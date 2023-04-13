@@ -26,7 +26,7 @@ import com.tuya.appsdk.sample.R;
 import com.tuya.appsdk.sample.main.MainSampleListActivity;
 import com.tuya.appsdk.sample.user.login.UserLoginActivity;
 import com.tuya.appsdk.sample.user.register.UserRegisterActivity;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
 
 /**
  * User Func Navigation Page
@@ -40,7 +40,7 @@ public class UserFuncActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
 
 
-        if (TuyaHomeSdk.getUserInstance().isLogin()) {
+        if (ThingHomeSdk.getUserInstance().isLogin()) {
             startActivity(new Intent(this, MainSampleListActivity.class));
             finish();
         }

@@ -15,14 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
-import com.tuya.drawee.view.DecryptImageView;
-import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
-import com.tuya.smart.android.camera.sdk.api.ITuyaIPCTool;
+import com.thingclips.drawee.view.DecryptImageView;
+import com.thingclips.smart.android.camera.sdk.ThingIPCSdk;
+import com.thingclips.smart.android.camera.sdk.api.IThingIPCTool;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.utils.BitmapUtils;
 import com.tuya.smart.android.demo.camera.utils.ToastUtil;
-import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
-import com.tuya.smart.ipc.messagecenter.bean.CameraMessageBean;
+import com.thingclips.smart.home.sdk.callback.IThingResultCallback;
+import com.thingclips.smart.ipc.messagecenter.bean.CameraMessageBean;
 
 import java.io.File;
 import java.util.List;
@@ -118,9 +118,9 @@ public class AlarmDetectionAdapter extends RecyclerView.Adapter<AlarmDetectionAd
                     //show download encryptedImg button
                     mBtn.setVisibility(View.VISIBLE);
                     mBtn.setOnClickListener(v -> {
-                        ITuyaIPCTool tool = TuyaIPCSdk.getTool();
+                        IThingIPCTool tool = ThingIPCSdk.getTool();
                         if (tool != null) {
-                            tool.downloadEncryptedImg(imageUrl, decryption, new ITuyaResultCallback<Bitmap>() {
+                            tool.downloadEncryptedImg(imageUrl, decryption, new IThingResultCallback<Bitmap>() {
                                 @Override
                                 public void onSuccess(Bitmap result) {
 //                                        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Camera/";

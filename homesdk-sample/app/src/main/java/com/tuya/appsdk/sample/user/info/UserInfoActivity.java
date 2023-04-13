@@ -34,11 +34,11 @@ import androidx.appcompat.widget.Toolbar;
 import com.tuya.appsdk.sample.R;
 import com.tuya.appsdk.sample.resource.HomeModel;
 import com.tuya.appsdk.sample.user.main.UserFuncActivity;
-import com.tuya.smart.android.user.bean.User;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.sdk.TuyaSdk;
-import com.tuya.smart.sdk.api.IResultCallback;
-import com.tuya.smart.sdk.enums.TempUnitEnum;
+import com.thingclips.smart.android.user.bean.User;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.sdk.ThingSdk;
+import com.thingclips.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.sdk.enums.TempUnitEnum;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -80,7 +80,7 @@ public class UserInfoActivity extends AppCompatActivity {
         });
 
 
-        User user = TuyaHomeSdk.getUserInstance().getUser();
+        User user = ThingHomeSdk.getUserInstance().getUser();
 
         TextView tvName = findViewById(R.id.tvName);
         tvName.setText(user.getNickName());
@@ -110,7 +110,7 @@ public class UserInfoActivity extends AppCompatActivity {
                 listPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public final void onItemClick(AdapterView parent, View view, final int position, long id) {
-                        TuyaHomeSdk.getUserInstance().setTempUnit(Intrinsics.areEqual(items.get(position), "°C") ? TempUnitEnum.Celsius : TempUnitEnum.Fahrenheit, new IResultCallback() {
+                        ThingHomeSdk.getUserInstance().setTempUnit(Intrinsics.areEqual(items.get(position), "°C") ? TempUnitEnum.Celsius : TempUnitEnum.Fahrenheit, new IResultCallback() {
                             @Override
                             public void onSuccess() {
                                 Toast.makeText(
@@ -171,7 +171,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                 break;
                         }
 
-                        TuyaSdk.setLatAndLong(lat, lon);
+                        ThingSdk.setLatAndLong(lat, lon);
                         Toast.makeText(UserInfoActivity.this, "success", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -202,7 +202,7 @@ public class UserInfoActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String timezoneId = items.get(position);
-                TuyaHomeSdk.getUserInstance().updateTimeZone(
+                ThingHomeSdk.getUserInstance().updateTimeZone(
                         timezoneId,
                         new IResultCallback() {
                             @Override
@@ -236,7 +236,7 @@ public class UserInfoActivity extends AppCompatActivity {
         findViewById(R.id.deactivate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TuyaHomeSdk.getUserInstance().cancelAccount(new IResultCallback() {
+                ThingHomeSdk.getUserInstance().cancelAccount(new IResultCallback() {
                     @Override
                     public void onError(String code, String error) {
                         Toast.makeText(v.getContext(),

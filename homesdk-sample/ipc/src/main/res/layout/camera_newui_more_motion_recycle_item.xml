@@ -62,7 +62,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <com.tuya.drawee.view.DecryptImageView
+    <com.thingclips.drawee.view.DecryptImageView
         android:id="@+id/iv_time_range_snapshot"
         android:layout_width="match_parent"
         android:layout_height="159dp"

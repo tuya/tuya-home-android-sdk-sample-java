@@ -4,8 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
-import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
-import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCore;
+import com.thingclips.smart.android.camera.sdk.ThingIPCSdk;
+import com.thingclips.smart.android.camera.sdk.api.IThingIPCCore;
 import com.tuya.smart.android.demo.camera.utils.CameraDoorbellManager;
 import com.tuya.smart.android.demo.camera.utils.FrescoManager;
 
@@ -22,7 +22,7 @@ public final class CameraUtils {
     }
 
     public static boolean ipcProcess(Context context, String devId) {
-        ITuyaIPCCore cameraInstance = TuyaIPCSdk.getCameraInstance();
+        IThingIPCCore cameraInstance = ThingIPCSdk.getCameraInstance();
         if (cameraInstance != null) {
             if (cameraInstance.isIPCDevice(devId)) {
                 Intent intent = new Intent(context, CameraPanelActivity.class);

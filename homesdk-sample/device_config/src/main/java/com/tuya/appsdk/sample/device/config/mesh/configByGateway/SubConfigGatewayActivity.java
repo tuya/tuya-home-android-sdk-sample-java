@@ -18,12 +18,12 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.tuya.appsdk.sample.device.config.R;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.builder.TuyaGwSubDevActivatorBuilder;
-import com.tuya.smart.sdk.api.ITuyaActivator;
-import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener;
-import com.tuya.smart.sdk.bean.DeviceBean;
-import com.tuya.smart.sdk.bean.SigMeshBean;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder;
+import com.thingclips.smart.sdk.api.IThingActivator;
+import com.thingclips.smart.sdk.api.IThingSmartActivatorListener;
+import com.thingclips.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.sdk.bean.SigMeshBean;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class SubConfigGatewayActivity extends AppCompatActivity implements View.
     private CircularProgressIndicator cpiLoading;
     private Button mBtnStartConfig;
     private Button mBtnStopConfig;
-    private ITuyaActivator mTuyaGWSubActivator;
+    private IThingActivator mTuyaGWSubActivator;
     private TextView mTvShowGatewayName;
 
     @Override
@@ -97,11 +97,11 @@ public class SubConfigGatewayActivity extends AppCompatActivity implements View.
     public void addSubDevice() {
         Log.d(TAG, "start activator by gateway");
         setPbViewVisible(true);
-        List<SigMeshBean> meshList = TuyaHomeSdk.getSigMeshInstance().getSigMeshList();
+        List<SigMeshBean> meshList = ThingHomeSdk.getSigMeshInstance().getSigMeshList();
         // get mesh. Because there can only be one MESH in a family, here get(0)
         SigMeshBean mSigMeshBean = meshList.get(0);
         // get device list from mesh
-        List<DeviceBean> deviceBeanList = TuyaHomeSdk.newSigMeshDeviceInstance(mSigMeshBean.getMeshId()).getMeshSubDevList();
+        List<DeviceBean> deviceBeanList = ThingHomeSdk.newSigMeshDeviceInstance(mSigMeshBean.getMeshId()).getMeshSubDevList();
 
         if (deviceBeanList != null && deviceBeanList.size() > 0) {
             for (DeviceBean deviceBean : deviceBeanList) {
@@ -111,12 +111,12 @@ public class SubConfigGatewayActivity extends AppCompatActivity implements View.
                     if (!TextUtils.isEmpty(deviceBean.getName()) && deviceBean.getName().length() > 0) {
                         mTvShowGatewayName.setText(deviceBean.getName());
                     }
-                    TuyaGwSubDevActivatorBuilder builder = new TuyaGwSubDevActivatorBuilder()
+                    ThingGwSubDevActivatorBuilder builder = new ThingGwSubDevActivatorBuilder()
                             .setDevId(deviceBean.getDevId())  // gateway DevId
                             .setTimeOut(100) // Timeout: s
                             .setListener(mTuyaSmartActivatorListener);
 
-                    mTuyaGWSubActivator = TuyaHomeSdk.getActivatorInstance().newGwSubDevActivator(builder);
+                    mTuyaGWSubActivator = ThingHomeSdk.getActivatorInstance().newGwSubDevActivator(builder);
                     // start add sub device
                     mTuyaGWSubActivator.start();
                     break;
@@ -127,7 +127,7 @@ public class SubConfigGatewayActivity extends AppCompatActivity implements View.
         }
     }
 
-    private final ITuyaSmartActivatorListener mTuyaSmartActivatorListener = new ITuyaSmartActivatorListener() {
+    private final IThingSmartActivatorListener mTuyaSmartActivatorListener = new IThingSmartActivatorListener() {
         @Override
         public void onError(String errorCode, String errorMsg) {
             Log.d(TAG, "activator error:" + errorMsg);
