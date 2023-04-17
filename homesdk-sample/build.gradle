@@ -4,7 +4,7 @@ buildscript {
         google()
         mavenCentral()
         maven {
-            url "https://maven-other.tuya.com/repository/maven-releases/"
+            url "https://maven-other.tuya.com/repository/maven-commercial-releases/"
             mavenContent {
                 releasesOnly()
             }
@@ -21,20 +21,9 @@ buildscript {
 
 allprojects {
     repositories {
-        // 预发maven仓库
-        maven {
-            url "https://maven.tuya-inc.top/repository/maven-android-pre/"
-        }
-
-        
+        maven { url "https://maven-other.tuya.com/repository/maven-commercial-releases/" }
         google()
         mavenCentral()
-        maven {
-            url "https://maven-other.tuya.com/repository/maven-releases/"
-            mavenContent {
-                releasesOnly()
-            }
-        }
         jcenter() //Warning:this repository is going to shut down soon
     }
 }

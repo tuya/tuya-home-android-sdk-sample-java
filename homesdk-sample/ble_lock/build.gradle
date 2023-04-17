@@ -40,5 +40,5 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.1.67.android'
 
     implementation project(':base_res')
-    implementation 'com.thingclips.smart:thingsmart-lock-sdk:5.0.0'
+    implementation 'com.thingclips.smart:thingsmart-lock-sdk:5.0.2'
 }
