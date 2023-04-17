@@ -2,10 +2,12 @@ plugins {
     id 'com.android.application'
 
 }
+apply from : "thingMapping.gradle"
 
 android {
     signingConfigs {
-        
+
+
     }
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
@@ -28,27 +30,13 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
-        signingConfigs {
-            debug {
-                keyAlias 'xxx'
-                keyPassword 'xxxx'
-                storeFile file('xxx')
-                storePassword 'xxx'
-            }
-            release {
-                keyAlias 'xxxx'
-                keyPassword 'xxx'
-                storeFile file('xxx')
-                storePassword 'xxxx'
-            }
-        }
     }
 
     packagingOptions {
-        // 多个aar存在此so，需要选择第一个
         pickFirst 'lib/*/libc++_shared.so'
         pickFirst 'lib/*/libyuv.so'
         pickFirst 'lib/*/libopenh264.so'
+        pickFirst 'lib/*/liblog.so'
     }
 
     buildTypes {
@@ -74,8 +62,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
     testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation 'com.alibaba:fastjson:1.1.67.android'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.14.9'
@@ -86,6 +74,8 @@ dependencies {
     implementation project(":device_config")
     implementation project(":device_management")
     implementation project(":ipc")
+    implementation project(":sweeper")
+    implementation project(":ble_lock")
 
     implementation 'cn.yipianfengye.android:zxing-library:2.2'
 

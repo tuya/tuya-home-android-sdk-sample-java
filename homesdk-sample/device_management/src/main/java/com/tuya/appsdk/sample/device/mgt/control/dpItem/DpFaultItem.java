@@ -18,7 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.tuya.appsdk.sample.device.mgt.R;
-import com.tuya.smart.android.device.bean.SchemaBean;
+import com.thingclips.smart.android.device.bean.SchemaBean;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

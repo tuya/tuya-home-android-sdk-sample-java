@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sweeper">Sweeper</string>
+    <string name="commonControl">Common Control</string>
+    <string name="p2pConnect">P2P Connect</string>
+    <string name="p2p_step_1">P2P Connect</string>
+    <string name="p2p_connect_status">step1:p2p connect status</string>
+    <string name="p2p_download_data_status">step2:p2p download data status</string>
+    <string name="p2p_stop_data">P2P stop get Data</string>
+</resources>

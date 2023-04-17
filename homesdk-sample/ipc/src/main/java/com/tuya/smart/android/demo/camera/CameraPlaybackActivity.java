@@ -1,5 +1,14 @@
 package com.tuya.smart.android.demo.camera;
 
+import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_FAIL;
+import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_SUCCESS;
+import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_DEV_ID;
+import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_DATA_DATE;
+import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_DATA_DATE_BY_DAY_FAIL;
+import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_DATA_DATE_BY_DAY_SUCC;
+import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_MUTE;
+
+import android.Manifest;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,43 +29,37 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
-import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
-import com.tuya.smart.android.camera.sdk.api.ITuyaIPCCore;
-import com.tuya.smart.android.camera.timeline.OnBarMoveListener;
-import com.tuya.smart.android.camera.timeline.OnSelectedTimeListener;
-import com.tuya.smart.android.camera.timeline.TimeBean;
-import com.tuya.smart.android.camera.timeline.TuyaTimelineView;
-import com.tuya.smart.android.common.utils.L;
+import com.thingclips.smart.android.camera.sdk.ThingIPCSdk;
+import com.thingclips.smart.android.camera.sdk.api.ICameraConfigInfo;
+import com.thingclips.smart.android.camera.sdk.api.IThingIPCCore;
+import com.thingclips.smart.android.camera.timeline.OnBarMoveListener;
+import com.thingclips.smart.android.camera.timeline.OnSelectedTimeListener;
+import com.thingclips.smart.android.camera.timeline.ThingTimelineView;
+import com.thingclips.smart.android.camera.timeline.TimeBean;
+import com.thingclips.smart.android.common.utils.L;
+import com.thingclips.smart.camera.camerasdk.thingplayer.callback.AbsP2pCameraListener;
+import com.thingclips.smart.camera.camerasdk.thingplayer.callback.OperationDelegateCallBack;
+import com.thingclips.smart.camera.camerasdk.thingplayer.callback.ProgressCallBack;
+import com.thingclips.smart.camera.ipccamerasdk.bean.MonthDays;
+import com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P;
+import com.thingclips.smart.camera.middleware.cloud.bean.TimePieceBean;
+import com.thingclips.smart.camera.middleware.p2p.IThingSmartCameraP2P;
+import com.thingclips.smart.camera.middleware.widget.AbsVideoViewCallback;
+import com.thingclips.smart.camera.middleware.widget.ThingCameraView;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.adapter.CameraPlaybackVideoDateAdapter;
 import com.tuya.smart.android.demo.camera.adapter.CameraVideoTimeAdapter;
 import com.tuya.smart.android.demo.camera.bean.RecordInfoBean;
+import com.tuya.smart.android.demo.camera.utils.Constants;
+import com.tuya.smart.android.demo.camera.utils.IPCSavePathUtils;
 import com.tuya.smart.android.demo.camera.utils.MessageUtil;
 import com.tuya.smart.android.demo.camera.utils.ToastUtil;
-import com.tuya.smart.camera.camerasdk.typlayer.callback.AbsP2pCameraListener;
-import com.tuya.smart.camera.camerasdk.typlayer.callback.OperationDelegateCallBack;
-import com.tuya.smart.camera.ipccamerasdk.bean.MonthDays;
-import com.tuya.smart.camera.ipccamerasdk.p2p.ICameraP2P;
-import com.tuya.smart.camera.middleware.cloud.bean.TimePieceBean;
-import com.tuya.smart.camera.middleware.p2p.ITuyaSmartCameraP2P;
-import com.tuya.smart.camera.middleware.widget.AbsVideoViewCallback;
-import com.tuya.smart.camera.middleware.widget.TuyaCameraView;
 
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_FAIL;
-import static com.tuya.smart.android.demo.camera.utils.Constants.ARG1_OPERATE_SUCCESS;
-import static com.tuya.smart.android.demo.camera.utils.Constants.INTENT_DEV_ID;
-import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_DATA_DATE;
-import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_DATA_DATE_BY_DAY_FAIL;
-import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_DATA_DATE_BY_DAY_SUCC;
-import static com.tuya.smart.android.demo.camera.utils.Constants.MSG_MUTE;
 
 
 /**
@@ -66,15 +69,15 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
 
     private static final String TAG = "CameraPlaybackActivity";
     private Toolbar toolbar;
-    private TuyaCameraView mVideoView;
+    private ThingCameraView mVideoView;
     private ImageView muteImg;
     private EditText dateInputEdt;
     private RecyclerView timeRv;
     private RecyclerView dateRv;
-    private TuyaTimelineView timelineView;
+    private ThingTimelineView timelineView;
     private Button queryBtn, pauseBtn, resumeBtn, stopBtn;
 
-    private ITuyaSmartCameraP2P mCameraP2P;
+    private IThingSmartCameraP2P mCameraP2P;
     private static final int ASPECT_RATIO_WIDTH = 9;
     private static final int ASPECT_RATIO_HEIGHT = 16;
     private String devId;
@@ -84,10 +87,13 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
     private List<String> dateList = new ArrayList<>();
 
     private boolean isPlayback = false;
+    private boolean isSupportPlaybackDownload;
+    private boolean isSupportPlaybackDelete;
+    private boolean isDownloading;
 
     private int mPlaybackMute = ICameraP2P.MUTE;
 
-    private Handler mHandler = new Handler() {
+    private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -187,7 +193,6 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         }
     }
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -268,7 +273,7 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         dateAdapter = new CameraPlaybackVideoDateAdapter(this, dateList);
         dateRv.setAdapter(dateAdapter);
 
-        ITuyaIPCCore cameraInstance = TuyaIPCSdk.getCameraInstance();
+        IThingIPCCore cameraInstance = ThingIPCSdk.getCameraInstance();
         if (cameraInstance != null) {
             mCameraP2P = cameraInstance.createCameraP2P(devId);
         }
@@ -300,6 +305,9 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM");
         Date date = new Date(System.currentTimeMillis());
         dateInputEdt.setText(simpleDateFormat.format(date));
+
+        isSupportPlaybackDownload = isSupportPlaybackDownload();
+        isSupportPlaybackDelete = isSupportPlaybackDelete();
     }
 
     private void initListener() {
@@ -308,16 +316,83 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         pauseBtn.setOnClickListener(this);
         resumeBtn.setOnClickListener(this);
         stopBtn.setOnClickListener(this);
+        IPCSavePathUtils ipcSavePathUtils = new IPCSavePathUtils(this);
+
         timeAdapter.setListener(new CameraVideoTimeAdapter.OnTimeItemListener() {
             @Override
             public void onClick(TimePieceBean timePieceBean) {
                 playback(timePieceBean.getStartTime(), timePieceBean.getEndTime(), timePieceBean.getStartTime());
+            }
+
+            @Override
+            public void onLongClick(TimePieceBean timePieceBean) {
+                boolean open_storage = Constants.requestPermission(CameraPlaybackActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE, Constants.EXTERNAL_STORAGE_REQ_CODE, "open_storage");
+                if (isSupportPlaybackDownload && open_storage) {
+                    ToastUtil.shortToast(CameraPlaybackActivity.this, "start download");
+                    // 写文件权限申请
+                    startPlayBackDownload(timePieceBean.getStartTime(), timePieceBean.getEndTime(),
+                            ipcSavePathUtils.recordPathSupportQ(devId), "download_" + System.currentTimeMillis() + ".mp4",
+                            new OperationDelegateCallBack() {
+                                @Override
+                                public void onSuccess(int sessionId, int requestId, String data) {
+                                    L.i(TAG, " startCloudDataDownload onSuccess");
+                                    isDownloading = true;
+                                }
+
+                                @Override
+                                public void onFailure(int sessionId, int requestId, int errCode) {
+                                    L.e(TAG, " startCloudDataDownload onFailure= " + errCode);
+                                    isDownloading = false;
+                                }
+                            }, new ProgressCallBack() {
+                                @Override
+                                public void onProgress(int sessionId, int requestId, int pos, Object camera) {
+                                    L.i(TAG, " startCloudDataDownload onProgress= " + pos);
+                                }
+                            }, new OperationDelegateCallBack() {
+                                @Override
+                                public void onSuccess(int sessionId, int requestId, String data) {
+                                    L.i(TAG, " startCloudDataDownload Finished onSuccess");
+                                    isDownloading = false;
+                                }
+
+                                @Override
+                                public void onFailure(int sessionId, int requestId, int errCode) {
+                                    L.e(TAG, " startCloudDataDownload Finished onFailure= " + errCode);
+                                    isDownloading = false;
+                                }
+                            });
+                }
             }
         });
         dateAdapter.setListener(new CameraPlaybackVideoDateAdapter.OnTimeItemListener() {
             @Override
             public void onClick(String date) {
                 showTimePieceAtDay(date);
+                // 删除操作
+//                if (isSupportPlaybackDelete) {
+//                    deletePlaybackDataByDay(date, new OperationDelegateCallBack() {
+//                        @Override
+//                        public void onSuccess(int sessionId, int requestId, String data) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(int sessionId, int requestId, int errCode) {
+//
+//                        }
+//                    }, new OperationDelegateCallBack() {
+//                        @Override
+//                        public void onSuccess(int sessionId, int requestId, String data) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onFailure(int sessionId, int requestId, int errCode) {
+//
+//                        }
+//                    });
+//                }
             }
         });
     }
@@ -469,6 +544,119 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
         });
     }
 
+    /**
+     * 获取支持的回放倍数（建连之后）
+     */
+    private List<Integer> getSupportPlaySpeedList() {
+        ICameraConfigInfo cameraConfigInfo = ThingIPCSdk.getCameraInstance().getCameraConfig(devId);
+        if (null != cameraConfigInfo) {
+            return cameraConfigInfo.getSupportPlaySpeedList();
+        }
+        return null;
+    }
+
+    /**
+     * 开始回放成功后进行设置倍数回放
+     *
+     * @param speed 回放倍数
+     */
+    private void setPlayBackSpeed(int speed) {
+        if (null != mCameraP2P) {
+            mCameraP2P.setPlayBackSpeed(speed, new OperationDelegateCallBack() {
+                @Override
+                public void onSuccess(int sessionId, int requestId, String data) {
+
+                }
+
+                @Override
+                public void onFailure(int sessionId, int requestId, int errCode) {
+
+                }
+            });
+        }
+    }
+
+    /**
+     * 是否支持回放下载
+     */
+    private boolean isSupportPlaybackDownload() {
+        IThingIPCCore cameraInstance = ThingIPCSdk.getCameraInstance();
+        if (cameraInstance != null) {
+            ICameraConfigInfo cameraConfig = cameraInstance.getCameraConfig(devId);
+            if (cameraConfig != null) {
+                return cameraConfig.isSupportPlaybackDownload();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 回放视频下载，设备侧SDK 支持完整单个/多个连续片段的下载
+     * 需要在开启播放后
+     *
+     * @param downloadStartTime 传选择开始片段的开始时间
+     * @param downloadEndTime   传选择结束片段的结束时间
+     * @param folderPath        下载的路径
+     * @param fileName          下载保存文件名
+     * @param callBack          下载开始回调
+     * @param progressCallBack  下载进度回调
+     * @param finishCallBack    下载结束回调
+     */
+    private void startPlayBackDownload(int downloadStartTime, int downloadEndTime, String folderPath, String fileName,
+                                       OperationDelegateCallBack callBack,
+                                       ProgressCallBack progressCallBack,
+                                       OperationDelegateCallBack finishCallBack) {
+        mCameraP2P.startPlayBackDownload(downloadStartTime, downloadEndTime, folderPath, fileName,
+                callBack, progressCallBack, finishCallBack);
+    }
+
+    /**
+     * 暂停回放下载
+     */
+    private void pausePlayBackDownload(OperationDelegateCallBack callBack) {
+        mCameraP2P.pausePlayBackDownload(callBack);
+    }
+
+    /**
+     * 恢复回放下载
+     */
+    private void resumePlayBackDownload(OperationDelegateCallBack callBack) {
+        mCameraP2P.resumePlayBackDownload(callBack);
+    }
+
+    /**
+     * 停止回放下载
+     */
+    private void stopPlayBackDownload(OperationDelegateCallBack callBack) {
+        mCameraP2P.stopPlayBackDownload(callBack);
+    }
+
+    /**
+     * 查询视频是否支持删除
+     */
+    private boolean isSupportPlaybackDelete() {
+        IThingIPCCore cameraInstance = ThingIPCSdk.getCameraInstance();
+        if (cameraInstance != null) {
+            ICameraConfigInfo cameraConfig = cameraInstance.getCameraConfig(devId);
+            if (cameraConfig != null) {
+                return cameraConfig.isSupportPlaybackDelete();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 删除指定日期的视频
+     *
+     * @param day            日期 格式为 yyyyMMdd
+     * @param callBack       操作回调
+     * @param finishCallBack 结束回调
+     */
+    private void deletePlaybackDataByDay(String day, OperationDelegateCallBack callBack,
+                                         OperationDelegateCallBack finishCallBack) {
+        mCameraP2P.deletePlaybackDataByDay(day, callBack, finishCallBack);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -521,7 +709,6 @@ public class CameraPlaybackActivity extends AppCompatActivity implements View.On
             }
         }
     }
-
 
     private void showEmptyToast() {
         runOnUiThread(new Runnable() {

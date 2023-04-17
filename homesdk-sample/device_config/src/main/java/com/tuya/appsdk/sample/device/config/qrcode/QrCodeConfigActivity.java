@@ -27,17 +27,17 @@ import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.device.config.ap.DeviceConfigAPActivity;
 import com.tuya.appsdk.sample.device.config.util.qrcode.QRCodeUtil;
 import com.tuya.appsdk.sample.resource.HomeModel;
-import com.tuya.smart.android.common.utils.L;
-import com.tuya.smart.android.common.utils.WiFiUtil;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.builder.ActivatorBuilder;
-import com.tuya.smart.home.sdk.builder.TuyaCameraActivatorBuilder;
-import com.tuya.smart.sdk.api.ITuyaActivatorGetToken;
-import com.tuya.smart.sdk.api.ITuyaCameraDevActivator;
-import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener;
-import com.tuya.smart.sdk.api.ITuyaSmartCameraActivatorListener;
-import com.tuya.smart.sdk.bean.DeviceBean;
-import com.tuya.smart.sdk.enums.ActivatorModelEnum;
+import com.thingclips.smart.android.common.utils.L;
+import com.thingclips.smart.android.common.utils.WiFiUtil;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.builder.ActivatorBuilder;
+import com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder;
+import com.thingclips.smart.sdk.api.IThingActivatorGetToken;
+import com.thingclips.smart.sdk.api.IThingCameraDevActivator;
+import com.thingclips.smart.sdk.api.IThingSmartActivatorListener;
+import com.thingclips.smart.sdk.api.IThingSmartCameraActivatorListener;
+import com.thingclips.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.sdk.enums.ActivatorModelEnum;
 
 /**
  * QR code device config, generally used for ipc device.
@@ -52,7 +52,7 @@ public class QrCodeConfigActivity extends AppCompatActivity implements View.OnCl
     private EditText mEtInputWifiSSid;
     private EditText mEtInputWifiPwd;
     private Button mBtnSave;
-    private ITuyaCameraDevActivator mTuyaActivator;
+    private IThingCameraDevActivator mTuyaActivator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,18 +87,18 @@ public class QrCodeConfigActivity extends AppCompatActivity implements View.OnCl
             long homeId = HomeModel.getCurrentHome(this);
 
             // Get Network Configuration Token
-            TuyaHomeSdk.getActivatorInstance().getActivatorToken(homeId,
-                    new ITuyaActivatorGetToken() {
+            ThingHomeSdk.getActivatorInstance().getActivatorToken(homeId,
+                    new IThingActivatorGetToken() {
                         @Override
                         public void onSuccess(String token) {
                             //Create and show qrCode
-                            TuyaCameraActivatorBuilder builder = new TuyaCameraActivatorBuilder()
+                            ThingCameraActivatorBuilder builder = new ThingCameraActivatorBuilder()
                                     .setToken(token)
                                     .setPassword(wifiPwd)
                                     .setTimeOut(100)
                                     .setContext(QrCodeConfigActivity.this)
                                     .setSsid(wifiSSId)
-                                    .setListener(new ITuyaSmartCameraActivatorListener() {
+                                    .setListener(new IThingSmartCameraActivatorListener() {
                                         @Override
                                         public void onQRCodeSuccess(String qrcodeUrl) {
                                             final Bitmap bitmap;
@@ -127,7 +127,7 @@ public class QrCodeConfigActivity extends AppCompatActivity implements View.OnCl
                                             Toast.makeText(QrCodeConfigActivity.this,"config success!",Toast.LENGTH_LONG).show();
                                         }
                                     });
-                            mTuyaActivator = TuyaHomeSdk.getActivatorInstance().newCameraDevActivator(builder);
+                            mTuyaActivator = ThingHomeSdk.getActivatorInstance().newCameraDevActivator(builder);
                             mTuyaActivator.createQRCode();
                             mTuyaActivator.start();
                         }

@@ -22,13 +22,13 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.slider.Slider;
 import com.tuya.appsdk.sample.device.mgt.R;
-import com.tuya.smart.android.blemesh.api.ITuyaBlueMeshDevice;
-import com.tuya.smart.android.device.bean.SchemaBean;
-import com.tuya.smart.android.device.bean.ValueSchemaBean;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.utils.SchemaMapper;
-import com.tuya.smart.sdk.api.IResultCallback;
-import com.tuya.smart.sdk.api.ITuyaDevice;
+import com.thingclips.smart.android.blemesh.api.IThingBlueMeshDevice;
+import com.thingclips.smart.android.device.bean.SchemaBean;
+import com.thingclips.smart.android.device.bean.ValueSchemaBean;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.utils.SchemaMapper;
+import com.thingclips.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.sdk.api.IThingDevice;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -57,7 +57,7 @@ public class DpIntegerItem extends FrameLayout {
                          int defStyle,
                          final SchemaBean schemaBean,
                          int value,
-                         final ITuyaDevice device) {
+                         final IThingDevice device) {
         super(context, attrs, defStyle);
 
         inflate(context, R.layout.device_mgt_item_dp_integer, this);
@@ -120,18 +120,18 @@ public class DpIntegerItem extends FrameLayout {
     }
 
     // $FF: synthetic method
-    public DpIntegerItem(Context context, AttributeSet attrs, int defStyle, SchemaBean schemaBean, int value, ITuyaDevice device, int var7) {
+    public DpIntegerItem(Context context, AttributeSet attrs, int defStyle, SchemaBean schemaBean, int value, IThingDevice device, int var7) {
 
         this(context, attrs, defStyle, schemaBean, value, device);
     }
 
     @JvmOverloads
-    public DpIntegerItem(@NotNull Context context, @Nullable AttributeSet attrs, @NotNull SchemaBean schemaBean, int value, @NotNull ITuyaDevice device) {
+    public DpIntegerItem(@NotNull Context context, @Nullable AttributeSet attrs, @NotNull SchemaBean schemaBean, int value, @NotNull IThingDevice device) {
         this(context, attrs, 0, schemaBean, value, device, 4);
     }
 
     @JvmOverloads
-    public DpIntegerItem(@NotNull Context context, @NotNull SchemaBean schemaBean, int value, @NotNull ITuyaDevice device) {
+    public DpIntegerItem(@NotNull Context context, @NotNull SchemaBean schemaBean, int value, @NotNull IThingDevice device) {
         this(context, null, 0, schemaBean, value, device);
     }
 

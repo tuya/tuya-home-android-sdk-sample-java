@@ -20,7 +20,7 @@
         android:layout_height="240dp"
         android:layout_below="@id/toolbar_view">
 
-        <com.tuya.smart.camera.middleware.widget.TuyaCameraView
+        <com.thingclips.smart.camera.middleware.widget.ThingCameraView
             android:id="@+id/camera_video_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.tuya.smart.android.camera.timeline.TuyaTimelineView
+        <com.thingclips.smart.android.camera.timeline.ThingTimelineView
             app:timeScaleColor="@color/black"
             app:linesColor="@color/black"
             app:bubbleColor="@color/gray"
@@ -53,7 +53,7 @@
             app:bottomTextMargin="5dp"
             android:id="@+id/timeline"
             android:layout_width="match_parent"
-            android:layout_height="60dp"></com.tuya.smart.android.camera.timeline.TuyaTimelineView>
+            android:layout_height="60dp" />
 
     </RelativeLayout>
 
@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/query_ll"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_marginRight="10dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/query_list"

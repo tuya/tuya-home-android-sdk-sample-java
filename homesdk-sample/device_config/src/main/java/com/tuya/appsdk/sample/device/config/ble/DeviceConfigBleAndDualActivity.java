@@ -24,22 +24,22 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.resource.HomeModel;
-import com.tuya.smart.android.ble.api.BleConfigType;
-import com.tuya.smart.android.ble.api.LeScanSetting;
-import com.tuya.smart.android.ble.api.ScanDeviceBean;
-import com.tuya.smart.android.ble.api.ScanType;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.ConfigProductInfoBean;
-import com.tuya.smart.sdk.api.IBleActivator;
-import com.tuya.smart.sdk.api.IBleActivatorListener;
-import com.tuya.smart.sdk.api.IMultiModeActivator;
-import com.tuya.smart.sdk.api.IMultiModeActivatorListener;
-import com.tuya.smart.sdk.api.ITuyaActivator;
-import com.tuya.smart.sdk.api.ITuyaActivatorGetToken;
-import com.tuya.smart.sdk.api.ITuyaDataCallback;
-import com.tuya.smart.sdk.bean.BleActivatorBean;
-import com.tuya.smart.sdk.bean.DeviceBean;
-import com.tuya.smart.sdk.bean.MultiModeActivatorBean;
+import com.thingclips.smart.android.ble.api.BleConfigType;
+import com.thingclips.smart.android.ble.api.LeScanSetting;
+import com.thingclips.smart.android.ble.api.ScanDeviceBean;
+import com.thingclips.smart.android.ble.api.ScanType;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.bean.ConfigProductInfoBean;
+import com.thingclips.smart.sdk.api.IBleActivator;
+import com.thingclips.smart.sdk.api.IBleActivatorListener;
+import com.thingclips.smart.sdk.api.IMultiModeActivator;
+import com.thingclips.smart.sdk.api.IMultiModeActivatorListener;
+import com.thingclips.smart.sdk.api.IThingActivator;
+import com.thingclips.smart.sdk.api.IThingActivatorGetToken;
+import com.thingclips.smart.sdk.api.IThingDataCallback;
+import com.thingclips.smart.sdk.bean.BleActivatorBean;
+import com.thingclips.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.sdk.bean.MultiModeActivatorBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,8 +68,8 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
     private static final String TAG = "BLE";
     private Button mBtnScan, mBtnStop;
     private CircularProgressIndicator cpiLoading;
-    private static IBleActivator mBleActivator = TuyaHomeSdk.getActivator().newBleActivator();
-    private static IMultiModeActivator mMultiModeActivator = TuyaHomeSdk.getActivator().newMultiModeActivator();
+    private static IBleActivator mBleActivator = ThingHomeSdk.getActivator().newBleActivator();
+    private static IMultiModeActivator mMultiModeActivator = ThingHomeSdk.getActivator().newMultiModeActivator();
 
     private final List<ScanDeviceBean> scanDeviceBeanList = new ArrayList<>();
     private final List<ConfigProductInfoBean> infoBeanList = new ArrayList<>();
@@ -126,7 +126,7 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
                 .build();
 
         // start scan
-        TuyaHomeSdk.getBleOperator().startLeScan(scanSetting, bean -> {
+        ThingHomeSdk.getBleOperator().startLeScan(scanSetting, bean -> {
             Log.d(TAG, "扫描结果:" + bean.getUuid());
             scanDeviceBeanList.add(bean);
             getDeviceInfo(bean);
@@ -134,14 +134,14 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
     }
 
     private void stopScan() {
-        TuyaHomeSdk.getBleOperator().stopLeScan();
+        ThingHomeSdk.getBleOperator().stopLeScan();
     }
 
     private void getDeviceInfo(ScanDeviceBean scanDeviceBean) {
-        TuyaHomeSdk.getActivatorInstance().getActivatorDeviceInfo(scanDeviceBean.getProductId(),
+        ThingHomeSdk.getActivatorInstance().getActivatorDeviceInfo(scanDeviceBean.getProductId(),
                 scanDeviceBean.getUuid(),
                 scanDeviceBean.getMac(),
-                new ITuyaDataCallback<ConfigProductInfoBean>() {
+                new IThingDataCallback<ConfigProductInfoBean>() {
                     @Override
                     public void onSuccess(ConfigProductInfoBean result) {
                         infoBeanList.add(result);
@@ -236,8 +236,8 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
     private void startDualActivator(int pos, String ssid, String pwd) {
         cpiLoading.setVisibility(View.VISIBLE);
         long homeId = HomeModel.getCurrentHome(this);
-        TuyaHomeSdk.getActivatorInstance().getActivatorToken(homeId,
-                new ITuyaActivatorGetToken() {
+        ThingHomeSdk.getActivatorInstance().getActivatorToken(homeId,
+                new IThingActivatorGetToken() {
 
                     // get Token
                     @Override

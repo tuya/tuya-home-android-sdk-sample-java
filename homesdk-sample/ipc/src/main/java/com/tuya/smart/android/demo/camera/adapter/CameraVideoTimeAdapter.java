@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.thingclips.smart.camera.middleware.cloud.bean.TimePieceBean;
 import com.tuya.smart.android.demo.R;
-import com.tuya.smart.camera.middleware.cloud.bean.TimePieceBean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,6 +54,15 @@ public class CameraVideoTimeAdapter extends RecyclerView.Adapter<CameraVideoTime
                 }
             }
         });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (null != listener) {
+                    listener.onLongClick(ipcVideoBean);
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -94,5 +103,7 @@ public class CameraVideoTimeAdapter extends RecyclerView.Adapter<CameraVideoTime
 
     public interface OnTimeItemListener {
         void onClick(TimePieceBean o);
+
+        void onLongClick(TimePieceBean o);
     }
 }

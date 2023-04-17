@@ -24,10 +24,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.tuya.appsdk.sample.user.R;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.HomeBean;
-import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback;
-import com.tuya.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.bean.HomeBean;
+import com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback;
+import com.thingclips.smart.sdk.api.IResultCallback;
 
 import java.util.ArrayList;
 
@@ -76,7 +76,7 @@ public class HomeEditActivity extends AppCompatActivity implements View.OnClickL
 
         mBtDone.setText(getString(R.string.home_done));
 
-        TuyaHomeSdk.newHomeInstance(mHomeId).getHomeDetail(new ITuyaHomeResultCallback() {
+        ThingHomeSdk.newHomeInstance(mHomeId).getHomeDetail(new IThingHomeResultCallback() {
             @Override
             public void onSuccess(HomeBean bean) {
                 mEtHomeName.setText(bean.getName());
@@ -101,7 +101,7 @@ public class HomeEditActivity extends AppCompatActivity implements View.OnClickL
     public void done() {
         String strHomeName = mEtHomeName.getText().toString();
         String strCity = mEtCity.getText().toString();
-        TuyaHomeSdk.newHomeInstance(mHomeId).updateHome(
+        ThingHomeSdk.newHomeInstance(mHomeId).updateHome(
                 strHomeName,
                 // Get location by yourself, here just sample as Shanghai's location
                 120.52,

@@ -11,21 +11,22 @@ import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tuya.smart.android.camera.sdk.TuyaIPCSdk;
-import com.tuya.smart.android.camera.sdk.api.ITYCameraMessage;
-import com.tuya.smart.android.camera.sdk.api.ITuyaIPCMsg;
+import com.thingclips.smart.android.camera.sdk.ThingIPCSdk;
+import com.thingclips.smart.android.camera.sdk.api.IThingCameraMessage;
+import com.thingclips.smart.android.camera.sdk.api.IThingIPCMsg;
 import com.tuya.smart.android.demo.R;
 import com.tuya.smart.android.demo.camera.adapter.AlarmDetectionAdapter;
 import com.tuya.smart.android.demo.camera.utils.DateUtils;
 import com.tuya.smart.android.demo.camera.utils.MessageUtil;
 import com.tuya.smart.android.demo.camera.utils.ToastUtil;
-import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
-import com.tuya.smart.ipc.messagecenter.bean.CameraMessageBean;
-import com.tuya.smart.ipc.messagecenter.bean.CameraMessageClassifyBean;
+import com.thingclips.smart.home.sdk.callback.IThingResultCallback;
+import com.thingclips.smart.ipc.messagecenter.bean.CameraMessageBean;
+import com.thingclips.smart.ipc.messagecenter.bean.CameraMessageClassifyBean;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,13 +54,14 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
     private List<CameraMessageBean> mWaitingDeleteCameraMessageList;
     protected List<CameraMessageBean> mCameraMessageList;
     private CameraMessageClassifyBean selectClassify;
+    private Toolbar toolbar;
     private EditText dateInputEdt;
     private RecyclerView queryRv;
     private Button queryBtn;
     private AlarmDetectionAdapter adapter;
     private int day, year, month;
     private int offset = 0;
-    private ITYCameraMessage mTyCameraMessage;
+    private IThingCameraMessage mTyCameraMessage;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -104,7 +106,7 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
             long time = DateUtils.getCurrentTime(year, month, day);
             int startTime = DateUtils.getTodayStart(time);
             int endTime = DateUtils.getTodayEnd(time) - 1;
-            mTyCameraMessage.getAlarmDetectionMessageList(devId, startTime, endTime, selectClassify.getMsgCode(), offset, 30, new ITuyaResultCallback<List<CameraMessageBean>>() {
+            mTyCameraMessage.getAlarmDetectionMessageList(devId, startTime, endTime, selectClassify.getMsgCode(), offset, 30, new IThingResultCallback<List<CameraMessageBean>>() {
                 @Override
                 public void onSuccess(List<CameraMessageBean> result) {
                     if (result != null) {
@@ -140,6 +142,10 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
     }
 
     private void initView() {
+        toolbar = findViewById(R.id.toolbar_view);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
+
         dateInputEdt = findViewById(R.id.date_input_edt);
         queryBtn = findViewById(R.id.query_btn);
         queryRv = findViewById(R.id.query_list);
@@ -152,7 +158,7 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
     private void initData() {
         mWaitingDeleteCameraMessageList = new ArrayList<>();
         mCameraMessageList = new ArrayList<>();
-        ITuyaIPCMsg message = TuyaIPCSdk.getMessage();
+        IThingIPCMsg message = ThingIPCSdk.getMessage();
         if (message != null) {
             mTyCameraMessage = message.createCameraMessage();
         }
@@ -188,7 +194,7 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
 
     public void queryCameraMessageClassify(String devId) {
         if (mTyCameraMessage != null) {
-            mTyCameraMessage.queryAlarmDetectionClassify(devId, new ITuyaResultCallback<List<CameraMessageClassifyBean>>() {
+            mTyCameraMessage.queryAlarmDetectionClassify(devId, new IThingResultCallback<List<CameraMessageClassifyBean>>() {
                 @Override
                 public void onSuccess(List<CameraMessageClassifyBean> result) {
                     selectClassify = result.get(0);
@@ -209,7 +215,7 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
         if (mTyCameraMessage != null) {
             List<String> ids = new ArrayList<>();
             ids.add(cameraMessageBean.getId());
-            mTyCameraMessage.deleteMotionMessageList(ids, new ITuyaResultCallback<Boolean>() {
+            mTyCameraMessage.deleteMotionMessageList(ids, new IThingResultCallback<Boolean>() {
                 @Override
                 public void onSuccess(Boolean result) {
                     mCameraMessageList.removeAll(mWaitingDeleteCameraMessageList);
@@ -243,7 +249,7 @@ public class AlarmDetectionActivity extends AppCompatActivity implements View.On
         year = Integer.parseInt(substring[0]);
         month = Integer.parseInt(substring[1]);
         if (mTyCameraMessage != null) {
-            mTyCameraMessage.queryMotionDaysByMonth(devId, year, month, new ITuyaResultCallback<List<String>>() {
+            mTyCameraMessage.queryMotionDaysByMonth(devId, year, month, new IThingResultCallback<List<String>>() {
                 @Override
                 public void onSuccess(List<String> result) {
                     if (result.size() > 0) {

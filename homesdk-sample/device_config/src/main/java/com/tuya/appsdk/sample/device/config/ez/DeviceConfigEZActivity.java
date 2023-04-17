@@ -26,13 +26,13 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.resource.HomeModel;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.builder.ActivatorBuilder;
-import com.tuya.smart.sdk.api.ITuyaActivator;
-import com.tuya.smart.sdk.api.ITuyaActivatorGetToken;
-import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener;
-import com.tuya.smart.sdk.bean.DeviceBean;
-import com.tuya.smart.sdk.enums.ActivatorModelEnum;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.builder.ActivatorBuilder;
+import com.thingclips.smart.sdk.api.IThingActivator;
+import com.thingclips.smart.sdk.api.IThingActivatorGetToken;
+import com.thingclips.smart.sdk.api.IThingSmartActivatorListener;
+import com.thingclips.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.sdk.enums.ActivatorModelEnum;
 
 /**
  * Device Configuration EZ Mode Sample
@@ -80,8 +80,8 @@ public class DeviceConfigEZActivity extends AppCompatActivity implements View.On
             long homeId = HomeModel.getCurrentHome(this);
 
             // Get Network Configuration Token
-            TuyaHomeSdk.getActivatorInstance().getActivatorToken(homeId,
-                    new ITuyaActivatorGetToken() {
+            ThingHomeSdk.getActivatorInstance().getActivatorToken(homeId,
+                    new IThingActivatorGetToken() {
                         @Override
                         public void onSuccess(String token) {
                             // Start network configuration -- EZ mode
@@ -89,10 +89,10 @@ public class DeviceConfigEZActivity extends AppCompatActivity implements View.On
                                     .setSsid(strSsid)
                                     .setContext(v.getContext())
                                     .setPassword(strPassword)
-                                    .setActivatorModel(ActivatorModelEnum.TY_EZ)
+                                    .setActivatorModel(ActivatorModelEnum.THING_EZ)
                                     .setTimeOut(100)
                                     .setToken(token)
-                                    .setListener(new ITuyaSmartActivatorListener() {
+                                    .setListener(new IThingSmartActivatorListener() {
                                         @Override
                                         public void onError(String errorCode, String errorMsg) {
                                             cpiLoading.setVisibility(View.GONE);
@@ -123,8 +123,8 @@ public class DeviceConfigEZActivity extends AppCompatActivity implements View.On
                                         }
                                     });
 
-                            ITuyaActivator mTuyaActivator =
-                                    TuyaHomeSdk.getActivatorInstance().newMultiActivator(builder);
+                            IThingActivator mTuyaActivator =
+                                    ThingHomeSdk.getActivatorInstance().newMultiActivator(builder);
 
                             //Start configuration
                             mTuyaActivator.start();

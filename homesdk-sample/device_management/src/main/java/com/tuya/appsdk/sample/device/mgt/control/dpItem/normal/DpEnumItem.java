@@ -23,11 +23,11 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.tuya.appsdk.sample.device.mgt.R;
-import com.tuya.smart.android.device.bean.EnumSchemaBean;
-import com.tuya.smart.android.device.bean.SchemaBean;
-import com.tuya.smart.home.sdk.utils.SchemaMapper;
-import com.tuya.smart.sdk.api.IResultCallback;
-import com.tuya.smart.sdk.api.ITuyaDevice;
+import com.thingclips.smart.android.device.bean.EnumSchemaBean;
+import com.thingclips.smart.android.device.bean.SchemaBean;
+import com.thingclips.smart.home.sdk.utils.SchemaMapper;
+import com.thingclips.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.sdk.api.IThingDevice;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -58,7 +58,7 @@ public class DpEnumItem extends FrameLayout {
                       int defStyle,
                       SchemaBean schemaBean,
                       String value,
-                      ITuyaDevice device) {
+                      IThingDevice device) {
         super(context, attrs, defStyle);
         inflate(context, R.layout.device_mgt_item_dp_enum, this);
 
@@ -107,18 +107,18 @@ public class DpEnumItem extends FrameLayout {
         }
     }
     // $FF: synthetic method
-    public DpEnumItem(Context context, AttributeSet attrs, int defStyle, SchemaBean schemaBean, String value, ITuyaDevice device, int var7) {
+    public DpEnumItem(Context context, AttributeSet attrs, int defStyle, SchemaBean schemaBean, String value, IThingDevice device, int var7) {
 
         this(context, attrs, defStyle, schemaBean, value, device);
     }
 
 
-    public DpEnumItem(@NotNull Context context, @Nullable AttributeSet attrs, @NotNull SchemaBean schemaBean, @NotNull String value, @NotNull ITuyaDevice device) {
+    public DpEnumItem(@NotNull Context context, @Nullable AttributeSet attrs, @NotNull SchemaBean schemaBean, @NotNull String value, @NotNull IThingDevice device) {
         this(context, attrs, 0, schemaBean, value, device, 4);
     }
 
 
-    public DpEnumItem(@NotNull Context context, @NotNull SchemaBean schemaBean, @NotNull String value, @NotNull ITuyaDevice device) {
+    public DpEnumItem(@NotNull Context context, @NotNull SchemaBean schemaBean, @NotNull String value, @NotNull IThingDevice device) {
         this(context, null, 0, schemaBean, value, device);
     }
 }

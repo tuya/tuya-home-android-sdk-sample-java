@@ -1,0 +1,752 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>IRecommendService </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../../jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <h2 title="Interface IRecommendService" class="title">Interface IRecommendService</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public interface <span class="typeNameLabel"><a href=IRecommendService.html>IRecommendService</a></span>
+
+                    </pre>
+                    <div class="block"><p>Scene recommendation ability</p></div>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#getRecommendAll(Long,IResultCallback)>getRecommendAll</a>(Long relationId, <a href=../IResultCallback.html>IResultCallback</a>&lt;List&lt;&lt;ERROR CLASS&gt;&gt;&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Get a list of recommended scenes</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#getRecommendsByDevice(Long,String,Integer,IResultCallback)>getRecommendsByDevice</a>(Long relationId, String deviceId, Integer size, <a href=../IResultCallback.html>IResultCallback</a>&lt;List&lt;&lt;ERROR CLASS&gt;&gt;&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Get a list of device-related recommended scenarios</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#requestRecommendSceneWithDeviceIds(Long,String,Integer,IResultCallback)>requestRecommendSceneWithDeviceIds</a>(Long relationId, String devIds, Integer source, <a href=../IResultCallback.html>IResultCallback</a>&lt;&lt;ERROR CLASS&gt;&lt;&lt;ERROR CLASS&gt;&gt;&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Get a list of device-related recommendations</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#requestRecommendDetail(Long,String,IResultCallback)>requestRecommendDetail</a>(Long relationId, String sceneId, <a href=../IResultCallback.html>IResultCallback</a>&lt;&lt;ERROR CLASS&gt;&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Request to get the details of the recommended scene</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#handleRecommend(Long,String,String,<ERROR CLASS>,IResultCallback)>handleRecommend</a>(Long relationId, String sceneId, String action, &lt;ERROR CLASS&gt; sceneData, <a href=../IResultCallback.html>IResultCallback</a>&lt;Boolean&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Operation recommended scenarios, usually only save</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#getHomeRecommend(Long,IResultCallback)>getHomeRecommend</a>(Long relationId, <a href=../IResultCallback.html>IResultCallback</a>&lt;List&lt;&lt;ERROR CLASS&gt;&gt;&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Get the recommended scene on the home page</td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#unlikeRecommend(Long,Long,IResultCallback)>unlikeRecommend</a>(Long relationId, Long recommendId, <a href=../IResultCallback.html>IResultCallback</a>&lt;Boolean&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Not interested in recommending scenarios</td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#requireRecommendMatch(Long,IResultCallback)>requireRecommendMatch</a>(Long relationId, <a href=../IResultCallback.html>IResultCallback</a>&lt;Boolean&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Request the cloud to match the recommended scenario</td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#requireRecommendMatchTwo(Long,IResultCallback)>requireRecommendMatchTwo</a>(Long relationId, <a href=../IResultCallback.html>IResultCallback</a>&lt;Boolean&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Request the cloud to match the recommended scenario</td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#getCollectAll(Long,IResultCallback)>getCollectAll</a>(Long relationId, <a href=../IResultCallback.html>IResultCallback</a>&lt;List&lt;&lt;ERROR CLASS&gt;&gt;&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Get a list of favorite recommended scenes</td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#getProductUrl(Long,String,String,IResultCallback)>getProductUrl</a>(Long relationId, String productId, String site, <a href=../IResultCallback.html>IResultCallback</a>&lt;&lt;ERROR CLASS&gt;&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Get a link to a favorite item</td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#getOemProductUrl(Long,String,String,IResultCallback)>getOemProductUrl</a>(Long relationId, String productId, String site, <a href=../IResultCallback.html>IResultCallback</a>&lt;&lt;ERROR CLASS&gt;&gt; callback) </code>
+                                            </th>
+                                            <td class="colLast">Get the product link of the OEM collection</td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code>abstract Unit</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=IRecommendService.html#onDestroy()>onDestroy</a>() </code>
+                                            </th>
+                                            <td class="colLast">when destroy</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="getRecommendAll(Long,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getRecommendAll</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#getRecommendAll(Long,IResultCallback)>getRecommendAll</a>(Long relationId, <a href=../IResultCallback.html>IResultCallback</a>&lt;List&lt;&lt;ERROR CLASS&gt;&gt;&gt; callback)</pre>
+                                        <div class="block"><p>Get a list of recommended scenes</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback <a href=../IResultCallback.html>IResultCallback</a>, RecommendScene</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getRecommendsByDevice(Long,String,Integer,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getRecommendsByDevice</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#getRecommendsByDevice(Long,String,Integer,IResultCallback)>getRecommendsByDevice</a>(Long relationId, String deviceId, Integer size, <a href=../IResultCallback.html>IResultCallback</a>&lt;List&lt;&lt;ERROR CLASS&gt;&gt;&gt; callback)</pre>
+                                        <div class="block"><p>Get a list of device-related recommended scenarios</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>deviceId</code> - the id of the device</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>size</code> - count</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback <a href=../IResultCallback.html>IResultCallback</a>, RecommendScene</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="requestRecommendSceneWithDeviceIds(Long,String,Integer,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>requestRecommendSceneWithDeviceIds</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#requestRecommendSceneWithDeviceIds(Long,String,Integer,IResultCallback)>requestRecommendSceneWithDeviceIds</a>(Long relationId, String devIds, Integer source, <a href=../IResultCallback.html>IResultCallback</a>&lt;&lt;ERROR CLASS&gt;&lt;&lt;ERROR CLASS&gt;&gt;&gt; callback)</pre>
+                                        <div class="block"><p>Get a list of device-related recommendations</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>devIds</code> - the device ids</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>source</code> - Request source.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback <a href=../IResultCallback.html>IResultCallback</a>, RecommendPlainScene</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="requestRecommendDetail(Long,String,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>requestRecommendDetail</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#requestRecommendDetail(Long,String,IResultCallback)>requestRecommendDetail</a>(Long relationId, String sceneId, <a href=../IResultCallback.html>IResultCallback</a>&lt;&lt;ERROR CLASS&gt;&gt; callback)</pre>
+                                        <div class="block"><p>Request to get the details of the recommended scene</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>sceneId</code> - the id of the recommend scene</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback <a href=../IResultCallback.html>IResultCallback</a>, RecommendScene</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="handleRecommend(Long,String,String,&lt;ERROR CLASS&gt;,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>handleRecommend</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#handleRecommend(Long,String,String,<ERROR CLASS>,IResultCallback)>handleRecommend</a>(Long relationId, String sceneId, String action, &lt;ERROR CLASS&gt; sceneData, <a href=../IResultCallback.html>IResultCallback</a>&lt;Boolean&gt; callback)</pre>
+                                        <div class="block"><p>Operation recommended scenarios, usually only save</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>sceneId</code> - the id of the recommend scene</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>action</code> - action type</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>sceneData</code> - the bean of the scene data</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getHomeRecommend(Long,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getHomeRecommend</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#getHomeRecommend(Long,IResultCallback)>getHomeRecommend</a>(Long relationId, <a href=../IResultCallback.html>IResultCallback</a>&lt;List&lt;&lt;ERROR CLASS&gt;&gt;&gt; callback)</pre>
+                                        <div class="block"><p>Get the recommended scene on the home page</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback <a href=../IResultCallback.html>IResultCallback</a>, RecommendScene</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="unlikeRecommend(Long,Long,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>unlikeRecommend</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#unlikeRecommend(Long,Long,IResultCallback)>unlikeRecommend</a>(Long relationId, Long recommendId, <a href=../IResultCallback.html>IResultCallback</a>&lt;Boolean&gt; callback)</pre>
+                                        <div class="block"><p>Not interested in recommending scenarios</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>recommendId</code> - the id of recommend scene</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback <a href=../IResultCallback.html>IResultCallback</a></dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="requireRecommendMatch(Long,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>requireRecommendMatch</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#requireRecommendMatch(Long,IResultCallback)>requireRecommendMatch</a>(Long relationId, <a href=../IResultCallback.html>IResultCallback</a>&lt;Boolean&gt; callback)</pre>
+                                        <div class="block"><p>Request the cloud to match the recommended scenario</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback <a href=../IResultCallback.html>IResultCallback</a></dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="requireRecommendMatchTwo(Long,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>requireRecommendMatchTwo</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#requireRecommendMatchTwo(Long,IResultCallback)>requireRecommendMatchTwo</a>(Long relationId, <a href=../IResultCallback.html>IResultCallback</a>&lt;Boolean&gt; callback)</pre>
+                                        <div class="block"><p>Request the cloud to match the recommended scenario</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback <a href=../IResultCallback.html>IResultCallback</a></dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getCollectAll(Long,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getCollectAll</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#getCollectAll(Long,IResultCallback)>getCollectAll</a>(Long relationId, <a href=../IResultCallback.html>IResultCallback</a>&lt;List&lt;&lt;ERROR CLASS&gt;&gt;&gt; callback)</pre>
+                                        <div class="block"><p>Get a list of favorite recommended scenes</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback <a href=../IResultCallback.html>IResultCallback</a>, RecommendScene</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getProductUrl(Long,String,String,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getProductUrl</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#getProductUrl(Long,String,String,IResultCallback)>getProductUrl</a>(Long relationId, String productId, String site, <a href=../IResultCallback.html>IResultCallback</a>&lt;&lt;ERROR CLASS&gt;&gt; callback)</pre>
+                                        <div class="block"><p>Get a link to a favorite item</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>productId</code> - the id of the product</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>site</code> - country code</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback <a href=../IResultCallback.html>IResultCallback</a>, PublicProductUrl</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getOemProductUrl(Long,String,String,IResultCallback)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getOemProductUrl</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#getOemProductUrl(Long,String,String,IResultCallback)>getOemProductUrl</a>(Long relationId, String productId, String site, <a href=../IResultCallback.html>IResultCallback</a>&lt;&lt;ERROR CLASS&gt;&gt; callback)</pre>
+                                        <div class="block"><p>Get the product link of the OEM collection</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>relationId</code> - the relation id of the current node</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>productId</code> - the id of the product</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>site</code> - country code</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>callback</code> - callback <a href=../IResultCallback.html>IResultCallback</a>, ProductUrl</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="onDestroy()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>onDestroy</h4>
+                                        <pre class="methodSignature"> abstract Unit <a href=IRecommendService.html#onDestroy()>onDestroy</a>()</pre>
+                                        <div class="block"><p>when destroy</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

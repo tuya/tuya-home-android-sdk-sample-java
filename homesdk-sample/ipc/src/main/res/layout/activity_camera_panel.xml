@@ -21,7 +21,7 @@
         android:layout_below="@id/toolbar_view"
         tools:layout_height="250dp">
 
-        <com.tuya.smart.camera.middleware.widget.TuyaCameraView
+        <com.thingclips.smart.camera.middleware.widget.ThingCameraView
             android:id="@+id/camera_video_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -23,12 +23,12 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.tuya.appsdk.sample.device.mgt.R;
-import com.tuya.smart.android.blemesh.api.ITuyaBlueMeshDevice;
-import com.tuya.smart.android.device.bean.EnumSchemaBean;
-import com.tuya.smart.android.device.bean.SchemaBean;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.utils.SchemaMapper;
-import com.tuya.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.android.blemesh.api.IThingBlueMeshDevice;
+import com.thingclips.smart.android.device.bean.EnumSchemaBean;
+import com.thingclips.smart.android.device.bean.SchemaBean;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.utils.SchemaMapper;
+import com.thingclips.smart.sdk.api.IResultCallback;
 
 import java.util.HashMap;
 import java.util.List;
@@ -69,7 +69,7 @@ public class MeshDpEnumItem extends FrameLayout {
 
         if (schemaBean.mode.contains("w")) {
             // Data can be issued by the cloud.
-            ITuyaBlueMeshDevice mTuyaSigMeshDevice= TuyaHomeSdk.newSigMeshDeviceInstance(meshId);
+            IThingBlueMeshDevice mTuyaSigMeshDevice= ThingHomeSdk.newSigMeshDeviceInstance(meshId);
 
             ListPopupWindow listPopupWindow = new ListPopupWindow(context, null, R.attr.listPopupWindowStyle);
             listPopupWindow.setAnchorView(btnDp);

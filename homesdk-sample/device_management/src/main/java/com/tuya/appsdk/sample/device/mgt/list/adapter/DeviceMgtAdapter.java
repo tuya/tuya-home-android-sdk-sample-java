@@ -21,11 +21,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.thing.smart.sweeper.SweeperActivity;
+import com.tuya.lock.demo.activity.detail.BleLockDetailActivity;
 import com.tuya.appsdk.sample.device.mgt.R;
 import com.tuya.appsdk.sample.device.mgt.control.activity.DeviceMgtControlActivity;
 import com.tuya.appsdk.sample.device.mgt.list.activity.DeviceSubZigbeeActivity;
 import com.tuya.smart.android.demo.camera.CameraUtils;
-import com.tuya.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.sdk.bean.DeviceBean;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -58,7 +60,18 @@ public final class DeviceMgtAdapter extends RecyclerView.Adapter<DeviceMgtAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ViewHolder holder = new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.device_mgt_item, parent, false));
         holder.itemView.setOnClickListener(v -> {
-            if (CameraUtils.ipcProcess(v.getContext(), ((DeviceBean) DeviceMgtAdapter.this.getData().get(holder.getAdapterPosition())).getDevId())) {
+            DeviceBean deviceBean = DeviceMgtAdapter.this.getData().get(holder.getAdapterPosition());
+            if (CameraUtils.ipcProcess(v.getContext(), deviceBean.getDevId())) {
+                return;
+            }
+            if (deviceBean.getProductBean().getCategory().contains("sd")) {
+                Intent intent = new Intent(v.getContext(), SweeperActivity.class);
+                intent.putExtra("deviceId", deviceBean.getDevId());
+                v.getContext().startActivity(intent);
+                return;
+            }
+            if (deviceBean.getProductBean().getCategory().contains("ms")) {
+                BleLockDetailActivity.startActivity(v.getContext(), deviceBean.getDevId());
                 return;
             }
             switch (type) {
@@ -111,4 +124,3 @@ public final class DeviceMgtAdapter extends RecyclerView.Adapter<DeviceMgtAdapte
     }
 
 }
-

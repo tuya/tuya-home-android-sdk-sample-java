@@ -22,7 +22,6 @@
     <string name="device_config_mesh_title">Mesh 子设备</string>
     <string name="device_config_sub_by_app_title">gateway sub config</string>
     <string name="device_config_qr_code_title">二维码配网</string>
-    <string name="device_config_ty_link_title">TuyaLink配网</string>
 
     <string name="btn_start_mesh_sub_gateway">开始通过网关配网</string>
     <string name="btn_stop_mesh_sub_gateway">停止配网</string>

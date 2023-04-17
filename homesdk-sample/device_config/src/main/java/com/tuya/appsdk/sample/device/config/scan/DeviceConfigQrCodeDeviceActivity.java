@@ -28,12 +28,12 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.resource.HomeModel;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.builder.TuyaQRCodeActivatorBuilder;
-import com.tuya.smart.sdk.api.ITuyaActivator;
-import com.tuya.smart.sdk.api.ITuyaDataCallback;
-import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener;
-import com.tuya.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder;
+import com.thingclips.smart.sdk.api.IThingActivator;
+import com.thingclips.smart.sdk.api.IThingDataCallback;
+import com.thingclips.smart.sdk.api.IThingSmartActivatorListener;
+import com.thingclips.smart.sdk.bean.DeviceBean;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -131,8 +131,8 @@ public class DeviceConfigQrCodeDeviceActivity extends AppCompatActivity implemen
     private void deviceQrCode(String result) {
         HashMap<String, Object> postData = new HashMap<>();
         postData.put("code", result);
-        TuyaHomeSdk.getRequestInstance().requestWithApiNameWithoutSession(
-                "tuya.m.qrcode.parse", "4.0", postData, String.class, new ITuyaDataCallback<String>() {
+        ThingHomeSdk.getRequestInstance().requestWithApiNameWithoutSession(
+                "tuya.m.qrcode.parse", "4.0", postData, String.class, new IThingDataCallback<String>() {
                     @Override
                     public void onSuccess(String result) {
                         initQrCode(result);
@@ -153,12 +153,12 @@ public class DeviceConfigQrCodeDeviceActivity extends AppCompatActivity implemen
             JSONObject actionObj = obj.optJSONObject("actionData");
             if (null != actionObj) {
                 mUuid = actionObj.optString("uuid");
-                TuyaQRCodeActivatorBuilder builder = new TuyaQRCodeActivatorBuilder()
+                ThingQRCodeActivatorBuilder builder = new ThingQRCodeActivatorBuilder()
                         .setUuid(mUuid)
                         .setHomeId(homeId)
                         .setContext(this)
                         .setTimeOut(100)
-                        .setListener(new ITuyaSmartActivatorListener() {
+                        .setListener(new IThingSmartActivatorListener() {
                             @Override
                             public void onError(String errorCode, String errorMsg) {
 
@@ -174,7 +174,7 @@ public class DeviceConfigQrCodeDeviceActivity extends AppCompatActivity implemen
 
                             }
                         });
-                ITuyaActivator iTuyaActivator = TuyaHomeSdk.getActivatorInstance().newQRCodeDevActivator(builder);
+                IThingActivator iTuyaActivator = ThingHomeSdk.getActivatorInstance().newQRCodeDevActivator(builder);
                 iTuyaActivator.start();
             }
         } catch (JSONException e) {

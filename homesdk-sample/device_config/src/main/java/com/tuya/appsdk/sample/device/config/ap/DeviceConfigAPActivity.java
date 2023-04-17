@@ -28,13 +28,13 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.resource.HomeModel;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.builder.ActivatorBuilder;
-import com.tuya.smart.sdk.api.ITuyaActivator;
-import com.tuya.smart.sdk.api.ITuyaActivatorGetToken;
-import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener;
-import com.tuya.smart.sdk.bean.DeviceBean;
-import com.tuya.smart.sdk.enums.ActivatorModelEnum;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.builder.ActivatorBuilder;
+import com.thingclips.smart.sdk.api.IThingActivator;
+import com.thingclips.smart.sdk.api.IThingActivatorGetToken;
+import com.thingclips.smart.sdk.api.IThingSmartActivatorListener;
+import com.thingclips.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.sdk.enums.ActivatorModelEnum;
 
 /**
  * Device Configuration AP Mode Sample
@@ -53,7 +53,7 @@ public class DeviceConfigAPActivity extends AppCompatActivity implements View.On
     private EditText etPassword;
     private String strPassword;
     private String mToken;
-    private ITuyaActivator mTuyaActivator;
+    private IThingActivator mTuyaActivator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +88,8 @@ public class DeviceConfigAPActivity extends AppCompatActivity implements View.On
             long homeId = HomeModel.getCurrentHome(this);
 
             // Get Network Configuration Token
-            TuyaHomeSdk.getActivatorInstance().getActivatorToken(homeId,
-                    new ITuyaActivatorGetToken() {
+            ThingHomeSdk.getActivatorInstance().getActivatorToken(homeId,
+                    new IThingActivatorGetToken() {
                         @Override
                         public void onSuccess(String token) {
                             mToken = token;
@@ -122,10 +122,10 @@ public class DeviceConfigAPActivity extends AppCompatActivity implements View.On
                 .setSsid(strSsid)
                 .setContext(DeviceConfigAPActivity.this)
                 .setPassword(strPassword)
-                .setActivatorModel(ActivatorModelEnum.TY_AP)
+                .setActivatorModel(ActivatorModelEnum.THING_AP)
                 .setTimeOut(100)
                 .setToken(mToken)
-                .setListener(new ITuyaSmartActivatorListener() {
+                .setListener(new IThingSmartActivatorListener() {
                     @Override
                     public void onError(String errorCode, String errorMsg) {
                         cpiLoading.setVisibility(View.GONE);
@@ -156,7 +156,7 @@ public class DeviceConfigAPActivity extends AppCompatActivity implements View.On
                     }
                 });
 
-        mTuyaActivator = TuyaHomeSdk.getActivatorInstance().newActivator(builder);
+        mTuyaActivator = ThingHomeSdk.getActivatorInstance().newActivator(builder);
 
         //Start configuration
         mTuyaActivator.start();

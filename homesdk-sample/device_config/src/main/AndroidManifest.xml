@@ -58,10 +58,6 @@
             android:name="com.tuya.appsdk.sample.device.config.qrcode.QrCodeConfigActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.tuya.appsdk.sample.device.config.tylink.TyLinkConfigActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

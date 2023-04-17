@@ -26,15 +26,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.tuya.appsdk.sample.device.mgt.R;
 import com.tuya.appsdk.sample.resource.HomeModel;
-import com.tuya.smart.android.blemesh.api.ITuyaBlueMeshDevice;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.HomeBean;
-import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback;
-import com.tuya.smart.sdk.api.IResultCallback;
-import com.tuya.smart.sdk.api.ITuyaGroup;
-import com.tuya.smart.sdk.api.bluemesh.IAddGroupCallback;
-import com.tuya.smart.sdk.bean.DeviceBean;
-import com.tuya.smart.sdk.bean.SigMeshBean;
+import com.thingclips.smart.android.blemesh.api.IThingBlueMeshDevice;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.bean.HomeBean;
+import com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback;
+import com.thingclips.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.sdk.api.IThingGroup;
+import com.thingclips.smart.sdk.api.bluemesh.IAddGroupCallback;
+import com.thingclips.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.sdk.bean.SigMeshBean;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -100,7 +100,7 @@ public class GroupCreateActivity extends AppCompatActivity {
             // if the child device already exists in our addeddeviceidarray, we need to filter it.
             addedDeviceIdArray = getIntent().getStringArrayExtra("addedDevices");
         }
-        TuyaHomeSdk.newHomeInstance(homeId).getHomeDetail(new ITuyaHomeResultCallback() {
+        ThingHomeSdk.newHomeInstance(homeId).getHomeDetail(new IThingHomeResultCallback() {
             @Override
             public void onSuccess(HomeBean bean) {
                 List<SigMeshBean> sigMeshBeans = bean.getSigMeshList();
@@ -118,7 +118,7 @@ public class GroupCreateActivity extends AppCompatActivity {
                     }
 
                     meshId = sigMeshBean.getMeshId();
-                    List<DeviceBean> meshSubDevList = TuyaHomeSdk.newSigMeshDeviceInstance(sigMeshBean.getMeshId()).getMeshSubDevList();
+                    List<DeviceBean> meshSubDevList = ThingHomeSdk.newSigMeshDeviceInstance(sigMeshBean.getMeshId()).getMeshSubDevList();
                     if (meshSubDevList != null && !meshSubDevList.isEmpty()) {
                         for (DeviceBean deviceBean : meshSubDevList) {
                             if (isCreateGroup) {
@@ -331,7 +331,7 @@ public class GroupCreateActivity extends AppCompatActivity {
             }
         }
         // add group
-        ITuyaBlueMeshDevice mTuyaSigMeshDevice= TuyaHomeSdk.newSigMeshDeviceInstance(meshId);
+        IThingBlueMeshDevice mTuyaSigMeshDevice= ThingHomeSdk.newSigMeshDeviceInstance(meshId);
         mTuyaSigMeshDevice.addGroup(groupName,pcc, localId, new IAddGroupCallback() {
             @Override
             public void onError(String errorCode, String errorMsg) {
@@ -383,7 +383,7 @@ public class GroupCreateActivity extends AppCompatActivity {
             Object objDevice =  iterator.next();
             if (objDevice instanceof DeviceBean) {
                 DeviceBean deviceBean = (DeviceBean) objDevice;
-                ITuyaGroup mGroup = TuyaHomeSdk.newSigMeshGroupInstance(groupId);
+                IThingGroup mGroup = ThingHomeSdk.newSigMeshGroupInstance(groupId);
                 mGroup.addDevice(deviceBean.devId, new IResultCallback() {
                     @Override
                     public void onError(String code, String errorMsg) {

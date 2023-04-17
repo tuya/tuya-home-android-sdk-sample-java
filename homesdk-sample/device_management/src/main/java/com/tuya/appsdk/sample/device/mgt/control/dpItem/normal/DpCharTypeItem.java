@@ -22,9 +22,9 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.tuya.appsdk.sample.device.mgt.R;
-import com.tuya.smart.android.device.bean.SchemaBean;
-import com.tuya.smart.sdk.api.IResultCallback;
-import com.tuya.smart.sdk.api.ITuyaDevice;
+import com.thingclips.smart.android.device.bean.SchemaBean;
+import com.thingclips.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.sdk.api.IThingDevice;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -49,7 +49,7 @@ public class DpCharTypeItem extends FrameLayout {
                           int defStyle,
                           final SchemaBean schemaBean,
                           String value,
-                          final ITuyaDevice device) {
+                          final IThingDevice device) {
         super(context, attrs, defStyle);
         inflate(context, R.layout.device_mgt_item_dp_char_type, this);
 
@@ -93,19 +93,19 @@ public class DpCharTypeItem extends FrameLayout {
     }
 
     // $FF: synthetic method
-    public DpCharTypeItem(Context context, AttributeSet attrs, int defStyle, SchemaBean schemaBean, String value, ITuyaDevice device, int var) {
+    public DpCharTypeItem(Context context, AttributeSet attrs, int defStyle, SchemaBean schemaBean, String value, IThingDevice device, int var) {
 
 
         this(context, attrs, defStyle, schemaBean, value, device);
     }
 
     @JvmOverloads
-    public DpCharTypeItem(@NotNull Context context, @Nullable AttributeSet attrs, @NotNull SchemaBean schemaBean, @NotNull String value, @NotNull ITuyaDevice device) {
+    public DpCharTypeItem(@NotNull Context context, @Nullable AttributeSet attrs, @NotNull SchemaBean schemaBean, @NotNull String value, @NotNull IThingDevice device) {
         this(context, attrs, 0, schemaBean, value, device, 4);
     }
 
     @JvmOverloads
-    public DpCharTypeItem(@NotNull Context context, @NotNull SchemaBean schemaBean, @NotNull String value, @NotNull ITuyaDevice device) {
+    public DpCharTypeItem(@NotNull Context context, @NotNull SchemaBean schemaBean, @NotNull String value, @NotNull IThingDevice device) {
         this(context, null, 0, schemaBean, value, device);
     }
 }

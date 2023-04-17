@@ -14,10 +14,10 @@
         tools:replace="android:allowBackup,android:supportsRtl">
 
         <meta-data
-            android:name="TUYA_SMART_APPKEY"
+            android:name="THING_SMART_APPKEY"
             android:value="${TUYA_SMART_APPKEY}" />
         <meta-data
-            android:name="TUYA_SMART_SECRET"
+            android:name="THING_SMART_SECRET"
             android:value="${TUYA_SMART_SECRET}" />
 
         <!--        Main        -->

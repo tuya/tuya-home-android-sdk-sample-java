@@ -14,17 +14,11 @@ package com.tuya.appsdk.sample;
 
 import android.app.Application;
 
+import com.thingclips.smart.optimus.sdk.ThingOptimusSdk;
 import com.tuya.appsdk.sample.device.config.util.sp.SpUtils;
-import com.tuya.smart.android.base.provider.ApiUrlProvider;
 import com.tuya.smart.android.demo.camera.CameraUtils;
-import com.tuya.smart.android.network.TuyaSmartNetWork;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.scene.SceneBean;
-import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
-import com.tuya.smart.sdk.TuyaSdk;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
-
-import java.util.List;
 
 /**
  * Base Application
@@ -36,8 +30,9 @@ public final class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        TuyaHomeSdk.init(this);
-        TuyaHomeSdk.setDebugMode(true);
+        ThingHomeSdk.init(this);
+        ThingHomeSdk.setDebugMode(true);
+        ThingOptimusSdk.init(this);
 
         SpUtils.getInstance().initSp(this);
         ZXingLibrary.initDisplayOpinion(this);

@@ -10,8 +10,8 @@
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="@string/cloud_video_title"
-        app:navigationIcon="?attr/homeAsUpIndicator" />
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="@string/cloud_video_title" />
 
     <RelativeLayout
         android:id="@+id/camera_video_view_Rl"
@@ -19,7 +19,7 @@
         android:layout_height="240dp"
         android:layout_below="@id/toolbar_view">
 
-        <com.tuya.smart.camera.middleware.widget.TuyaCameraView
+        <com.thingclips.smart.camera.middleware.widget.ThingCameraView
             android:id="@+id/camera_cloud_video_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -70,59 +70,58 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/timeRv"
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/ll_bottom"
-        android:layout_below="@+id/dateRv"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_below="@+id/dateRv"
+        android:layout_margin="10dp"></androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
         android:id="@+id/ll_bottom"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            >
+            android:paddingRight="10dp">
 
             <Button
                 android:id="@+id/pause_btn"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/pause"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
             <Space
                 android:layout_width="5dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/resume_btn"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/resume"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
             <Space
                 android:layout_width="5dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/stop_btn"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/stop"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
@@ -132,40 +131,40 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <Button
                 android:id="@+id/snapshot_btn"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/snapshot"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
             <Space
                 android:layout_width="5dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/record_start"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/record_start"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
             <Space
                 android:layout_width="5dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/record_end"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="@string/record_stop"
                 android:textColor="@color/white"
                 android:textSize="15sp" />

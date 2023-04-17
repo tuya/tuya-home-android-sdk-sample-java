@@ -21,19 +21,19 @@ import com.tuya.appsdk.sample.device.mgt.control.dpItem.DpFaultItem;
 import com.tuya.appsdk.sample.device.mgt.control.dpItem.normal.DpIntegerItem;
 import com.tuya.appsdk.sample.device.mgt.control.dpItem.normal.DpRawTypeItem;
 import com.tuya.appsdk.sample.resource.HomeModel;
-import com.tuya.smart.android.device.bean.BitmapSchemaBean;
-import com.tuya.smart.android.device.bean.BoolSchemaBean;
-import com.tuya.smart.android.device.bean.EnumSchemaBean;
-import com.tuya.smart.android.device.bean.SchemaBean;
-import com.tuya.smart.android.device.bean.StringSchemaBean;
-import com.tuya.smart.android.device.bean.ValueSchemaBean;
-import com.tuya.smart.android.device.enums.DataTypeEnum;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.HomeBean;
-import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback;
-import com.tuya.smart.sdk.bean.DeviceBean;
-import com.tuya.smart.sdk.bean.GroupBean;
-import com.tuya.smart.sdk.bean.SigMeshBean;
+import com.thingclips.smart.android.device.bean.BitmapSchemaBean;
+import com.thingclips.smart.android.device.bean.BoolSchemaBean;
+import com.thingclips.smart.android.device.bean.EnumSchemaBean;
+import com.thingclips.smart.android.device.bean.SchemaBean;
+import com.thingclips.smart.android.device.bean.StringSchemaBean;
+import com.thingclips.smart.android.device.bean.ValueSchemaBean;
+import com.thingclips.smart.android.device.enums.DataTypeEnum;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.bean.HomeBean;
+import com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback;
+import com.thingclips.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.sdk.bean.GroupBean;
+import com.thingclips.smart.sdk.bean.SigMeshBean;
 
 import java.util.Collection;
 import java.util.List;
@@ -61,7 +61,7 @@ public class GroupControlActivity extends AppCompatActivity {
             finish();
             return;
         }
-        List<SigMeshBean> meshList = TuyaHomeSdk.getSigMeshInstance().getSigMeshList();
+        List<SigMeshBean> meshList = ThingHomeSdk.getSigMeshInstance().getSigMeshList();
         if (meshList == null || meshList.isEmpty()){
             finish();
             return;
@@ -81,7 +81,7 @@ public class GroupControlActivity extends AppCompatActivity {
         }
         long homeId = HomeModel.getCurrentHome(this);
         String finalMeshID = meshID;
-        TuyaHomeSdk.newHomeInstance(homeId).getHomeDetail(new ITuyaHomeResultCallback() {
+        ThingHomeSdk.newHomeInstance(homeId).getHomeDetail(new IThingHomeResultCallback() {
             @Override
             public void onSuccess(HomeBean bean) {
                 if (bean != null){
@@ -117,13 +117,13 @@ public class GroupControlActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(deviceId)){
             return;
         }
-        DeviceBean deviceBean = TuyaHomeSdk.getDataInstance().getDeviceBean(deviceId);
+        DeviceBean deviceBean = ThingHomeSdk.getDataInstance().getDeviceBean(deviceId);
         if (deviceBean == null){
             return;
         }
         TextView tvGroupName = findViewById(R.id.tv_group_name);
         tvGroupName.setText(groupBean.getName());
-        Map<String, SchemaBean> map = TuyaHomeSdk.getDataInstance().getSchema(deviceId);
+        Map<String, SchemaBean> map = ThingHomeSdk.getDataInstance().getSchema(deviceId);
         if (map == null || map.size() <= 0){
             return;
         }

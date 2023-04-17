@@ -26,8 +26,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.tuya.appsdk.sample.home.detail.HomeDetailActivity;
 import com.tuya.appsdk.sample.resource.HomeModel;
 import com.tuya.appsdk.sample.user.R;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.HomeBean;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.bean.HomeBean;
 
 import java.util.ArrayList;
 
@@ -64,7 +64,7 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
             holder.itemView.setOnClickListener(v -> {
                 // Switch Home
                 HomeBean bean = data.get(holder.getAdapterPosition());
-                TuyaHomeSdk.newHomeInstance(bean.getHomeId());
+                ThingHomeSdk.newHomeInstance(bean.getHomeId());
                 HomeModel.INSTANCE.setCurrentHome(v.getContext(), bean.getHomeId());
                 notifyDataSetChanged();
             });

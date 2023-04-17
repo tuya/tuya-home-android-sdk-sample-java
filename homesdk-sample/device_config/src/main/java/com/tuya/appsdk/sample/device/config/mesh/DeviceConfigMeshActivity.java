@@ -13,9 +13,9 @@ import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.device.config.mesh.configByApp.SubConfigAppActivity;
 import com.tuya.appsdk.sample.device.config.mesh.configByGateway.SubConfigGatewayActivity;
 import com.tuya.appsdk.sample.resource.HomeModel;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.callback.ITuyaResultCallback;
-import com.tuya.smart.sdk.bean.SigMeshBean;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.callback.IThingResultCallback;
+import com.thingclips.smart.sdk.bean.SigMeshBean;
 
 import java.util.List;
 
@@ -51,14 +51,14 @@ public class DeviceConfigMeshActivity extends AppCompatActivity implements View.
 
     // list is null, start create Mesh
     private void checkMesh() {
-        List<SigMeshBean> meshList = TuyaHomeSdk.getSigMeshInstance().getSigMeshList();
+        List<SigMeshBean> meshList = ThingHomeSdk.getSigMeshInstance().getSigMeshList();
         if (meshList.isEmpty() || meshList.size() == 0) {
             createMesh();
         }
     }
 
     public void createMesh() {
-        TuyaHomeSdk.newHomeInstance(HomeModel.getCurrentHome(this)).createSigMesh(new ITuyaResultCallback<SigMeshBean>() {
+        ThingHomeSdk.newHomeInstance(HomeModel.getCurrentHome(this)).createSigMesh(new IThingResultCallback<SigMeshBean>() {
             @Override
             public void onSuccess(SigMeshBean result) {
                 Log.d(TAG, "create success:" + result.getMeshId());

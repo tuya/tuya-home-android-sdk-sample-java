@@ -22,10 +22,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tuya.appsdk.sample.device.mgt.R;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.sdk.api.IResultCallback;
-import com.tuya.smart.sdk.api.ITuyaGroup;
-import com.tuya.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.sdk.api.IThingGroup;
+import com.thingclips.smart.sdk.bean.DeviceBean;
 
 import java.util.List;
 
@@ -83,7 +83,7 @@ public class GroupDeviceListActivity extends AppCompatActivity {
     }
 
     private void renameGroup(String newName) {
-        TuyaHomeSdk.newGroupInstance(groupId).renameGroup(newName, new IResultCallback() {
+        ThingHomeSdk.newGroupInstance(groupId).renameGroup(newName, new IResultCallback() {
             @Override
             public void onError(String code, String error) {
                 Log.d(TAG, "rename group error:" + error);
@@ -99,7 +99,7 @@ public class GroupDeviceListActivity extends AppCompatActivity {
     }
 
     private void disbandGroup() {
-        TuyaHomeSdk.newGroupInstance(groupId).dismissGroup(new IResultCallback() {
+        ThingHomeSdk.newGroupInstance(groupId).dismissGroup(new IResultCallback() {
             @Override
             public void onError(String code, String error) {
                 Log.d(TAG, "disband group error:" + error);
@@ -116,7 +116,7 @@ public class GroupDeviceListActivity extends AppCompatActivity {
 
     private void removeDevice(String devId, int pos) {
         if (groupId != -1) {
-            ITuyaGroup mGroup = TuyaHomeSdk.newSigMeshGroupInstance(groupId);
+            IThingGroup mGroup = ThingHomeSdk.newSigMeshGroupInstance(groupId);
             mGroup.removeDevice(devId, new IResultCallback() {
                 @Override
                 public void onError(String code, String error) {
@@ -137,7 +137,7 @@ public class GroupDeviceListActivity extends AppCompatActivity {
 
     private void getGroupDeviceList() {
         groupId = getIntent().getLongExtra("groupId", -1);
-        deviceBeanList = TuyaHomeSdk.getDataInstance().getGroupDeviceList(groupId);
+        deviceBeanList = ThingHomeSdk.getDataInstance().getGroupDeviceList(groupId);
         if (groupId != -1 && deviceBeanList != null && deviceBeanList.size() > 0) {
             Log.d(TAG, "start show adapter");
             adapter = new GroupDeviceListAdapter(deviceBeanList);

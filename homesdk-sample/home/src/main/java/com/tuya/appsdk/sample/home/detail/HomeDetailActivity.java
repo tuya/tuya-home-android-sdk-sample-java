@@ -28,12 +28,12 @@ import androidx.appcompat.widget.Toolbar;
 import com.tuya.appsdk.sample.home.edit.HomeEditActivity;
 import com.tuya.appsdk.sample.resource.HomeModel;
 import com.tuya.appsdk.sample.user.R;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.HomeBean;
-import com.tuya.smart.home.sdk.bean.WeatherBean;
-import com.tuya.smart.home.sdk.callback.IIGetHomeWetherSketchCallBack;
-import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback;
-import com.tuya.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.bean.HomeBean;
+import com.thingclips.smart.home.sdk.bean.WeatherBean;
+import com.thingclips.smart.home.sdk.callback.IIGetHomeWetherSketchCallBack;
+import com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback;
+import com.thingclips.smart.sdk.api.IResultCallback;
 
 /**
  * Home Detail Sample
@@ -87,7 +87,7 @@ public class HomeDetailActivity extends AppCompatActivity implements View.OnClic
         mHomeId = getIntent().getLongExtra("homeId", 0);
 
         // Get home info
-        TuyaHomeSdk.newHomeInstance(mHomeId).getHomeDetail(new ITuyaHomeResultCallback() {
+        ThingHomeSdk.newHomeInstance(mHomeId).getHomeDetail(new IThingHomeResultCallback() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onSuccess(HomeBean bean) {
@@ -96,7 +96,7 @@ public class HomeDetailActivity extends AppCompatActivity implements View.OnClic
                 mTvHomeCity.setText(bean.getGeoName());
 
                 // Get home weather info
-                TuyaHomeSdk.newHomeInstance(mHomeId).getHomeWeatherSketch(bean.getLon(),
+                ThingHomeSdk.newHomeInstance(mHomeId).getHomeWeatherSketch(bean.getLon(),
                         bean.getLat(),
                         new IIGetHomeWetherSketchCallBack() {
                             @Override
@@ -127,7 +127,7 @@ public class HomeDetailActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.btnDismiss) {
-            TuyaHomeSdk.newHomeInstance(mHomeId).dismissHome(new IResultCallback() {
+            ThingHomeSdk.newHomeInstance(mHomeId).dismissHome(new IResultCallback() {
                 @Override
                 public void onError(String code, String error) {
 

@@ -23,9 +23,9 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.tuya.appsdk.sample.device.mgt.R;
-import com.tuya.smart.android.device.bean.SchemaBean;
-import com.tuya.smart.sdk.api.IResultCallback;
-import com.tuya.smart.sdk.api.ITuyaDevice;
+import com.thingclips.smart.android.device.bean.SchemaBean;
+import com.thingclips.smart.sdk.api.IResultCallback;
+import com.thingclips.smart.sdk.api.IThingDevice;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -63,7 +63,7 @@ public class DpBooleanItem extends FrameLayout {
                          AttributeSet attrs,
                          int defStyle,
                          final SchemaBean schemaBean,
-                         boolean value, final ITuyaDevice device) {
+                         boolean value, final IThingDevice device) {
         super(context, attrs, defStyle);
 
         FrameLayout.inflate(context, R.layout.device_mgt_item_dp_boolean, this);
@@ -107,13 +107,13 @@ public class DpBooleanItem extends FrameLayout {
                          int defStyle,
                          SchemaBean schemaBean,
                          boolean value,
-                         ITuyaDevice device,
+                         IThingDevice device,
                          int var7) {
         this(context, attrs, defStyle, schemaBean, value, device);
     }
 
 
-    public DpBooleanItem(@NotNull Context context, @Nullable AttributeSet attrs, @NotNull SchemaBean schemaBean, boolean value, @NotNull ITuyaDevice device) {
+    public DpBooleanItem(@NotNull Context context, @Nullable AttributeSet attrs, @NotNull SchemaBean schemaBean, boolean value, @NotNull IThingDevice device) {
         this(context, attrs, 0, schemaBean, value, device, 4);
     }
 
@@ -127,7 +127,7 @@ public class DpBooleanItem extends FrameLayout {
     public DpBooleanItem(Context context,
                          SchemaBean schemaBean,
                          boolean value,
-                         ITuyaDevice device) {
+                         IThingDevice device) {
         this(context, null, 0, schemaBean, value, device);
     }
 }

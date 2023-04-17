@@ -17,15 +17,15 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.tuya.appsdk.sample.device.config.R;
-import com.tuya.smart.android.blemesh.api.ITuyaBlueMeshActivatorListener;
-import com.tuya.smart.android.blemesh.api.ITuyaBlueMeshSearch;
-import com.tuya.smart.android.blemesh.api.ITuyaBlueMeshSearchListener;
-import com.tuya.smart.android.blemesh.bean.SearchDeviceBean;
-import com.tuya.smart.android.blemesh.builder.SearchBuilder;
-import com.tuya.smart.android.blemesh.builder.TuyaSigMeshActivatorBuilder;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.sdk.api.bluemesh.ITuyaBlueMeshActivator;
-import com.tuya.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.android.blemesh.api.IThingBlueMeshActivatorListener;
+import com.thingclips.smart.android.blemesh.api.IThingBlueMeshSearch;
+import com.thingclips.smart.android.blemesh.api.IThingBlueMeshSearchListener;
+import com.thingclips.smart.android.blemesh.bean.SearchDeviceBean;
+import com.thingclips.smart.android.blemesh.builder.SearchBuilder;
+import com.thingclips.smart.android.blemesh.builder.ThingSigMeshActivatorBuilder;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.sdk.api.bluemesh.IThingBlueMeshActivator;
+import com.thingclips.smart.sdk.bean.DeviceBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,8 +58,8 @@ public class SubConfigAppActivity extends AppCompatActivity implements View.OnCl
     private final int STOP_ACTIVATOR = 3;
 
     private final List<SearchDeviceBean> searchDeviceBeanList = new ArrayList<>();
-    private ITuyaBlueMeshSearch mMeshSearch;
-    private ITuyaBlueMeshActivator iTuyaBlueMeshActivator;
+    private IThingBlueMeshSearch mMeshSearch;
+    private IThingBlueMeshActivator iThingBlueMeshActivator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +125,7 @@ public class SubConfigAppActivity extends AppCompatActivity implements View.OnCl
         SearchBuilder searchBuilder = new SearchBuilder()
                 .setServiceUUIDs(MESH_PROVISIONING_UUID)
                 .setTimeOut(100)        // timeout: s
-                .setTuyaBlueMeshSearchListener(new ITuyaBlueMeshSearchListener() {
+                .setThingBlueMeshSearchListener(new IThingBlueMeshSearchListener() {
                     @Override
                     public void onSearched(SearchDeviceBean bean) {
 //                        getSubDeviceInfo(bean);
@@ -142,7 +142,7 @@ public class SubConfigAppActivity extends AppCompatActivity implements View.OnCl
                     }
                 }).build();
 
-        mMeshSearch = TuyaHomeSdk.getTuyaBlueMeshConfig().newTuyaBlueMeshSearch(searchBuilder);
+        mMeshSearch = ThingHomeSdk.getThingBlueMeshConfig().newThingBlueMeshSearch(searchBuilder);
         // start scan
         mMeshSearch.startSearch();
     }
@@ -155,11 +155,11 @@ public class SubConfigAppActivity extends AppCompatActivity implements View.OnCl
 
     private void startActivator() {
 
-        TuyaSigMeshActivatorBuilder tuyaSigMeshActivatorBuilder = new TuyaSigMeshActivatorBuilder()
+        ThingSigMeshActivatorBuilder tuyaSigMeshActivatorBuilder = new ThingSigMeshActivatorBuilder()
                 .setSearchDeviceBeans(searchDeviceBeanList)
-                .setSigMeshBean(TuyaHomeSdk.getSigMeshInstance().getSigMeshList().get(0))
+                .setSigMeshBean(ThingHomeSdk.getSigMeshInstance().getSigMeshList().get(0))
                 .setTimeOut(100)  // timeout: s
-                .setTuyaBlueMeshActivatorListener(new ITuyaBlueMeshActivatorListener() {
+                .setThingBlueMeshActivatorListener(new IThingBlueMeshActivatorListener() {
                     @Override
                     public void onSuccess(String mac, DeviceBean deviceBean) {
                         Log.d(TAG, "activator success:" + deviceBean.getName());
@@ -183,13 +183,13 @@ public class SubConfigAppActivity extends AppCompatActivity implements View.OnCl
                     }
                 });
 
-        iTuyaBlueMeshActivator = TuyaHomeSdk.getTuyaBlueMeshConfig().newSigActivator(tuyaSigMeshActivatorBuilder);
-        iTuyaBlueMeshActivator.startActivator();
+        iThingBlueMeshActivator = ThingHomeSdk.getThingBlueMeshConfig().newSigActivator(tuyaSigMeshActivatorBuilder);
+        iThingBlueMeshActivator.startActivator();
     }
 
     private void stopActivator() {
-        if (iTuyaBlueMeshActivator != null) {
-            iTuyaBlueMeshActivator.stopActivator();
+        if (iThingBlueMeshActivator != null) {
+            iThingBlueMeshActivator.stopActivator();
         }
     }
 

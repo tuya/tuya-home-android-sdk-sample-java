@@ -24,9 +24,9 @@ import com.tuya.appsdk.sample.home.list.adapter.HomeListPageType;
 import com.tuya.appsdk.sample.home.newHome.NewHomeActivity;
 import com.tuya.appsdk.sample.resource.HomeModel;
 import com.tuya.appsdk.sample.user.R;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.HomeBean;
-import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.bean.HomeBean;
+import com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback;
 
 /**
  * Home Management Widget
@@ -77,7 +77,7 @@ public class HomeFuncWidget implements View.OnClickListener {
     public void refresh() {
         long currentHomeId = HomeModel.getCurrentHome(mContext);
         if (currentHomeId != 0L) {
-            TuyaHomeSdk.newHomeInstance(currentHomeId).getHomeDetail(new ITuyaHomeResultCallback() {
+            ThingHomeSdk.newHomeInstance(currentHomeId).getHomeDetail(new IThingHomeResultCallback() {
                 @Override
                 public void onSuccess(HomeBean bean) {
                     mTvCurrentHomeName.setText(bean.getName());

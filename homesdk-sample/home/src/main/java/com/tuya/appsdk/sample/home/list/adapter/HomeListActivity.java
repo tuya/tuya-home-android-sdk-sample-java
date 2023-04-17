@@ -23,9 +23,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.tuya.appsdk.sample.user.R;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.HomeBean;
-import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.bean.HomeBean;
+import com.thingclips.smart.home.sdk.callback.IThingGetHomeListCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +88,7 @@ public class HomeListActivity extends AppCompatActivity {
         super.onResume();
 
         // Query home list from server
-        TuyaHomeSdk.getHomeManagerInstance().queryHomeList(new ITuyaGetHomeListCallback() {
+        ThingHomeSdk.getHomeManagerInstance().queryHomeList(new IThingGetHomeListCallback() {
             @Override
             public void onSuccess(List<HomeBean> homeBeans) {
 

@@ -13,7 +13,6 @@
 package com.tuya.appsdk.sample.device.mgt.list.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,23 +20,26 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.thingclips.smart.sdk.api.IThingDevice;
 import com.tuya.appsdk.sample.device.mgt.R;
 import com.tuya.appsdk.sample.device.mgt.list.adapter.DeviceMgtAdapter;
 import com.tuya.appsdk.sample.device.mgt.list.tag.DeviceListTypePage;
 import com.tuya.appsdk.sample.resource.HomeModel;
-import com.tuya.smart.android.ble.builder.BleConnectBuilder;
-import com.tuya.smart.android.blemesh.api.ITuyaBlueMeshDevice;
-import com.tuya.smart.home.sdk.TuyaHomeSdk;
-import com.tuya.smart.home.sdk.bean.HomeBean;
-import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback;
-import com.tuya.smart.sdk.api.IDevListener;
-import com.tuya.smart.sdk.api.bluemesh.IMeshDevListener;
-import com.tuya.smart.sdk.bean.DeviceBean;
+import com.thingclips.smart.android.ble.builder.BleConnectBuilder;
+import com.thingclips.smart.android.blemesh.api.IThingBlueMeshDevice;
+import com.thingclips.smart.home.sdk.ThingHomeSdk;
+import com.thingclips.smart.home.sdk.bean.HomeBean;
+import com.thingclips.smart.home.sdk.callback.IThingHomeResultCallback;
+import com.thingclips.smart.sdk.api.IDevListener;
+import com.thingclips.smart.sdk.api.bluemesh.IMeshDevListener;
+import com.thingclips.smart.sdk.bean.DeviceBean;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Device Management initial device data sample
@@ -49,6 +51,8 @@ public class DeviceMgtListActivity extends AppCompatActivity {
 
     public DeviceMgtAdapter adapter;
     int type;
+    private final HashMap<String, IThingDevice> iThingDeviceHashMap = new HashMap<>();
+    private final HashMap<String, IThingBlueMeshDevice> iThingBlueMeshDeviceHashMap = new HashMap<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,14 +76,31 @@ public class DeviceMgtListActivity extends AppCompatActivity {
         rvList.setAdapter(adapter);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        for (Map.Entry<String, IThingDevice> entry : iThingDeviceHashMap.entrySet()) {
+            entry.getValue().unRegisterDevListener();
+            entry.getValue().onDestroy();
+        }
+        iThingDeviceHashMap.clear();
+
+        for (Map.Entry<String, IThingBlueMeshDevice> entry : iThingBlueMeshDeviceHashMap.entrySet()) {
+            entry.getValue().unRegisterMeshDevListener();
+            entry.getValue().onDestroy();
+        }
+        iThingBlueMeshDeviceHashMap.clear();
+    }
+
     IMeshDevListener iMeshDevListener = new IMeshDevListener() {
 
         @Override
-        public void onDpUpdate(String nodeId, String dps,boolean isFromLocal) {
+        public void onDpUpdate(String nodeId, String dps, boolean isFromLocal) {
         }
+
         @Override
-        public void onStatusChanged(List<String> online, List<String> offline,String gwId) {
-            if (adapter != null){
+        public void onStatusChanged(List<String> online, List<String> offline, String gwId) {
+            if (adapter != null) {
                 adapter.notifyDataSetChanged();
             }
         }
@@ -88,13 +109,16 @@ public class DeviceMgtListActivity extends AppCompatActivity {
         public void onNetworkStatusChanged(String devId, boolean status) {
 
         }
+
         @Override
         public void onRawDataUpdate(byte[] bytes) {
 
         }
+
         @Override
         public void onDevInfoUpdate(String devId) {
         }
+
         @Override
         public void onRemoved(String devId) {
         }
@@ -133,6 +157,7 @@ public class DeviceMgtListActivity extends AppCompatActivity {
 
         }
     };
+
     @Override
     public void onResume() {
         super.onResume();
@@ -142,19 +167,20 @@ public class DeviceMgtListActivity extends AppCompatActivity {
          * and call the following method to get the device information in the home.
          * initialization only need when the begin of app lifecycle and switch home.
          */
-        TuyaHomeSdk.newHomeInstance(homeId).getHomeDetail(new ITuyaHomeResultCallback() {
+        ThingHomeSdk.newHomeInstance(homeId).getHomeDetail(new IThingHomeResultCallback() {
             @Override
             public void onSuccess(HomeBean homeBean) {
-                Log.d("HomeBean","=====");
-                for (DeviceBean deviceBean :homeBean.getDeviceList()) {
-                    Log.d("HomeBean", "devId = " + deviceBean.getDevId() + " / name = " + deviceBean.getName());
-                }
+
                 if (type == DeviceListTypePage.NORMAL_DEVICE_LIST) {
                     ArrayList<DeviceBean> deviceList = (ArrayList) homeBean.getDeviceList();
                     if (deviceList != null && deviceList.size() > 0) {
                         List<BleConnectBuilder> builderList = new ArrayList<>();
                         for (DeviceBean deviceBean : deviceList) {
-                            TuyaHomeSdk.newDeviceInstance(deviceBean.devId).registerDevListener(iDevListener);
+                            if (null == iThingDeviceHashMap.get(deviceBean.devId)) {
+                                IThingDevice iThingDevice = ThingHomeSdk.newDeviceInstance(deviceBean.devId);
+                                iThingDevice.registerDevListener(iDevListener);
+                                iThingDeviceHashMap.put(deviceBean.devId, iThingDevice);
+                            }
                             if (deviceBean.isBluetooth()) {
                                 BleConnectBuilder builder = new BleConnectBuilder();
                                 builder.setDevId(deviceBean.devId);
@@ -162,17 +188,21 @@ public class DeviceMgtListActivity extends AppCompatActivity {
                             }
                         }
                         if (builderList.size() > 0) {
-                            TuyaHomeSdk.getBleManager().connectBleDevice(builderList);
+                            ThingHomeSdk.getBleManager().connectBleDevice(builderList);
                         }
                     }
-                    if (homeBean.getSigMeshList() != null && homeBean.getSigMeshList().size() > 0){
+                    if (homeBean.getSigMeshList() != null && homeBean.getSigMeshList().size() > 0) {
                         // Control sigmesh equipment,
-                        // we need to call {@link TuyaHomeSdk.GetTuyaSigMeshClient().#startClient(SigMeshBean SigMeshBean)}
-                        // This method of correction is in {@link com.tuya.Smart.SDK.API.Bluemesh.IMeshDevListener} inside,
+                        // we need to call {@link ThingHomeSdk.GetThingSigMeshClient().#startClient(SigMeshBean SigMeshBean)}
+                        // This method of correction is in {@link com.thingclips.Smart.SDK.API.Bluemesh.IMeshDevListener} inside,
                         // we need to go at the time of this callback to refresh the equipment status.
-                        ITuyaBlueMeshDevice mTuyaSigMeshDevice= TuyaHomeSdk.newSigMeshDeviceInstance(homeBean.getSigMeshList().get(0).getMeshId());
-                        mTuyaSigMeshDevice.registerMeshDevListener(iMeshDevListener);
-                        TuyaHomeSdk.getTuyaSigMeshClient().startClient(TuyaHomeSdk.getSigMeshInstance().getSigMeshList().get(0));
+                        String meshId = homeBean.getSigMeshList().get(0).getMeshId();
+                        if (iThingBlueMeshDeviceHashMap.get(meshId) == null) {
+                            IThingBlueMeshDevice mThingSigMeshDevice = ThingHomeSdk.newSigMeshDeviceInstance(meshId);
+                            mThingSigMeshDevice.registerMeshDevListener(iMeshDevListener);
+                            iThingBlueMeshDeviceHashMap.put(meshId, mThingSigMeshDevice);
+                            ThingHomeSdk.getThingSigMeshClient().startClient(ThingHomeSdk.getSigMeshInstance().getSigMeshList().get(0));
+                        }
                     }
                     adapter.setData(deviceList, type);
                     adapter.notifyDataSetChanged();
