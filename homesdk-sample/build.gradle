@@ -3,6 +3,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://maven-other.tuya.com/repository/maven-releases/' } 
         maven {
             url "https://maven-other.tuya.com/repository/maven-commercial-releases/"
             mavenContent {
@@ -21,6 +22,7 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'https://maven-other.tuya.com/repository/maven-releases/' }
         maven { url "https://maven-other.tuya.com/repository/maven-commercial-releases/" }
         google()
         mavenCentral()
