@@ -40,3 +40,7 @@
 #Tuya
 -keep class com.thingclips.**{*;}
 -dontwarn com.thingclips.**
+
+# Matter SDK
+-keep class chip.** { *; }
+-dontwarn chip.**
