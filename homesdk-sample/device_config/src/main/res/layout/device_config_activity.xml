@@ -75,6 +75,14 @@
                 android:text="@string/device_config_search" />
 
 
+            <Button
+                android:id="@+id/btnStop"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/device_config_stop" />
+
+
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/cpiLoading"
                 android:layout_gravity="center_horizontal"

@@ -20,10 +20,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.thingclips.smart.activator.core.kit.ThingActivatorCoreKit;
+import com.thingclips.smart.activator.core.kit.active.inter.IThingActiveManager;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveErrorBean;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveLimitBean;
+import com.thingclips.smart.activator.core.kit.builder.ThingDeviceActiveBuilder;
+import com.thingclips.smart.activator.core.kit.constant.ThingDeviceActiveModeEnum;
+import com.thingclips.smart.activator.core.kit.devicecore.ThingActivatorDeviceCoreKit;
+import com.thingclips.smart.activator.core.kit.listener.IThingDeviceActiveListener;
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.resource.HomeModel;
 import com.thingclips.smart.home.sdk.ThingHomeSdk;
@@ -45,7 +54,11 @@ public class DeviceConfigEZActivity extends AppCompatActivity implements View.On
 
     public CircularProgressIndicator cpiLoading;
     public Button btnSearch;
+    public Button btnStop;
+
     private TextView mContentTv;
+
+    private IThingActiveManager activeManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +78,9 @@ public class DeviceConfigEZActivity extends AppCompatActivity implements View.On
         cpiLoading = findViewById(R.id.cpiLoading);
         btnSearch = findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(this);
-        mContentTv=findViewById(R.id.content_tv);
+        btnStop = findViewById(R.id.btnStop);
+        btnStop.setOnClickListener(this);
+        mContentTv = findViewById(R.id.content_tv);
         mContentTv.setText(getString(R.string.device_config_ez_description));
     }
 
@@ -78,77 +93,89 @@ public class DeviceConfigEZActivity extends AppCompatActivity implements View.On
 
         if (v.getId() == R.id.btnSearch) {
             long homeId = HomeModel.getCurrentHome(this);
-
             // Get Network Configuration Token
-            ThingHomeSdk.getActivatorInstance().getActivatorToken(homeId,
-                    new IThingActivatorGetToken() {
-                        @Override
-                        public void onSuccess(String token) {
-                            // Start network configuration -- EZ mode
-                            ActivatorBuilder builder = new ActivatorBuilder()
-                                    .setSsid(strSsid)
-                                    .setContext(v.getContext())
-                                    .setPassword(strPassword)
-                                    .setActivatorModel(ActivatorModelEnum.THING_EZ)
-                                    .setTimeOut(100)
-                                    .setToken(token)
-                                    .setListener(new IThingSmartActivatorListener() {
-                                        @Override
-                                        public void onError(String errorCode, String errorMsg) {
-                                            cpiLoading.setVisibility(View.GONE);
-                                            btnSearch.setClickable(true);
-                                            Toast.makeText(DeviceConfigEZActivity.this,
-                                                    "Activate error-->" + errorMsg,
-                                                    Toast.LENGTH_LONG
-                                            ).show();
-
-                                        }
-
-                                        @Override
-                                        public void onActiveSuccess(DeviceBean devResp) {
-                                            cpiLoading.setVisibility(View.GONE);
-
-                                            Log.i(TAG, "Activate success");
-                                            Toast.makeText(DeviceConfigEZActivity.this,
-                                                    "Activate success",
-                                                    Toast.LENGTH_LONG
-                                            ).show();
-
-                                            finish();
-                                        }
-
-                                        @Override
-                                        public void onStep(String step, Object data) {
-                                            Log.i(TAG, step + " --> " + data);
-                                        }
-                                    });
-
-                            IThingActivator mTuyaActivator =
-                                    ThingHomeSdk.getActivatorInstance().newMultiActivator(builder);
-
-                            //Start configuration
-                            mTuyaActivator.start();
-
-                            //Show loading progress, disable btnSearch clickable
-                            cpiLoading.setVisibility(View.VISIBLE);
-                            btnSearch.setClickable(false);
-
-                            //Stop configuration
-//                                mTuyaActivator.stop()
-                            //Exit the page to destroy some cache data and monitoring data.
-//                                mTuyaActivator.onDestroy()
-                        }
+            ThingActivatorDeviceCoreKit.INSTANCE.getActivatorInstance().getActivatorToken(homeId, new IThingActivatorGetToken() {
+                @Override
+                public void onSuccess(String token) {
+                    // Start network configuration -- EZ mode
+                    Log.i(TAG, "token create success");
+                    startActiator(strSsid, strPassword, token);
+                }
 
 
-                        @Override
-                        public void onFailure(String errorCode, String errorMsg) {
+                @Override
+                public void onFailure(String errorCode, String errorMsg) {
 
-                        }
-                    });
+                }
+            });
 
 
+        } else if (v.getId() == R.id.btnStop) {
+            stopActive();
         }
 
 
+    }
+
+    private void stopActive() {
+        if (activeManager != null) {
+            activeManager.stopActive();
+            activeManager = null;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopActive();
+    }
+
+    private void startActiator(String ssid, String pwd, String token) {
+        cpiLoading.setVisibility(View.VISIBLE);
+        btnSearch.setClickable(false);
+        activeManager = ThingActivatorCoreKit.INSTANCE.getActiveManager().newThingActiveManager();
+        ThingDeviceActiveBuilder builder = new ThingDeviceActiveBuilder();
+        builder.setActiveModel(ThingDeviceActiveModeEnum.EZ);
+        builder.setTimeOut(120);
+        builder.setSsid(ssid);
+        builder.setPassword(pwd);
+        builder.setToken(token);
+        builder.setRelationId(HomeModel.getCurrentHome(this));
+        builder.setContext(this);
+        builder.setListener(new IThingDeviceActiveListener() {
+
+            @Override
+            public void onFind(@NonNull String s) {
+
+            }
+
+            @Override
+            public void onBind(@NonNull String s) {
+
+            }
+
+            @Override
+            public void onActiveSuccess(@NonNull DeviceBean deviceBean) {
+                cpiLoading.setVisibility(View.GONE);
+
+                Log.i(TAG, "Activate success");
+                Toast.makeText(DeviceConfigEZActivity.this, "Activate success", Toast.LENGTH_LONG).show();
+
+                finish();
+            }
+
+            @Override
+            public void onActiveLimited(@NonNull ThingDeviceActiveLimitBean thingDeviceActiveLimitBean) {
+
+            }
+
+            @Override
+            public void onActiveError(@NonNull ThingDeviceActiveErrorBean thingDeviceActiveErrorBean) {
+                cpiLoading.setVisibility(View.GONE);
+                btnSearch.setClickable(true);
+                Toast.makeText(DeviceConfigEZActivity.this, "Activate error-->" + thingDeviceActiveErrorBean.getErrMsg(), Toast.LENGTH_LONG).show();
+            }
+        });
+        activeManager.startActive(builder);
     }
 }
