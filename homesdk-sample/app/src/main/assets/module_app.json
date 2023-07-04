@@ -1,0 +1,5 @@
+{
+  "serviceMap": {
+    "com.thingclips.smart.activator.network.request.api.AbsActivatorNetworkRequest": "com.thingclips.smart.activator.network.request.ActivatorNetworkRequestServiceImpl"
+  }
+}

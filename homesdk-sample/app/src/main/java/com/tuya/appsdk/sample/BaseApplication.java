@@ -14,6 +14,7 @@ package com.tuya.appsdk.sample;
 
 import android.app.Application;
 
+import com.thingclips.smart.api.SmartInitializer;
 import com.thingclips.smart.optimus.sdk.ThingOptimusSdk;
 import com.tuya.appsdk.sample.device.config.util.sp.SpUtils;
 import com.tuya.smart.android.demo.camera.CameraUtils;
@@ -33,7 +34,7 @@ public final class BaseApplication extends Application {
         ThingHomeSdk.init(this);
         ThingHomeSdk.setDebugMode(true);
         ThingOptimusSdk.init(this);
-
+        SmartInitializer.init(this);
         SpUtils.getInstance().initSp(this);
         ZXingLibrary.initDisplayOpinion(this);
         CameraUtils.init(this);

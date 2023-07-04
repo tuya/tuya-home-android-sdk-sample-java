@@ -22,6 +22,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
+import com.thingclips.smart.activator.core.kit.ThingActivatorCoreKit;
+import com.thingclips.smart.activator.core.kit.active.inter.IThingActiveManager;
+import com.thingclips.smart.activator.core.kit.bean.ThingActivatorScanDeviceBean;
+import com.thingclips.smart.activator.core.kit.bean.ThingActivatorScanFailureBean;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveErrorBean;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveLimitBean;
+import com.thingclips.smart.activator.core.kit.builder.ThingDeviceActiveBuilder;
+import com.thingclips.smart.activator.core.kit.callback.ThingActivatorScanCallback;
+import com.thingclips.smart.activator.core.kit.constant.ThingDeviceActiveModeEnum;
+import com.thingclips.smart.activator.core.kit.devicecore.ThingActivatorDeviceCoreKit;
+import com.thingclips.smart.activator.core.kit.listener.IThingDeviceActiveListener;
+import com.thingclips.smart.activator.core.kit.scan.ThingActivatorScanDeviceManager;
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.resource.HomeModel;
 import com.thingclips.smart.android.ble.api.BleConfigType;
@@ -47,17 +59,17 @@ import java.util.Objects;
 
 /**
  * @author AoBing
- *
+ * <p>
  * BLE device activation, here you can activate Single and Dual devices.
- *
+ * <p>
  * First, you need to make the device enter the active state,
  * and then scan the surrounding devices through the mobile APP.
  * The scanned device can obtain the name and icon of the device by request.
- *
+ * <p>
  * Perform different activation methods according to the scanned device type:
- *
+ * <p>
  * If it is a single device, proceed directly to the activation step.
- *
+ * <p>
  * If it is a dual device, such as a gateway,
  * you need to obtain the Token from the cloud first,
  * and then pass in the Wi-Fi SSID and password to the gateway to perform activation.
@@ -65,17 +77,13 @@ import java.util.Objects;
 
 public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "BLE";
+    private static final String TAG = "BLE_DEMO";
     private Button mBtnScan, mBtnStop;
     private CircularProgressIndicator cpiLoading;
-    private static IBleActivator mBleActivator = ThingHomeSdk.getActivator().newBleActivator();
-    private static IMultiModeActivator mMultiModeActivator = ThingHomeSdk.getActivator().newMultiModeActivator();
-
-    private final List<ScanDeviceBean> scanDeviceBeanList = new ArrayList<>();
-    private final List<ConfigProductInfoBean> infoBeanList = new ArrayList<>();
+    private final List<ThingActivatorScanDeviceBean> scanDeviceBeanList = new ArrayList<>();
     private BleDeviceListAdapter adapter;
-    BleActivatorBean bleActivatorBean;
-    MultiModeActivatorBean multiModeActivatorBean;
+    IThingActiveManager activeManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,101 +124,103 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
     }
 
     private void startScan() {
-        infoBeanList.clear();
         scanDeviceBeanList.clear();
 
-        // Scan Single Ble Device
-        LeScanSetting scanSetting = new LeScanSetting.Builder()
-                .setTimeout(60 * 1000) // Timeout：ms
-                .addScanType(ScanType.SINGLE) // If you need to scan for BLE devices, you only need to add ScanType.SINGLE
-                .build();
+        List<ScanType> scanTypeList = new ArrayList<>();
+        scanTypeList.add(ScanType.SINGLE);
+        scanTypeList.add(ScanType.MESH);
+        ThingActivatorScanDeviceManager.INSTANCE.startBlueToothDeviceSearch(
+                60 * 1000,
+                scanTypeList,
+                new ThingActivatorScanCallback() {
+                    @Override
+                    public void deviceFound(@NonNull ThingActivatorScanDeviceBean thingActivatorScanDeviceBean) {
+                        Log.d(TAG, "deviceFound : " + thingActivatorScanDeviceBean);
+                        scanDeviceBeanList.add(thingActivatorScanDeviceBean);
+                        adapter.notifyDataSetChanged();
+                    }
 
-        // start scan
-        ThingHomeSdk.getBleOperator().startLeScan(scanSetting, bean -> {
-            Log.d(TAG, "扫描结果:" + bean.getUuid());
-            scanDeviceBeanList.add(bean);
-            getDeviceInfo(bean);
-        });
+                    @Override
+                    public void deviceUpdate(@NonNull ThingActivatorScanDeviceBean thingActivatorScanDeviceBean) {
+
+                    }
+
+                    @Override
+                    public void deviceRepeat(@NonNull ThingActivatorScanDeviceBean thingActivatorScanDeviceBean) {
+
+                    }
+
+                    @Override
+                    public void scanFinish() {
+
+                    }
+
+                    @Override
+                    public void scanFailure(@NonNull ThingActivatorScanFailureBean thingActivatorScanFailureBean) {
+
+                    }
+                }
+        );
     }
 
     private void stopScan() {
         ThingHomeSdk.getBleOperator().stopLeScan();
     }
 
-    private void getDeviceInfo(ScanDeviceBean scanDeviceBean) {
-        ThingHomeSdk.getActivatorInstance().getActivatorDeviceInfo(scanDeviceBean.getProductId(),
-                scanDeviceBean.getUuid(),
-                scanDeviceBean.getMac(),
-                new IThingDataCallback<ConfigProductInfoBean>() {
-                    @Override
-                    public void onSuccess(ConfigProductInfoBean result) {
-                        infoBeanList.add(result);
-                        adapter.notifyDataSetChanged();
-                        Log.d(TAG, "getDeviceInfo:" + result.getName());
-                    }
+    private void startActivator(ThingActivatorScanDeviceBean bean, String ssid, String pwd) {
+        ThingDeviceActiveModeEnum thingDeviceActiveModeEnum = bean.getSupprotActivatorTypeList().get(0);
+        activeManager = ThingActivatorCoreKit.INSTANCE.getActiveManager().newThingActiveManager();
+        ThingDeviceActiveBuilder builder = new ThingDeviceActiveBuilder();
+        builder.setActiveModel(bean.getSupprotActivatorTypeList().get(0));
+        builder.setActivatorScanDeviceBean(bean);
+        builder.setTimeOut(60);
 
-                    @Override
-                    public void onError(String errorCode, String errorMessage) {
-                        Log.d(TAG, "getDeviceInfoError:" + errorMessage);
-                        Toast.makeText(DeviceConfigBleAndDualActivity.this,
-                                "getDeviceInfoError:" + errorMessage,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void startActivator(int pos) {
-        String type = scanDeviceBeanList.get(pos).getConfigType();
-        if (BleConfigType.CONFIG_TYPE_SINGLE.getType().equals(type)) {
-            singleActivator(pos);
-        } else if (BleConfigType.CONFIG_TYPE_WIFI.getType().equals(type)) {
-            dualActivatorDialog(pos);
-        } else {
-            Toast.makeText(DeviceConfigBleAndDualActivity.this, "Device Type not support", Toast.LENGTH_SHORT).show();
+        if (thingDeviceActiveModeEnum == ThingDeviceActiveModeEnum.BLE_WIFI || thingDeviceActiveModeEnum == ThingDeviceActiveModeEnum.MULT_MODE) {
+            //need wifi info
+            builder.setSsid(ssid);
+            builder.setPassword(pwd);
         }
-    }
 
-    private void singleActivator(int pos) {
-        cpiLoading.setVisibility(View.VISIBLE);
-
-        bleActivatorBean = new BleActivatorBean();
-
-        bleActivatorBean.homeId = HomeModel.getCurrentHome(this); // homeId
-        bleActivatorBean.address = scanDeviceBeanList.get(pos).getAddress();
-        bleActivatorBean.deviceType = scanDeviceBeanList.get(pos).getDeviceType();
-        bleActivatorBean.uuid = scanDeviceBeanList.get(pos).getUuid(); // UUID
-        bleActivatorBean.productId = scanDeviceBeanList.get(pos).getProductId();
-
-        mBleActivator.startActivator(bleActivatorBean, new IBleActivatorListener() {
+        builder.setRelationId(HomeModel.getCurrentHome(this));
+        builder.setListener(new IThingDeviceActiveListener() {
             @Override
-            public void onSuccess(DeviceBean deviceBean) {
+            public void onFind(@NonNull String s) {
+
+            }
+
+            @Override
+            public void onBind(@NonNull String s) {
+
+            }
+
+            @Override
+            public void onActiveSuccess(@NonNull DeviceBean deviceBean) {
+                Log.i(TAG, "onActiveSuccess : " + deviceBean.getName());
                 cpiLoading.setVisibility(View.GONE);
-                bleActivatorBean = null;
                 Log.d(TAG, "activator success:" + deviceBean.getName());
                 Toast.makeText(DeviceConfigBleAndDualActivity.this, "success:" + deviceBean.getName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(int code, String msg, Object handle) {
+            public void onActiveError(@NonNull ThingDeviceActiveErrorBean thingDeviceActiveErrorBean) {
                 cpiLoading.setVisibility(View.GONE);
-                bleActivatorBean = null;
-                Log.d(TAG, "activator error:" + msg);
-                Toast.makeText(DeviceConfigBleAndDualActivity.this, "error:" + msg, Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "activator error:" + thingDeviceActiveErrorBean.getErrMsg());
+                Toast.makeText(DeviceConfigBleAndDualActivity.this, "error:" + thingDeviceActiveErrorBean.getErrMsg(), Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onActiveLimited(@NonNull ThingDeviceActiveLimitBean thingDeviceActiveLimitBean) {
+                Log.d(TAG, "onActiveLimited : " + thingDeviceActiveLimitBean.getErrorMsg());
             }
         });
+        activeManager.startActive(builder);
     }
 
-    private void stopActivator(){
-        if (bleActivatorBean != null) {
-            mBleActivator.stopActivator(bleActivatorBean.uuid);
-        }
-        if (multiModeActivatorBean != null) {
-            mMultiModeActivator.stopActivator(multiModeActivatorBean.uuid);
-        }
+    private void stopActivator() {
+        activeManager.stopActive();
     }
 
-    private void dualActivatorDialog(int pos) {
+    public void dualActivatorDialog(ThingActivatorScanDeviceBean bean) {
         final View v = LayoutInflater.from(this).inflate(R.layout.ble_dual_activator_dialog, null);
         TextInputEditText etSSID = v.findViewById(R.id.et_ssid);
         TextInputEditText etPwd = v.findViewById(R.id.et_pwd);
@@ -227,62 +237,10 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
                     // Wi-Fi password can be null
                     String pwd = Objects.requireNonNull(etPwd.getText()).toString();
 
-                    startDualActivator(pos, ssid, pwd);
+                    cpiLoading.setVisibility(View.VISIBLE);
+                    startActivator(bean, ssid, pwd);
                 });
         builder.show();
-
-    }
-
-    private void startDualActivator(int pos, String ssid, String pwd) {
-        cpiLoading.setVisibility(View.VISIBLE);
-        long homeId = HomeModel.getCurrentHome(this);
-        ThingHomeSdk.getActivatorInstance().getActivatorToken(homeId,
-                new IThingActivatorGetToken() {
-
-                    // get Token
-                    @Override
-                    public void onSuccess(String token) {
-                        Log.d(TAG, "getToken success, token :" + token);
-                        multiModeActivatorBean = new MultiModeActivatorBean();
-                        multiModeActivatorBean.deviceType = scanDeviceBeanList.get(pos).getDeviceType();
-                        multiModeActivatorBean.uuid = scanDeviceBeanList.get(pos).getUuid();
-                        multiModeActivatorBean.address = scanDeviceBeanList.get(pos).getAddress();
-                        multiModeActivatorBean.mac = scanDeviceBeanList.get(pos).getMac();
-                        multiModeActivatorBean.ssid = ssid;
-                        multiModeActivatorBean.pwd = pwd;
-                        multiModeActivatorBean.token = token;
-                        multiModeActivatorBean.homeId = homeId;
-                        multiModeActivatorBean.timeout = 120 * 1000;
-
-                        // start activator
-                        mMultiModeActivator.startActivator(multiModeActivatorBean, new IMultiModeActivatorListener() {
-                            @Override
-                            public void onSuccess(DeviceBean deviceBean) {
-                                if (deviceBean != null) {
-                                    Toast.makeText(DeviceConfigBleAndDualActivity.this, "config success", Toast.LENGTH_SHORT).show();
-                                    Log.d(TAG, "Success:" + deviceBean.getName());
-                                    cpiLoading.setVisibility(View.GONE);
-
-                                }
-                                multiModeActivatorBean = null;
-                            }
-
-                            @Override
-                            public void onFailure(int code, String msg, Object handle) {
-                                Log.d(TAG, "error:" + msg);
-                                Toast.makeText(DeviceConfigBleAndDualActivity.this, "error:" + msg, Toast.LENGTH_SHORT).show();
-                                cpiLoading.setVisibility(View.GONE);
-                                multiModeActivatorBean = null;
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onFailure(String code, String msg) {
-                        Log.e(TAG, "getToken failed:" + msg);
-                    }
-                });
-
 
     }
 
@@ -290,6 +248,7 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
         TextView mTvDeviceName;
         LinearLayout mLlItemRoot;
         Button mBtnItemStartActivator;
+
         public VH(@NonNull View itemView) {
             super(itemView);
             mTvDeviceName = itemView.findViewById(R.id.tv_ble_device_item_name);
@@ -301,6 +260,7 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
 
     private static class BleDeviceListAdapter extends RecyclerView.Adapter<DeviceConfigBleAndDualActivity.VH> {
         private final DeviceConfigBleAndDualActivity activity;
+
         public BleDeviceListAdapter(DeviceConfigBleAndDualActivity activity) {
             this.activity = activity;
         }
@@ -313,13 +273,20 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
 
         @Override
         public void onBindViewHolder(@NonNull DeviceConfigBleAndDualActivity.VH holder, int position) {
-            if (activity != null && activity.infoBeanList.size() > position){
-                holder.mTvDeviceName.setText(activity.infoBeanList.get(position).getName());
+            if (activity != null && activity.scanDeviceBeanList.size() > position) {
+                holder.mTvDeviceName.setText(activity.scanDeviceBeanList.get(position).getName());
                 holder.mBtnItemStartActivator.setOnClickListener(v -> {
                     Log.d(TAG, "点击：" + position);
                     activity.setViewVisible(false);
                     activity.stopScan();
-                    activity.startActivator(position);
+                    ThingActivatorScanDeviceBean bean = activity.scanDeviceBeanList.get(position);
+                    ThingDeviceActiveModeEnum thingDeviceActiveModeEnum = bean.getSupprotActivatorTypeList().get(0);
+                    if (thingDeviceActiveModeEnum == ThingDeviceActiveModeEnum.BLE_WIFI || thingDeviceActiveModeEnum == ThingDeviceActiveModeEnum.MULT_MODE) {
+                        //need wifi info
+                        activity.dualActivatorDialog(bean);
+                    } else {
+                        activity.startActivator(bean, null, null);
+                    }
                 });
             }
         }
