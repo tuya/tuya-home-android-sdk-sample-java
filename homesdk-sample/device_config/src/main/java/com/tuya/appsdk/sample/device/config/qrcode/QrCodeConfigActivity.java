@@ -1,14 +1,8 @@
 package com.tuya.appsdk.sample.device.config.qrcode;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -19,25 +13,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.zxing.WriterException;
-import com.tuya.appsdk.sample.device.config.R;
-import com.tuya.appsdk.sample.device.config.ap.DeviceConfigAPActivity;
-import com.tuya.appsdk.sample.device.config.util.qrcode.QRCodeUtil;
-import com.tuya.appsdk.sample.resource.HomeModel;
-import com.thingclips.smart.android.common.utils.L;
-import com.thingclips.smart.android.common.utils.WiFiUtil;
+import com.thingclips.smart.activator.core.kit.devicecore.ThingActivatorDeviceCoreKit;
 import com.thingclips.smart.home.sdk.ThingHomeSdk;
-import com.thingclips.smart.home.sdk.builder.ActivatorBuilder;
 import com.thingclips.smart.home.sdk.builder.ThingCameraActivatorBuilder;
 import com.thingclips.smart.sdk.api.IThingActivatorGetToken;
 import com.thingclips.smart.sdk.api.IThingCameraDevActivator;
-import com.thingclips.smart.sdk.api.IThingSmartActivatorListener;
 import com.thingclips.smart.sdk.api.IThingSmartCameraActivatorListener;
 import com.thingclips.smart.sdk.bean.DeviceBean;
-import com.thingclips.smart.sdk.enums.ActivatorModelEnum;
+import com.tuya.appsdk.sample.device.config.R;
+import com.tuya.appsdk.sample.device.config.util.qrcode.QRCodeUtil;
+import com.tuya.appsdk.sample.resource.HomeModel;
 
 /**
  * QR code device config, generally used for ipc device.
@@ -85,9 +72,8 @@ public class QrCodeConfigActivity extends AppCompatActivity implements View.OnCl
             wifiSSId = mEtInputWifiSSid.getText().toString();
             wifiPwd = mEtInputWifiPwd.getText().toString();
             long homeId = HomeModel.getCurrentHome(this);
-
             // Get Network Configuration Token
-            ThingHomeSdk.getActivatorInstance().getActivatorToken(homeId,
+            ThingActivatorDeviceCoreKit.INSTANCE.getActivatorInstance().getActivatorToken(homeId,
                     new IThingActivatorGetToken() {
                         @Override
                         public void onSuccess(String token) {
@@ -124,12 +110,11 @@ public class QrCodeConfigActivity extends AppCompatActivity implements View.OnCl
 
                                         @Override
                                         public void onActiveSuccess(DeviceBean devResp) {
-                                            Toast.makeText(QrCodeConfigActivity.this,"config success!",Toast.LENGTH_LONG).show();
+                                            Toast.makeText(QrCodeConfigActivity.this, "config success!", Toast.LENGTH_LONG).show();
                                         }
                                     });
-                            mTuyaActivator = ThingHomeSdk.getActivatorInstance().newCameraDevActivator(builder);
+                            mTuyaActivator = ThingActivatorDeviceCoreKit.INSTANCE.getActivatorInstance().newCameraDevActivator(builder);
                             mTuyaActivator.createQRCode();
-                            mTuyaActivator.start();
                         }
 
 

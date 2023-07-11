@@ -15,17 +15,27 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.thingclips.smart.activator.core.kit.ThingActivatorCoreKit;
+import com.thingclips.smart.activator.core.kit.active.inter.IThingActiveManager;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveErrorBean;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveLimitBean;
+import com.thingclips.smart.activator.core.kit.builder.ThingDeviceActiveBuilder;
+import com.thingclips.smart.activator.core.kit.constant.ThingDeviceActiveModeEnum;
+import com.thingclips.smart.activator.core.kit.listener.IThingDeviceActiveListener;
 import com.tuya.appsdk.sample.device.config.R;
+import com.tuya.appsdk.sample.device.config.mesh.configByGateway.SubConfigGatewayActivity;
 import com.tuya.appsdk.sample.device.config.util.sp.SpUtils;
 import com.thingclips.smart.home.sdk.ThingHomeSdk;
 import com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder;
@@ -54,6 +64,8 @@ public class DeviceConfigZbSubDeviceActivity extends AppCompatActivity implement
     private String currentGatewayName;
     private String currentGatewayId;
 
+    private IThingActiveManager activeManager;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +75,12 @@ public class DeviceConfigZbSubDeviceActivity extends AppCompatActivity implement
 
         currentGatewayName = SpUtils.getInstance().getString(CURRENT_GATEWAY_NAME, "0");
         currentGatewayId = SpUtils.getInstance().getString(CURRENT_GATEWAY_ID, "0");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        activeManager.stopActive();
     }
 
     private void initView() {
@@ -106,48 +124,47 @@ public class DeviceConfigZbSubDeviceActivity extends AppCompatActivity implement
     // Sub-device Configuration
     private void subDeviceConfiguration() {
         if (TextUtils.isEmpty(tvCurrentGateway.getText())) {
-            Toast.makeText(DeviceConfigZbSubDeviceActivity.this,
-                    "Please select gateway first",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(DeviceConfigZbSubDeviceActivity.this, "Please select gateway first", Toast.LENGTH_SHORT).show();
             return;
         }
 
         setPbViewVisible(true);
 
-        ThingGwSubDevActivatorBuilder gwSubDevActivatorBuilder = new ThingGwSubDevActivatorBuilder()
-                .setDevId(currentGatewayId)
-                .setTimeOut(100)
-                .setListener(new IThingSmartActivatorListener() {
-                    @Override
-                    public void onError(String errorCode, String errorMsg) {
+        activeManager = ThingActivatorCoreKit.INSTANCE.getActiveManager().newThingActiveManager();
+        ThingDeviceActiveBuilder builder = new ThingDeviceActiveBuilder();
+        builder.setGwId(currentGatewayId);
+        builder.setTimeOut(120);
+        builder.setActiveModel(ThingDeviceActiveModeEnum.SUB);
+        builder.setListener(new IThingDeviceActiveListener() {
+            @Override
+            public void onFind(@NonNull String s) {
 
-                        setPbViewVisible(false);
-                        Toast.makeText(
-                                DeviceConfigZbSubDeviceActivity.this,
-                                "Active Error" + errorMsg,
-                                Toast.LENGTH_SHORT
-                        ).show();
-                    }
+            }
 
-                    @Override
-                    public void onActiveSuccess(DeviceBean devResp) {
+            @Override
+            public void onBind(@NonNull String s) {
 
-                        setPbViewVisible(false);
-                        Toast.makeText(
-                                DeviceConfigZbSubDeviceActivity.this,
-                                "Active Success",
-                                Toast.LENGTH_SHORT
-                        ).show();
-                        finish();
-                    }
+            }
 
-                    @Override
-                    public void onStep(String step, Object data) {
+            @Override
+            public void onActiveSuccess(@NonNull DeviceBean deviceBean) {
+                setPbViewVisible(false);
+                Toast.makeText(DeviceConfigZbSubDeviceActivity.this, "Active Success", Toast.LENGTH_SHORT).show();
+                finish();
+            }
 
-                    }
-                });
-        IThingActivator iTuyaActivator = ThingHomeSdk.getActivatorInstance().newGwSubDevActivator(gwSubDevActivatorBuilder);
-        iTuyaActivator.start();
+            @Override
+            public void onActiveError(@NonNull ThingDeviceActiveErrorBean thingDeviceActiveErrorBean) {
+                setPbViewVisible(false);
+                Toast.makeText(DeviceConfigZbSubDeviceActivity.this, "Active Error" + thingDeviceActiveErrorBean.getErrMsg(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onActiveLimited(@NonNull ThingDeviceActiveLimitBean thingDeviceActiveLimitBean) {
+
+            }
+        });
+        activeManager.startActive(builder);
     }
 
     private void setPbViewVisible(boolean b) {

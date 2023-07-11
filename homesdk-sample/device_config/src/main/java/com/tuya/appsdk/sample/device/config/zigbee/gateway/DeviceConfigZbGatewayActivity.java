@@ -12,27 +12,38 @@
 package com.tuya.appsdk.sample.device.config.zigbee.gateway;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
-import com.tuya.appsdk.sample.device.config.R;
-import com.tuya.appsdk.sample.resource.HomeModel;
+import com.thingclips.smart.activator.core.kit.ThingActivatorCoreKit;
+import com.thingclips.smart.activator.core.kit.active.inter.IThingActiveManager;
+import com.thingclips.smart.activator.core.kit.bean.ThingActivatorScanDeviceBean;
+import com.thingclips.smart.activator.core.kit.bean.ThingActivatorScanFailureBean;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveErrorBean;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveLimitBean;
+import com.thingclips.smart.activator.core.kit.builder.ThingDeviceActiveBuilder;
+import com.thingclips.smart.activator.core.kit.callback.ThingActivatorScanCallback;
+import com.thingclips.smart.activator.core.kit.constant.ThingDeviceActiveModeEnum;
+import com.thingclips.smart.activator.core.kit.listener.IThingDeviceActiveListener;
+import com.thingclips.smart.activator.core.kit.scan.ThingActivatorScanDeviceManager;
 import com.thingclips.smart.android.hardware.bean.HgwBean;
 import com.thingclips.smart.home.sdk.ThingHomeSdk;
-import com.thingclips.smart.home.sdk.api.IGwSearchListener;
-import com.thingclips.smart.home.sdk.api.IThingGwSearcher;
 import com.thingclips.smart.home.sdk.builder.ThingGwActivatorBuilder;
 import com.thingclips.smart.sdk.api.IThingActivator;
 import com.thingclips.smart.sdk.api.IThingActivatorGetToken;
 import com.thingclips.smart.sdk.api.IThingSmartActivatorListener;
 import com.thingclips.smart.sdk.bean.DeviceBean;
+import com.tuya.appsdk.sample.device.config.R;
+import com.tuya.appsdk.sample.resource.HomeModel;
 
 /**
  * Device Configuration ZbGateway Mode Sample
@@ -81,70 +92,81 @@ public class DeviceConfigZbGatewayActivity extends AppCompatActivity implements 
     // Search ZigBee Gateway Device
     private void searchGatewayDevice() {
         setPbViewVisible(true);
-        IThingGwSearcher iTuyaGwSearcher = ThingHomeSdk.getActivatorInstance().newThingGwActivator().newSearcher();
-        iTuyaGwSearcher.registerGwSearchListener(new IGwSearchListener() {
-            @Override
-            public void onDevFind(HgwBean gw) {
-                getNetworkConfigToken(gw);
-            }
-        });
-    }
 
-    // Get Network Configuration Token
-    private void getNetworkConfigToken(HgwBean gw) {
-        long homeId = HomeModel.getCurrentHome(this);
-
-        ThingHomeSdk.getActivatorInstance().getActivatorToken(
-                homeId, new IThingActivatorGetToken() {
+        ThingActivatorScanDeviceManager.INSTANCE.startLocalGatewayDeviceSearch(
+                60 * 1000L, new ThingActivatorScanCallback() {
                     @Override
-                    public void onSuccess(String token) {
-
-                        startNetworkConfig(token, gw);
+                    public void deviceFound(@NonNull ThingActivatorScanDeviceBean thingActivatorScanDeviceBean) {
+                        startNetworkConfig(thingActivatorScanDeviceBean);
                     }
 
                     @Override
-                    public void onFailure(String errorCode, String errorMsg) {
-                        setPbViewVisible(false);
+                    public void deviceUpdate(@NonNull ThingActivatorScanDeviceBean thingActivatorScanDeviceBean) {
+
+                    }
+
+                    @Override
+                    public void deviceRepeat(@NonNull ThingActivatorScanDeviceBean thingActivatorScanDeviceBean) {
+
+                    }
+
+                    @Override
+                    public void scanFinish() {
+
+                    }
+
+                    @Override
+                    public void scanFailure(@NonNull ThingActivatorScanFailureBean thingActivatorScanFailureBean) {
+
                     }
                 }
         );
     }
 
     // Start network configuration -- ZigBee Gateway
-    private void startNetworkConfig(String token, HgwBean hgwBean) {
-        IThingActivator activator = ThingHomeSdk.getActivatorInstance().newGwActivator(
-                new ThingGwActivatorBuilder()
-                        .setContext(DeviceConfigZbGatewayActivity.this)
-                        .setTimeOut(100)
-                        .setToken(token)
-                        .setHgwBean(hgwBean)
-                        .setListener(new IThingSmartActivatorListener() {
-                            @Override
-                            public void onError(String errorCode, String errorMsg) {
-                                setPbViewVisible(false);
-                                Toast.makeText(
-                                        DeviceConfigZbGatewayActivity.this,
-                                        "Activate Error" + errorMsg,
-                                        Toast.LENGTH_SHORT).show();
-                            }
+    private void startNetworkConfig(ThingActivatorScanDeviceBean scanDeviceBean) {
+        IThingActiveManager activeManager = ThingActivatorCoreKit.INSTANCE.getActiveManager().newThingActiveManager();
+        ThingDeviceActiveBuilder builder = new ThingDeviceActiveBuilder();
+        builder.setActivatorScanDeviceBean(scanDeviceBean);
+        builder.setContext(this);
+        builder.setActiveModel(ThingDeviceActiveModeEnum.WN);
+        builder.setTimeOut(60);
+        builder.setListener(new IThingDeviceActiveListener() {
+            @Override
+            public void onFind(@NonNull String s) {
 
-                            @Override
-                            public void onActiveSuccess(DeviceBean devResp) {
-                                setPbViewVisible(false);
-                                Toast.makeText(
-                                        DeviceConfigZbGatewayActivity.this,
-                                        "Activate success",
-                                        Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
+            }
 
-                            @Override
-                            public void onStep(String step, Object data) {
+            @Override
+            public void onBind(@NonNull String s) {
 
-                            }
-                        })
-        );
-        activator.start();
+            }
+
+            @Override
+            public void onActiveSuccess(@NonNull DeviceBean deviceBean) {
+                setPbViewVisible(false);
+                Toast.makeText(
+                        DeviceConfigZbGatewayActivity.this,
+                        "Activate success",
+                        Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onActiveError(@NonNull ThingDeviceActiveErrorBean thingDeviceActiveErrorBean) {
+                setPbViewVisible(false);
+                Toast.makeText(
+                        DeviceConfigZbGatewayActivity.this,
+                        "Activate Error" + thingDeviceActiveErrorBean.getErrMsg(),
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onActiveLimited(@NonNull ThingDeviceActiveLimitBean thingDeviceActiveLimitBean) {
+
+            }
+        });
+        activeManager.startActive(builder);
     }
 
     private void setPbViewVisible(boolean isShow) {

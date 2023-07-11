@@ -17,6 +17,13 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.thingclips.smart.activator.core.kit.ThingActivatorCoreKit;
+import com.thingclips.smart.activator.core.kit.active.inter.IThingActiveManager;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveErrorBean;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveLimitBean;
+import com.thingclips.smart.activator.core.kit.builder.ThingDeviceActiveBuilder;
+import com.thingclips.smart.activator.core.kit.constant.ThingDeviceActiveModeEnum;
+import com.thingclips.smart.activator.core.kit.listener.IThingDeviceActiveListener;
 import com.tuya.appsdk.sample.device.config.R;
 import com.thingclips.smart.home.sdk.ThingHomeSdk;
 import com.thingclips.smart.home.sdk.builder.ThingGwSubDevActivatorBuilder;
@@ -29,7 +36,7 @@ import java.util.List;
 
 /**
  * @author AoBing
- *
+ * <p>
  * To activate the sub-device through the gateway,
  * you first need to make the device enter the waiting state for activation,
  * and then select a Bluetooth device that has been activated in the current home.
@@ -37,7 +44,7 @@ import java.util.List;
  * the gateway will automatically search for nearby devices to be activated and automatically activate and connect it to the gateway.
  */
 
-public class SubConfigGatewayActivity extends AppCompatActivity implements View.OnClickListener{
+public class SubConfigGatewayActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final String TAG = "SubConfigGateway";
     private CircularProgressIndicator cpiLoading;
@@ -45,6 +52,8 @@ public class SubConfigGatewayActivity extends AppCompatActivity implements View.
     private Button mBtnStopConfig;
     private IThingActivator mTuyaGWSubActivator;
     private TextView mTvShowGatewayName;
+
+    private IThingActiveManager activeManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,14 +120,42 @@ public class SubConfigGatewayActivity extends AppCompatActivity implements View.
                     if (!TextUtils.isEmpty(deviceBean.getName()) && deviceBean.getName().length() > 0) {
                         mTvShowGatewayName.setText(deviceBean.getName());
                     }
-                    ThingGwSubDevActivatorBuilder builder = new ThingGwSubDevActivatorBuilder()
-                            .setDevId(deviceBean.getDevId())  // gateway DevId
-                            .setTimeOut(100) // Timeout: s
-                            .setListener(mTuyaSmartActivatorListener);
+                    activeManager = ThingActivatorCoreKit.INSTANCE.getActiveManager().newThingActiveManager();
+                    ThingDeviceActiveBuilder builder = new ThingDeviceActiveBuilder();
+                    builder.setGwId(deviceBean.getDevId());
+                    builder.setTimeOut(120);
+                    builder.setActiveModel(ThingDeviceActiveModeEnum.SUB);
+                    builder.setListener(new IThingDeviceActiveListener() {
+                        @Override
+                        public void onFind(@NonNull String s) {
 
-                    mTuyaGWSubActivator = ThingHomeSdk.getActivatorInstance().newGwSubDevActivator(builder);
-                    // start add sub device
-                    mTuyaGWSubActivator.start();
+                        }
+
+                        @Override
+                        public void onBind(@NonNull String s) {
+
+                        }
+
+                        @Override
+                        public void onActiveSuccess(@NonNull DeviceBean deviceBean) {
+                            setPbViewVisible(false);
+                            Log.d(TAG, "activator success");
+                            Toast.makeText(SubConfigGatewayActivity.this, "activator success", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onActiveError(@NonNull ThingDeviceActiveErrorBean thingDeviceActiveErrorBean) {
+                            Log.d(TAG, "activator error:" + thingDeviceActiveErrorBean.getErrMsg());
+                            Toast.makeText(SubConfigGatewayActivity.this, "activator error:" + thingDeviceActiveErrorBean.getErrMsg(), Toast.LENGTH_SHORT).show();
+                            setPbViewVisible(false);
+                        }
+
+                        @Override
+                        public void onActiveLimited(@NonNull ThingDeviceActiveLimitBean thingDeviceActiveLimitBean) {
+
+                        }
+                    });
+                    activeManager.startActive(builder);
                     break;
                 }
             }
@@ -126,27 +163,6 @@ public class SubConfigGatewayActivity extends AppCompatActivity implements View.
             Toast.makeText(this, "please add gateway first", Toast.LENGTH_SHORT).show();
         }
     }
-
-    private final IThingSmartActivatorListener mTuyaSmartActivatorListener = new IThingSmartActivatorListener() {
-        @Override
-        public void onError(String errorCode, String errorMsg) {
-            Log.d(TAG, "activator error:" + errorMsg);
-            Toast.makeText(SubConfigGatewayActivity.this, "activator error:" + errorMsg, Toast.LENGTH_SHORT).show();
-            setPbViewVisible(false);
-        }
-
-        @Override
-        public void onActiveSuccess(DeviceBean devResp) {
-            setPbViewVisible(false);
-            Log.d(TAG, "activator success");
-            Toast.makeText(SubConfigGatewayActivity.this, "activator success", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onStep(String step, Object data) {
-
-        }
-    };
 
     private void setPbViewVisible(boolean isShow) {
         cpiLoading.setVisibility(isShow ? View.VISIBLE : View.GONE);
@@ -159,7 +175,7 @@ public class SubConfigGatewayActivity extends AppCompatActivity implements View.
         if (ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_COARSE_LOCATION") != 0 || ContextCompat.checkSelfPermission(this, "android.permission.ACCESS_FINE_LOCATION") != 0) {
             ActivityCompat.requestPermissions(this, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 1001);
         }
-        BluetoothAdapter bluetoothAdapter= BluetoothAdapter.getDefaultAdapter();
+        BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
             Toast.makeText(this, "Does not support Bluetooth", Toast.LENGTH_SHORT).show();
         }

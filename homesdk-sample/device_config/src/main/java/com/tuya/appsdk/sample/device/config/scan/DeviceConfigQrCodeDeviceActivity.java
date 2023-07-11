@@ -16,17 +16,30 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.thingclips.smart.activator.core.kit.ThingActivatorCoreKit;
+import com.thingclips.smart.activator.core.kit.active.inter.IThingActiveManager;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveErrorBean;
+import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveLimitBean;
+import com.thingclips.smart.activator.core.kit.builder.ThingDeviceActiveBuilder;
+import com.thingclips.smart.activator.core.kit.constant.ThingDeviceActiveModeEnum;
+import com.thingclips.smart.activator.core.kit.listener.IThingDeviceActiveListener;
+import com.thingclips.smart.activator.network.request.api.bean.ScanActionBean;
+import com.thingclips.smart.android.network.Business;
+import com.thingclips.smart.android.network.http.BusinessResponse;
 import com.tuya.appsdk.sample.device.config.R;
+import com.tuya.appsdk.sample.device.config.mesh.configByGateway.SubConfigGatewayActivity;
 import com.tuya.appsdk.sample.resource.HomeModel;
 import com.thingclips.smart.home.sdk.ThingHomeSdk;
 import com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder;
@@ -56,6 +69,8 @@ public class DeviceConfigQrCodeDeviceActivity extends AppCompatActivity implemen
     private MaterialToolbar topAppBar;
     private Button bt_search;
     private String mUuid;
+
+    private IThingActiveManager activeManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -107,6 +122,12 @@ public class DeviceConfigQrCodeDeviceActivity extends AppCompatActivity implemen
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        activeManager.stopActive();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -129,21 +150,17 @@ public class DeviceConfigQrCodeDeviceActivity extends AppCompatActivity implemen
     }
 
     private void deviceQrCode(String result) {
-        HashMap<String, Object> postData = new HashMap<>();
-        postData.put("code", result);
-        ThingHomeSdk.getRequestInstance().requestWithApiNameWithoutSession(
-                "tuya.m.qrcode.parse", "4.0", postData, String.class, new IThingDataCallback<String>() {
-                    @Override
-                    public void onSuccess(String result) {
-                        initQrCode(result);
-                    }
+        ThingActivatorCoreKit.INSTANCE.getRequestOperateManager().parseQrCode("str", new Business.ResultListener<ScanActionBean>() {
+            @Override
+            public void onFailure(BusinessResponse bizResponse, ScanActionBean bizResult, String apiName) {
 
-                    @Override
-                    public void onError(String errorCode, String errorMessage) {
+            }
 
-                    }
-                }
-        );
+            @Override
+            public void onSuccess(BusinessResponse bizResponse, ScanActionBean bizResult, String apiName) {
+                initQrCode(result);
+            }
+        });
     }
 
     private void initQrCode(String result) {
@@ -153,29 +170,40 @@ public class DeviceConfigQrCodeDeviceActivity extends AppCompatActivity implemen
             JSONObject actionObj = obj.optJSONObject("actionData");
             if (null != actionObj) {
                 mUuid = actionObj.optString("uuid");
-                ThingQRCodeActivatorBuilder builder = new ThingQRCodeActivatorBuilder()
-                        .setUuid(mUuid)
-                        .setHomeId(homeId)
-                        .setContext(this)
-                        .setTimeOut(100)
-                        .setListener(new IThingSmartActivatorListener() {
-                            @Override
-                            public void onError(String errorCode, String errorMsg) {
+                activeManager = ThingActivatorCoreKit.INSTANCE.getActiveManager().newThingActiveManager();
+                ThingDeviceActiveBuilder builder = new ThingDeviceActiveBuilder();
+                builder.setUuid(mUuid);
+                builder.setRelationId(homeId);
+                builder.setContext(this);
+                builder.setTimeOut(100);
+                builder.setActiveModel(ThingDeviceActiveModeEnum.QR);
+                builder.setListener(new IThingDeviceActiveListener() {
+                    @Override
+                    public void onFind(@NonNull String s) {
 
-                            }
+                    }
 
-                            @Override
-                            public void onActiveSuccess(DeviceBean devResp) {
-                                Toast.makeText(DeviceConfigQrCodeDeviceActivity.this, "ActiveSuccess", Toast.LENGTH_LONG).show();
-                            }
+                    @Override
+                    public void onBind(@NonNull String s) {
 
-                            @Override
-                            public void onStep(String step, Object data) {
+                    }
 
-                            }
-                        });
-                IThingActivator iTuyaActivator = ThingHomeSdk.getActivatorInstance().newQRCodeDevActivator(builder);
-                iTuyaActivator.start();
+                    @Override
+                    public void onActiveSuccess(@NonNull DeviceBean deviceBean) {
+                        Toast.makeText(DeviceConfigQrCodeDeviceActivity.this, "ActiveSuccess", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onActiveError(@NonNull ThingDeviceActiveErrorBean thingDeviceActiveErrorBean) {
+
+                    }
+
+                    @Override
+                    public void onActiveLimited(@NonNull ThingDeviceActiveLimitBean thingDeviceActiveLimitBean) {
+
+                    }
+                });
+                activeManager.startActive(builder);
             }
         } catch (JSONException e) {
             e.printStackTrace();
