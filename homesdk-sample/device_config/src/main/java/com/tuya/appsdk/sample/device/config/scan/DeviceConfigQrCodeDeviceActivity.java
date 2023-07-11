@@ -15,8 +15,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -27,6 +25,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.thingclips.smart.activator.core.kit.ThingActivatorCoreKit;
 import com.thingclips.smart.activator.core.kit.active.inter.IThingActiveManager;
@@ -38,23 +39,11 @@ import com.thingclips.smart.activator.core.kit.listener.IThingDeviceActiveListen
 import com.thingclips.smart.activator.network.request.api.bean.ScanActionBean;
 import com.thingclips.smart.android.network.Business;
 import com.thingclips.smart.android.network.http.BusinessResponse;
-import com.tuya.appsdk.sample.device.config.R;
-import com.tuya.appsdk.sample.device.config.mesh.configByGateway.SubConfigGatewayActivity;
-import com.tuya.appsdk.sample.resource.HomeModel;
-import com.thingclips.smart.home.sdk.ThingHomeSdk;
-import com.thingclips.smart.home.sdk.builder.ThingQRCodeActivatorBuilder;
-import com.thingclips.smart.sdk.api.IThingActivator;
-import com.thingclips.smart.sdk.api.IThingDataCallback;
-import com.thingclips.smart.sdk.api.IThingSmartActivatorListener;
 import com.thingclips.smart.sdk.bean.DeviceBean;
+import com.tuya.appsdk.sample.device.config.R;
+import com.tuya.appsdk.sample.resource.HomeModel;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
-
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
 
 /**
  * Qr Code
@@ -150,7 +139,7 @@ public class DeviceConfigQrCodeDeviceActivity extends AppCompatActivity implemen
     }
 
     private void deviceQrCode(String result) {
-        ThingActivatorCoreKit.INSTANCE.getRequestOperateManager().parseQrCode("str", new Business.ResultListener<ScanActionBean>() {
+        ThingActivatorCoreKit.INSTANCE.getRequestOperateManager().parseQrCode(result, new Business.ResultListener<ScanActionBean>() {
             @Override
             public void onFailure(BusinessResponse bizResponse, ScanActionBean bizResult, String apiName) {
 
@@ -158,18 +147,18 @@ public class DeviceConfigQrCodeDeviceActivity extends AppCompatActivity implemen
 
             @Override
             public void onSuccess(BusinessResponse bizResponse, ScanActionBean bizResult, String apiName) {
-                initQrCode(result);
+                initQrCode(bizResult);
             }
         });
     }
 
-    private void initQrCode(String result) {
+    private void initQrCode(ScanActionBean bizResult) {
         long homeId = HomeModel.getCurrentHome(this);
         try {
-            JSONObject obj = new JSONObject(result);
-            JSONObject actionObj = obj.optJSONObject("actionData");
-            if (null != actionObj) {
-                mUuid = actionObj.optString("uuid");
+            if (null != bizResult.getActionData()) {
+                String jsonString = JSONObject.toJSONString(bizResult.getActionData());
+                JSONObject jsonObject = JSONObject.parseObject(jsonString);
+                mUuid = jsonObject.getString("uuid");
                 activeManager = ThingActivatorCoreKit.INSTANCE.getActiveManager().newThingActiveManager();
                 ThingDeviceActiveBuilder builder = new ThingDeviceActiveBuilder();
                 builder.setUuid(mUuid);

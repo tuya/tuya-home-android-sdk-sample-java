@@ -115,6 +115,7 @@ public class QrCodeConfigActivity extends AppCompatActivity implements View.OnCl
                                     });
                             mTuyaActivator = ThingActivatorDeviceCoreKit.INSTANCE.getActivatorInstance().newCameraDevActivator(builder);
                             mTuyaActivator.createQRCode();
+                            mTuyaActivator.start();
                         }
 
 

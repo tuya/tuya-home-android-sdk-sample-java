@@ -26,32 +26,17 @@ import com.thingclips.smart.activator.core.kit.ThingActivatorCoreKit;
 import com.thingclips.smart.activator.core.kit.active.inter.IThingActiveManager;
 import com.thingclips.smart.activator.core.kit.bean.ThingActivatorScanDeviceBean;
 import com.thingclips.smart.activator.core.kit.bean.ThingActivatorScanFailureBean;
+import com.thingclips.smart.activator.core.kit.bean.ThingActivatorScanKey;
 import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveErrorBean;
 import com.thingclips.smart.activator.core.kit.bean.ThingDeviceActiveLimitBean;
 import com.thingclips.smart.activator.core.kit.builder.ThingDeviceActiveBuilder;
 import com.thingclips.smart.activator.core.kit.callback.ThingActivatorScanCallback;
 import com.thingclips.smart.activator.core.kit.constant.ThingDeviceActiveModeEnum;
-import com.thingclips.smart.activator.core.kit.devicecore.ThingActivatorDeviceCoreKit;
 import com.thingclips.smart.activator.core.kit.listener.IThingDeviceActiveListener;
-import com.thingclips.smart.activator.core.kit.scan.ThingActivatorScanDeviceManager;
+import com.thingclips.smart.android.ble.api.ScanType;
+import com.thingclips.smart.sdk.bean.DeviceBean;
 import com.tuya.appsdk.sample.device.config.R;
 import com.tuya.appsdk.sample.resource.HomeModel;
-import com.thingclips.smart.android.ble.api.BleConfigType;
-import com.thingclips.smart.android.ble.api.LeScanSetting;
-import com.thingclips.smart.android.ble.api.ScanDeviceBean;
-import com.thingclips.smart.android.ble.api.ScanType;
-import com.thingclips.smart.home.sdk.ThingHomeSdk;
-import com.thingclips.smart.home.sdk.bean.ConfigProductInfoBean;
-import com.thingclips.smart.sdk.api.IBleActivator;
-import com.thingclips.smart.sdk.api.IBleActivatorListener;
-import com.thingclips.smart.sdk.api.IMultiModeActivator;
-import com.thingclips.smart.sdk.api.IMultiModeActivatorListener;
-import com.thingclips.smart.sdk.api.IThingActivator;
-import com.thingclips.smart.sdk.api.IThingActivatorGetToken;
-import com.thingclips.smart.sdk.api.IThingDataCallback;
-import com.thingclips.smart.sdk.bean.BleActivatorBean;
-import com.thingclips.smart.sdk.bean.DeviceBean;
-import com.thingclips.smart.sdk.bean.MultiModeActivatorBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +67,9 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
     private CircularProgressIndicator cpiLoading;
     private final List<ThingActivatorScanDeviceBean> scanDeviceBeanList = new ArrayList<>();
     private BleDeviceListAdapter adapter;
-    IThingActiveManager activeManager;
+    private IThingActiveManager activeManager;
+
+    private ThingActivatorScanKey thingActivatorScanKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,8 +115,8 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
 
         List<ScanType> scanTypeList = new ArrayList<>();
         scanTypeList.add(ScanType.SINGLE);
-        scanTypeList.add(ScanType.MESH);
-        ThingActivatorScanDeviceManager.INSTANCE.startBlueToothDeviceSearch(
+        scanTypeList.add(ScanType.SIG_MESH);
+        thingActivatorScanKey = ThingActivatorCoreKit.INSTANCE.getScanDeviceManager().startBlueToothDeviceSearch(
                 60 * 1000,
                 scanTypeList,
                 new ThingActivatorScanCallback() {
@@ -164,14 +151,14 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
     }
 
     private void stopScan() {
-        ThingHomeSdk.getBleOperator().stopLeScan();
+        ThingActivatorCoreKit.INSTANCE.getScanDeviceManager().stopScan(thingActivatorScanKey);
     }
 
     private void startActivator(ThingActivatorScanDeviceBean bean, String ssid, String pwd) {
         ThingDeviceActiveModeEnum thingDeviceActiveModeEnum = bean.getSupprotActivatorTypeList().get(0);
         activeManager = ThingActivatorCoreKit.INSTANCE.getActiveManager().newThingActiveManager();
         ThingDeviceActiveBuilder builder = new ThingDeviceActiveBuilder();
-        builder.setActiveModel(bean.getSupprotActivatorTypeList().get(0));
+        builder.setActiveModel(thingDeviceActiveModeEnum);
         builder.setActivatorScanDeviceBean(bean);
         builder.setTimeOut(60);
 
