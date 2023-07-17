@@ -1,0 +1,207 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:com.thingclips.sdk.ble.core.ability.options/BleConnectParams.Builder///PointingToDeclaration/com/thingclips/sdk/ble/core/ability/options/BleConnectParams.Builder.html
+$dokka.location:com.thingclips.sdk.ble.core.bean/FileTransferInfo.Builder///PointingToDeclaration/com/thingclips/sdk/ble/core/bean/FileTransferInfo.Builder.html
+$dokka.location:com.thingclips.sdk.ble.core.protocol.entity/ConnectOpt.Builder///PointingToDeclaration/com/thingclips/sdk/ble/core/protocol/entity/ConnectOpt.Builder.html
+$dokka.location:com.thingclips.sdk.device.bean/ProductUpgradeEventBean.EventData///PointingToDeclaration/com/thingclips/sdk/device/bean/ProductUpgradeEventBean.EventData.html
+$dokka.location:com.thingclips.smart.android.ble.api.audio/AudioCommonCommand.CMD///PointingToDeclaration/com/thingclips/smart/android/ble/api/audio/AudioCommonCommand.CMD.html
+$dokka.location:com.thingclips.smart.android.ble.api.audio/CalendarResult.ToDoItem///PointingToDeclaration/com/thingclips/smart/android/ble/api/audio/CalendarResult.ToDoItem.html
+$dokka.location:com.thingclips.smart.android.ble.api.audio/LEAudioAlarmClockRequest.Builder///PointingToDeclaration/com/thingclips/smart/android/ble/api/audio/LEAudioAlarmClockRequest.Builder.html
+$dokka.location:com.thingclips.smart.android.ble.api.audio/LEAudioAlarmClockRequest.CMD///PointingToDeclaration/com/thingclips/smart/android/ble/api/audio/LEAudioAlarmClockRequest.CMD.html
+$dokka.location:com.thingclips.smart.android.ble.api.audio/LEAudioAlarmClockRequest.TYPE///PointingToDeclaration/com/thingclips/smart/android/ble/api/audio/LEAudioAlarmClockRequest.TYPE.html
+$dokka.location:com.thingclips.smart.android.ble.api.audio/LEAudioRequest.RequestCmd///PointingToDeclaration/com/thingclips/smart/android/ble/api/audio/LEAudioRequest.RequestCmd.html
+$dokka.location:com.thingclips.smart.android.ble.api.audio/ThingLEAudioEnum.LEAudioCode///PointingToDeclaration/com/thingclips/smart/android/ble/api/audio/ThingLEAudioEnum.LEAudioCode.html
+$dokka.location:com.thingclips.smart.android.ble.api.audio/ThingLEAudioEnum.LEAudioFormat///PointingToDeclaration/com/thingclips/smart/android/ble/api/audio/ThingLEAudioEnum.LEAudioFormat.html
+$dokka.location:com.thingclips.smart.android.ble.api.audio/ThingLEAudioEnum.LEAudioState///PointingToDeclaration/com/thingclips/smart/android/ble/api/audio/ThingLEAudioEnum.LEAudioState.html
+$dokka.location:com.thingclips.smart.android.ble.api.audio/WeatherResult.DailyWeather///PointingToDeclaration/com/thingclips/smart/android/ble/api/audio/WeatherResult.DailyWeather.html
+$dokka.location:com.thingclips.smart.android.ble.api/ChannelDataConstants.DATA_COMMOND///PointingToDeclaration/com/thingclips/smart/android/ble/api/ChannelDataConstants.DATA_COMMOND.html
+$dokka.location:com.thingclips.smart.android.ble.api/ChannelDataConstants.DATA_PRODUCT_TYPE///PointingToDeclaration/com/thingclips/smart/android/ble/api/ChannelDataConstants.DATA_PRODUCT_TYPE.html
+$dokka.location:com.thingclips.smart.android.ble.api/ChannelDataConstants.ResultKey///PointingToDeclaration/com/thingclips/smart/android/ble/api/ChannelDataConstants.ResultKey.html
+$dokka.location:com.thingclips.smart.android.ble.api/LeScanSetting.Builder///PointingToDeclaration/com/thingclips/smart/android/ble/api/LeScanSetting.Builder.html
+$dokka.location:com.thingclips.smart.android.ble.api/ThirdBleScanDeviceBuilder.Builder///PointingToDeclaration/com/thingclips/smart/android/ble/api/ThirdBleScanDeviceBuilder.Builder.html
+$dokka.location:com.thingclips.smart.android.ble.bean/BatchBeaconActivatorBean.Builder///PointingToDeclaration/com/thingclips/smart/android/ble/bean/BatchBeaconActivatorBean.Builder.html
+$dokka.location:com.thingclips.smart.android.ble.bean/CheckDeviceSetting.Builder///PointingToDeclaration/com/thingclips/smart/android/ble/bean/CheckDeviceSetting.Builder.html
+$dokka.location:com.thingclips.smart.android.ble.bean/QueryWifiSetting.Builder///PointingToDeclaration/com/thingclips/smart/android/ble/bean/QueryWifiSetting.Builder.html
+$dokka.location:com.thingclips.smart.android.ble.bean/ResetBleSetting.Builder///PointingToDeclaration/com/thingclips/smart/android/ble/bean/ResetBleSetting.Builder.html
+$dokka.location:com.thingclips.smart.android.ble.bean/ThirdConnectInfoBean.ExInfo///PointingToDeclaration/com/thingclips/smart/android/ble/bean/ThirdConnectInfoBean.ExInfo.html
+$dokka.location:com.thingclips.smart.android.ble.builder/BleConnectBuilder.ExtInfo///PointingToDeclaration/com/thingclips/smart/android/ble/builder/BleConnectBuilder.ExtInfo.html
+$dokka.location:com.thingclips.smart.android.ble.builder/BleConnectBuilder.Level///PointingToDeclaration/com/thingclips/smart/android/ble/builder/BleConnectBuilder.Level.html
+$dokka.location:com.thingclips.smart.android.ble.builder/BlueConnectParam.Builder///PointingToDeclaration/com/thingclips/smart/android/ble/builder/BlueConnectParam.Builder.html
+$dokka.location:com.thingclips.smart.android.blemesh.bean/BlueMeshLinkageBean.Builder///PointingToDeclaration/com/thingclips/smart/android/blemesh/bean/BlueMeshLinkageBean.Builder.html
+$dokka.location:com.thingclips.smart.android.blemesh.bean/MeshActionLinkageData.Builder///PointingToDeclaration/com/thingclips/smart/android/blemesh/bean/MeshActionLinkageData.Builder.html
+$dokka.location:com.thingclips.smart.android.blemesh.bean/MeshConditionLinkageData.Builder///PointingToDeclaration/com/thingclips/smart/android/blemesh/bean/MeshConditionLinkageData.Builder.html
+$dokka.location:com.thingclips.smart.android.blemesh.bean/SendCommandParams.SendCommandParamsBuilder///PointingToDeclaration/com/thingclips/smart/android/blemesh/bean/SendCommandParams.SendCommandParamsBuilder.html
+$dokka.location:com.thingclips.smart.android.blemesh.bean/SigMeshConfiguration.OnlineMode///PointingToDeclaration/com/thingclips/smart/android/blemesh/bean/SigMeshConfiguration.OnlineMode.html
+$dokka.location:com.thingclips.smart.android.blemesh.bean/TimerDayConditionLinkageData.SunRiseAndSet///PointingToDeclaration/com/thingclips/smart/android/blemesh/bean/TimerDayConditionLinkageData.SunRiseAndSet.html
+$dokka.location:com.thingclips.smart.android.config.bean/BaseConfigInfo.Builder///PointingToDeclaration/com/thingclips/smart/android/config/bean/BaseConfigInfo.Builder.html
+$dokka.location:com.thingclips.smart.android.config.bean/MqttConnectConfig.ConnectMethod///PointingToDeclaration/com/thingclips/smart/android/config/bean/MqttConnectConfig.ConnectMethod.html
+$dokka.location:com.thingclips.smart.android.device.bean/DeviceMultiControlRelationBean.DatapointsBean///PointingToDeclaration/com/thingclips/smart/android/device/bean/DeviceMultiControlRelationBean.DatapointsBean.html
+$dokka.location:com.thingclips.smart.android.device.bean/DeviceMultiControlRelationBean.McGroupsBean.GroupDetailBean///PointingToDeclaration/com/thingclips/smart/android/device/bean/DeviceMultiControlRelationBean.McGroupsBean.GroupDetailBean.html
+$dokka.location:com.thingclips.smart.android.device.bean/DeviceMultiControlRelationBean.McGroupsBean///PointingToDeclaration/com/thingclips/smart/android/device/bean/DeviceMultiControlRelationBean.McGroupsBean.html
+$dokka.location:com.thingclips.smart.android.device.bean/DeviceMultiControlRelationBean.ParentRulesBean.DpListBean///PointingToDeclaration/com/thingclips/smart/android/device/bean/DeviceMultiControlRelationBean.ParentRulesBean.DpListBean.html
+$dokka.location:com.thingclips.smart.android.device.bean/DeviceMultiControlRelationBean.ParentRulesBean///PointingToDeclaration/com/thingclips/smart/android/device/bean/DeviceMultiControlRelationBean.ParentRulesBean.html
+$dokka.location:com.thingclips.smart.android.device.bean/MultiControlBean.GroupDetailBean///PointingToDeclaration/com/thingclips/smart/android/device/bean/MultiControlBean.GroupDetailBean.html
+$dokka.location:com.thingclips.smart.android.device.bean/MultiControlLinkBean.MultiGroupBean.GroupDetailBean///PointingToDeclaration/com/thingclips/smart/android/device/bean/MultiControlLinkBean.MultiGroupBean.GroupDetailBean.html
+$dokka.location:com.thingclips.smart.android.device.bean/MultiControlLinkBean.MultiGroupBean///PointingToDeclaration/com/thingclips/smart/android/device/bean/MultiControlLinkBean.MultiGroupBean.html
+$dokka.location:com.thingclips.smart.android.device.bean/MultiControlLinkBean.ParentRulesBean///PointingToDeclaration/com/thingclips/smart/android/device/bean/MultiControlLinkBean.ParentRulesBean.html
+$dokka.location:com.thingclips.smart.android.device.builder/ThingTimerBuilder.Builder///PointingToDeclaration/com/thingclips/smart/android/device/builder/ThingTimerBuilder.Builder.html
+$dokka.location:com.thingclips.smart.android.user.bean/Region.Server///PointingToDeclaration/com/thingclips/smart/android/user/bean/Region.Server.html
+$dokka.location:com.thingclips.smart.bluet.api/BeaconFilterSetting.Builder///PointingToDeclaration/com/thingclips/smart/bluet/api/BeaconFilterSetting.Builder.html
+$dokka.location:com.thingclips.smart.cache.bean/CacheObj.Builder///PointingToDeclaration/com/thingclips/smart/cache/bean/CacheObj.Builder.html
+$dokka.location:com.thingclips.smart.home.sdk.bean.scene.condition.rule/SunSetRiseRule.SunType///PointingToDeclaration/com/thingclips/smart/home/sdk/bean/scene/condition/rule/SunSetRiseRule.SunType.html
+$dokka.location:com.thingclips.smart.home.sdk.bean.scene/FunctionDataPoint.StepDpPropertyBean///PointingToDeclaration/com/thingclips/smart/home/sdk/bean/scene/FunctionDataPoint.StepDpPropertyBean.html
+$dokka.location:com.thingclips.smart.home.sdk.bean.scene/SceneLogDetailBean.Detail///PointingToDeclaration/com/thingclips/smart/home/sdk/bean/scene/SceneLogDetailBean.Detail.html
+$dokka.location:com.thingclips.smart.home.sdk.bean.scene/SceneLogResBean.SceneLog///PointingToDeclaration/com/thingclips/smart/home/sdk/bean/scene/SceneLogResBean.SceneLog.html
+$dokka.location:com.thingclips.smart.home.sdk.bean/ApHandlerBean.Builder///PointingToDeclaration/com/thingclips/smart/home/sdk/bean/ApHandlerBean.Builder.html
+$dokka.location:com.thingclips.smart.home.sdk.bean/ExtendedConfig.Builder///PointingToDeclaration/com/thingclips/smart/home/sdk/bean/ExtendedConfig.Builder.html
+$dokka.location:com.thingclips.smart.home.sdk.bean/MemberWrapperBean.Builder///PointingToDeclaration/com/thingclips/smart/home/sdk/bean/MemberWrapperBean.Builder.html
+$dokka.location:com.thingclips.smart.home.sdk.bean/ParamsHandlerBean.Builder///PointingToDeclaration/com/thingclips/smart/home/sdk/bean/ParamsHandlerBean.Builder.html
+$dokka.location:com.thingclips.smart.home.sdk.callback/IThingDeviceUpgradeStatusCallback.UpgradeStatusEnum///PointingToDeclaration/com/thingclips/smart/home/sdk/callback/IThingDeviceUpgradeStatusCallback.UpgradeStatusEnum.html
+$dokka.location:com.thingclips.smart.interior.device.bean/DeviceRespBean.CommunicationModule///PointingToDeclaration/com/thingclips/smart/interior/device/bean/DeviceRespBean.CommunicationModule.html
+$dokka.location:com.thingclips.smart.interior.device.bean/DeviceRespBean.CommunicationModuleT///PointingToDeclaration/com/thingclips/smart/interior/device/bean/DeviceRespBean.CommunicationModuleT.html
+$dokka.location:com.thingclips.smart.interior.device.bean/DeviceRespBean.DataPointModule///PointingToDeclaration/com/thingclips/smart/interior/device/bean/DeviceRespBean.DataPointModule.html
+$dokka.location:com.thingclips.smart.interior.device.bean/DeviceRespBean.DevModule///PointingToDeclaration/com/thingclips/smart/interior/device/bean/DeviceRespBean.DevModule.html
+$dokka.location:com.thingclips.smart.interior.device.bean/DeviceRespBean.DeviceTopoMoudle///PointingToDeclaration/com/thingclips/smart/interior/device/bean/DeviceRespBean.DeviceTopoMoudle.html
+$dokka.location:com.thingclips.smart.interior.device.bean/DeviceRespBean.ModuleMap///PointingToDeclaration/com/thingclips/smart/interior/device/bean/DeviceRespBean.ModuleMap.html
+$dokka.location:com.thingclips.smart.interior.device.bean/DeviceRespBean.OTAMoulde///PointingToDeclaration/com/thingclips/smart/interior/device/bean/DeviceRespBean.OTAMoulde.html
+$dokka.location:com.thingclips.smart.interior.device.bean/DeviceRespBean.OTAMouldeMap///PointingToDeclaration/com/thingclips/smart/interior/device/bean/DeviceRespBean.OTAMouldeMap.html
+$dokka.location:com.thingclips.smart.interior.device.bean/DeviceRespBean.ShareInfoModule///PointingToDeclaration/com/thingclips/smart/interior/device/bean/DeviceRespBean.ShareInfoModule.html
+$dokka.location:com.thingclips.smart.interior.device.bean/DpsUpdateInfo.TimeSection///PointingToDeclaration/com/thingclips/smart/interior/device/bean/DpsUpdateInfo.TimeSection.html
+$dokka.location:com.thingclips.smart.interior.device.confusebean/MQ_802_PushAlarmBean.Object///PointingToDeclaration/com/thingclips/smart/interior/device/confusebean/MQ_802_PushAlarmBean.Object.html
+$dokka.location:com.thingclips.smart.interior.enums/ApTypeEnum.Type///PointingToDeclaration/com/thingclips/smart/interior/enums/ApTypeEnum.Type.html
+$dokka.location:com.thingclips.smart.scene.lib.util/DeviceUtil.OperateDevActionType///PointingToDeclaration/com/thingclips/smart/scene/lib/util/DeviceUtil.OperateDevActionType.html
+$dokka.location:com.thingclips.smart.sdk.api.bluemesh.message/VendorAction.Builder///PointingToDeclaration/com/thingclips/smart/sdk/api/bluemesh/message/VendorAction.Builder.html
+$dokka.location:com.thingclips.smart.sdk.api.bluemesh.message/VendorDpAction.Builder///PointingToDeclaration/com/thingclips/smart/sdk/api/bluemesh/message/VendorDpAction.Builder.html
+$dokka.location:com.thingclips.smart.sdk.api.cache/ISmartCacheManager.Entity///PointingToDeclaration/com/thingclips/smart/sdk/api/cache/ISmartCacheManager.Entity.html
+$dokka.location:com.thingclips.smart.sdk.api.cache/ISmartCacheManager.Relation///PointingToDeclaration/com/thingclips/smart/sdk/api/cache/ISmartCacheManager.Relation.html
+$dokka.location:com.thingclips.smart.sdk.api/IThingGeoFenceOperate.InitialTrigger///PointingToDeclaration/com/thingclips/smart/sdk/api/IThingGeoFenceOperate.InitialTrigger.html
+$dokka.location:com.thingclips.smart.sdk.bean.cache/IDeviceProperty.DevUpgradeStatus///PointingToDeclaration/com/thingclips/smart/sdk/bean/cache/IDeviceProperty.DevUpgradeStatus.html
+$dokka.location:com.thingclips.smart.sdk.bean.cache/IDeviceProperty.OtaModuleBean///PointingToDeclaration/com/thingclips/smart/sdk/bean/cache/IDeviceProperty.OtaModuleBean.html
+$dokka.location:com.thingclips.smart.sdk.bean.message/NodisturbDevicesBean.DeviceBean///PointingToDeclaration/com/thingclips/smart/sdk/bean/message/NodisturbDevicesBean.DeviceBean.html
+$dokka.location:com.thingclips.smart.sdk.bean.push/ThingPushBean.NotificationBean.ExtraBean///PointingToDeclaration/com/thingclips/smart/sdk/bean/push/ThingPushBean.NotificationBean.ExtraBean.html
+$dokka.location:com.thingclips.smart.sdk.bean.push/ThingPushBean.NotificationBean///PointingToDeclaration/com/thingclips/smart/sdk/bean/push/ThingPushBean.NotificationBean.html
+$dokka.location:com.thingclips.smart.sdk.bean/ApActivatorBuilder.Builder///PointingToDeclaration/com/thingclips/smart/sdk/bean/ApActivatorBuilder.Builder.html
+$dokka.location:com.thingclips.smart.sdk.bean/ApQueryBuilder.Builder///PointingToDeclaration/com/thingclips/smart/sdk/bean/ApQueryBuilder.Builder.html
+$dokka.location:com.thingclips.smart.sdk.bean/DeviceBean.DevUpgradeStatus///PointingToDeclaration/com/thingclips/smart/sdk/bean/DeviceBean.DevUpgradeStatus.html
+$dokka.location:com.thingclips.smart.sdk.bean/DeviceBean.EnableState///PointingToDeclaration/com/thingclips/smart/sdk/bean/DeviceBean.EnableState.html
+$dokka.location:com.thingclips.smart.sdk.bean/MultiModeActivatorBuilder.Builder///PointingToDeclaration/com/thingclips/smart/sdk/bean/MultiModeActivatorBuilder.Builder.html
+$dokka.location:com.thingclips.smart.sdk.bean/MultiModeQueryBuilder.Builder///PointingToDeclaration/com/thingclips/smart/sdk/bean/MultiModeQueryBuilder.Builder.html
+$dokka.location:com.thingclips.smart.sdk.bean/ProductBean.SchemaInfo///PointingToDeclaration/com/thingclips/smart/sdk/bean/ProductBean.SchemaInfo.html
+$dokka.location:com.thingclips.smart.sdk.bean/ProductStandardConfig.FunctionSchemaBean///PointingToDeclaration/com/thingclips/smart/sdk/bean/ProductStandardConfig.FunctionSchemaBean.html
+$dokka.location:com.thingclips.smart.sdk.bean/ProductStandardConfig.StatusSchemaBean///PointingToDeclaration/com/thingclips/smart/sdk/bean/ProductStandardConfig.StatusSchemaBean.html
+$dokka.location:com.thingclips.smart.sdk.bean/ResumeActivatorBean.Builder///PointingToDeclaration/com/thingclips/smart/sdk/bean/ResumeActivatorBean.Builder.html
+$dokka.location:com.thingclips.smart.sdk.bean/StandSchema.FunctionSchemaListBean///PointingToDeclaration/com/thingclips/smart/sdk/bean/StandSchema.FunctionSchemaListBean.html
+$dokka.location:com.thingclips.smart.sdk.bean/StandSchema.StatusSchemaListBean///PointingToDeclaration/com/thingclips/smart/sdk/bean/StandSchema.StatusSchemaListBean.html
+$dokka.location:com.thingclips.smart.sdk.bean/TimerControlBean.TimerControlBuilder///PointingToDeclaration/com/thingclips/smart/sdk/bean/TimerControlBean.TimerControlBuilder.html
+$dokka.location:com.thingclips.smart.sdk.bean/UiInfo.UiComponent///PointingToDeclaration/com/thingclips/smart/sdk/bean/UiInfo.UiComponent.html
+$dokka.location:com.thingclips.smart.sdk.builder/MeshConnectBuilder.Builder///PointingToDeclaration/com/thingclips/smart/sdk/builder/MeshConnectBuilder.Builder.html
+com.thingclips.sdk.ble.core
+com.thingclips.sdk.ble.core.ability
+com.thingclips.sdk.ble.core.ability.model
+com.thingclips.sdk.ble.core.ability.options
+com.thingclips.sdk.ble.core.ability.response
+com.thingclips.sdk.ble.core.bean
+com.thingclips.sdk.ble.core.protocol.api
+com.thingclips.sdk.ble.core.protocol.entity
+com.thingclips.sdk.device
+com.thingclips.sdk.device.api
+com.thingclips.sdk.device.bean
+com.thingclips.sdk.device.enums
+com.thingclips.sdk.device.event
+com.thingclips.sdk.device.presenter
+com.thingclips.sdk.scene.utils
+com.thingclips.sdk.user.api
+com.thingclips.sdk.user.model
+com.thingclips.smart.android.ble
+com.thingclips.smart.android.ble.api
+com.thingclips.smart.android.ble.api.audio
+com.thingclips.smart.android.ble.bean
+com.thingclips.smart.android.ble.builder
+com.thingclips.smart.android.ble.enums
+com.thingclips.smart.android.blemesh
+com.thingclips.smart.android.blemesh.api
+com.thingclips.smart.android.blemesh.bean
+com.thingclips.smart.android.blemesh.builder
+com.thingclips.smart.android.blemesh.callback
+com.thingclips.smart.android.blemesh.event
+com.thingclips.smart.android.blemesh.linkage
+com.thingclips.smart.android.config.api
+com.thingclips.smart.android.config.bean
+com.thingclips.smart.android.device.api
+com.thingclips.smart.android.device.bean
+com.thingclips.smart.android.device.builder
+com.thingclips.smart.android.device.enums
+com.thingclips.smart.android.mqtt
+com.thingclips.smart.android.push.bean
+com.thingclips.smart.android.push.bean.enums
+com.thingclips.smart.android.sweeper
+com.thingclips.smart.android.sweeper.bean
+com.thingclips.smart.android.user.api
+com.thingclips.smart.android.user.bean
+com.thingclips.smart.bluet.api
+com.thingclips.smart.cache.api
+com.thingclips.smart.cache.bean
+com.thingclips.smart.cache.business.api
+com.thingclips.smart.device.bean
+com.thingclips.smart.home.sdk.anntation
+com.thingclips.smart.home.sdk.api
+com.thingclips.smart.home.sdk.api.config
+com.thingclips.smart.home.sdk.bean
+com.thingclips.smart.home.sdk.bean.scene
+com.thingclips.smart.home.sdk.bean.scene.condition
+com.thingclips.smart.home.sdk.bean.scene.condition.property
+com.thingclips.smart.home.sdk.bean.scene.condition.rule
+com.thingclips.smart.home.sdk.bean.scene.dev
+com.thingclips.smart.home.sdk.builder
+com.thingclips.smart.home.sdk.callback
+com.thingclips.smart.home.sdk.constant
+com.thingclips.smart.home.sdk.utils
+com.thingclips.smart.interior.api
+com.thingclips.smart.interior.bean
+com.thingclips.smart.interior.callback
+com.thingclips.smart.interior.config
+com.thingclips.smart.interior.config.bean
+com.thingclips.smart.interior.device
+com.thingclips.smart.interior.device.bean
+com.thingclips.smart.interior.device.config
+com.thingclips.smart.interior.device.confusebean
+com.thingclips.smart.interior.enums
+com.thingclips.smart.interior.event
+com.thingclips.smart.interior.hardware
+com.thingclips.smart.interior.hardware.builder
+com.thingclips.smart.interior.home
+com.thingclips.smart.interior.mqtt
+com.thingclips.smart.mqttclient.mqttv3
+com.thingclips.smart.ota.service.api
+com.thingclips.smart.otalib.api
+com.thingclips.smart.scene.api
+com.thingclips.smart.scene.api.service
+com.thingclips.smart.scene.api.util
+com.thingclips.smart.scene.lib.util
+com.thingclips.smart.sdk
+com.thingclips.smart.sdk.api
+com.thingclips.smart.sdk.api.bluemesh
+com.thingclips.smart.sdk.api.bluemesh.advertise
+com.thingclips.smart.sdk.api.bluemesh.message
+com.thingclips.smart.sdk.api.bluemesh.precontrol
+com.thingclips.smart.sdk.api.cache
+com.thingclips.smart.sdk.api.wifibackup.api
+com.thingclips.smart.sdk.api.wifibackup.api.bean
+com.thingclips.smart.sdk.bean
+com.thingclips.smart.sdk.bean.cache
+com.thingclips.smart.sdk.bean.feedback
+com.thingclips.smart.sdk.bean.message
+com.thingclips.smart.sdk.bean.privacy
+com.thingclips.smart.sdk.bean.push
+com.thingclips.smart.sdk.bluetooth.api
+com.thingclips.smart.sdk.bluetooth.business.api
+com.thingclips.smart.sdk.builder
+com.thingclips.smart.sdk.device.api
+com.thingclips.smart.sdk.device.share.api
+com.thingclips.smart.sdk.enums
+com.thingclips.smart.sdk.hardware.api
+com.thingclips.smart.sdk.hardware.base.api
+com.thingclips.smart.sdk.hardware.business.api
+com.thingclips.smart.sdk.mqtt.api
+com.thingclips.smart.timer.api
+

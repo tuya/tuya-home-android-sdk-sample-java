@@ -1,0 +1,39 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:com.thingclips.smart.android.camera.sdk.bean/SupportResolution.VideoResolution///PointingToDeclaration/com/thingclips/smart/android/camera/sdk/bean/SupportResolution.VideoResolution.html
+$dokka.location:com.thingclips.smart.camera.camerasdk.bean/ThingVideoSEIInfo.AgtxBean.IvaBean.OdBean.ObjBean///PointingToDeclaration/com/thingclips/smart/camera/camerasdk/bean/ThingVideoSEIInfo.AgtxBean.IvaBean.OdBean.ObjBean.html
+$dokka.location:com.thingclips.smart.camera.camerasdk.bean/ThingVideoSEIInfo.AgtxBean.IvaBean.OdBean///PointingToDeclaration/com/thingclips/smart/camera/camerasdk/bean/ThingVideoSEIInfo.AgtxBean.IvaBean.OdBean.html
+$dokka.location:com.thingclips.smart.camera.camerasdk.bean/ThingVideoSEIInfo.AgtxBean.IvaBean///PointingToDeclaration/com/thingclips/smart/camera/camerasdk/bean/ThingVideoSEIInfo.AgtxBean.IvaBean.html
+$dokka.location:com.thingclips.smart.camera.camerasdk.bean/ThingVideoSEIInfo.AgtxBean///PointingToDeclaration/com/thingclips/smart/camera/camerasdk/bean/ThingVideoSEIInfo.AgtxBean.html
+$dokka.location:com.thingclips.smart.camera.ipccamerasdk.bean/CameraInfoBean.AudioAttributes///PointingToDeclaration/com/thingclips/smart/camera/ipccamerasdk/bean/CameraInfoBean.AudioAttributes.html
+$dokka.location:com.thingclips.smart.camera.ipccamerasdk.bean/CameraInfoBean.FishEyeClarity///PointingToDeclaration/com/thingclips/smart/camera/ipccamerasdk/bean/CameraInfoBean.FishEyeClarity.html
+$dokka.location:com.thingclips.smart.camera.ipccamerasdk.bean/CameraInfoBean.P2pConfig///PointingToDeclaration/com/thingclips/smart/camera/ipccamerasdk/bean/CameraInfoBean.P2pConfig.html
+$dokka.location:com.thingclips.smart.camera.ipccamerasdk.p2p/ICameraP2P.PLAYMODE///PointingToDeclaration/com/thingclips/smart/camera/ipccamerasdk/p2p/ICameraP2P.PLAYMODE.html
+$dokka.location:com.thingclips.smart.camera.ipccamerasdk.p2p/ICameraP2P.TagBean///PointingToDeclaration/com/thingclips/smart/camera/ipccamerasdk/p2p/ICameraP2P.TagBean.html
+$dokka.location:com.thingclips.smart.camera.ipccamerasdk.utils/P2PConstant.ErrorCode///PointingToDeclaration/com/thingclips/smart/camera/ipccamerasdk/utils/P2PConstant.ErrorCode.html
+$dokka.location:com.thingclips.smart.camera.ipccamerasdk.utils/P2PConstant.REQUEST_ID///PointingToDeclaration/com/thingclips/smart/camera/ipccamerasdk/utils/P2PConstant.REQUEST_ID.html
+$dokka.location:com.thingclips.smart.camera.ipccamerasdk.utils/P2PConstant.SuccessCode///PointingToDeclaration/com/thingclips/smart/camera/ipccamerasdk/utils/P2PConstant.SuccessCode.html
+$dokka.location:com.thingclips.smart.camera.middleware.cloud.bean/CloudDayBean.STATUS///PointingToDeclaration/com/thingclips/smart/camera/middleware/cloud/bean/CloudDayBean.STATUS.html
+$dokka.location:com.thingclips.smart.camera.middleware.cloud.bean/TimeRangeBean.STATUS///PointingToDeclaration/com/thingclips/smart/camera/middleware/cloud/bean/TimeRangeBean.STATUS.html
+com.thingclips.smart.android.camera.sdk
+com.thingclips.smart.android.camera.sdk.annotation
+com.thingclips.smart.android.camera.sdk.api
+com.thingclips.smart.android.camera.sdk.bean
+com.thingclips.smart.android.camera.sdk.callback
+com.thingclips.smart.android.camera.sdk.constant
+com.thingclips.smart.camera.annotation
+com.thingclips.smart.camera.camerasdk.bean
+com.thingclips.smart.camera.camerasdk.thingplayer.callback
+com.thingclips.smart.camera.ipccamerasdk.bean
+com.thingclips.smart.camera.ipccamerasdk.cloud
+com.thingclips.smart.camera.ipccamerasdk.http
+com.thingclips.smart.camera.ipccamerasdk.monitor
+com.thingclips.smart.camera.ipccamerasdk.msgvideo
+com.thingclips.smart.camera.ipccamerasdk.p2p
+com.thingclips.smart.camera.ipccamerasdk.utils
+com.thingclips.smart.camera.middleware.cloud.bean
+com.thingclips.smart.camera.middleware.p2p
+com.thingclips.smart.camera.nvrsdk
+com.thingclips.smart.camera.utils
+com.thingclips.smart.ipc.messagecenter.bean
+

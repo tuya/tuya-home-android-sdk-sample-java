@@ -42,7 +42,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.14.9'
     implementation project(':base_res')
 
-    api 'com.thingclips.smart:thingsmart-ipcsdk:5.0.0'
+    api 'com.thingclips.smart:thingsmart-ipcsdk:5.1.0'
     implementation 'com.thingclips.smart:thingsmart-ipc-camera-autotest:5.0.0'
     implementation 'com.thingclips.smart:thingsmart-ipc-camera-cloudtool:5.0.0'
     //timeline view

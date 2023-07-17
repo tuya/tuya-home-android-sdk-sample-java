@@ -36,6 +36,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.alibaba.fastjson.JSONObject;
+import com.thingclips.loguploader.TLogSDK;
+import com.thingclips.loguploader.api.LogFileCallback;
 import com.thingclips.smart.android.camera.sdk.ThingIPCSdk;
 import com.thingclips.smart.android.camera.sdk.api.IThingIPCCloud;
 import com.thingclips.smart.android.camera.sdk.api.IThingIPCCore;
@@ -47,6 +49,7 @@ import com.thingclips.smart.camera.ipccamerasdk.p2p.ICameraP2P;
 import com.thingclips.smart.camera.middleware.p2p.IThingSmartCameraP2P;
 import com.thingclips.smart.camera.middleware.widget.AbsVideoViewCallback;
 import com.thingclips.smart.camera.middleware.widget.ThingCameraView;
+import com.thingclips.smart.camera.utils.chaos.L;
 import com.thingclips.smart.home.sdk.ThingHomeSdk;
 import com.thingclips.smart.ipc.camera.autotesting.activity.AutoCameraTestingProgramListActivity;
 import com.thingclips.smart.ipc.camera.cloudtool.activity.CloudToolHomeActivity;
@@ -63,6 +66,7 @@ import com.tuya.smart.android.demo.camera.utils.ToastUtil;
 
 import java.io.File;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -559,6 +563,25 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
         recordTxt.setSelected(isRecording);
     }
 
+    /**
+     * 获取离线日志保存路径
+     */
+    private void getLogPath() {
+        TLogSDK.fetchLogs(this, new LogFileCallback() {
+            @Override
+            public void onSuccess(ArrayList<String> logPaths) {
+                for (String s : logPaths) {
+                    L.i(TAG, "Local Log path:" + s);
+                }
+            }
+
+            @Override
+            public void onFail(String errorMsg) {
+
+            }
+        });
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -686,6 +709,67 @@ public class CameraPanelActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    /**
+     * 设置智能画框的属性来控制框的样式（如框的颜色，画笔宽度，闪烁频率等），需要设备上报的 SEI 信息支持
+     *
+     * @param rectFeaturesJson 格式
+     *                         {
+     *                         "SmartRectFeature":[
+     *                         {
+     *                         "type":0,
+     *                         "index":0,
+     *                         "brushWidth":1,
+     *                         "flashFps":{
+     *                         "drawKeepFrames":2,
+     *                         "stopKeepFrames":2
+     *                         },
+     *                         "rgb":0xFF0000,
+     *                         "shape":0
+     *                         },
+     *                         {
+     *                         "type":0,
+     *                         "index":1,
+     *                         "brushWidth":2,
+     *                         "flashFps":{
+     *                         "drawKeepFrames":3,
+     *                         "stopKeepFrames":2
+     *                         },
+     *                         "rgb":0x00FF00,
+     *                         "shape":1
+     *                         }
+     *                         ]
+     *                         }
+     */
+    private void setSmartRectFeatures(String rectFeaturesJson) {
+        mCameraP2P.setSmartRectFeatures(rectFeaturesJson);
+    }
+
+    /**
+     * 支持拉伸/缩放，左右/上下镜像，90/180/270度旋转等。
+     *
+     * @param renderFeaturesJson 格式
+     *                           {
+     *                           "DecPostProcess":{
+     *                           "video":[
+     *                           {
+     *                           "restype":"4",
+     *                           "oldres":"944*1080",
+     *                           "newres":"1920*1080"
+     *                           },
+     *                           {
+     *                           "restype":"2",
+     *                           "oldres":"944*1080",
+     *                           "newres":"1920*1080"
+     *                           }
+     *                           ],
+     *                           "mirror":0,
+     *                           "rotation":2
+     *                           }
+     *                           }
+     */
+    private void setDeviceFeatures(String renderFeaturesJson) {
+        mCameraP2P.setDeviceFeatures(renderFeaturesJson);
+    }
 
     private boolean querySupportByDPID(String dpId) {
         DeviceBean deviceBean = ThingHomeSdk.getDataInstance().getDeviceBean(devId);
