@@ -43,9 +43,13 @@ dependencies {
     implementation project(':base_res')
 
     api 'com.thingclips.smart:thingsmart-ipcsdk:5.1.0'
+
     implementation 'com.thingclips.smart:thingsmart-ipc-camera-autotest:5.0.0'
     implementation 'com.thingclips.smart:thingsmart-ipc-camera-cloudtool:5.0.0'
     //timeline view
     implementation 'com.thingclips.smart:thingsmart-ipc-camera-timeline:1.1.0'
+    // offline log
+    implementation 'com.thingclips.smart:thingsmart-logsdk:5.0.0'
+    implementation 'com.thingclips.smart:thing-log-sdk:5.0.0'
 
 }
