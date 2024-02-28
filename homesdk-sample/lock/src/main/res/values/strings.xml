@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lock_module_title">LOCK DEMO</string>
+    <string name="lock_module_list">ble Lock list</string>
+    <string name="device_online">Online</string>
+    <string name="device_offline">Offline</string>
+    <string name="device_unbind">Device unbinding</string>
+    <string name="lock_demo_unbind">Unbind</string>
+    <string name="lock_demo_unbind_and_clear">Unbind and clear data</string>
+
+    <string name="door_lock_member">door lock member</string>
+    <string name="ble_connection">ble connection</string>
+    <string name="ble_unlock_and_lock">ble unlock and lock</string>
+    <string name="door_lock_record">door lock record</string>
+    <string name="unlock_mode_management">unlock mode management</string>
+    <string name="general_expansion_unlock">General Expansion Unlock</string>
+    <string name="password_management">password management</string>
+    <string name="door_lock_settings">door lock settings</string>
+
+    <string name="submit_add">ADD</string>
+    <string name="user_add">add user</string>
+    <string name="user_name">user name</string>
+    <string name="user_avatar_file">avatar file</string>
+    <string name="user_unlock_allowed">Whether allowed unlock with bluetooth</string>
+    <string name="user_is_permanent">Whether the user is permanent</string>
+    <string name="effective_timestamp">effective time</string>
+    <string name="invalid_timestamp">invalid time</string>
+    <string name="user_unlock_yes">YES</string>
+    <string name="user_unlock_no">NO</string>
+    <string name="user_delete">Delete</string>
+    <string name="user_detail">Detail</string>
+    <string name="user_in_permanent">permanent</string>
+
+    <string name="submit_allocation">Allocation</string>
+    <string name="submit_update">Update</string>
+    <string name="user_update">update user</string>
+    <string name="user_id">userId: </string>
+    <string name="time_change">time change</string>
+    <string name="user_permanent">permanent</string>
+    <string name="week_repeat">repeat</string>
+    <string name="password_in_week">The day of the week that the password is available</string>
+    <string name="repeat_monday">Monday</string>
+    <string name="repeat_tuesday">Tuesday</string>
+    <string name="repeat_wednesday">Wednesday</string>
+    <string name="repeat_thursday">Thursday</string>
+    <string name="repeat_friday">Friday</string>
+    <string name="repeat_saturday">Saturday</string>
+    <string name="repeat_sunday">Sunday</string>
+
+    <string name="repeat_day_eff">Effective time of the day</string>
+    <string name="repeat_day_exp">Expiration time of the day</string>
+    <string name="repeat_day_hour">Hour</string>
+    <string name="repeat_day_minute">Minute</string>
+
+    <string name="ble_near_new_version">near new version</string>
+    <string name="ble_near_old_version">near old version</string>
+    <string name="ble_far_switch_lock">far switch lock</string>
+    <string name="unlock">unlock</string>
+    <string name="lock">lock</string>
+    <string name="unlock_offline">Unlock offline</string>
+
+    <string name="unlock_records">unlock records</string>
+    <string name="alarm_records">alarm records%s</string>
+    <string name="hijack_records">hijack records</string>
+
+    <string name="lock_logs">lock records</string>
+
+    <string name="lock_logs_all">All</string>
+    <string name="lock_logs_unlock">unlock</string>
+    <string name="lock_logs_close">close</string>
+    <string name="lock_logs_alarm">alarm</string>
+    <string name="lock_logs_operation">operation</string>
+
+    <string name="remote_unlock_title">is remote unlock: </string>
+    <string name="has_set_voice_password">has set voice password: </string>
+    <string name="set_voice_password">set voice password:</string>
+    <string name="set_voice_password_open">OPEN</string>
+    <string name="set_voice_password_close">CLOSE</string>
+    <string name="voice_set_title">google voice password settings</string>
+
+    <string name="submit">submit</string>
+
+    <string name="password_customize_1">password customize(1.0Version)</string>
+    <string name="password_customize_2">password customize(2.0Version, With cycle and without cycle)</string>
+    <string name="password_offline">Offline password</string>
+    <string name="password_dynamic">dynamic password</string>
+    <string name="password_list">password list</string>
+    <string name="password_custom">custom password</string>
+
+    <string name="password_offline_add">password offline add</string>
+    <string name="password_offline_update">update</string>
+    <string name="password_offline_delete">delete</string>
+    <string name="password_offline_clear">clear</string>
+
+    <string name="multiple">multiple</string>
+    <string name="single">single</string>
+    <string name="clear_all">clear all</string>
+    <string name="clear_one">clear</string>
+
+    <string name="to_be_used">to be used</string>
+    <string name="used">used</string>
+    <string name="expired">expired</string>
+
+    <string name="password_add">ADD</string>
+
+    <string name="lock_remote_set">Lock remote set</string>
+    <string name="lock_remote_set_switch">Remote door opening switch setting</string>
+
+    <string name="lock_member_nick">nick name</string>
+    <string name="lock_member_country_code">country code</string>
+    <string name="lock_invited_account">Invited account</string>
+    <string name="lock_member_role">member role</string>
+    <string name="lock_member_role_tips">0: common, 1: admin, 2: owner</string>
+    <string name="lock_member_add_invitee">Whether to require invitee`s consent</string>
+    <string name="lock_member_add_auto">Automatically accept family to join</string>
+    <string name="lock_member_add_requires">Requires invitee`s consent</string>
+
+    <string name="lock_opMode_unassigned">Is there an unlocking method that needs to be assigned</string>
+    <string name="lock_select_assign_member">Select Assign Members</string>
+    <string name="off_password_add_clear_tips">Obtain an offline unlimited number of passwords that are in effect and can be cleared</string>
+    <string name="password_gey_integer">Get password base integer type</string>
+    <string name="password_list_pro">password list</string>
+    <string name="online_password">Online password</string>
+    <string name="offline_password">Offline password</string>
+    <string name="password_one_time">one-time password</string>
+    <string name="password_one_time_tips">Can only be used once within the validity period</string>
+    <string name="password_periodic">periodic password</string>
+    <string name="password_periodic_tips">Can only be used multiple times within the validity period</string>
+    <string name="passwords_unlimited">Unlimited number of passwords</string>
+    <string name="passwords_unlimited_tips">Use it at least once within 24 hours after it takes effect, otherwise it will be invalid</string>
+    <string name="passwords_clear">Clear all codes</string>
+    <string name="passwords_clear_tips">It can only be used once before it expires, and all passwords can be cleared</string>
+
+    <string name="password_value">password</string>
+
+    <string name="submit_edit">Edit</string>
+    <string name="password_special">special password</string>
+    <string name="unlock_mode_app">Add unlock method</string>
+    <string name="submit_randomly">randomly generated</string>
+    <string name="interface_response">interface response</string>
+
+    <string name="submit_opMode">opMode</string>
+    <string name="submit_effect">effect</string>
+    <string name="submit_delete">DELETE</string>
+    <string name="click_to_copy">click to copy</string>
+    <string name="device_state">device state: </string>
+    <string name="submit_connect">connect</string>
+    <string name="setting_title">setting</string>
+
+    <string name="enter_unlock_mode_name">Please enter the unlock mode name</string>
+    <string name="whether_to_cancel">Whether to cancel the entry</string>
+    <string name="whether_to_remove_device">Whether to remove the device</string>
+    <string name="whether_to_remove_device_clear">Whether to clear data and remove</string>
+
+    <string name="connected_gateway">gateway connected</string>
+    <string name="connected_bluetooth">bluetooth connected</string>
+    <string name="no_unlock_mode_selected">No unlock mode selected</string>
+
+    <string name="mode_fingerprint">fingerprint</string>
+    <string name="mode_card">Card</string>
+    <string name="mode_password">Password</string>
+    <string name="mode_voice_password">voice password</string>
+
+    <string name="zigbee_lock_module_title">Device Detail</string>
+    <string name="zigbee_alarm_record_list_title">Alarm Record List</string>
+    <string name="zigbee_door_record_list_title">Door Record List</string>
+    <string name="zigbee_unlock_open">Long press open</string>
+    <string name="zigbee_no_content">no content</string>
+    <string name="zigbee_temp_pwd">Temporary Password</string>
+    <string name="zigbee_invalid_password_list">Invalid password list</string>
+    <string name="zigbee_bind_members">bind</string>
+    <string name="zigbee_password_name">name</string>
+    <string name="zigbee_device_offline">device offline</string>
+    <string name="remote_permissions_title">Remote unlocking permission settings</string>
+
+    <string name="zigbee_security_guard_days">Has been safely guarded for %s days</string>
+    <string name="zigbee_battery_not_support">The battery is not supported</string>
+    <string name="zigbee_insufficient_permissions">Insufficient permissions</string>
+    <string name="zigbee_network_error">Network Error</string>
+    <string name="zigbee_not_enabled">Function not enabled</string>
+    <string name="zigbee_door_not_closed">door open</string>
+    <string name="zigbee_door_is_closed">door closed</string>
+    <string name="zigbee_door_locked">door locked</string>
+    <string name="zigbee_door_not_locked">door unlocked</string>
+    <string name="zigbee_child_lock_open">child lock open</string>
+    <string name="zigbee_child_lock_off">child lock off</string>
+    <string name="zigbee_power">Power%s%%</string>
+    <string name="zigbee_operation_suc">Successful operation</string>
+    <string name="zigbee_opmode_unbound_list">List of unbound unlocking methods</string>
+
+    <string name="zigbee_remote_not_key_admin">remote not key admin</string>
+    <string name="zigbee_remote_not_key_all">remote not key all</string>
+    <string name="zigbee_remote_unlock_admin">remote unlock admin</string>
+    <string name="zigbee_remote_unlock_all">remote unlock all</string>
+    <string name="zigbee_hijack">hijack</string>
+
+    <string name="zigbee_deleting">deleting</string>
+    <string name="zigbee_editing">editing</string>
+    <string name="zigbee_in_force">in force</string>
+    <string name="zigbee_not_active">not active</string>
+    <string name="zigbee_frozen">frozen</string>
+    <string name="zigbee_disposable">oneTimes</string>
+    <string name="zigbee_cycle">cycle</string>
+
+    <string name="zigbee_select_function">Select function</string>
+    <string name="zigbee_unfreeze">unfreeze</string>
+    <string name="zigbee_freeze">freeze</string>
+    <string name="zigbee_cancel">cancel</string>
+
+    <string name="lock_time_out">time out</string>
+    <string name="lock_function_not_support">Function not supported</string>
+    <string name="please_enter_lock_number">Please enter the lock number</string>
+
+    <string name="lock_log_list">Log</string>
+</resources>
