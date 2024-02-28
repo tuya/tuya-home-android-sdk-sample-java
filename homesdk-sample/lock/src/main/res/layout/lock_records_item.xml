@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="20dp"
+    android:paddingTop="16dp"
+    tools:ignore="RtlSymmetry">
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/black"
+        tools:text="userName" />
+
+    <TextView
+        android:id="@+id/unlockTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_toEndOf="@+id/userName"
+        android:gravity="end"
+        tools:text="2022-12-22 12:22:22" />
+
+    <TextView
+        android:id="@+id/unlockType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userName"
+        android:layout_marginBottom="20dp"
+        android:layout_toStartOf="@+id/unlockTags" />
+
+    <TextView
+        android:id="@+id/unlockTags"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:gravity="end"
+        android:textColor="@color/red"
+        tools:text="hijack" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/unlockType"
+        android:background="#dddddd" />
+
+</RelativeLayout>

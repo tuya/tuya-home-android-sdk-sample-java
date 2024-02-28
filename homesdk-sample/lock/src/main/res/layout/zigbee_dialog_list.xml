@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recycler_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="20dp">
+
+    <TextView
+        android:id="@+id/edit_view"
+        style="@style/item_func"
+        android:layout_height="50dp"
+        android:drawableRight="@null"
+        android:text="编辑" />
+
+    <View
+        android:id="@+id/edit_view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dddddd" />
+
+    <TextView
+        android:id="@+id/delete_view"
+        style="@style/item_func"
+        android:layout_height="50dp"
+        android:drawableRight="@null"
+        android:text="删除" />
+
+    <View
+        android:id="@+id/delete_view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dddddd" />
+
+    <TextView
+        android:id="@+id/freeze_view"
+        style="@style/item_func"
+        android:layout_height="50dp"
+        android:drawableRight="@null"
+        android:text="冻结" />
+
+    <View
+        android:id="@+id/freeze_view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dddddd" />
+
+    <TextView
+        android:id="@+id/rename_view"
+        style="@style/item_func"
+        android:layout_height="50dp"
+        android:drawableRight="@null"
+        android:text="重命名" />
+
+    <View
+        android:id="@+id/rename_view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dddddd" />
+
+    <TextView
+        android:id="@+id/showCode_view"
+        style="@style/item_func"
+        android:layout_height="50dp"
+        android:drawableRight="@null"
+        android:text="云端返回数据" />
+
+</LinearLayout>
