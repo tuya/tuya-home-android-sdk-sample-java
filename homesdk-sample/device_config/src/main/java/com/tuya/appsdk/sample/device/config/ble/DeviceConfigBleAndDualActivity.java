@@ -173,13 +173,14 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
     private void singleActivator(int pos) {
         cpiLoading.setVisibility(View.VISIBLE);
 
-        bleActivatorBean = new BleActivatorBean();
+        bleActivatorBean = new BleActivatorBean(mScanDeviceBean);
 
         bleActivatorBean.homeId = HomeModel.getCurrentHome(this); // homeId
         bleActivatorBean.address = scanDeviceBeanList.get(pos).getAddress();
         bleActivatorBean.deviceType = scanDeviceBeanList.get(pos).getDeviceType();
         bleActivatorBean.uuid = scanDeviceBeanList.get(pos).getUuid(); // UUID
         bleActivatorBean.productId = scanDeviceBeanList.get(pos).getProductId();
+
 
         mBleActivator.startActivator(bleActivatorBean, new IBleActivatorListener() {
             @Override
@@ -243,11 +244,13 @@ public class DeviceConfigBleAndDualActivity extends AppCompatActivity implements
                     @Override
                     public void onSuccess(String token) {
                         Log.d(TAG, "getToken success, token :" + token);
-                        multiModeActivatorBean = new MultiModeActivatorBean();
+                 
+                        multiModeActivatorBean = new MultiModeActivatorBean(mScanDeviceBean);
                         multiModeActivatorBean.deviceType = scanDeviceBeanList.get(pos).getDeviceType();
                         multiModeActivatorBean.uuid = scanDeviceBeanList.get(pos).getUuid();
                         multiModeActivatorBean.address = scanDeviceBeanList.get(pos).getAddress();
                         multiModeActivatorBean.mac = scanDeviceBeanList.get(pos).getMac();
+                        multiModeActivatorBean.flag = mScanDeviceBean.getFlag(); 
                         multiModeActivatorBean.ssid = ssid;
                         multiModeActivatorBean.pwd = pwd;
                         multiModeActivatorBean.token = token;
