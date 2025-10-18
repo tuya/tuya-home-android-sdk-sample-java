@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/titleBarWrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:title="@string/zigbee_lock_module_title" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleBarWrap">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/guard_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/green"
+                    android:gravity="center"
+                    android:textColor="@color/white" />
+
+                <com.tuya.lock.demo.zigbee.view.LockButtonProgressView
+                    android:id="@+id/unlock_btn"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_below="@+id/guard_view"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    app:buttonBgColor="@color/ty_theme_color_m1"
+                    app:progressColor="@color/ty_theme_color_m1_n1"
+                    app:progressWidth="3dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/unlock_btn"
+                    android:orientation="horizontal"
+                    android:paddingBottom="30dp">
+
+                    <TextView
+                        android:id="@+id/closed_door_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/gray"
+                        tools:text="门未关" />
+
+                    <TextView
+                        android:id="@+id/anti_lock_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/gray"
+                        tools:text="未反锁" />
+
+                    <TextView
+                        android:id="@+id/child_lock_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/gray"
+                        tools:text="未童锁" />
+
+                    <TextView
+                        android:id="@+id/power_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/gray"
+                        tools:text="电量" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#FF888888" />
+
+            <TextView
+                android:id="@+id/alarm_record_view"
+                style="@style/item_func"
+                android:text="@string/alarm_records" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:background="#FF888888" />
+
+            <TextView
+                android:id="@+id/door_record_view"
+                style="@style/item_func"
+                android:text="@string/unlock_records" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:background="#FF888888" />
+
+            <TextView
+                android:id="@+id/temporary_password_view"
+                style="@style/item_func"
+                android:text="@string/zigbee_temp_pwd" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:background="#FF888888" />
+
+            <TextView
+                android:id="@+id/dynamic_password_view"
+                style="@style/item_func"
+                android:text="@string/password_dynamic" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:background="#FF888888" />
+
+            <TextView
+                android:id="@+id/member_list_view"
+                style="@style/item_func"
+                android:text="@string/door_lock_member" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:background="#FF888888" />
+
+            <TextView
+                android:id="@+id/setting_view"
+                style="@style/item_func"
+                android:text="@string/setting_title" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:background="#FF888888" />
+
+            <TextView
+                android:id="@+id/device_delete"
+                style="@style/item_func"
+                android:text="@string/device_unbind" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

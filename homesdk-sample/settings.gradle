@@ -5,5 +5,5 @@ include ':device_config'
 include ':app'
 include ':home'
 include ':sweeper'
-include ':ble_lock'
+include ':lock'
 rootProject.name = "ThingSDKSample"

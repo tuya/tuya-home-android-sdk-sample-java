@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tuya.lock.demo">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <application>
+        <activity
+            android:name="com.tuya.lock.demo.ble.main.DeviceListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.detail.BleLockDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.member.MemberListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.state.ConnectStateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.unlock.BleSwitchLockActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.records.BleLockRecordsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.setting.LockSettingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordMainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordDynamicActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordProListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordProOfflineAddActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.opMode.OpModeListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordOldOfflineListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordOldOfflineAddActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordProOfflineRevokeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordOldOfflineAddRevokeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordOldOnlineListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordSingleRevokeListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.records.BleLockProRecordsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.setting.VoiceSettingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordLockDeviceConfigActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.opMode.OpModeDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordProOnlineDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.password.PasswordOldOnlineDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.member.MemberTimeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.member.MemberDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.code.ShowCodeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.opMode.OpModeUnboundListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.member.MemberSelectListActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.detail.DeleteDeviceActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.ble.activity.setting.DpSettingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.DeviceDetail"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.AlarmRecordListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.DoorRecordListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.MemberDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.MemberListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.OpModeDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.OpModeListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.OpModeUnboundListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.PasswordUpdateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.PasswordDynamicActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.PasswordDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.PasswordListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.LockSettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.SettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.VoiceSettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.PasswordInvalidListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.MemberSelectListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.zigbee.activity.DpSettingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.wifi.activity.WifiDeviceDetail"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.wifi.activity.DoorRecordListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.wifi.activity.PasswordDynamicActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.wifi.activity.AlarmRecordListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.wifi.activity.PasswordListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.wifi.activity.PasswordDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.wifi.activity.PasswordUpdateActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.wifi.activity.MemberListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.wifi.activity.MemberDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.wifi.activity.OpModeDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.video.activity.VideoDeviceDetail"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.video.activity.LogRecordListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.tuya.lock.demo.video.activity.LogRecordDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+    </application>
+</manifest>

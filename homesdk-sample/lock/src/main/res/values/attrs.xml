@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HealthSportButtonProgressView">
+        <attr name="buttonBgColor" format="color" /><!--圆形背景颜色-->
+        <attr name="progressColor" format="color" /><!--进度颜色-->
+        <attr name="progressWidth" format="dimension" /><!--进度圆环宽度-->
+        <attr name="buttonTitle" format="string" /><!-- 中心点图标 -->
+    </declare-styleable>
+</resources>

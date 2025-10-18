@@ -22,7 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.thing.smart.sweeper.SweeperActivity;
-import com.tuya.lock.demo.activity.detail.BleLockDetailActivity;
+import com.tuya.lock.demo.LockDeviceUtils;
 import com.tuya.appsdk.sample.device.mgt.R;
 import com.tuya.appsdk.sample.device.mgt.control.activity.DeviceMgtControlActivity;
 import com.tuya.appsdk.sample.device.mgt.list.activity.DeviceSubZigbeeActivity;
@@ -70,8 +70,7 @@ public final class DeviceMgtAdapter extends RecyclerView.Adapter<DeviceMgtAdapte
                 v.getContext().startActivity(intent);
                 return;
             }
-            if (deviceBean.getProductBean().getCategory().contains("ms")) {
-                BleLockDetailActivity.startActivity(v.getContext(), deviceBean.getDevId());
+            if (LockDeviceUtils.check(v.getContext(), deviceBean.getDevId())) {
                 return;
             }
             switch (type) {

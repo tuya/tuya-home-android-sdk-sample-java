@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lock_module_title">门锁DEMO</string>
+    <string name="lock_module_list">蓝牙门锁列表</string>
+    <string name="device_online">在线</string>
+    <string name="device_offline">离线</string>
+    <string name="device_unbind">设备解绑</string>
+    <string name="lock_demo_unbind">解绑</string>
+    <string name="lock_demo_unbind_and_clear">解绑并清除数据</string>
+
+    <string name="door_lock_member">门锁成员</string>
+    <string name="ble_connection">蓝牙连接</string>
+    <string name="ble_unlock_and_lock">蓝牙解锁和落锁</string>
+    <string name="door_lock_record">门锁记录</string>
+    <string name="unlock_mode_management">解锁方式管理</string>
+    <string name="general_expansion_unlock">通用拓展解锁</string>
+    <string name="password_management">密码管理</string>
+    <string name="door_lock_settings">门锁设置</string>
+
+    <string name="submit_add">添加</string>
+    <string name="user_add">添加成员</string>
+    <string name="user_name">成员名</string>
+    <string name="user_avatar_file">用户头像</string>
+    <string name="user_unlock_allowed">是否允许蓝牙解锁</string>
+    <string name="user_is_permanent">是否永久账号</string>
+    <string name="effective_timestamp">生效时间</string>
+    <string name="invalid_timestamp">失效时间</string>
+    <string name="user_unlock_yes">是</string>
+    <string name="user_unlock_no">否</string>
+    <string name="user_delete">删除</string>
+    <string name="user_detail">详情</string>
+    <string name="user_in_permanent">永久</string>
+
+    <string name="submit_allocation">分 配</string>
+    <string name="submit_update">更 新</string>
+    <string name="user_update">更新成员信息</string>
+    <string name="user_id">userId: </string>
+    <string name="time_change">时效变更</string>
+    <string name="user_permanent">是否永久</string>
+    <string name="week_repeat">重复</string>
+    <string name="password_in_week">密码在一周中的星期几可用</string>
+    <string name="repeat_monday">星期一</string>
+    <string name="repeat_tuesday">星期二</string>
+    <string name="repeat_wednesday">星期三</string>
+    <string name="repeat_thursday">星期四</string>
+    <string name="repeat_friday">星期五</string>
+    <string name="repeat_saturday">星期六</string>
+    <string name="repeat_sunday">星期日</string>
+
+    <string name="repeat_day_eff">当天生效时间</string>
+    <string name="repeat_day_exp">当天失效时间</string>
+    <string name="repeat_day_hour">小时</string>
+    <string name="repeat_day_minute">分钟</string>
+    <string name="unlock_offline">离线开锁</string>
+
+    <string name="ble_near_new_version">新版近场</string>
+    <string name="ble_near_old_version">老版近场</string>
+    <string name="ble_far_switch_lock">远程开关锁</string>
+    <string name="unlock">解锁</string>
+    <string name="lock">落锁</string>
+
+    <string name="unlock_records">开锁记录</string>
+    <string name="alarm_records">告警记录%s</string>
+    <string name="hijack_records">劫持记录</string>
+
+    <string name="lock_logs">门锁记录</string>
+
+    <string name="lock_logs_all">全部</string>
+    <string name="lock_logs_unlock">解锁</string>
+    <string name="lock_logs_close">落锁</string>
+    <string name="lock_logs_alarm">告警</string>
+    <string name="lock_logs_operation">操作</string>
+
+    <string name="remote_unlock_title">远程开门是否支持: </string>
+    <string name="has_set_voice_password">是否设置语音密码: </string>
+    <string name="set_voice_password">设置语音密码</string>
+    <string name="set_voice_password_open">开</string>
+    <string name="set_voice_password_close">关</string>
+    <string name="voice_set_title">谷歌语音密码设置</string>
+
+    <string name="submit">提交</string>
+
+    <string name="password_customize_1">自定义临时密码（1.0版本）</string>
+    <string name="password_customize_2">自定义临时密码（2.0版本，带周期和不带周期）</string>
+    <string name="password_offline">离线密码</string>
+    <string name="password_dynamic">动态密码</string>
+    <string name="password_list">密码列表</string>
+
+    <string name="password_offline_add">添加离线密码</string>
+    <string name="password_offline_update">更新</string>
+    <string name="password_offline_delete">删除</string>
+    <string name="password_offline_clear">清空</string>
+
+    <string name="multiple">多次</string>
+    <string name="single">单次</string>
+    <string name="clear_all">清空</string>
+
+    <string name="to_be_used">未使用</string>
+    <string name="used">已使用</string>
+    <string name="expired">已到期</string>
+
+    <string name="password_add">添加</string>
+
+    <string name="lock_remote_set">远程开锁设置</string>
+    <string name="lock_remote_set_switch">远程开门开关设置</string>
+
+    <string name="lock_member_nick">昵称</string>
+    <string name="lock_member_country_code">国区号</string>
+    <string name="lock_invited_account">受邀请账号</string>
+    <string name="lock_member_role">成员角色</string>
+    <string name="lock_member_role_tips">0：普通成员、1：管理员、2：所有者</string>
+    <string name="lock_member_add_invitee">是否需要受邀请者同意</string>
+    <string name="lock_member_add_auto">自动接受家庭加入</string>
+    <string name="lock_member_add_requires">需要受邀请者同意</string>
+
+    <string name="lock_opMode_unassigned">是否有需要分配的开锁方式</string>
+    <string name="lock_select_assign_member">选择分配成员</string>
+    <string name="off_password_add_clear_tips">获取生效中的，可以被清空的离线不限次数密码</string>
+    <string name="password_gey_integer">获取密码进制类型</string>
+    <string name="password_list_pro">密码列表</string>
+    <string name="online_password">在线密码</string>
+    <string name="offline_password">离线密码</string>
+    <string name="password_one_time">一次性密码</string>
+    <string name="password_one_time_tips">有效期内仅能使用一次</string>
+    <string name="password_periodic">周期性密码</string>
+    <string name="password_custom">自定义密码</string>
+    <string name="password_periodic_tips">有效期内仅能使用多次</string>
+    <string name="passwords_unlimited">不限次数密码</string>
+    <string name="passwords_unlimited_tips">生效后24小时内至少使用一次，否则将失效</string>
+    <string name="passwords_clear">全部清空码</string>
+    <string name="passwords_clear_tips">失效前仅能使用一次，可清空所有密码</string>
+
+    <string name="password_value">密码</string>
+
+    <string name="clear_one">单个清空</string>
+
+    <string name="submit_edit">编辑</string>
+    <string name="password_special">特殊密码</string>
+    <string name="unlock_mode_app">添加解锁方式</string>
+    <string name="submit_randomly">随机生成</string>
+    <string name="interface_response">云端接口返回</string>
+
+    <string name="submit_opMode">解锁方式</string>
+    <string name="submit_effect">时效</string>
+    <string name="submit_delete">删除</string>
+    <string name="click_to_copy">点击复制</string>
+    <string name="device_state">设备状态：</string>
+    <string name="submit_connect">连接</string>
+    <string name="setting_title">设置</string>
+
+    <string name="enter_unlock_mode_name">请输入解锁方式名称</string>
+    <string name="whether_to_cancel">是否取消录入</string>
+    <string name="whether_to_remove_device">是否移除设备</string>
+    <string name="whether_to_remove_device_clear">是否清除数据并移除</string>
+
+    <string name="connected_gateway">网关已连接</string>
+    <string name="connected_bluetooth">蓝牙已连接</string>
+    <string name="no_unlock_mode_selected">未选择解锁方式</string>
+
+    <string name="mode_fingerprint">指纹</string>
+    <string name="mode_card">卡片</string>
+    <string name="mode_password">密码</string>
+    <string name="mode_voice_password">语音密码</string>
+
+    <string name="zigbee_lock_module_title">设备详情</string>
+    <string name="zigbee_alarm_record_list_title">告警记录</string>
+    <string name="zigbee_door_record_list_title">开门记录</string>
+    <string name="zigbee_unlock_open">长按开门</string>
+    <string name="zigbee_no_content">暂无内容</string>
+    <string name="zigbee_temp_pwd">临时密码</string>
+    <string name="zigbee_invalid_password_list">无效密码列表</string>
+    <string name="zigbee_bind_members">关联</string>
+    <string name="zigbee_password_name">名称</string>
+    <string name="zigbee_device_offline">设备已离线</string>
+    <string name="remote_permissions_title">远程开锁权限设置</string>
+
+    <string name="zigbee_security_guard_days">已安全守护%s天</string>
+    <string name="zigbee_battery_not_support">电量不支持</string>
+    <string name="zigbee_insufficient_permissions">权限不足</string>
+    <string name="zigbee_network_error">网络异常</string>
+    <string name="zigbee_not_enabled">功能未开启</string>
+    <string name="zigbee_door_not_closed">门未关</string>
+    <string name="zigbee_door_is_closed">门已关</string>
+    <string name="zigbee_door_locked">已反锁</string>
+    <string name="zigbee_door_not_locked">未反锁</string>
+    <string name="zigbee_child_lock_open">童锁开</string>
+    <string name="zigbee_child_lock_off">童锁关</string>
+    <string name="zigbee_power">电量%s%%</string>
+    <string name="zigbee_operation_suc">操作成功</string>
+    <string name="zigbee_opmode_unbound_list">未绑定的解锁方式列表</string>
+
+    <string name="zigbee_remote_not_key_admin">管理员免密</string>
+    <string name="zigbee_remote_not_key_all">所有人免密</string>
+    <string name="zigbee_remote_unlock_admin">管理员含密</string>
+    <string name="zigbee_remote_unlock_all">所有人含密</string>
+    <string name="zigbee_hijack">劫持</string>
+    <string name="zigbee_deleting">删除中</string>
+    <string name="zigbee_editing">修改中</string>
+    <string name="zigbee_in_force">已生效</string>
+    <string name="zigbee_not_active">未生效</string>
+    <string name="zigbee_frozen">已冻结</string>
+    <string name="zigbee_disposable">一次性</string>
+    <string name="zigbee_cycle">周期</string>
+    <string name="zigbee_select_function">选择功能</string>
+    <string name="zigbee_unfreeze">解冻</string>
+    <string name="zigbee_freeze">冻结</string>
+    <string name="zigbee_cancel">冻结</string>
+
+    <string name="lock_time_out">门锁反馈超时</string>
+    <string name="lock_function_not_support">功能不支持</string>
+    <string name="please_enter_lock_number">请输入锁编号</string>
+
+    <string name="lock_log_list">日志</string>
+
+</resources>
